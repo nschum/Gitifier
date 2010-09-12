@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Gitifier' target in the 'Gitifier' project
+//
+
+#ifdef __OBJC__
+  #import <Cocoa/Cocoa.h>
+#endif
