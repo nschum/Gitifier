@@ -11,8 +11,11 @@
   NSStatusItem *statusBarItem;
 }
 
-@property (nonatomic, retain) IBOutlet NSWindow *window;
+@property (nonatomic, retain) IBOutlet NSWindow *preferencesWindow;
 @property (nonatomic, retain) IBOutlet NSMenu *statusBarMenu;
+
+// public
+- (IBAction) showPreferences: (id) sender;
 
 // private
 - (void) createStatusBarItem;

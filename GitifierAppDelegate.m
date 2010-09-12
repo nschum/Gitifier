@@ -9,7 +9,7 @@
 
 @implementation GitifierAppDelegate
 
-@synthesize window, statusBarMenu;
+@synthesize preferencesWindow, statusBarMenu;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   [self createStatusBarItem];
@@ -25,6 +25,11 @@
   statusBarItem.image = [NSImage imageNamed: @"menu_icon.png"];
   statusBarItem.highlightMode = YES;
   statusBarItem.menu = statusBarMenu;
+}
+
+- (IBAction) showPreferences: (id) sender {
+  // TODO: fix cmd+w
+  [preferencesWindow makeKeyAndOrderFront: self];
 }
 
 @end
