@@ -29,6 +29,7 @@
 
 - (IBAction) showPreferences: (id) sender {
   // TODO: fix cmd+w
+  // TODO: focus on add
   [preferencesWindow makeKeyAndOrderFront: self];
 }
 
