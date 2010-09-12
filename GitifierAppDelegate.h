@@ -7,8 +7,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {}
+@interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
+  NSStatusItem *statusBarItem;
+}
 
-@property (assign) IBOutlet NSWindow *window;
+@property (nonatomic, retain) IBOutlet NSWindow *window;
+@property (nonatomic, retain) IBOutlet NSMenu *statusBarMenu;
+
+// private
+- (void) createStatusBarItem;
 
 @end

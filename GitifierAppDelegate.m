@@ -9,10 +9,22 @@
 
 @implementation GitifierAppDelegate
 
-@synthesize window;
+@synthesize window, statusBarMenu;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
-  // Insert code here to initialize your application 
+  [self createStatusBarItem];
+}
+
+- (void) createStatusBarItem {
+  statusBarItem = [[[NSStatusBar systemStatusBar] statusItemWithLength: NSSquareStatusItemLength] retain];
+  if (!statusBarItem) {
+    NSRunAlertPanel(@"Error", @"Gitifier menu could not be created :(", @"That's a shame", nil, nil);
+    [NSApp terminate: self];
+  }
+
+  statusBarItem.image = [NSImage imageNamed: @"menu_icon.png"];
+  statusBarItem.highlightMode = YES;
+  statusBarItem.menu = statusBarMenu;
 }
 
 @end
