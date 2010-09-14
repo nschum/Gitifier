@@ -6,10 +6,11 @@
 // -------------------------------------------------------
 
 #import "GitifierAppDelegate.h"
+#import "Repository.h"
 
 @implementation GitifierAppDelegate
 
-@synthesize preferencesWindow, statusBarMenu;
+@synthesize preferencesWindow, statusBarMenu, addRepositoryWindow, newRepositoryUrl, repositoryListController;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   [self createStatusBarItem];
@@ -31,6 +32,27 @@
   // TODO: fix cmd+w
   // TODO: focus on add
   [preferencesWindow makeKeyAndOrderFront: self];
+}
+
+- (IBAction) showAddRepositorySheet: (id) sender {
+  newRepositoryUrl.stringValue = @"";
+  [NSApp beginSheet: addRepositoryWindow
+     modalForWindow: preferencesWindow
+      modalDelegate: self
+     didEndSelector: nil
+        contextInfo: nil];
+}
+
+- (IBAction) addRepository: (id) sender {
+  Repository *repository = [[Repository alloc] initWithUrl: newRepositoryUrl.stringValue];
+  [repositoryListController addObject: repository];
+  [repositoryListController setSelectionIndex: NSNotFound];
+  [self hideAddRepositorySheet: self];
+}
+
+- (IBAction) hideAddRepositorySheet: (id) sender {
+  [NSApp endSheet: addRepositoryWindow];
+  [addRepositoryWindow orderOut: self];
 }
 
 @end

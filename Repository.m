@@ -11,4 +11,12 @@
 
 @synthesize url;
 
+- (id) initWithUrl: (NSString *) anUrl {
+  self = [super init];
+  if (self) {
+    url = anUrl;
+  }
+  return self;
+}
+
 @end

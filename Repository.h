@@ -11,4 +11,6 @@
 
 @property (nonatomic, copy) NSString *url;
 
+- (id) initWithUrl: (NSString *) anUrl;
+
 @end
