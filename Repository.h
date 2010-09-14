@@ -11,6 +11,10 @@
 
 @property (nonatomic, copy) NSString *url;
 
+// public
 - (id) initWithUrl: (NSString *) anUrl;
+
+// private
+- (BOOL) isProperUrl: (NSString *) url;
 
 @end

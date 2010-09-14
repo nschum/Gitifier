@@ -38,16 +38,26 @@
   newRepositoryUrl.stringValue = @"";
   [NSApp beginSheet: addRepositoryWindow
      modalForWindow: preferencesWindow
-      modalDelegate: self
+      modalDelegate: nil
      didEndSelector: nil
         contextInfo: nil];
 }
 
 - (IBAction) addRepository: (id) sender {
   Repository *repository = [[Repository alloc] initWithUrl: newRepositoryUrl.stringValue];
-  [repositoryListController addObject: repository];
-  [repositoryListController setSelectionIndex: NSNotFound];
-  [self hideAddRepositorySheet: self];
+  if (repository) {
+    [repositoryListController addObject: repository];
+    [repositoryListController setSelectionIndex: NSNotFound];
+    [self hideAddRepositorySheet: self];
+  } else {
+    NSAlert *alert = [NSAlert alertWithMessageText: @"This URL is invalid or not supported."
+                                     defaultButton: @"OK"
+                                   alternateButton: nil
+                                       otherButton: nil
+                         informativeTextWithFormat: @"Try a URL that starts with git://, ssh://, http(s)://, ftp(s):// "
+                                                    @"or rsync://."];
+    [alert beginSheetModalForWindow: addRepositoryWindow modalDelegate: nil didEndSelector: nil contextInfo: nil];
+  }
 }
 
 - (IBAction) hideAddRepositorySheet: (id) sender {
