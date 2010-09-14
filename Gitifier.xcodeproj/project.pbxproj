@@ -11,6 +11,12 @@
 		256AC3DA0F4B6AC300CF3369 /* GitifierAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* GitifierAppDelegate.m */; };
 		58AA4BDE123D607000E2E059 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AA4BDD123D607000E2E059 /* menu_icon.png */; };
 		58AA4C7A123D6EBA00E2E059 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AA4C79123D6EBA00E2E059 /* Repository.m */; };
+		58DEBC83124009E500DE7C7E /* PSCocoaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */; };
+		58DEBC84124009E500DE7C7E /* PSFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC6B124009E500DE7C7E /* PSFoundationExtensions.m */; };
+		58DEBC85124009E500DE7C7E /* PSIntArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC6D124009E500DE7C7E /* PSIntArray.m */; };
+		58DEBC86124009E500DE7C7E /* PSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC71124009E500DE7C7E /* PSModel.m */; };
+		58DEBC87124009E500DE7C7E /* PSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC73124009E500DE7C7E /* PSModelManager.m */; };
+		58DEBC88124009E500DE7C7E /* PSPathBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC75124009E500DE7C7E /* PSPathBuilder.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -30,6 +36,20 @@
 		58AA4BDD123D607000E2E059 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		58AA4C78123D6EBA00E2E059 /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
 		58AA4C79123D6EBA00E2E059 /* Repository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repository.m; sourceTree = "<group>"; };
+		58DEBC68124009E500DE7C7E /* PSCocoaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCocoaExtensions.h; sourceTree = "<group>"; };
+		58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCocoaExtensions.m; sourceTree = "<group>"; };
+		58DEBC6A124009E500DE7C7E /* PSFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSFoundationExtensions.h; sourceTree = "<group>"; };
+		58DEBC6B124009E500DE7C7E /* PSFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSFoundationExtensions.m; sourceTree = "<group>"; };
+		58DEBC6C124009E500DE7C7E /* PSIntArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSIntArray.h; sourceTree = "<group>"; };
+		58DEBC6D124009E500DE7C7E /* PSIntArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSIntArray.m; sourceTree = "<group>"; };
+		58DEBC6E124009E500DE7C7E /* PsiToolkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsiToolkit.h; sourceTree = "<group>"; };
+		58DEBC6F124009E500DE7C7E /* PSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMacros.h; sourceTree = "<group>"; };
+		58DEBC70124009E500DE7C7E /* PSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSModel.h; sourceTree = "<group>"; };
+		58DEBC71124009E500DE7C7E /* PSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSModel.m; sourceTree = "<group>"; };
+		58DEBC72124009E500DE7C7E /* PSModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSModelManager.h; sourceTree = "<group>"; };
+		58DEBC73124009E500DE7C7E /* PSModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSModelManager.m; sourceTree = "<group>"; };
+		58DEBC74124009E500DE7C7E /* PSPathBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPathBuilder.h; sourceTree = "<group>"; };
+		58DEBC75124009E500DE7C7E /* PSPathBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPathBuilder.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gitifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
+				58DEBC5B124009CD00DE7C7E /* Lib */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -130,6 +151,35 @@
 				58AA4BDD123D607000E2E059 /* menu_icon.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		58DEBC5B124009CD00DE7C7E /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				58DEBC5C124009E500DE7C7E /* PsiToolkit */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		58DEBC5C124009E500DE7C7E /* PsiToolkit */ = {
+			isa = PBXGroup;
+			children = (
+				58DEBC68124009E500DE7C7E /* PSCocoaExtensions.h */,
+				58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */,
+				58DEBC6A124009E500DE7C7E /* PSFoundationExtensions.h */,
+				58DEBC6B124009E500DE7C7E /* PSFoundationExtensions.m */,
+				58DEBC6C124009E500DE7C7E /* PSIntArray.h */,
+				58DEBC6D124009E500DE7C7E /* PSIntArray.m */,
+				58DEBC6E124009E500DE7C7E /* PsiToolkit.h */,
+				58DEBC6F124009E500DE7C7E /* PSMacros.h */,
+				58DEBC70124009E500DE7C7E /* PSModel.h */,
+				58DEBC71124009E500DE7C7E /* PSModel.m */,
+				58DEBC72124009E500DE7C7E /* PSModelManager.h */,
+				58DEBC73124009E500DE7C7E /* PSModelManager.m */,
+				58DEBC74124009E500DE7C7E /* PSPathBuilder.h */,
+				58DEBC75124009E500DE7C7E /* PSPathBuilder.m */,
+			);
+			path = PsiToolkit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +248,12 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* GitifierAppDelegate.m in Sources */,
 				58AA4C7A123D6EBA00E2E059 /* Repository.m in Sources */,
+				58DEBC83124009E500DE7C7E /* PSCocoaExtensions.m in Sources */,
+				58DEBC84124009E500DE7C7E /* PSFoundationExtensions.m in Sources */,
+				58DEBC85124009E500DE7C7E /* PSIntArray.m in Sources */,
+				58DEBC86124009E500DE7C7E /* PSModel.m in Sources */,
+				58DEBC87124009E500DE7C7E /* PSModelManager.m in Sources */,
+				58DEBC88124009E500DE7C7E /* PSPathBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
