@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='0.9'>
+<class name='NSArray'>
+<method selector='psSortedArrayUsingField:ascending:'>
+<arg type='B' index='1'/>
+</method>
+</class>
+<class name='NSDate'>
+<method selector='psIsEarlierOrSameDay:'>
+<retval type='B'/>
+</method>
+</class>
+<class name='NSNull'>
+<method selector='psIsBlank'>
+<retval type='B'/>
+</method>
+</class>
+<class name='NSString'>
+<method selector='psIsBlank'>
+<retval type='B'/>
+</method>
+</class>
+</signatures>
