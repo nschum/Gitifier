@@ -21,28 +21,43 @@
 }
 
 - (void) runCommand: (NSString *) command withArguments: (NSArray *) arguments {
-  NSTask *task = [[NSTask alloc] init];
-  task.arguments = [[NSArray arrayWithObject: command] arrayByAddingObjectsFromArray: arguments];
-  task.currentDirectoryPath = path;
-  task.launchPath = @"/usr/local/git/bin/git"; // TODO find git automatically
-  task.standardOutput = output;
-  task.standardError = output;
+  if (currentTask) {
+    [self cancelCommands];
+  }
+
+  currentTask = [[NSTask alloc] init];
+  currentTask.arguments = [[NSArray arrayWithObject: command] arrayByAddingObjectsFromArray: arguments];
+  currentTask.currentDirectoryPath = path;
+  currentTask.launchPath = @"/usr/local/git/bin/git"; // TODO find git automatically
+  currentTask.standardOutput = output;
+  currentTask.standardError = output;
+  cancelled = NO;
 
   // this should work in the same thread without waitUntilExit, but it doesn't. oh well.
-  [NSThread detachNewThreadSelector: @selector(executeTask:) toTarget: self withObject: task];
+  [NSThread detachNewThreadSelector: @selector(executeTask) toTarget: self withObject: nil];
 }
 
-- (void) executeTask: (NSTask *) task {
-  [task launch];
-  [task waitUntilExit];
+- (void) cancelCommands {
+  cancelled = YES;
+  [currentTask terminate];
+}
 
-  NSInteger status = [task terminationStatus];
-  NSString *command = [[task arguments] objectAtIndex: 0];
+- (void) executeTask {
+  [currentTask launch];
+  [currentTask waitUntilExit];
 
-  if (status == 0) {
-    [self notifyDelegateWithSelector: @selector(commandCompleted:) command: command];
+  if (cancelled) {
+    currentTask = nil;
   } else {
-    [self notifyDelegateWithSelector: @selector(commandFailed:) command: command];
+    NSInteger status = [currentTask terminationStatus];
+    NSString *command = [[currentTask arguments] objectAtIndex: 0];
+    currentTask = nil;
+
+    if (status == 0) {
+      [self notifyDelegateWithSelector: @selector(commandCompleted:) command: command];
+    } else {
+      [self notifyDelegateWithSelector: @selector(commandFailed:) command: command];
+    }
   }
 }
 

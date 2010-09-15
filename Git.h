@@ -8,7 +8,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface Git : NSObject {
+  NSTask *currentTask;
   NSPipe *output;
+  BOOL cancelled;
 }
 
 @property (copy) NSString *path;
@@ -17,6 +19,7 @@
 // public
 - (id) initWithDirectory: (NSString *) path;
 - (void) runCommand: (NSString *) command withArguments: (NSArray *) arguments;
+- (void) cancelCommands;
 
 // private
 - (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command;

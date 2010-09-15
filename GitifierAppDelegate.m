@@ -10,7 +10,8 @@
 
 @implementation GitifierAppDelegate
 
-@synthesize preferencesWindow, statusBarMenu, addRepositoryWindow, newRepositoryUrl, repositoryListController, spinner;
+@synthesize preferencesWindow, statusBarMenu, addRepositoryWindow, newRepositoryUrl, repositoryListController,
+  spinner, addButton, cancelButton;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   [self createStatusBarItem];
@@ -30,7 +31,6 @@
 
 - (IBAction) showPreferences: (id) sender {
   // TODO: fix cmd+w
-  // TODO: focus on add
   [preferencesWindow makeKeyAndOrderFront: self];
 }
 
@@ -44,11 +44,11 @@
 }
 
 - (IBAction) addRepository: (id) sender {
-  Repository *repository = [[Repository alloc] initWithUrl: newRepositoryUrl.stringValue];
-  if (repository) {
-    [repository setDelegate: self];
-    [repository clone];
-    [spinner startAnimation: self];
+  editedRepository = [[Repository alloc] initWithUrl: newRepositoryUrl.stringValue];
+  if (editedRepository) {
+    [self lockAddRepositoryDialog];
+    [editedRepository setDelegate: self];
+    [editedRepository clone];
   } else {
     [addRepositoryWindow psShowAlertSheetWithTitle: @"This URL is invalid or not supported."
                                            message: @"Try a URL that starts with git://, ssh://, http(s)://, "
@@ -56,21 +56,43 @@
   }
 }
 
+- (IBAction) cancelAddingRepository: (id) sender {
+  if (editedRepository) {
+    [editedRepository cancelCommands];
+    [self unlockAddRepositoryDialog];
+  } else {
+    [self hideAddRepositorySheet];
+  }
+}
+
+- (void) lockAddRepositoryDialog {
+  [spinner startAnimation: self];
+  [addButton psDisable];
+  [newRepositoryUrl psDisable];
+}
+
+- (void) unlockAddRepositoryDialog {
+  [spinner stopAnimation: self];
+  [addButton psEnable];
+  [newRepositoryUrl psEnable];
+  editedRepository = nil;
+}
+
 - (void) repositoryWasCloned: (Repository *) repository {
   [repositoryListController addObject: repository];
   [repositoryListController setSelectionIndex: NSNotFound];
-  [spinner stopAnimation: self];
-  [self hideAddRepositorySheet: self];
+  [self hideAddRepositorySheet];
+  [self unlockAddRepositoryDialog];
 }
 
 - (void) repositoryCouldNotBeCloned: (Repository *) repository {
-  [spinner stopAnimation: self];
+  [self unlockAddRepositoryDialog];
   [addRepositoryWindow psShowAlertSheetWithTitle: @"Repository could not be cloned."
                                          message: @"Make sure you have entered a correct URL."];
   // TODO: fix enter
 }
 
-- (IBAction) hideAddRepositorySheet: (id) sender {
+- (void) hideAddRepositorySheet {
   [NSApp endSheet: addRepositoryWindow];
   [addRepositoryWindow orderOut: self];
 }

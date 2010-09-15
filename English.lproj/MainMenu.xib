@@ -13,8 +13,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="533"/>
-			<integer value="372"/>
 			<integer value="572"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -603,14 +603,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">hideAddRepositorySheet:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="869608356"/>
-					</object>
-					<int key="connectionID">591</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">addRepository:</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="9551352"/>
@@ -648,6 +640,30 @@
 						<reference key="destination" ref="193695736"/>
 					</object>
 					<int key="connectionID">599</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">addButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="9551352"/>
+					</object>
+					<int key="connectionID">600</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cancelButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="869608356"/>
+					</object>
+					<int key="connectionID">601</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cancelAddingRepository:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="869608356"/>
+					</object>
+					<int key="connectionID">602</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1065,7 +1081,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">599</int>
+			<int key="maxID">602</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1078,7 +1094,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addRepository:</string>
-							<string>hideAddRepositorySheet:</string>
+							<string>cancelAddingRepository:</string>
 							<string>showAddRepositorySheet:</string>
 							<string>showPreferences:</string>
 						</object>
@@ -1095,7 +1111,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addRepository:</string>
-							<string>hideAddRepositorySheet:</string>
+							<string>cancelAddingRepository:</string>
 							<string>showAddRepositorySheet:</string>
 							<string>showPreferences:</string>
 						</object>
@@ -1106,7 +1122,7 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">hideAddRepositorySheet:</string>
+								<string key="name">cancelAddingRepository:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -1123,7 +1139,9 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addButton</string>
 							<string>addRepositoryWindow</string>
+							<string>cancelButton</string>
 							<string>newRepositoryUrl</string>
 							<string>preferencesWindow</string>
 							<string>repositoryListController</string>
@@ -1132,7 +1150,9 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSButton</string>
 							<string>NSWindow</string>
+							<string>NSButton</string>
 							<string>NSTextField</string>
 							<string>NSWindow</string>
 							<string>NSArrayController</string>
@@ -1144,7 +1164,9 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addButton</string>
 							<string>addRepositoryWindow</string>
+							<string>cancelButton</string>
 							<string>newRepositoryUrl</string>
 							<string>preferencesWindow</string>
 							<string>repositoryListController</string>
@@ -1154,8 +1176,16 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
+								<string key="name">addButton</string>
+								<string key="candidateClassName">NSButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">addRepositoryWindow</string>
 								<string key="candidateClassName">NSWindow</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">cancelButton</string>
+								<string key="candidateClassName">NSButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">newRepositoryUrl</string>

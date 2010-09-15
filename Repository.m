@@ -25,16 +25,29 @@ static NSString *urlRegexp = @"(git|ssh|http|https|ftp|ftps|rsync):\\/\\/\\S+";
   }
 }
 
+- (Git *) git {
+  if (!git) {
+    NSString *path = [self prepareCloneDirectory];
+    if (path) {
+      git = [[Git alloc] initWithDirectory: path];
+      [git setDelegate: self];
+    }
+  }
+  return git;
+}
+
 - (void) clone {
-  NSString *path = [self prepareCloneDirectory];
-  if (!path) {
+  Git *g = [self git];
+  if (g) {
+    [g runCommand: @"clone" withArguments: PSArray(url)];
+  } else {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
     return;
   }
+}
 
-  Git *git = [[Git alloc] initWithDirectory: path];
-  [git setDelegate: self];
-  [git runCommand: @"clone" withArguments: PSArray(url)];
+- (void) cancelCommands {
+  [git cancelCommands];
 }
 
 - (void) commandCompleted: (NSString *) command {
