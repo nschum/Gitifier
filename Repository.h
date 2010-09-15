@@ -9,8 +9,8 @@
 
 @interface Repository : NSObject {}
 
-@property (nonatomic, copy) NSString *url;
-@property (nonatomic, assign) id delegate;
+@property (copy) NSString *url;
+@property id delegate;
 
 // public
 - (id) initWithUrl: (NSString *) anUrl;

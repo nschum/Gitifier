@@ -11,8 +11,8 @@
   NSPipe *output;
 }
 
-@property (nonatomic, copy) NSString *path;
-@property (nonatomic, assign) id delegate;
+@property (copy) NSString *path;
+@property id delegate;
 
 // public
 - (id) initWithDirectory: (NSString *) path;

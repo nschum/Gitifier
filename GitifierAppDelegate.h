@@ -11,12 +11,12 @@
   NSStatusItem *statusBarItem;
 }
 
-@property (nonatomic, retain) IBOutlet NSWindow *preferencesWindow;
-@property (nonatomic, retain) IBOutlet NSWindow *addRepositoryWindow;
-@property (nonatomic, retain) IBOutlet NSMenu *statusBarMenu;
-@property (nonatomic, retain) IBOutlet NSTextField *newRepositoryUrl;
-@property (nonatomic, retain) IBOutlet NSArrayController *repositoryListController;
-@property (nonatomic, retain) IBOutlet NSProgressIndicator *spinner;
+@property (assign) IBOutlet NSMenu *statusBarMenu;
+@property IBOutlet NSWindow *preferencesWindow;
+@property IBOutlet NSWindow *addRepositoryWindow;
+@property IBOutlet NSTextField *newRepositoryUrl;
+@property IBOutlet NSArrayController *repositoryListController;
+@property IBOutlet NSProgressIndicator *spinner;
 
 // public
 - (IBAction) showPreferences: (id) sender;
