@@ -10,11 +10,15 @@
 @interface Repository : NSObject {}
 
 @property (nonatomic, copy) NSString *url;
+@property (nonatomic, assign) id delegate;
 
 // public
 - (id) initWithUrl: (NSString *) anUrl;
+- (void) clone;
 
 // private
 - (BOOL) isProperUrl: (NSString *) url;
+- (NSString *) prepareCloneDirectory;
+- (void) notifyDelegateWithSelector: (SEL) selector;
 
 @end

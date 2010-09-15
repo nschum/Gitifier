@@ -17,6 +17,9 @@
 		58DEBC86124009E500DE7C7E /* PSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC71124009E500DE7C7E /* PSModel.m */; };
 		58DEBC87124009E500DE7C7E /* PSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC73124009E500DE7C7E /* PSModelManager.m */; };
 		58DEBC88124009E500DE7C7E /* PSPathBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC75124009E500DE7C7E /* PSPathBuilder.m */; };
+		58DEBCC012400EB200DE7C7E /* Git.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBCBF12400EB200DE7C7E /* Git.m */; };
+		58DEBD0012402BC500DE7C7E /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */; };
+		58DEBD2912402EF400DE7C7E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBD2812402EF400DE7C7E /* Utils.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -50,6 +53,11 @@
 		58DEBC73124009E500DE7C7E /* PSModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSModelManager.m; sourceTree = "<group>"; };
 		58DEBC74124009E500DE7C7E /* PSPathBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPathBuilder.h; sourceTree = "<group>"; };
 		58DEBC75124009E500DE7C7E /* PSPathBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPathBuilder.m; sourceTree = "<group>"; };
+		58DEBCBE12400EB200DE7C7E /* Git.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Git.h; sourceTree = "<group>"; };
+		58DEBCBF12400EB200DE7C7E /* Git.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Git.m; sourceTree = "<group>"; };
+		58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		58DEBD2712402EF400DE7C7E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		58DEBD2812402EF400DE7C7E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gitifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -60,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				58DEBD0012402BC500DE7C7E /* libcrypto.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,10 +78,14 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				58DEBCBE12400EB200DE7C7E /* Git.h */,
+				58DEBCBF12400EB200DE7C7E /* Git.m */,
 				256AC3D80F4B6AC300CF3369 /* GitifierAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* GitifierAppDelegate.m */,
 				58AA4C78123D6EBA00E2E059 /* Repository.h */,
 				58AA4C79123D6EBA00E2E059 /* Repository.m */,
+				58DEBD2712402EF400DE7C7E /* Utils.h */,
+				58DEBD2812402EF400DE7C7E /* Utils.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -81,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -254,6 +268,8 @@
 				58DEBC86124009E500DE7C7E /* PSModel.m in Sources */,
 				58DEBC87124009E500DE7C7E /* PSModelManager.m in Sources */,
 				58DEBC88124009E500DE7C7E /* PSPathBuilder.m in Sources */,
+				58DEBCC012400EB200DE7C7E /* Git.m in Sources */,
+				58DEBD2912402EF400DE7C7E /* Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

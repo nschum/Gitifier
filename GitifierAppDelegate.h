@@ -16,6 +16,7 @@
 @property (nonatomic, retain) IBOutlet NSMenu *statusBarMenu;
 @property (nonatomic, retain) IBOutlet NSTextField *newRepositoryUrl;
 @property (nonatomic, retain) IBOutlet NSArrayController *repositoryListController;
+@property (nonatomic, retain) IBOutlet NSProgressIndicator *spinner;
 
 // public
 - (IBAction) showPreferences: (id) sender;
