@@ -11,10 +11,14 @@
 @implementation GitifierAppDelegate
 
 @synthesize preferencesWindow, statusBarMenu, addRepositoryWindow, newRepositoryUrl, repositoryListController,
-  spinner, addButton, cancelButton;
+  spinner, addButton, cancelButton, label;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   [self createStatusBarItem];
+}
+
+- (void) awakeFromNib {
+  labelText = label.stringValue;
 }
 
 - (void) createStatusBarItem {
@@ -49,6 +53,7 @@
     [self lockAddRepositoryDialog];
     [editedRepository setDelegate: self];
     [editedRepository clone];
+    [self setupSlowCloneTimer];
   } else {
     [addRepositoryWindow psShowAlertSheetWithTitle: @"This URL is invalid or not supported."
                                            message: @"Try a URL that starts with git://, ssh://, http(s)://, "
@@ -75,7 +80,28 @@
   [spinner stopAnimation: self];
   [addButton psEnable];
   [newRepositoryUrl psEnable];
+  [self hideSlowCloneWarning];
+  [slowCloneTimer invalidate];
+  slowCloneTimer = nil;
   editedRepository = nil;
+}
+
+- (void) setupSlowCloneTimer {
+  slowCloneTimer = [NSTimer scheduledTimerWithTimeInterval: 3.0
+                                                    target: self
+                                                  selector: @selector(showSlowCloneWarning)
+                                                  userInfo: nil
+                                                   repeats: NO];
+}
+
+- (void) showSlowCloneWarning {
+  label.stringValue = @"Please be patient - I'm cloning the repository...";
+  label.textColor = [NSColor textColor];
+}
+
+- (void) hideSlowCloneWarning {
+  label.stringValue = labelText;
+  label.textColor = [NSColor disabledControlTextColor];
 }
 
 - (void) repositoryWasCloned: (Repository *) repository {

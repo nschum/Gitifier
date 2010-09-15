@@ -12,6 +12,8 @@
 @interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
   NSStatusItem *statusBarItem;
   Repository *editedRepository;
+  NSTimer *slowCloneTimer;
+  NSString *labelText;
 }
 
 @property (assign) IBOutlet NSMenu *statusBarMenu;
@@ -22,6 +24,7 @@
 @property IBOutlet NSProgressIndicator *spinner;
 @property IBOutlet NSButton *cancelButton;
 @property IBOutlet NSButton *addButton;
+@property IBOutlet NSTextField *label;
 
 // public
 - (IBAction) showPreferences: (id) sender;
@@ -34,5 +37,7 @@
 - (void) lockAddRepositoryDialog;
 - (void) unlockAddRepositoryDialog;
 - (void) hideAddRepositorySheet;
+- (void) setupSlowCloneTimer;
+- (void) hideSlowCloneWarning;
 
 @end
