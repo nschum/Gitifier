@@ -9,22 +9,24 @@
 
 @implementation Git
 
-@synthesize path, delegate;
-
-- (id) initWithDirectory: (NSString *) aPath {
+- (id) initWithDelegate: (id) aDelegate {
   self = [super init];
   if (self) {
-    path = aPath;
-    output = [NSPipe pipe];
+    delegate = aDelegate;
   }
   return self;
 }
 
-- (void) runCommand: (NSString *) command withArguments: (NSArray *) arguments {
+- (void) runCommand: (NSString *) command inPath: (NSString *) path {
+  [self runCommand: command withArguments: [NSArray array] inPath: path];
+}
+
+- (void) runCommand: (NSString *) command withArguments: (NSArray *) arguments inPath: (NSString *) path {
   if (currentTask) {
     [self cancelCommands];
   }
 
+  NSPipe *output = [NSPipe pipe];
   currentTask = [[NSTask alloc] init];
   currentTask.arguments = [[NSArray arrayWithObject: command] arrayByAddingObjectsFromArray: arguments];
   currentTask.currentDirectoryPath = path;
@@ -51,19 +53,21 @@
   } else {
     NSInteger status = [currentTask terminationStatus];
     NSString *command = [[currentTask arguments] objectAtIndex: 0];
+    NSData *data = [[[currentTask standardOutput] fileHandleForReading] readDataToEndOfFile];
+    NSString *output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
     currentTask = nil;
 
     if (status == 0) {
-      [self notifyDelegateWithSelector: @selector(commandCompleted:) command: command];
+      [self notifyDelegateWithSelector: @selector(commandCompleted:output:) command: command output: output];
     } else {
-      [self notifyDelegateWithSelector: @selector(commandFailed:) command: command];
+      [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: output];
     }
   }
 }
 
-- (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command {
+- (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command output: (NSString *) output {
   if ([delegate respondsToSelector: selector]) {
-    [delegate performSelector: selector withObject: command];
+    [delegate performSelector: selector withObject: command withObject: output];
   }
 }
 

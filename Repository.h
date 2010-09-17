@@ -7,6 +7,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class Repository;
+
+@protocol RepositoryDelegate
+- (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository;
+@end
+
+// ------------------------------
+
 @class Git;
 
 @interface Repository : NSObject {
@@ -19,12 +27,15 @@
 // public
 - (id) initWithUrl: (NSString *) anUrl;
 - (void) clone;
+- (void) fetchNewCommits;
 - (void) cancelCommands;
 
 // private
-- (Git *) git;
 - (BOOL) isProperUrl: (NSString *) url;
-- (NSString *) prepareCloneDirectory;
+- (NSString *) cachesDirectory;
+- (NSString *) workingCopyDirectory;
 - (void) notifyDelegateWithSelector: (SEL) selector;
+- (BOOL) ensureDirectoryIsDeleted: (NSString *) directory;
+- (BOOL) ensureDirectoryExists: (NSString *) directory;
 
 @end

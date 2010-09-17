@@ -7,6 +7,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class Monitor;
 @class Repository;
 
 @interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
@@ -25,6 +26,7 @@
 @property IBOutlet NSButton *cancelButton;
 @property IBOutlet NSButton *addButton;
 @property IBOutlet NSTextField *label;
+@property IBOutlet Monitor *monitor;
 
 // public
 - (IBAction) showPreferences: (id) sender;

@@ -5,16 +5,18 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
+#import "Commit.h"
 #import "GitifierAppDelegate.h"
 #import "Repository.h"
 
 @implementation GitifierAppDelegate
 
 @synthesize preferencesWindow, statusBarMenu, addRepositoryWindow, newRepositoryUrl, repositoryListController,
-  spinner, addButton, cancelButton, label;
+  spinner, addButton, cancelButton, label, monitor;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   [self createStatusBarItem];
+  [monitor startMonitoring];
 }
 
 - (void) awakeFromNib {
@@ -61,6 +63,10 @@
   }
 }
 
+- (NSArray *) repositoryList {
+  return [repositoryListController arrangedObjects];
+}
+
 - (IBAction) cancelAddingRepository: (id) sender {
   if (editedRepository) {
     [editedRepository cancelCommands];
@@ -105,6 +111,7 @@
 }
 
 - (void) repositoryWasCloned: (Repository *) repository {
+  [repository setDelegate: self];
   [repositoryListController addObject: repository];
   [repositoryListController setSelectionIndex: NSNotFound];
   [self hideAddRepositorySheet];
@@ -116,6 +123,12 @@
   [addRepositoryWindow psShowAlertSheetWithTitle: @"Repository could not be cloned."
                                          message: @"Make sure you have entered a correct URL."];
   // TODO: fix enter
+}
+
+- (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
+  for (Commit *commit in [commits reverseObjectEnumerator]) {
+    NSLog(@"%@: \"%@\"", commit.author, commit.subject);
+  }
 }
 
 - (void) hideAddRepositorySheet {

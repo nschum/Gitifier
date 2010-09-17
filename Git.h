@@ -9,19 +9,17 @@
 
 @interface Git : NSObject {
   NSTask *currentTask;
-  NSPipe *output;
   BOOL cancelled;
+  id delegate;
 }
 
-@property (copy) NSString *path;
-@property id delegate;
-
 // public
-- (id) initWithDirectory: (NSString *) path;
-- (void) runCommand: (NSString *) command withArguments: (NSArray *) arguments;
+- (id) initWithDelegate: (id) aDelegate;
+- (void) runCommand: (NSString *) command inPath: (NSString *) path;
+- (void) runCommand: (NSString *) command withArguments: (NSArray *) arguments inPath: (NSString *) path;
 - (void) cancelCommands;
 
 // private
-- (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command;
+- (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command output: (NSString *) output;
 
 @end
