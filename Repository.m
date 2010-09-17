@@ -35,7 +35,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   NSString *cachesDirectory = [self cachesDirectory];
   NSString *workingCopy = [self workingCopyDirectory];
   if (cachesDirectory && workingCopy && [self ensureDirectoryIsDeleted: workingCopy]) {
-    [git runCommand: @"clone" withArguments: PSArray(url, workingCopy) inPath: cachesDirectory];
+    [git runCommand: @"clone" withArguments: PSArray(url, workingCopy, @"-n") inPath: cachesDirectory];
   } else {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   }
@@ -44,7 +44,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 - (void) fetchNewCommits {
   NSString *workingCopy = [self workingCopyDirectory];
   if (workingCopy && [self ensureDirectoryExists: workingCopy]) {
-    [git runCommand: @"pull" inPath: workingCopy];
+    [git runCommand: @"fetch" inPath: workingCopy];
   } else {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   }
@@ -61,7 +61,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
   if ([command isEqual: @"clone"]) {
     [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
-  } else if ([command isEqual: @"pull"]) {
+  } else if ([command isEqual: @"fetch"]) {
     NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
     NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%an%n%s%n"];
     NSString *workingCopy = [self workingCopyDirectory];
