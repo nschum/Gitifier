@@ -19,6 +19,19 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 @synthesize url, name, delegate;
 
++ (Repository *) repositoryFromHash: (NSDictionary *) hash {
+  NSString *url = [hash objectForKey: @"url"];
+  NSString *name = [hash objectForKey: @"name"];
+  Repository *repo = nil;
+  if (url) {
+    repo = [[Repository alloc] initWithUrl: url];
+    if (name) {
+      repo.name = name;
+    }
+  }
+  return repo;
+}
+
 - (id) initWithUrl: (NSString *) anUrl {
   self = [super init];
   if ([self isProperUrl: anUrl]) {
@@ -29,6 +42,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   } else {
     return nil;
   }
+}
+
+- (NSDictionary *) hashRepresentation {
+  return PSDict(url, @"url", name, @"name");
 }
 
 - (void) clone {

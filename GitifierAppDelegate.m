@@ -10,6 +10,8 @@
 #import "GitifierAppDelegate.h"
 #import "Repository.h"
 
+#define REPOSITORY_LIST_KEY @"repositoryList"
+
 @implementation GitifierAppDelegate
 
 @synthesize preferencesWindow, statusBarMenu, addRepositoryWindow, newRepositoryUrl, repositoryListController,
@@ -19,11 +21,37 @@
   id nullDelegate = @"";
   [GrowlApplicationBridge setGrowlDelegate: nullDelegate];
   [self createStatusBarItem];
+  [self loadRepositories];
   [monitor startMonitoring];
+}
+
+- (void) applicationWillTerminate: (NSNotification *) notification {
+  [self saveRepositories];
 }
 
 - (void) awakeFromNib {
   labelText = label.stringValue;
+}
+
+- (void) loadRepositories {
+  NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+  NSArray *hashes = [settings arrayForKey: REPOSITORY_LIST_KEY];
+  if (hashes) {
+    for (NSDictionary *hash in hashes) {
+      Repository *repo = [Repository repositoryFromHash: hash];
+      if (repo) {
+        [repo setDelegate: self];
+        [repositoryListController addObject: repo];
+      }
+    }
+  }
+}
+
+- (void) saveRepositories {
+  NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
+  NSArray *repositories = [[self repositoryList] valueForKeyPath: @"hashRepresentation"];
+  [settings setObject: repositories forKey: REPOSITORY_LIST_KEY];
+  [settings synchronize];
 }
 
 - (void) createStatusBarItem {
@@ -76,6 +104,7 @@
   NSArray *repositories = [repositoryListController selectedObjects];
   [repositories makeObjectsPerformSelector: @selector(deleteWorkingCopy)];
   [repositoryListController removeObjects: repositories];
+  [self saveRepositories];
 }
 
 - (NSArray *) repositoryList {
@@ -131,6 +160,7 @@
   [repositoryListController setSelectionIndex: NSNotFound];
   [self hideAddRepositorySheet];
   [self unlockAddRepositoryDialog];
+  [self saveRepositories];
 }
 
 - (void) repositoryCouldNotBeCloned: (Repository *) repository {

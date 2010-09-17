@@ -26,11 +26,13 @@
 @property id delegate;
 
 // public
++ (Repository *) repositoryFromHash: (NSDictionary *) hash;
 - (id) initWithUrl: (NSString *) anUrl;
 - (void) clone;
 - (void) fetchNewCommits;
 - (void) cancelCommands;
 - (void) deleteWorkingCopy;
+- (NSDictionary *) hashRepresentation;
 
 // private
 - (BOOL) isProperUrl: (NSString *) url;

@@ -42,5 +42,7 @@
 - (void) hideAddRepositorySheet;
 - (void) setupSlowCloneTimer;
 - (void) hideSlowCloneWarning;
+- (void) loadRepositories;
+- (void) saveRepositories;
 
 @end
