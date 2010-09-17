@@ -5,6 +5,8 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
+#import "RegexKitLite.h"
+
 #import "Git.h"
 #import "Repository.h"
 #import "Utils.h"
@@ -63,8 +65,7 @@ static NSString *urlRegexp = @"(git|ssh|http|https|ftp|ftps|rsync):\\/\\/\\S+";
 }
 
 - (BOOL) isProperUrl: (NSString *) anUrl {
-  NSPredicate *regexp = [NSPredicate predicateWithFormat: @"SELF MATCHES %@", urlRegexp];
-  return [regexp evaluateWithObject: anUrl];
+  return [anUrl isMatchedByRegex: urlRegexp];
 }
 
 - (NSString *) prepareCloneDirectory {

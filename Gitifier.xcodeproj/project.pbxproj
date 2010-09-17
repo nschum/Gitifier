@@ -20,6 +20,8 @@
 		58DEBCC012400EB200DE7C7E /* Git.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBCBF12400EB200DE7C7E /* Git.m */; };
 		58DEBD0012402BC500DE7C7E /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */; };
 		58DEBD2912402EF400DE7C7E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBD2812402EF400DE7C7E /* Utils.m */; };
+		58DEC0511242B47100DE7C7E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC0501242B47100DE7C7E /* RegexKitLite.m */; };
+		58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0581242B6EB00DE7C7E /* libicucore.dylib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -58,6 +60,9 @@
 		58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		58DEBD2712402EF400DE7C7E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		58DEBD2812402EF400DE7C7E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		58DEC04F1242B47100DE7C7E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		58DEC0501242B47100DE7C7E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		58DEC0581242B6EB00DE7C7E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gitifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -69,6 +74,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				58DEBD0012402BC500DE7C7E /* libcrypto.dylib in Frameworks */,
+				58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -155,6 +160,8 @@
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				58DEC0581242B6EB00DE7C7E /* libicucore.dylib */,
+				58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,6 +177,7 @@
 		58DEBC5B124009CD00DE7C7E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				58DEC04E1242B47100DE7C7E /* RegexKitLite */,
 				58DEBC5C124009E500DE7C7E /* PsiToolkit */,
 			);
 			path = Lib;
@@ -194,6 +202,15 @@
 				58DEBC75124009E500DE7C7E /* PSPathBuilder.m */,
 			);
 			path = PsiToolkit;
+			sourceTree = "<group>";
+		};
+		58DEC04E1242B47100DE7C7E /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				58DEC04F1242B47100DE7C7E /* RegexKitLite.h */,
+				58DEC0501242B47100DE7C7E /* RegexKitLite.m */,
+			);
+			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +287,7 @@
 				58DEBC88124009E500DE7C7E /* PSPathBuilder.m in Sources */,
 				58DEBCC012400EB200DE7C7E /* Git.m in Sources */,
 				58DEBD2912402EF400DE7C7E /* Utils.m in Sources */,
+				58DEC0511242B47100DE7C7E /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
