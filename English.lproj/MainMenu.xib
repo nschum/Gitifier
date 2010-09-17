@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="571"/>
-			<integer value="371"/>
+			<integer value="372"/>
 			<integer value="533"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -116,7 +116,7 @@
 											</object>
 											<object class="NSMutableArray" key="NSTableColumns">
 												<bool key="EncodedWithXMLCoder">YES</bool>
-												<object class="NSTableColumn" id="1044779441">
+												<object class="NSTableColumn" id="970220053">
 													<double key="NSWidth">102</double>
 													<double key="NSMinWidth">10</double>
 													<double key="NSMaxWidth">3.4028234663852886e+38</double>
@@ -138,14 +138,14 @@
 																<bytes key="NSWhite">MQA</bytes>
 															</object>
 														</object>
-														<object class="NSColor" key="NSTextColor" id="896598461">
+														<object class="NSColor" key="NSTextColor" id="206505179">
 															<int key="NSColorSpace">6</int>
 															<string key="NSCatalogName">System</string>
 															<string key="NSColorName">headerTextColor</string>
 															<reference key="NSColor" ref="392568587"/>
 														</object>
 													</object>
-													<object class="NSTextFieldCell" key="NSDataCell" id="762551567">
+													<object class="NSTextFieldCell" key="NSDataCell" id="860508012">
 														<int key="NSCellFlags">337772096</int>
 														<int key="NSCellFlags2">2048</int>
 														<string key="NSContents">Text Cell</string>
@@ -177,7 +177,7 @@
 															<int key="NSColorSpace">3</int>
 															<bytes key="NSWhite">MC4zMzMzMzI5ODU2AA</bytes>
 														</object>
-														<reference key="NSTextColor" ref="896598461"/>
+														<reference key="NSTextColor" ref="206505179"/>
 													</object>
 													<object class="NSTextFieldCell" key="NSDataCell" id="161870987">
 														<int key="NSCellFlags">337772096</int>
@@ -576,14 +576,6 @@
 					<int key="connectionID">544</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">remove:</string>
-						<reference key="source" ref="499083768"/>
-						<reference key="destination" ref="511713808"/>
-					</object>
-					<int key="connectionID">566</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: canRemove</string>
 						<reference key="source" ref="511713808"/>
@@ -698,10 +690,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: arrangedObjects.name</string>
-						<reference key="source" ref="1044779441"/>
+						<reference key="source" ref="970220053"/>
 						<reference key="destination" ref="499083768"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1044779441"/>
+							<reference key="NSSource" ref="970220053"/>
 							<reference key="NSDestination" ref="499083768"/>
 							<string key="NSLabel">value: arrangedObjects.name</string>
 							<string key="NSBinding">value</string>
@@ -743,6 +735,14 @@
 						</object>
 					</object>
 					<int key="connectionID">612</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">removeRepositories:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="511713808"/>
+					</object>
+					<int key="connectionID">613</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -874,7 +874,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="99258395"/>
-							<reference ref="1044779441"/>
+							<reference ref="970220053"/>
 						</object>
 						<reference key="parent" ref="340992717"/>
 					</object>
@@ -1035,17 +1035,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">607</int>
-						<reference key="object" ref="1044779441"/>
+						<reference key="object" ref="970220053"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="762551567"/>
+							<reference ref="860508012"/>
 						</object>
 						<reference key="parent" ref="1001318387"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">608</int>
-						<reference key="object" ref="762551567"/>
-						<reference key="parent" ref="1044779441"/>
+						<reference key="object" ref="860508012"/>
+						<reference key="parent" ref="970220053"/>
 					</object>
 				</object>
 			</object>
@@ -1186,7 +1186,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">612</int>
+			<int key="maxID">613</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1200,11 +1200,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addRepository:</string>
 							<string>cancelAddingRepository:</string>
+							<string>removeRepositories:</string>
 							<string>showAddRepositorySheet:</string>
 							<string>showPreferences:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1217,6 +1219,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addRepository:</string>
 							<string>cancelAddingRepository:</string>
+							<string>removeRepositories:</string>
 							<string>showAddRepositorySheet:</string>
 							<string>showPreferences:</string>
 						</object>
@@ -1228,6 +1231,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">cancelAddingRepository:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">removeRepositories:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

@@ -72,6 +72,12 @@
   }
 }
 
+- (IBAction) removeRepositories: (id) sender {
+  NSArray *repositories = [repositoryListController selectedObjects];
+  [repositories makeObjectsPerformSelector: @selector(deleteWorkingCopy)];
+  [repositoryListController removeObjects: repositories];
+}
+
 - (NSArray *) repositoryList {
   return [repositoryListController arrangedObjects];
 }

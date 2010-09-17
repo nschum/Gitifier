@@ -30,6 +30,7 @@
 - (void) clone;
 - (void) fetchNewCommits;
 - (void) cancelCommands;
+- (void) deleteWorkingCopy;
 
 // private
 - (BOOL) isProperUrl: (NSString *) url;

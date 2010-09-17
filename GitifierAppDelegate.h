@@ -32,6 +32,7 @@
 - (IBAction) showPreferences: (id) sender;
 - (IBAction) showAddRepositorySheet: (id) sender;
 - (IBAction) addRepository: (id) sender;
+- (IBAction) removeRepositories: (id) sender;
 - (IBAction) cancelAddingRepository: (id) sender;
 
 // private

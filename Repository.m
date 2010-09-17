@@ -54,6 +54,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   [git cancelCommands];
 }
 
+- (void) deleteWorkingCopy {
+  [self ensureDirectoryIsDeleted: [self workingCopyDirectory]];
+}
+
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
   if ([command isEqual: @"clone"]) {
     [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
