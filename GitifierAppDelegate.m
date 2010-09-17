@@ -5,6 +5,7 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
+#import <Growl/GrowlApplicationBridge.h>
 #import "Commit.h"
 #import "GitifierAppDelegate.h"
 #import "Repository.h"
@@ -15,6 +16,8 @@
   spinner, addButton, cancelButton, label, monitor;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
+  id nullDelegate = @"";
+  [GrowlApplicationBridge setGrowlDelegate: nullDelegate];
   [self createStatusBarItem];
   [monitor startMonitoring];
 }
@@ -127,7 +130,13 @@
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   for (Commit *commit in [commits reverseObjectEnumerator]) {
-    NSLog(@"%@: \"%@\"", commit.author, commit.subject);
+    [GrowlApplicationBridge notifyWithTitle: commit.author  // TODO add repo name
+                                description: commit.subject
+                           notificationName: @"Commit received"
+                                   iconData: nil
+                                   priority: 0
+                                   isSticky: NO
+                               clickContext: nil];
   }
 }
 
