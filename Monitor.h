@@ -5,7 +5,7 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 @protocol MonitorDelegate
 - (NSArray *) repositoryList;

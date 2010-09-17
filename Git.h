@@ -5,7 +5,7 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 @interface Git : NSObject {
   NSTask *currentTask;
