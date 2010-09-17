@@ -6,11 +6,11 @@
 // -------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
+#import "Monitor.h"
 
-@class Monitor;
 @class Repository;
 
-@interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
+@interface GitifierAppDelegate : NSObject <NSApplicationDelegate, MonitorDelegate> {
   NSStatusItem *statusBarItem;
   Repository *editedRepository;
   NSTimer *slowCloneTimer;

@@ -53,16 +53,22 @@
 }
 
 - (IBAction) addRepository: (id) sender {
-  editedRepository = [[Repository alloc] initWithUrl: newRepositoryUrl.stringValue];
-  if (editedRepository) {
-    [self lockAddRepositoryDialog];
-    [editedRepository setDelegate: self];
-    [editedRepository clone];
-    [self setupSlowCloneTimer];
+  NSString *url = newRepositoryUrl.stringValue;
+  NSArray *existing = [[self repositoryList] valueForKeyPath: @"url"];
+  if ([existing indexOfObject: url] == NSNotFound) {
+    editedRepository = [[Repository alloc] initWithUrl: url];
+    if (editedRepository) {
+      [self lockAddRepositoryDialog];
+      [editedRepository setDelegate: self];
+      [editedRepository clone];
+      [self setupSlowCloneTimer];
+    } else {
+      [addRepositoryWindow psShowAlertSheetWithTitle: @"This URL is invalid or not supported."
+                           message: @"Try a URL that starts with git://, ssh://, http(s)://, ftp(s):// or rsync://."];
+    }
   } else {
-    [addRepositoryWindow psShowAlertSheetWithTitle: @"This URL is invalid or not supported."
-                                           message: @"Try a URL that starts with git://, ssh://, http(s)://, "
-                                                    @"ftp(s):// or rsync://."];
+    [addRepositoryWindow psShowAlertSheetWithTitle: @"This URL is already on the list."
+                                           message: @"Try to find something more interesting to monitor..."];
   }
 }
 
