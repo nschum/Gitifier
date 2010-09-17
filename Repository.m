@@ -62,10 +62,11 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   if ([command isEqual: @"clone"]) {
     [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
   } else if ([command isEqual: @"pull"]) {
-    NSString *commitRange = [output stringByMatching: commitRangeRegexp];
+    NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
+    NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%an%n%s%n"];
     NSString *workingCopy = [self workingCopyDirectory];
-    if (commitRange && workingCopy && [self ensureDirectoryExists: workingCopy]) {
-      [git runCommand: @"log" withArguments: PSArray(commitRange, @"--pretty=tformat:%an%n%s%n") inPath: workingCopy];
+    if (commitRanges.count > 0 && workingCopy && [self ensureDirectoryExists: workingCopy]) {
+      [git runCommand: @"log" withArguments: arguments inPath: workingCopy];
     }
   } else if ([command isEqual: @"log"]) {
     NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex: @"([^\\n]+)\\n([^\\n]+)(\\n\\n)"];
