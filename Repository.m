@@ -17,13 +17,14 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 @implementation Repository
 
-@synthesize url, delegate;
+@synthesize url, name, delegate;
 
 - (id) initWithUrl: (NSString *) anUrl {
   self = [super init];
   if ([self isProperUrl: anUrl]) {
     url = anUrl;
     git = [[Git alloc] initWithDelegate: self];
+    name = [self nameFromUrl: url];
     return self;
   } else {
     return nil;
@@ -86,6 +87,21 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (BOOL) isProperUrl: (NSString *) anUrl {
   return [anUrl isMatchedByRegex: urlRegexp];
+}
+
+- (NSString *) nameFromUrl: (NSString *) anUrl {
+  NSArray *names = [anUrl componentsSeparatedByString: @"/"];
+  NSString *projectName = [names lastObject];
+  if ([projectName isEqual: @""]) {
+    projectName = [names objectAtIndex: names.count - 2];
+  }
+  if ([projectName hasSuffix: @".git"]) {
+    projectName = [projectName substringToIndex: projectName.length - 4];
+  }
+  if ([[projectName lowercaseString] isEqual: projectName]) {
+    projectName = [projectName capitalizedString];
+  }
+  return projectName;
 }
 
 - (NSString *) cachesDirectory {

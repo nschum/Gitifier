@@ -22,6 +22,7 @@
 }
 
 @property (copy) NSString *url;
+@property (copy) NSString *name;
 @property id delegate;
 
 // public
@@ -32,6 +33,7 @@
 
 // private
 - (BOOL) isProperUrl: (NSString *) url;
+- (NSString *) nameFromUrl: (NSString *) anUrl;
 - (NSString *) cachesDirectory;
 - (NSString *) workingCopyDirectory;
 - (void) notifyDelegateWithSelector: (SEL) selector;

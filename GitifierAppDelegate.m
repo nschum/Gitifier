@@ -136,7 +136,7 @@
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   for (Commit *commit in [commits reverseObjectEnumerator]) {
-    [GrowlApplicationBridge notifyWithTitle: commit.author  // TODO add repo name
+    [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.author, repository.name)
                                 description: commit.subject
                            notificationName: @"Commit received"
                                    iconData: nil
