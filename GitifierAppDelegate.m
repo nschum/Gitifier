@@ -7,6 +7,7 @@
 
 #import <Growl/GrowlApplicationBridge.h>
 #import "Commit.h"
+#import "Git.h"
 #import "GitifierAppDelegate.h"
 #import "Repository.h"
 
@@ -22,6 +23,7 @@
   [GrowlApplicationBridge setGrowlDelegate: nullDelegate];
   [self createStatusBarItem];
   [self loadRepositories];
+  [self updateUserEmail];
   [monitor startMonitoring];
 }
 
@@ -52,6 +54,17 @@
   NSArray *repositories = [[self repositoryList] valueForKeyPath: @"hashRepresentation"];
   [settings setObject: repositories forKey: REPOSITORY_LIST_KEY];
   [settings synchronize];
+}
+
+- (void) updateUserEmail {
+  Git *git = [[Git alloc] initWithDelegate: self];
+  [git runCommand: @"config" withArguments: PSArray(@"user.email") inPath: NSHomeDirectory()];
+}
+
+- (void) commandCompleted: (NSString *) command output: (NSString *) output {
+  if ([command isEqual: @"config"] && output && output.length > 0) {
+    userEmail = [output psTrimmedString];
+  }
 }
 
 - (void) createStatusBarItem {
@@ -172,13 +185,15 @@
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   for (Commit *commit in [commits reverseObjectEnumerator]) {
-    [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.author, repository.name)
-                                description: commit.subject
-                           notificationName: @"Commit received"
-                                   iconData: nil
-                                   priority: 0
-                                   isSticky: NO
-                               clickContext: nil];
+    if (![commit.authorEmail isEqual: userEmail]) {
+      [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
+                                  description: commit.subject
+                             notificationName: @"Commit received"
+                                     iconData: nil
+                                     priority: 0
+                                     isSticky: NO
+                                 clickContext: nil];
+    }
   }
 }
 

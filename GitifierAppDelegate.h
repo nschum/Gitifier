@@ -15,6 +15,7 @@
   Repository *editedRepository;
   NSTimer *slowCloneTimer;
   NSString *labelText;
+  NSString *userEmail;
 }
 
 @property (assign) IBOutlet NSMenu *statusBarMenu;
@@ -44,5 +45,6 @@
 - (void) hideSlowCloneWarning;
 - (void) loadRepositories;
 - (void) saveRepositories;
+- (void) updateUserEmail;
 
 @end

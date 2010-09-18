@@ -80,18 +80,19 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
   } else if ([command isEqual: @"fetch"]) {
     NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
-    NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%an%n%s%n"];
+    NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%aN%n%aE%n%s%n"];
     NSString *workingCopy = [self workingCopyDirectory];
     if (commitRanges.count > 0 && workingCopy && [self ensureDirectoryExists: workingCopy]) {
       [git runCommand: @"log" withArguments: arguments inPath: workingCopy];
     }
   } else if ([command isEqual: @"log"]) {
-    NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex: @"([^\\n]+)\\n([^\\n]+)(\\n\\n)"];
+    NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex: @"([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)(\\n\\n)"];
     NSMutableArray *commits = [NSMutableArray arrayWithCapacity: commitData.count];
     for (NSArray *fields in commitData) {
       Commit *commit = [[Commit alloc] init];
-      commit.author = [fields objectAtIndex: 1];
-      commit.subject = [fields objectAtIndex: 2];
+      commit.authorName = [fields objectAtIndex: 1];
+      commit.authorEmail = [fields objectAtIndex: 2];
+      commit.subject = [fields objectAtIndex: 3];
       [commits addObject: commit];
     }
     [delegate commitsReceived: commits inRepository: self];

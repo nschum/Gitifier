@@ -9,7 +9,8 @@
 
 @interface Commit : NSObject {}
 
-@property (copy) NSString *author;
+@property (copy) NSString *authorName;
+@property (copy) NSString *authorEmail;
 @property (copy) NSString *subject;
 
 @end

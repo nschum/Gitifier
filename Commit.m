@@ -9,6 +9,6 @@
 
 @implementation Commit
 
-@synthesize author, subject;
+@synthesize authorName, authorEmail, subject;
 
 @end
