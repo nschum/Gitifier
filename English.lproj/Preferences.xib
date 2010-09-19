@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
 			<integer value="21"/>
+			<integer value="3"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -42,7 +42,7 @@
 			<object class="NSWindowTemplate" id="533887620">
 				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{335, 433}, {436, 317}}</string>
+				<string key="NSWindowRect">{{528, 487}, {436, 317}}</string>
 				<int key="NSWTFlags">1954022400</int>
 				<string key="NSWindowTitle">Gitifier Preferences</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -473,6 +473,7 @@
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<string key="NSFrameAutosaveName">PreferencesWindow</string>
 			</object>
 			<object class="NSWindowTemplate" id="897891258">
 				<int key="NSWindowStyleMask">15</int>
