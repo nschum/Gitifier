@@ -34,15 +34,15 @@
 
   NSArray *existing = [[repositoryListController repositoryList] valueForKeyPath: @"url"];
   if ([existing indexOfObject: url] != NSNotFound) {
-    [self.window psShowAlertSheetWithTitle: @"This URL is already on the list."
-                                   message: @"Try to find something more interesting to monitor..."];
+    [self showAlertWithTitle: @"This URL is already on the list."
+                     message: @"Try to find something more interesting to monitor..."];
     return;
   }
 
   editedRepository = [[Repository alloc] initWithUrl: url];
   if (!editedRepository) {
-    [self.window psShowAlertSheetWithTitle: @"This URL is invalid or not supported."
-                 message: @"Try a URL that starts with git://, ssh://, http(s)://, ftp(s):// or rsync://."];
+    [self showAlertWithTitle: @"This URL is invalid or not supported."
+                     message: @"Try a URL that starts with git://, ssh://, http(s)://, ftp(s):// or rsync://."];
     return;
   }
 
@@ -59,6 +59,22 @@
   } else {
     [self hideNewRepositorySheet];
   }
+}
+
+- (void) showAlertWithTitle: (NSString *) title message: (NSString *) message {
+  NSAlert *alertWindow = [[NSAlert alloc] init];
+  [alertWindow addButtonWithTitle: @"OK"];
+  [alertWindow setMessageText: title];
+  [alertWindow setInformativeText: message];
+  [alertWindow beginSheetModalForWindow: self.window
+                          modalDelegate: self
+                         didEndSelector: @selector(modalWasClosed:)
+                            contextInfo: nil];
+  [NSApp runModalForWindow: self.window];
+}
+
+- (void) modalWasClosed: (NSAlert *) alert {
+  [NSApp stopModal];
 }
 
 - (void) lockDialog {
@@ -108,9 +124,8 @@
 
 - (void) repositoryCouldNotBeCloned: (Repository *) repository {
   [self unlockDialog];
-  [self.window psShowAlertSheetWithTitle: @"Repository could not be cloned."
-                                 message: @"Make sure you have entered a correct URL."];
-  // TODO: fix enter
+  [self showAlertWithTitle: @"Repository could not be cloned."
+                   message: @"Make sure you have entered a correct URL."];
 }
 
 @end

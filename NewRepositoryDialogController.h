@@ -35,5 +35,6 @@
 - (void) showSlowCloneWarning;
 - (void) hideSlowCloneWarning;
 - (void) hideNewRepositorySheet;
+- (void) showAlertWithTitle: (NSString *) title message: (NSString *) message;
 
 @end
