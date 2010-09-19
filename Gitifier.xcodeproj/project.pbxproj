@@ -32,6 +32,7 @@
 		58DEC4551245575C00DE7C7E /* RepositoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC4491245575C00DE7C7E /* RepositoryListController.m */; };
 		58DEC4561245575C00DE7C7E /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC44B1245575C00DE7C7E /* StatusBarController.m */; };
 		58DEC4571245575C00DE7C7E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC44D1245575C00DE7C7E /* Utils.m */; };
+		58DEC73712469E9200DE7C7E /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC73612469E9200DE7C7E /* Defaults.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -101,6 +102,8 @@
 		58DEC44B1245575C00DE7C7E /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		58DEC44C1245575C00DE7C7E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		58DEC44D1245575C00DE7C7E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		58DEC73212469D1D00DE7C7E /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
+		58DEC73612469E9200DE7C7E /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gitifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -125,6 +128,8 @@
 			children = (
 				58DEC43A1245575C00DE7C7E /* Commit.h */,
 				58DEC43B1245575C00DE7C7E /* Commit.m */,
+				58DEC73212469D1D00DE7C7E /* Defaults.h */,
+				58DEC73612469E9200DE7C7E /* Defaults.m */,
 				58DEC43C1245575C00DE7C7E /* Git.h */,
 				58DEC43D1245575C00DE7C7E /* Git.m */,
 				58DEC43E1245575C00DE7C7E /* GitifierAppDelegate.h */,
@@ -351,6 +356,7 @@
 				58DEC4551245575C00DE7C7E /* RepositoryListController.m in Sources */,
 				58DEC4561245575C00DE7C7E /* StatusBarController.m in Sources */,
 				58DEC4571245575C00DE7C7E /* Utils.m in Sources */,
+				58DEC73712469E9200DE7C7E /* Defaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

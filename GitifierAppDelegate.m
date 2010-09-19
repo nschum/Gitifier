@@ -8,6 +8,7 @@
 #import <Growl/GrowlApplicationBridge.h>
 
 #import "Commit.h"
+#import "Defaults.h"
 #import "Git.h"
 #import "GitifierAppDelegate.h"
 #import "Repository.h"
@@ -20,6 +21,7 @@
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   repositoryList = [NSMutableArray array];
+  [Defaults registerDefaults];
   [GrowlApplicationBridge setGrowlDelegate: (id) @""];
   [self updateUserEmail];
   [repositoryListController loadRepositories];

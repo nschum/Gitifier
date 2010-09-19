@@ -5,10 +5,9 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
+#import "Defaults.h"
 #import "Repository.h"
 #import "RepositoryListController.h"
-
-#define REPOSITORY_LIST_KEY @"repositoryList"
 
 @implementation RepositoryListController
 
@@ -30,8 +29,7 @@
 }
 
 - (void) loadRepositories {
-  NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
-  NSArray *hashes = [settings arrayForKey: REPOSITORY_LIST_KEY];
+  NSArray *hashes = [GitifierDefaults arrayForKey: REPOSITORY_LIST_KEY];
   if (hashes) {
     for (NSDictionary *hash in hashes) {
       Repository *repo = [Repository repositoryFromHash: hash];
@@ -44,10 +42,9 @@
 }
 
 - (void) saveRepositories {
-  NSUserDefaults *settings = [NSUserDefaults standardUserDefaults];
   NSArray *repositories = [[self repositoryList] valueForKeyPath: @"hashRepresentation"];
-  [settings setObject: repositories forKey: REPOSITORY_LIST_KEY];
-  [settings synchronize];
+  [GitifierDefaults setObject: repositories forKey: REPOSITORY_LIST_KEY];
+  [GitifierDefaults synchronize];
 }
 
 @end
