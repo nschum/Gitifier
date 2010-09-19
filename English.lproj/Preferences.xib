@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="4"/>
 			<integer value="21"/>
-			<integer value="3"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -276,21 +276,21 @@
 						<object class="NSButton" id="823109391">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">292</int>
-							<string key="NSFrame">{{20, 20}, {20, 20}}</string>
+							<string key="NSFrame">{{20, 13}, {23, 22}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="525824604">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">+</string>
-								<object class="NSFont" key="NSSupport" id="1012212071">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">14</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="397886324"/>
 								<reference key="NSControlView" ref="823109391"/>
-								<int key="NSButtonFlags">-2036580097</int>
-								<int key="NSButtonFlags2">134</int>
+								<int key="NSButtonFlags">-2033434369</int>
+								<int key="NSButtonFlags2">162</int>
+								<object class="NSCustomResource" key="NSNormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">NSAddTemplate</string>
+								</object>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">400</int>
@@ -300,17 +300,21 @@
 						<object class="NSButton" id="793233827">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">292</int>
-							<string key="NSFrame">{{39, 20}, {20, 20}}</string>
+							<string key="NSFrame">{{42, 13}, {23, 22}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="222033759">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">–</string>
-								<reference key="NSSupport" ref="1012212071"/>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="397886324"/>
 								<reference key="NSControlView" ref="793233827"/>
-								<int key="NSButtonFlags">-2036580097</int>
-								<int key="NSButtonFlags2">134</int>
+								<int key="NSButtonFlags">-2032385793</int>
+								<int key="NSButtonFlags2">162</int>
+								<object class="NSCustomResource" key="NSNormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">NSRemoveTemplate</string>
+								</object>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">400</int>
@@ -1793,5 +1797,18 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../Gitifier.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>NSAddTemplate</string>
+				<string>NSRemoveTemplate</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{8, 8}</string>
+				<string>{8, 8}</string>
+			</object>
+		</object>
 	</data>
 </archive>
