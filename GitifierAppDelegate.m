@@ -11,13 +11,14 @@
 #import "Defaults.h"
 #import "Git.h"
 #import "GitifierAppDelegate.h"
+#import "PreferencesWindowController.h"
 #import "Repository.h"
 #import "RepositoryListController.h"
 #import "StatusBarController.h"
 
 @implementation GitifierAppDelegate
 
-@synthesize monitor, statusBarController, repositoryListController, repositoryList;
+@synthesize monitor, preferencesWindowController, statusBarController, repositoryListController, repositoryList;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   repositoryList = [NSMutableArray array];
@@ -27,6 +28,10 @@
   [repositoryListController loadRepositories];
   [statusBarController createStatusBarItem];
   [monitor startMonitoring];
+
+  if ([[repositoryListController repositoryList] count] == 0) {
+    [preferencesWindowController showPreferences: self];
+  }
 }
 
 - (void) applicationWillTerminate: (NSNotification *) notification {

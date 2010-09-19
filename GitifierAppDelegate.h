@@ -8,6 +8,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class Monitor;
+@class PreferencesWindowController;
 @class RepositoryListController;
 @class StatusBarController;
 
@@ -18,6 +19,7 @@
 @property (assign) NSMutableArray *repositoryList;
 @property IBOutlet Monitor *monitor;
 @property IBOutlet StatusBarController *statusBarController;
+@property IBOutlet PreferencesWindowController *preferencesWindowController;
 @property IBOutlet RepositoryListController *repositoryListController;
 
 // private
