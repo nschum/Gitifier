@@ -8,25 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		256AC3DA0F4B6AC300CF3369 /* GitifierAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* GitifierAppDelegate.m */; };
 		58AA4BDE123D607000E2E059 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AA4BDD123D607000E2E059 /* menu_icon.png */; };
-		58AA4C7A123D6EBA00E2E059 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = 58AA4C79123D6EBA00E2E059 /* Repository.m */; };
 		58DEBC83124009E500DE7C7E /* PSCocoaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */; };
 		58DEBC84124009E500DE7C7E /* PSFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC6B124009E500DE7C7E /* PSFoundationExtensions.m */; };
 		58DEBC85124009E500DE7C7E /* PSIntArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC6D124009E500DE7C7E /* PSIntArray.m */; };
 		58DEBC86124009E500DE7C7E /* PSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC71124009E500DE7C7E /* PSModel.m */; };
 		58DEBC87124009E500DE7C7E /* PSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC73124009E500DE7C7E /* PSModelManager.m */; };
 		58DEBC88124009E500DE7C7E /* PSPathBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC75124009E500DE7C7E /* PSPathBuilder.m */; };
-		58DEBCC012400EB200DE7C7E /* Git.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBCBF12400EB200DE7C7E /* Git.m */; };
 		58DEBD0012402BC500DE7C7E /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */; };
-		58DEBD2912402EF400DE7C7E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBD2812402EF400DE7C7E /* Utils.m */; };
-		58DEBF8012429E2C00DE7C7E /* Monitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBF7F12429E2C00DE7C7E /* Monitor.m */; };
 		58DEC0511242B47100DE7C7E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC0501242B47100DE7C7E /* RegexKitLite.m */; };
 		58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0581242B6EB00DE7C7E /* libicucore.dylib */; };
-		58DEC0901242BEC600DE7C7E /* Commit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC08F1242BEC600DE7C7E /* Commit.m */; };
 		58DEC0C61242C16600DE7C7E /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
 		58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
 		58DEC10E1242C3C200DE7C7E /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */; };
+		58DEC36612451E7D00DE7C7E /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58DEC36512451E7D00DE7C7E /* Preferences.xib */; };
+		58DEC44E1245575C00DE7C7E /* Commit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC43B1245575C00DE7C7E /* Commit.m */; };
+		58DEC44F1245575C00DE7C7E /* Git.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC43D1245575C00DE7C7E /* Git.m */; };
+		58DEC4501245575C00DE7C7E /* GitifierAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC43F1245575C00DE7C7E /* GitifierAppDelegate.m */; };
+		58DEC4511245575C00DE7C7E /* Monitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC4411245575C00DE7C7E /* Monitor.m */; };
+		58DEC4521245575C00DE7C7E /* NewRepositoryDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC4431245575C00DE7C7E /* NewRepositoryDialogController.m */; };
+		58DEC4531245575C00DE7C7E /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC4451245575C00DE7C7E /* PreferencesWindowController.m */; };
+		58DEC4541245575C00DE7C7E /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC4471245575C00DE7C7E /* Repository.m */; };
+		58DEC4551245575C00DE7C7E /* RepositoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC4491245575C00DE7C7E /* RepositoryListController.m */; };
+		58DEC4561245575C00DE7C7E /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC44B1245575C00DE7C7E /* StatusBarController.m */; };
+		58DEC4571245575C00DE7C7E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC44D1245575C00DE7C7E /* Utils.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -50,15 +55,11 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		256AC3D80F4B6AC300CF3369 /* GitifierAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitifierAppDelegate.h; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* GitifierAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitifierAppDelegate.m; sourceTree = "<group>"; wrapsLines = 1; };
 		256AC3F00F4B6AF500CF3369 /* Gitifier_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gitifier_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		58AA4BDD123D607000E2E059 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
-		58AA4C78123D6EBA00E2E059 /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
-		58AA4C79123D6EBA00E2E059 /* Repository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repository.m; sourceTree = "<group>"; };
 		58DEBC68124009E500DE7C7E /* PSCocoaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCocoaExtensions.h; sourceTree = "<group>"; };
 		58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCocoaExtensions.m; sourceTree = "<group>"; };
 		58DEBC6A124009E500DE7C7E /* PSFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSFoundationExtensions.h; sourceTree = "<group>"; };
@@ -73,20 +74,33 @@
 		58DEBC73124009E500DE7C7E /* PSModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSModelManager.m; sourceTree = "<group>"; };
 		58DEBC74124009E500DE7C7E /* PSPathBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPathBuilder.h; sourceTree = "<group>"; };
 		58DEBC75124009E500DE7C7E /* PSPathBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPathBuilder.m; sourceTree = "<group>"; };
-		58DEBCBE12400EB200DE7C7E /* Git.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Git.h; sourceTree = "<group>"; };
-		58DEBCBF12400EB200DE7C7E /* Git.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Git.m; sourceTree = "<group>"; };
 		58DEBCFF12402BC500DE7C7E /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
-		58DEBD2712402EF400DE7C7E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		58DEBD2812402EF400DE7C7E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
-		58DEBF7E12429E2C00DE7C7E /* Monitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monitor.h; sourceTree = "<group>"; };
-		58DEBF7F12429E2C00DE7C7E /* Monitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monitor.m; sourceTree = "<group>"; };
 		58DEC04F1242B47100DE7C7E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		58DEC0501242B47100DE7C7E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		58DEC0581242B6EB00DE7C7E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		58DEC08E1242BEC600DE7C7E /* Commit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commit.h; sourceTree = "<group>"; };
-		58DEC08F1242BEC600DE7C7E /* Commit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commit.m; sourceTree = "<group>"; };
 		58DEC0C51242C16600DE7C7E /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		58DEC35F12451E5C00DE7C7E /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
+		58DEC43A1245575C00DE7C7E /* Commit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commit.h; sourceTree = "<group>"; };
+		58DEC43B1245575C00DE7C7E /* Commit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commit.m; sourceTree = "<group>"; };
+		58DEC43C1245575C00DE7C7E /* Git.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Git.h; sourceTree = "<group>"; };
+		58DEC43D1245575C00DE7C7E /* Git.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Git.m; sourceTree = "<group>"; };
+		58DEC43E1245575C00DE7C7E /* GitifierAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitifierAppDelegate.h; sourceTree = "<group>"; };
+		58DEC43F1245575C00DE7C7E /* GitifierAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitifierAppDelegate.m; sourceTree = "<group>"; };
+		58DEC4401245575C00DE7C7E /* Monitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monitor.h; sourceTree = "<group>"; };
+		58DEC4411245575C00DE7C7E /* Monitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monitor.m; sourceTree = "<group>"; };
+		58DEC4421245575C00DE7C7E /* NewRepositoryDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRepositoryDialogController.h; sourceTree = "<group>"; };
+		58DEC4431245575C00DE7C7E /* NewRepositoryDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRepositoryDialogController.m; sourceTree = "<group>"; };
+		58DEC4441245575C00DE7C7E /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
+		58DEC4451245575C00DE7C7E /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
+		58DEC4461245575C00DE7C7E /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
+		58DEC4471245575C00DE7C7E /* Repository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repository.m; sourceTree = "<group>"; };
+		58DEC4481245575C00DE7C7E /* RepositoryListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoryListController.h; sourceTree = "<group>"; };
+		58DEC4491245575C00DE7C7E /* RepositoryListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoryListController.m; sourceTree = "<group>"; };
+		58DEC44A1245575C00DE7C7E /* StatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarController.h; sourceTree = "<group>"; };
+		58DEC44B1245575C00DE7C7E /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
+		58DEC44C1245575C00DE7C7E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		58DEC44D1245575C00DE7C7E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gitifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,23 +120,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* Gitifier */ = {
 			isa = PBXGroup;
 			children = (
-				58DEC08E1242BEC600DE7C7E /* Commit.h */,
-				58DEC08F1242BEC600DE7C7E /* Commit.m */,
-				58DEBCBE12400EB200DE7C7E /* Git.h */,
-				58DEBCBF12400EB200DE7C7E /* Git.m */,
-				256AC3D80F4B6AC300CF3369 /* GitifierAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* GitifierAppDelegate.m */,
-				58DEBF7E12429E2C00DE7C7E /* Monitor.h */,
-				58DEBF7F12429E2C00DE7C7E /* Monitor.m */,
-				58AA4C78123D6EBA00E2E059 /* Repository.h */,
-				58AA4C79123D6EBA00E2E059 /* Repository.m */,
-				58DEBD2712402EF400DE7C7E /* Utils.h */,
-				58DEBD2812402EF400DE7C7E /* Utils.m */,
+				58DEC43A1245575C00DE7C7E /* Commit.h */,
+				58DEC43B1245575C00DE7C7E /* Commit.m */,
+				58DEC43C1245575C00DE7C7E /* Git.h */,
+				58DEC43D1245575C00DE7C7E /* Git.m */,
+				58DEC43E1245575C00DE7C7E /* GitifierAppDelegate.h */,
+				58DEC43F1245575C00DE7C7E /* GitifierAppDelegate.m */,
+				58DEC4401245575C00DE7C7E /* Monitor.h */,
+				58DEC4411245575C00DE7C7E /* Monitor.m */,
+				58DEC4421245575C00DE7C7E /* NewRepositoryDialogController.h */,
+				58DEC4431245575C00DE7C7E /* NewRepositoryDialogController.m */,
+				58DEC4441245575C00DE7C7E /* PreferencesWindowController.h */,
+				58DEC4451245575C00DE7C7E /* PreferencesWindowController.m */,
+				58DEC4461245575C00DE7C7E /* Repository.h */,
+				58DEC4471245575C00DE7C7E /* Repository.m */,
+				58DEC4481245575C00DE7C7E /* RepositoryListController.h */,
+				58DEC4491245575C00DE7C7E /* RepositoryListController.m */,
+				58DEC44A1245575C00DE7C7E /* StatusBarController.h */,
+				58DEC44B1245575C00DE7C7E /* StatusBarController.m */,
+				58DEC44C1245575C00DE7C7E /* Utils.h */,
+				58DEC44D1245575C00DE7C7E /* Utils.m */,
 			);
-			name = Classes;
+			name = Gitifier;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -154,7 +176,7 @@
 		29B97314FDCFA39411CA2CEA /* Gitifier */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
+				080E96DDFE201D6D7F000001 /* Gitifier */,
 				58DEBC5B124009CD00DE7C7E /* Lib */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -180,6 +202,7 @@
 				8D1107310486CEB800E47090 /* Gitifier-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				58DEC36512451E7D00DE7C7E /* Preferences.xib */,
 				58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */,
 			);
 			name = Resources;
@@ -299,6 +322,7 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				58AA4BDE123D607000E2E059 /* menu_icon.png in Resources */,
 				58DEC10E1242C3C200DE7C7E /* Growl Registration Ticket.growlRegDict in Resources */,
+				58DEC36612451E7D00DE7C7E /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,19 +334,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* GitifierAppDelegate.m in Sources */,
-				58AA4C7A123D6EBA00E2E059 /* Repository.m in Sources */,
 				58DEBC83124009E500DE7C7E /* PSCocoaExtensions.m in Sources */,
 				58DEBC84124009E500DE7C7E /* PSFoundationExtensions.m in Sources */,
 				58DEBC85124009E500DE7C7E /* PSIntArray.m in Sources */,
 				58DEBC86124009E500DE7C7E /* PSModel.m in Sources */,
 				58DEBC87124009E500DE7C7E /* PSModelManager.m in Sources */,
 				58DEBC88124009E500DE7C7E /* PSPathBuilder.m in Sources */,
-				58DEBCC012400EB200DE7C7E /* Git.m in Sources */,
-				58DEBD2912402EF400DE7C7E /* Utils.m in Sources */,
-				58DEBF8012429E2C00DE7C7E /* Monitor.m in Sources */,
 				58DEC0511242B47100DE7C7E /* RegexKitLite.m in Sources */,
-				58DEC0901242BEC600DE7C7E /* Commit.m in Sources */,
+				58DEC44E1245575C00DE7C7E /* Commit.m in Sources */,
+				58DEC44F1245575C00DE7C7E /* Git.m in Sources */,
+				58DEC4501245575C00DE7C7E /* GitifierAppDelegate.m in Sources */,
+				58DEC4511245575C00DE7C7E /* Monitor.m in Sources */,
+				58DEC4521245575C00DE7C7E /* NewRepositoryDialogController.m in Sources */,
+				58DEC4531245575C00DE7C7E /* PreferencesWindowController.m in Sources */,
+				58DEC4541245575C00DE7C7E /* Repository.m in Sources */,
+				58DEC4551245575C00DE7C7E /* RepositoryListController.m in Sources */,
+				58DEC4561245575C00DE7C7E /* StatusBarController.m in Sources */,
+				58DEC4571245575C00DE7C7E /* Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +371,14 @@
 				1DDD58150DA1D0A300B32029 /* English */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		58DEC36512451E7D00DE7C7E /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				58DEC35F12451E5C00DE7C7E /* English */,
+			);
+			name = Preferences.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

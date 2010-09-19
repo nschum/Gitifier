@@ -62,8 +62,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   NSString *workingCopy = [self workingCopyDirectory];
   if (workingCopy && [self ensureDirectoryExists: workingCopy]) {
     [git runCommand: @"fetch" inPath: workingCopy];
-  } else {
-    [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   }
 }
 

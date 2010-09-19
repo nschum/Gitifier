@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MonitorDelegate
+@protocol MonitorDataSource
 - (NSArray *) repositoryList;
 @end
 
@@ -17,7 +17,7 @@
   NSTimer *timer;
 }
 
-@property IBOutlet id delegate;
+@property IBOutlet id dataSource;
 
 // public
 - (void) startMonitoring;

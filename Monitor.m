@@ -12,7 +12,7 @@
 
 @implementation Monitor
 
-@synthesize delegate;
+@synthesize dataSource;
 
 - (void) startMonitoring {
   if (!timer) {
@@ -25,10 +25,8 @@
 }
 
 - (void) timerFired {
-  NSArray *repositories = [[delegate repositoryList] copy];
-  for (Repository *repository in repositories) {
-    [repository fetchNewCommits];
-  }
+  NSArray *repositories = [[dataSource repositoryList] copy];
+  [repositories makeObjectsPerformSelector: @selector(fetchNewCommits)];
 }
 
 @end

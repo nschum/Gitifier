@@ -6,45 +6,21 @@
 // -------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
-#import "Monitor.h"
 
-@class Repository;
+@class Monitor;
+@class RepositoryListController;
+@class StatusBarController;
 
-@interface GitifierAppDelegate : NSObject <NSApplicationDelegate, MonitorDelegate> {
-  NSStatusItem *statusBarItem;
-  Repository *editedRepository;
-  NSTimer *slowCloneTimer;
-  NSString *labelText;
+@interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
   NSString *userEmail;
 }
 
-@property (assign) IBOutlet NSMenu *statusBarMenu;
-@property IBOutlet NSWindow *preferencesWindow;
-@property IBOutlet NSWindow *addRepositoryWindow;
-@property IBOutlet NSTextField *newRepositoryUrl;
-@property IBOutlet NSArrayController *repositoryListController;
-@property IBOutlet NSProgressIndicator *spinner;
-@property IBOutlet NSButton *cancelButton;
-@property IBOutlet NSButton *addButton;
-@property IBOutlet NSTextField *label;
+@property (assign) NSMutableArray *repositoryList;
 @property IBOutlet Monitor *monitor;
-
-// public
-- (IBAction) showPreferences: (id) sender;
-- (IBAction) showAddRepositorySheet: (id) sender;
-- (IBAction) addRepository: (id) sender;
-- (IBAction) removeRepositories: (id) sender;
-- (IBAction) cancelAddingRepository: (id) sender;
+@property IBOutlet StatusBarController *statusBarController;
+@property IBOutlet RepositoryListController *repositoryListController;
 
 // private
-- (void) createStatusBarItem;
-- (void) lockAddRepositoryDialog;
-- (void) unlockAddRepositoryDialog;
-- (void) hideAddRepositorySheet;
-- (void) setupSlowCloneTimer;
-- (void) hideSlowCloneWarning;
-- (void) loadRepositories;
-- (void) saveRepositories;
 - (void) updateUserEmail;
 
 @end
