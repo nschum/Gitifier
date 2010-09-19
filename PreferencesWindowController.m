@@ -19,7 +19,6 @@
 }
 
 - (IBAction) showPreferences: (id) sender {
-  // TODO: fix cmd+w
   [NSApp activateIgnoringOtherApps: YES];
   [self showWindow: self];
 }
