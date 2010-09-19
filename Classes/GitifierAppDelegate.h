@@ -14,6 +14,11 @@
 
 @interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
   NSString *userEmail;
+  NSMutableArray *repositoryList;
+  Monitor *monitor;
+  StatusBarController *statusBarController;
+  PreferencesWindowController *preferencesWindowController;
+  RepositoryListController *repositoryListController;
 }
 
 @property (assign) NSMutableArray *repositoryList;

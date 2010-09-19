@@ -15,6 +15,7 @@
 
 @interface Monitor : NSObject {
   NSTimer *timer;
+  id dataSource;
 }
 
 @property IBOutlet id dataSource;

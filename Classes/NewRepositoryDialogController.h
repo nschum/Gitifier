@@ -14,6 +14,12 @@
   NSTimer *slowCloneTimer;
   NSString *labelText;
   Repository *editedRepository;
+  RepositoryListController *repositoryListController;
+  NSTextField *newRepositoryUrl;
+  NSProgressIndicator *spinner;
+  NSButton *cancelButton;
+  NSButton *addButton;
+  NSTextField *label;
 }
 
 @property IBOutlet RepositoryListController *repositoryListController;

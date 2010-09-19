@@ -19,6 +19,9 @@
 
 @interface Repository : NSObject {
   Git *git;
+  NSString *url;
+  NSString *name;
+  id delegate;
 }
 
 @property (copy) NSString *url;

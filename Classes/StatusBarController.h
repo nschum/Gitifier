@@ -9,6 +9,7 @@
 
 @interface StatusBarController : NSObject {
   NSStatusItem *statusBarItem;
+  NSMenu *statusBarMenu;
 }
 
 @property (assign) IBOutlet NSMenu *statusBarMenu;

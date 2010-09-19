@@ -7,7 +7,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Commit : NSObject {}
+@interface Commit : NSObject {
+  NSString *authorName;
+  NSString *authorEmail;
+  NSString *subject;
+}
 
 @property (copy) NSString *authorName;
 @property (copy) NSString *authorEmail;

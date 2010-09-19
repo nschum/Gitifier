@@ -11,6 +11,8 @@
 
 @interface PreferencesWindowController : NSWindowController {
   NSNumberFormatter *numberFormatter;
+  RepositoryListController *repositoryListController;
+  NSTextField *monitorIntervalField;
 }
 
 @property IBOutlet RepositoryListController *repositoryListController;
