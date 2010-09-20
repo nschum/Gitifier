@@ -13,15 +13,12 @@
 
 @synthesize repositoryListController, monitorIntervalField;
 
-- (void) awakeFromNib {
+- (IBAction) showPreferences: (id) sender {
   if (!self.window) {
     [NSBundle loadNibNamed: @"Preferences" owner: self];
     numberFormatter = [[NSNumberFormatter alloc] init];
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
   }
-}
-
-- (IBAction) showPreferences: (id) sender {
   [NSApp activateIgnoringOtherApps: YES];
   [self showWindow: self];
 }
