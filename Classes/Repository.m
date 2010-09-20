@@ -61,9 +61,12 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (void) fetchNewCommits {
-  NSString *workingCopy = [self workingCopyDirectory];
-  if (workingCopy && [self directoryExists: workingCopy]) {
-    [git runCommand: @"fetch" inPath: workingCopy];
+  if (!isBeingUpdated) {
+    isBeingUpdated = YES;
+    NSString *workingCopy = [self workingCopyDirectory];
+    if (workingCopy && [self directoryExists: workingCopy]) {
+      [git runCommand: @"fetch" inPath: workingCopy];
+    }
   }
 }
 
@@ -84,6 +87,8 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     NSString *workingCopy = [self workingCopyDirectory];
     if (commitRanges.count > 0 && workingCopy && [self directoryExists: workingCopy]) {
       [git runCommand: @"log" withArguments: arguments inPath: workingCopy];
+    } else {
+      isBeingUpdated = NO;
     }
   } else if ([command isEqual: @"log"]) {
     NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex: @"([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)(\\n\\n)"];
@@ -96,6 +101,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       [commits addObject: commit];
     }
     [delegate commitsReceived: commits inRepository: self];
+    isBeingUpdated = NO;
   }
 }
 
@@ -103,6 +109,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   if ([command isEqual: @"clone"]) {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   } else {
+    isBeingUpdated = NO;
     NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
     NSLog(@"command %@ failed: \"%@\"", command, truncated);
   }

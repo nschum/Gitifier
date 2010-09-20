@@ -22,6 +22,7 @@
   NSString *url;
   NSString *name;
   id delegate;
+  BOOL isBeingUpdated;
 }
 
 @property (copy) NSString *url;
