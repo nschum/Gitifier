@@ -12,7 +12,6 @@
 #import "Repository.h"
 #import "Utils.h"
 
-static NSString *urlRegexp = @"(git|ssh|http|https|ftp|ftps|rsync):\\/\\/\\S+";
 static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 @implementation Repository
@@ -110,7 +109,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (BOOL) isProperUrl: (NSString *) anUrl {
-  return [anUrl isMatchedByRegex: urlRegexp];
+  return ![anUrl isMatchedByRegex: @"\\s"];
 }
 
 - (NSString *) nameFromUrl: (NSString *) anUrl {

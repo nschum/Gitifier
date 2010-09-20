@@ -41,8 +41,8 @@
 
   editedRepository = [[Repository alloc] initWithUrl: url];
   if (!editedRepository) {
-    [self showAlertWithTitle: @"This URL is invalid or not supported."
-                     message: @"Try a URL that starts with git://, ssh://, http(s)://, ftp(s):// or rsync://."];
+    [self showAlertWithTitle: @"This doesn't look like a git URL."
+                     message: @"Please enter a proper git repository address."];
     return;
   }
 
