@@ -21,6 +21,7 @@
   RepositoryListController *repositoryListController;
 }
 
+@property (readonly) NSString *userEmail;
 @property (assign) NSMutableArray *repositoryList;
 @property IBOutlet Monitor *monitor;
 @property IBOutlet StatusBarController *statusBarController;

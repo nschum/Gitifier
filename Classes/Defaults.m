@@ -12,9 +12,11 @@ NSDictionary *defaultPreferenceValues;
 @implementation Defaults
 
 + (void) initialize {
+  NSNumber *yes = [NSNumber numberWithBool: YES];
   defaultPreferenceValues = PSDict(
     PSInt(5), MONITOR_INTERVAL_KEY,
-    [NSNumber numberWithBool: YES], IGNORE_MERGES_KEY
+    yes, IGNORE_MERGES_KEY,
+    yes, IGNORE_OWN_COMMITS
   );
 }
 

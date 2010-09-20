@@ -15,10 +15,12 @@
 #import "Repository.h"
 #import "RepositoryListController.h"
 #import "StatusBarController.h"
+#import "Utils.h"
 
 @implementation GitifierAppDelegate
 
-@synthesize monitor, preferencesWindowController, statusBarController, repositoryListController, repositoryList;
+@synthesize monitor, userEmail, preferencesWindowController, statusBarController,
+  repositoryListController, repositoryList;
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   repositoryList = [NSMutableArray array];
@@ -46,16 +48,18 @@
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
   if ([command isEqual: @"config"] && output && output.length > 0) {
     userEmail = [output psTrimmedString];
+    PSNotifyWithData(UserEmailChangedNotification, PSDict(userEmail, @"email"));
   }
 }
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
+  BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IGNORE_OWN_COMMITS];
   for (Commit *commit in [commits reverseObjectEnumerator]) {
     if (ignoreMerges && [commit isMergeCommit]) {
       return;
     }
-    if ([commit.authorEmail isEqual: userEmail]) {
+    if (ignoreOwnCommits && [commit.authorEmail isEqual: userEmail]) {
       return;
     }
     [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
