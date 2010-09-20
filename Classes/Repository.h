@@ -45,5 +45,6 @@
 - (void) notifyDelegateWithSelector: (SEL) selector;
 - (BOOL) ensureDirectoryIsDeleted: (NSString *) directory;
 - (BOOL) ensureDirectoryExists: (NSString *) directory;
+- (BOOL) directoryExists: (NSString *) directory;
 
 @end

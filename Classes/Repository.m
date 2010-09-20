@@ -51,7 +51,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 - (void) clone {
   NSString *cachesDirectory = [self cachesDirectory];
   NSString *workingCopy = [self workingCopyDirectory];
-  if (cachesDirectory && workingCopy && [self ensureDirectoryIsDeleted: workingCopy]) {
+  BOOL cachesDirectoryExists = cachesDirectory && [self ensureDirectoryExists: cachesDirectory];
+  BOOL workingCopyDoesntExist = workingCopy && [self ensureDirectoryIsDeleted: workingCopy];
+
+  if (cachesDirectoryExists && workingCopyDoesntExist) {
     [git runCommand: @"clone" withArguments: PSArray(url, workingCopy, @"-n") inPath: cachesDirectory];
   } else {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
@@ -60,7 +63,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (void) fetchNewCommits {
   NSString *workingCopy = [self workingCopyDirectory];
-  if (workingCopy && [self ensureDirectoryExists: workingCopy]) {
+  if (workingCopy && [self directoryExists: workingCopy]) {
     [git runCommand: @"fetch" inPath: workingCopy];
   }
 }
@@ -80,7 +83,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
     NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%aN%n%aE%n%s%n"];
     NSString *workingCopy = [self workingCopyDirectory];
-    if (commitRanges.count > 0 && workingCopy && [self ensureDirectoryExists: workingCopy]) {
+    if (commitRanges.count > 0 && workingCopy && [self directoryExists: workingCopy]) {
       [git runCommand: @"log" withArguments: arguments inPath: workingCopy];
     }
   } else if ([command isEqual: @"log"]) {
@@ -157,10 +160,39 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   return YES;
 }
 
-- (BOOL) ensureDirectoryExists: (NSString *) directory {
+- (BOOL) directoryExists: (NSString *) directory {
   BOOL isDirectory;
   BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath: directory isDirectory: &isDirectory];
   return exists && isDirectory;
+}
+
+- (BOOL) ensureDirectoryExists: (NSString *) directory {
+  NSFileManager *manager = [NSFileManager defaultManager];
+  NSError *error;
+  BOOL isDirectory;
+  BOOL exists = [manager fileExistsAtPath: directory isDirectory: &isDirectory];
+  if (exists) {
+    if (isDirectory) {
+      return YES;
+    } else {
+      BOOL removed = [manager removeItemAtPath: directory error: &error];
+      if (!removed) {
+        NSLog(@"Error: File or directory %@ could not be deleted: %@.", directory, error.localizedDescription);
+        return NO;
+      }
+    }
+  }
+
+  BOOL created = [manager createDirectoryAtPath: directory
+                    withIntermediateDirectories: YES
+                                     attributes: nil
+                                          error: &error];
+  if (!created) {
+    NSLog(@"Error: Directory %@ could not be created: %@.", directory, error.localizedDescription);
+    return NO;
+  }
+
+  return YES;
 }
 
 - (void) notifyDelegateWithSelector: (SEL) selector {
