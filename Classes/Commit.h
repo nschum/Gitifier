@@ -17,4 +17,6 @@
 @property (copy) NSString *authorEmail;
 @property (copy) NSString *subject;
 
+- (BOOL) isMergeCommit;
+
 @end

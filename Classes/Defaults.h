@@ -9,6 +9,7 @@
 
 #define MONITOR_INTERVAL_KEY @"monitorInterval"
 #define REPOSITORY_LIST_KEY @"repositoryList"
+#define IGNORE_MERGES_KEY @"ignoreMerges"
 
 extern NSDictionary *defaultPreferenceValues;
 

@@ -6,9 +6,14 @@
 // -------------------------------------------------------
 
 #import "Commit.h"
+#import "RegexKitLite.h"
 
 @implementation Commit
 
 @synthesize authorName, authorEmail, subject;
+
+- (BOOL) isMergeCommit {
+  return [subject isMatchedByRegex: @"^Merge branch '.*'"];
+}
 
 @end

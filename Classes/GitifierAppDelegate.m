@@ -50,16 +50,21 @@
 }
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
+  BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
   for (Commit *commit in [commits reverseObjectEnumerator]) {
-    if (![commit.authorEmail isEqual: userEmail]) {
-      [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
-                                  description: commit.subject
-                             notificationName: @"Commit received"
-                                     iconData: nil
-                                     priority: 0
-                                     isSticky: NO
-                                 clickContext: nil];
+    if (ignoreMerges && [commit isMergeCommit]) {
+      return;
     }
+    if ([commit.authorEmail isEqual: userEmail]) {
+      return;
+    }
+    [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
+                                description: commit.subject
+                           notificationName: @"Commit received"
+                                   iconData: nil
+                                   priority: 0
+                                   isSticky: NO
+                               clickContext: nil];
   }
 }
 

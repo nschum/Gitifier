@@ -13,7 +13,8 @@ NSDictionary *defaultPreferenceValues;
 
 + (void) initialize {
   defaultPreferenceValues = PSDict(
-    PSInt(5), MONITOR_INTERVAL_KEY
+    PSInt(5), MONITOR_INTERVAL_KEY,
+    [NSNumber numberWithBool: YES], IGNORE_MERGES_KEY
   );
 }
 
