@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="21"/>
-			<integer value="3"/>
+			<integer value="4"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -42,7 +42,7 @@
 			<object class="NSWindowTemplate" id="533887620">
 				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{528, 487}, {436, 317}}</string>
+				<string key="NSWindowRect">{{528, 487}, {489, 317}}</string>
 				<int key="NSWTFlags">1954022400</int>
 				<string key="NSWindowTitle">Gitifier Preferences</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -102,13 +102,13 @@
 										<object class="NSTableView" id="746567670">
 											<reference key="NSNextResponder" ref="147591804"/>
 											<int key="NSvFlags">4352</int>
-											<string key="NSFrameSize">{394, 147}</string>
+											<string key="NSFrameSize">{447, 147}</string>
 											<reference key="NSSuperview" ref="147591804"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTableHeaderView" key="NSHeaderView" id="177314152">
 												<reference key="NSNextResponder" ref="212439758"/>
 												<int key="NSvFlags">256</int>
-												<string key="NSFrameSize">{394, 17}</string>
+												<string key="NSFrameSize">{447, 17}</string>
 												<reference key="NSSuperview" ref="212439758"/>
 												<reference key="NSTableView" ref="746567670"/>
 											</object>
@@ -121,7 +121,7 @@
 											<object class="NSMutableArray" key="NSTableColumns">
 												<bool key="EncodedWithXMLCoder">YES</bool>
 												<object class="NSTableColumn" id="685452499">
-													<double key="NSWidth">102</double>
+													<double key="NSWidth">96</double>
 													<double key="NSMinWidth">10</double>
 													<double key="NSMaxWidth">3.4028234663852886e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -169,7 +169,7 @@
 													<reference key="NSTableView" ref="746567670"/>
 												</object>
 												<object class="NSTableColumn" id="351873813">
-													<double key="NSWidth">286</double>
+													<double key="NSWidth">345</double>
 													<double key="NSMinWidth">40</double>
 													<double key="NSMaxWidth">1000</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -220,7 +220,7 @@
 											<int key="NSTableViewDraggingDestinationStyle">0</int>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 17}, {394, 147}}</string>
+									<string key="NSFrame">{{1, 17}, {447, 147}}</string>
 									<reference key="NSSuperview" ref="253471945"/>
 									<reference key="NSNextKeyView" ref="746567670"/>
 									<reference key="NSDocView" ref="746567670"/>
@@ -253,7 +253,7 @@
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<reference ref="177314152"/>
 									</object>
-									<string key="NSFrame">{{1, 0}, {394, 17}}</string>
+									<string key="NSFrame">{{1, 0}, {447, 17}}</string>
 									<reference key="NSSuperview" ref="253471945"/>
 									<reference key="NSNextKeyView" ref="177314152"/>
 									<reference key="NSDocView" ref="177314152"/>
@@ -262,7 +262,7 @@
 								</object>
 								<reference ref="607047876"/>
 							</object>
-							<string key="NSFrame">{{20, 107}, {396, 165}}</string>
+							<string key="NSFrame">{{20, 107}, {449, 165}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<reference key="NSNextKeyView" ref="147591804"/>
 							<int key="NSsFlags">562</int>
@@ -468,7 +468,7 @@
 							</object>
 						</object>
 					</object>
-					<string key="NSFrameSize">{436, 317}</string>
+					<string key="NSFrameSize">{489, 317}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
@@ -1305,9 +1305,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{662, 257}, {436, 317}}</string>
+					<string>{{662, 257}, {489, 317}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{662, 257}, {436, 317}}</string>
+					<string>{{662, 257}, {489, 317}}</string>
 					<boolean value="NO"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<string>{3.40282e+38, 3.40282e+38}</string>
@@ -1368,7 +1368,7 @@
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">LoginItemController.h</string>
+						<string key="minorKey">Classes/LoginItemController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1494,7 +1494,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">NewRepositoryDialogController.h</string>
+						<string key="minorKey">Classes/NewRepositoryDialogController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1566,7 +1566,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">PreferencesWindowController.h</string>
+						<string key="minorKey">Classes/PreferencesWindowController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1574,7 +1574,7 @@
 					<string key="superclassName">NSArrayController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">RepositoryListController.h</string>
+						<string key="minorKey">Classes/RepositoryListController.h</string>
 					</object>
 				</object>
 			</object>
