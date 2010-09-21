@@ -9,19 +9,23 @@
 
 @class RepositoryListController;
 
-@interface PreferencesWindowController : NSWindowController {
+@interface PreferencesWindowController : NSWindowController <NSOpenSavePanelDelegate> {
   NSNumberFormatter *numberFormatter;
   RepositoryListController *repositoryListController;
   NSTextField *monitorIntervalField;
   NSButton *ignoreOwnEmailsField;
+  NSButton *chooseGitPathButton;
 }
 
 @property IBOutlet RepositoryListController *repositoryListController;
 @property IBOutlet NSTextField *monitorIntervalField;
 @property IBOutlet NSButton *ignoreOwnEmailsField;
+@property IBOutlet NSButton *chooseGitPathButton;
+@property (readonly) id gitClass;
 
 - (IBAction) showPreferences: (id) sender;
 - (IBAction) removeRepositories: (id) sender;
+- (IBAction) openGitExecutableDialog: (id) sender;
 - (void) updateUserEmailText: (NSString *) email;
 
 @end

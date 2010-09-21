@@ -11,6 +11,7 @@
 #define REPOSITORY_LIST_KEY @"repositoryList"
 #define IGNORE_MERGES_KEY @"ignoreMerges"
 #define IGNORE_OWN_COMMITS @"ignoreOwnCommits"
+#define GIT_EXECUTABLE_KEY @"gitExecutable"
 
 extern NSDictionary *defaultPreferenceValues;
 

@@ -42,7 +42,7 @@
 			<object class="NSWindowTemplate" id="533887620">
 				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{528, 436}, {489, 368}}</string>
+				<string key="NSWindowRect">{{528, 406}, {489, 398}}</string>
 				<int key="NSWTFlags">1954022400</int>
 				<string key="NSWindowTitle">Gitifier Preferences</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -56,7 +56,7 @@
 						<object class="NSTextField" id="166697834">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 331}, {106, 17}}</string>
+							<string key="NSFrame">{{17, 361}, {106, 17}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="418166440">
@@ -262,7 +262,7 @@
 								</object>
 								<reference ref="607047876"/>
 							</object>
-							<string key="NSFrame">{{20, 158}, {449, 165}}</string>
+							<string key="NSFrame">{{20, 188}, {449, 165}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<reference key="NSNextKeyView" ref="147591804"/>
 							<int key="NSsFlags">562</int>
@@ -276,7 +276,7 @@
 						<object class="NSButton" id="823109391">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">292</int>
-							<string key="NSFrame">{{20, 132}, {23, 22}}</string>
+							<string key="NSFrame">{{20, 162}, {23, 22}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="525824604">
@@ -300,7 +300,7 @@
 						<object class="NSButton" id="793233827">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">292</int>
-							<string key="NSFrame">{{42, 132}, {23, 22}}</string>
+							<string key="NSFrame">{{42, 162}, {23, 22}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="222033759">
@@ -324,7 +324,7 @@
 						<object class="NSTextField" id="607402486">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 101}, {202, 17}}</string>
+							<string key="NSFrame">{{17, 131}, {202, 17}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="364312272">
@@ -340,7 +340,7 @@
 						<object class="NSTextField" id="489856098">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{224, 99}, {33, 22}}</string>
+							<string key="NSFrame">{{224, 129}, {33, 22}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="911212315">
@@ -427,7 +427,7 @@
 						<object class="NSTextField" id="490475085">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{262, 101}, {55, 17}}</string>
+							<string key="NSFrame">{{262, 131}, {55, 17}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="241914829">
@@ -443,7 +443,7 @@
 						<object class="NSButton" id="246554271">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 70}, {150, 18}}</string>
+							<string key="NSFrame">{{18, 100}, {150, 18}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="851060409">
@@ -470,7 +470,7 @@
 						<object class="NSButton" id="622481826">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 44}, {165, 18}}</string>
+							<string key="NSFrame">{{18, 74}, {165, 18}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="685309511">
@@ -492,7 +492,7 @@
 						<object class="NSButton" id="593668041">
 							<reference key="NSNextResponder" ref="253720885"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 18}, {453, 18}}</string>
+							<string key="NSFrame">{{18, 48}, {453, 18}}</string>
 							<reference key="NSSuperview" ref="253720885"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="1060860856">
@@ -511,8 +511,80 @@
 								<int key="NSPeriodicInterval">25</int>
 							</object>
 						</object>
+						<object class="NSTextField" id="490605653">
+							<reference key="NSNextResponder" ref="253720885"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{17, 22}, {132, 17}}</string>
+							<reference key="NSSuperview" ref="253720885"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="342219911">
+								<int key="NSCellFlags">68288064</int>
+								<int key="NSCellFlags2">272630784</int>
+								<string key="NSContents">Git executable path:</string>
+								<reference key="NSSupport" ref="397886324"/>
+								<reference key="NSControlView" ref="490605653"/>
+								<reference key="NSBackgroundColor" ref="977119410"/>
+								<reference key="NSTextColor" ref="820093249"/>
+							</object>
+						</object>
+						<object class="NSTextField" id="97084018">
+							<reference key="NSNextResponder" ref="253720885"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{154, 20}, {219, 22}}</string>
+							<reference key="NSSuperview" ref="253720885"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="924329040">
+								<int key="NSCellFlags">-1803944383</int>
+								<int key="NSCellFlags2">272630784</int>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="397886324"/>
+								<reference key="NSControlView" ref="97084018"/>
+								<bool key="NSDrawsBackground">YES</bool>
+								<reference key="NSBackgroundColor" ref="385610330"/>
+								<reference key="NSTextColor" ref="996182179"/>
+							</object>
+						</object>
+						<object class="NSButton" id="480188299">
+							<reference key="NSNextResponder" ref="253720885"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{375, 14}, {100, 32}}</string>
+							<reference key="NSSuperview" ref="253720885"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="390900662">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents">Choose...</string>
+								<reference key="NSSupport" ref="397886324"/>
+								<reference key="NSControlView" ref="480188299"/>
+								<int key="NSButtonFlags">-2038284033</int>
+								<int key="NSButtonFlags2">129</int>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
+							</object>
+						</object>
+						<object class="NSTextField" id="541608919">
+							<reference key="NSNextResponder" ref="253720885"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{257, 361}, {215, 17}}</string>
+							<reference key="NSSuperview" ref="253720885"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="980856538">
+								<int key="NSCellFlags">68288064</int>
+								<int key="NSCellFlags2">272630784</int>
+								<string key="NSContents">Please set path to Git executable.</string>
+								<reference key="NSSupport" ref="397886324"/>
+								<reference key="NSControlView" ref="541608919"/>
+								<reference key="NSBackgroundColor" ref="977119410"/>
+								<object class="NSColor" key="NSTextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC45Mzk1MTYxMjkgMC4xNDExMjkwMzIzIDAuMTQxMTI5MDMyMwA</bytes>
+								</object>
+							</object>
+						</object>
 					</object>
-					<string key="NSFrameSize">{489, 368}</string>
+					<string key="NSFrameSize">{489, 398}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
@@ -948,6 +1020,106 @@
 					</object>
 					<int key="connectionID">131</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="97084018"/>
+						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">138</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: gitClass.gitExecutable</string>
+						<reference key="source" ref="97084018"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="97084018"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: gitClass.gitExecutable</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">gitClass.gitExecutable</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">148</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: gitClass.gitExecutable</string>
+						<reference key="source" ref="746567670"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="746567670"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: gitClass.gitExecutable</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">gitClass.gitExecutable</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">152</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: gitClass.gitExecutable</string>
+						<reference key="source" ref="823109391"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="823109391"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: gitClass.gitExecutable</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">gitClass.gitExecutable</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">156</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">hidden: gitClass.gitExecutable</string>
+						<reference key="source" ref="541608919"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="541608919"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">hidden: gitClass.gitExecutable</string>
+							<string key="NSBinding">hidden</string>
+							<string key="NSKeyPath">gitClass.gitExecutable</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSIsNotNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">163</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openGitExecutableDialog:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="480188299"/>
+					</object>
+					<int key="connectionID">164</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">chooseGitPathButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="480188299"/>
+					</object>
+					<int key="connectionID">165</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1000,6 +1172,10 @@
 							<reference ref="246554271"/>
 							<reference ref="622481826"/>
 							<reference ref="593668041"/>
+							<reference ref="490605653"/>
+							<reference ref="97084018"/>
+							<reference ref="480188299"/>
+							<reference ref="541608919"/>
 						</object>
 						<reference key="parent" ref="533887620"/>
 					</object>
@@ -1321,6 +1497,62 @@
 						<reference key="object" ref="1060860856"/>
 						<reference key="parent" ref="593668041"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">132</int>
+						<reference key="object" ref="490605653"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="342219911"/>
+						</object>
+						<reference key="parent" ref="253720885"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">136</int>
+						<reference key="object" ref="342219911"/>
+						<reference key="parent" ref="490605653"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">133</int>
+						<reference key="object" ref="97084018"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="924329040"/>
+						</object>
+						<reference key="parent" ref="253720885"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">134</int>
+						<reference key="object" ref="924329040"/>
+						<reference key="parent" ref="97084018"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">145</int>
+						<reference key="object" ref="480188299"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="390900662"/>
+						</object>
+						<reference key="parent" ref="253720885"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">146</int>
+						<reference key="object" ref="390900662"/>
+						<reference key="parent" ref="480188299"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">157</int>
+						<reference key="object" ref="541608919"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="980856538"/>
+						</object>
+						<reference key="parent" ref="253720885"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">158</int>
+						<reference key="object" ref="980856538"/>
+						<reference key="parent" ref="541608919"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1344,8 +1576,20 @@
 					<string>126.IBViewBoundsToFrameTransform</string>
 					<string>127.IBPluginDependency</string>
 					<string>13.IBPluginDependency</string>
+					<string>132.IBPluginDependency</string>
+					<string>132.IBViewBoundsToFrameTransform</string>
+					<string>133.IBPluginDependency</string>
+					<string>133.IBViewBoundsToFrameTransform</string>
+					<string>134.IBPluginDependency</string>
+					<string>136.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
+					<string>145.IBPluginDependency</string>
+					<string>145.IBViewBoundsToFrameTransform</string>
+					<string>146.IBPluginDependency</string>
 					<string>15.IBPluginDependency</string>
+					<string>157.IBPluginDependency</string>
+					<string>157.IBViewBoundsToFrameTransform</string>
+					<string>158.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
 					<string>20.IBEditorWindowLastContentRect</string>
@@ -1386,8 +1630,10 @@
 					<string>8.IBViewBoundsToFrameTransform</string>
 					<string>9.IBPluginDependency</string>
 					<string>95.IBPluginDependency</string>
+					<string>95.IBViewBoundsToFrameTransform</string>
 					<string>96.IBPluginDependency</string>
 					<string>97.IBPluginDependency</string>
+					<string>97.IBViewBoundsToFrameTransform</string>
 					<string>98.IBPluginDependency</string>
 					<string>99.IBPluginDependency</string>
 				</object>
@@ -1417,6 +1663,26 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABBiAAAwyUAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDGgAAwmwAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDu4AAwngAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDhgAAw7wAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1439,9 +1705,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{504, 238}, {489, 368}}</string>
+					<string>{{827, 173}, {489, 398}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{504, 238}, {489, 368}}</string>
+					<string>{{827, 173}, {489, 398}}</string>
 					<boolean value="NO"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<string>{3.40282e+38, 3.40282e+38}</string>
@@ -1470,8 +1736,14 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABBiAAAwyUAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDYAAAwygAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
@@ -1492,7 +1764,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">131</int>
+			<int key="maxID">167</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1638,11 +1910,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>openGitExecutableDialog:</string>
 							<string>removeRepositories:</string>
 							<string>showPreferences:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -1651,11 +1925,16 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>openGitExecutableDialog:</string>
 							<string>removeRepositories:</string>
 							<string>showPreferences:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">openGitExecutableDialog:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">removeRepositories:</string>
 								<string key="candidateClassName">id</string>
@@ -1670,12 +1949,14 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>chooseGitPathButton</string>
 							<string>ignoreOwnEmailsField</string>
 							<string>monitorIntervalField</string>
 							<string>repositoryListController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSTextField</string>
 							<string>RepositoryListController</string>
@@ -1685,12 +1966,17 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>chooseGitPathButton</string>
 							<string>ignoreOwnEmailsField</string>
 							<string>monitorIntervalField</string>
 							<string>repositoryListController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">chooseGitPathButton</string>
+								<string key="candidateClassName">NSButton</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">ignoreOwnEmailsField</string>
 								<string key="candidateClassName">NSButton</string>

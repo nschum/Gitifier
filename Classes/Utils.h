@@ -8,6 +8,7 @@
 #import <Cocoa/Cocoa.h>
 
 #define UserEmailChangedNotification @"UserEmailChangedNotification"
+#define GitExecutableSetNotification @"GitExecutableSetNotification"
 
 @interface NSString (Gitifier)
 - (NSString *) MD5Hash;

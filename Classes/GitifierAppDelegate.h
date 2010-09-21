@@ -30,5 +30,8 @@
 
 // private
 - (void) updateUserEmail;
+- (void) loadGitPath;
+- (void) findGitPath;
+- (void) validateGitPath;
 
 @end

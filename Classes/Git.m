@@ -6,8 +6,23 @@
 // -------------------------------------------------------
 
 #import "Git.h"
+#import "Utils.h"
+
+static NSString *gitExecutable = nil;
 
 @implementation Git
+
++ (NSString *) gitExecutable {
+  return gitExecutable;
+}
+
++ (void) setGitExecutable: (NSString *) path {
+  [self willChangeValueForKey: @"gitExecutable"];
+  path = [path psTrimmedString];
+  gitExecutable = [path isEqual: @""] ? nil : path;
+  [self didChangeValueForKey: @"gitExecutable"];
+  PSNotifyWithData(GitExecutableSetNotification, PSDict(path, @"path"));
+}
 
 - (id) initWithDelegate: (id) aDelegate {
   self = [super init];
@@ -26,11 +41,17 @@
     [self cancelCommands];
   }
 
+  if (!gitExecutable) {
+    NSLog(@"Error: no git executable found.");
+    // TODO: set warning icon
+    return;
+  }
+
   NSPipe *output = [NSPipe pipe];
   currentTask = [[NSTask alloc] init];
   currentTask.arguments = [[NSArray arrayWithObject: command] arrayByAddingObjectsFromArray: arguments];
   currentTask.currentDirectoryPath = path;
-  currentTask.launchPath = @"/usr/local/git/bin/git"; // TODO find git automatically
+  currentTask.launchPath = gitExecutable;
   currentTask.standardOutput = output;
   currentTask.standardError = output;
   cancelled = NO;
@@ -45,8 +66,15 @@
 }
 
 - (void) executeTask {
-  [currentTask launch];
-  [currentTask waitUntilExit];
+  @try {
+    [currentTask launch];
+    [currentTask waitUntilExit];
+  } @catch (NSException *e) {
+    NSString *command = [[currentTask arguments] objectAtIndex: 0];
+    currentTask = nil;
+    [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: [e description]];
+    return;
+  }
 
   if (cancelled) {
     currentTask = nil;

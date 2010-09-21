@@ -6,6 +6,7 @@
 // -------------------------------------------------------
 
 #import <Growl/GrowlApplicationBridge.h>
+#import "RegexKitLite.h"
 
 #import "Commit.h"
 #import "Defaults.h"
@@ -19,14 +20,19 @@
 
 @implementation GitifierAppDelegate
 
-@synthesize monitor, userEmail, preferencesWindowController, statusBarController,
-  repositoryListController, repositoryList;
+@synthesize monitor, userEmail, preferencesWindowController, statusBarController, repositoryListController,
+  repositoryList;
+
+// --- initialization and termination ---
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   repositoryList = [NSMutableArray array];
   [Defaults registerDefaults];
   [GrowlApplicationBridge setGrowlDelegate: (id) @""];
-  [self updateUserEmail];
+
+  PSObserve(nil, GitExecutableSetNotification, gitPathUpdated);
+  [self loadGitPath];
+
   [repositoryListController loadRepositories];
   [statusBarController createStatusBarItem];
   [monitor startMonitoring];
@@ -40,17 +46,94 @@
   [repositoryListController saveRepositories];
 }
 
-- (void) updateUserEmail {
-  Git *git = [[Git alloc] initWithDelegate: self];
-  [git runCommand: @"config" withArguments: PSArray(@"user.email") inPath: NSHomeDirectory()];
-}
+// --- user email management ---
 
-- (void) commandCompleted: (NSString *) command output: (NSString *) output {
-  if ([command isEqual: @"config"] && output && output.length > 0) {
-    userEmail = [output psTrimmedString];
-    PSNotifyWithData(UserEmailChangedNotification, PSDict(userEmail, @"email"));
+- (void) updateUserEmail {
+  if (!userEmail && [Git gitExecutable]) {
+    Git *git = [[Git alloc] initWithDelegate: self];
+    [git runCommand: @"config" withArguments: PSArray(@"user.email") inPath: NSHomeDirectory()];
   }
 }
+
+// --- git path management ---
+
+- (void) loadGitPath {
+  NSString *path = [GitifierDefaults objectForKey: GIT_EXECUTABLE_KEY];
+  if (path) {
+    [Git setGitExecutable: path];
+  } else {
+    [self findGitPath];
+  }
+}
+
+- (void) gitPathUpdated {
+  [self updateUserEmail];
+  [self validateGitPath];
+  [GitifierDefaults setObject: [Git gitExecutable] forKey: GIT_EXECUTABLE_KEY];
+}
+
+- (void) validateGitPath {
+  Git *git = [[Git alloc] initWithDelegate: self];
+  [git runCommand: @"version" inPath: NSHomeDirectory()];
+}
+
+- (void) findGitPath {
+  NSPipe *inputPipe = [NSPipe pipe];
+  NSPipe *outputPipe = [NSPipe pipe];
+  NSTask *task = [[NSTask alloc] init];
+  task.launchPath = @"/bin/bash";
+  task.arguments = PSArray(@"--login", @"-c", @"which git");
+  task.currentDirectoryPath = NSHomeDirectory();
+  task.standardOutput = outputPipe;
+  task.standardError = outputPipe;
+  task.standardInput = inputPipe;
+  @try {
+    [task launch];
+    [task waitUntilExit];
+  } @catch (NSException *e) {
+    NSRunAlertPanel(@"Error: bash not found.",
+                    @"Dude, if you don't even have bash, something is seriously wrong...",
+                    @"OMG!", nil, nil);
+    return;
+  }
+
+  NSData *data = [[[task standardOutput] fileHandleForReading] readDataToEndOfFile];
+  NSString *output = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] psTrimmedString];
+
+  if (output && (output.length > 0) && (task.terminationStatus == 0)) {
+    [Git setGitExecutable: output];
+  }
+}
+
+- (void) rejectGitPath {
+  NSRunAlertPanel(@"Incorrect Git path",
+                  PSFormat(@"The file at %@ is not a Git executable.", [Git gitExecutable]),
+                  @"OK", nil, nil);
+  [Git setGitExecutable: nil];
+}
+
+// --- git command callbacks ---
+
+- (void) commandCompleted: (NSString *) command output: (NSString *) output {
+  if ([command isEqual: @"config"]) {
+    if (output && output.length > 0) {
+      userEmail = [output psTrimmedString];
+      PSNotifyWithData(UserEmailChangedNotification, PSDict(userEmail, @"email"));
+    }
+  } else if ([command isEqual: @"version"]) {
+    if (!output || ![output isMatchedByRegex: @"^git version \\d"]) {
+      [self rejectGitPath];
+    }
+  }
+}
+
+- (void) commandFailed: (NSString *) command output: (NSString *) output {
+  if ([command isEqual: @"version"]) {
+    [self rejectGitPath];
+  }
+}
+
+// --- Monitor callbacks ---
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
