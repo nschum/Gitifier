@@ -64,8 +64,13 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   if (!isBeingUpdated) {
     isBeingUpdated = YES;
     NSString *workingCopy = [self workingCopyDirectory];
-    if (workingCopy && [self directoryExists: workingCopy]) {
-      [git runCommand: @"fetch" inPath: workingCopy];
+    if (workingCopy) {
+      if ([self directoryExists: workingCopy]) {
+        [git runCommand: @"fetch" inPath: workingCopy];
+      } else {
+        NSLog(@"Working copy directory %@ was deleted, I need to clone it again.", workingCopy);
+        [self clone];
+      }
     }
   }
 }

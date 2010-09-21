@@ -133,6 +133,18 @@
   }
 }
 
+// --- repository callbacks ---
+
+// these should be rare, only when a fetch fails and a repository needs to be recloned
+
+- (void) repositoryWasCloned: (Repository *) repository {
+  [repository fetchNewCommits];
+}
+
+- (void) repositoryCouldNotBeCloned: (Repository *) repository {
+  NSLog(@"Error: repository %@ could not be recloned.", repository.url);
+}
+
 // --- Monitor callbacks ---
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
