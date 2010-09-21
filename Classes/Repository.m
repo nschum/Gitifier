@@ -54,6 +54,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   BOOL workingCopyDoesntExist = workingCopy && [self ensureDirectoryIsDeleted: workingCopy];
 
   if (cachesDirectoryExists && workingCopyDoesntExist) {
+    isBeingUpdated = YES;
     [git runCommand: @"clone" withArguments: PSArray(url, workingCopy, @"-n") inPath: cachesDirectory];
   } else {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
@@ -62,10 +63,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (void) fetchNewCommits {
   if (!isBeingUpdated) {
-    isBeingUpdated = YES;
     NSString *workingCopy = [self workingCopyDirectory];
     if (workingCopy) {
       if ([self directoryExists: workingCopy]) {
+        isBeingUpdated = YES;
         [git runCommand: @"fetch" inPath: workingCopy];
       } else {
         NSLog(@"Working copy directory %@ was deleted, I need to clone it again.", workingCopy);
@@ -85,6 +86,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
   if ([command isEqual: @"clone"]) {
+    isBeingUpdated = NO;
     [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
   } else if ([command isEqual: @"fetch"]) {
     NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
@@ -105,16 +107,16 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       commit.subject = [fields objectAtIndex: 3];
       [commits addObject: commit];
     }
-    [delegate commitsReceived: commits inRepository: self];
     isBeingUpdated = NO;
+    [delegate commitsReceived: commits inRepository: self];
   }
 }
 
 - (void) commandFailed: (NSString *) command output: (NSString *) output {
+  isBeingUpdated = NO;
   if ([command isEqual: @"clone"]) {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   } else {
-    isBeingUpdated = NO;
     NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
     NSLog(@"command %@ failed: \"%@\"", command, truncated);
   }
