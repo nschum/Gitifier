@@ -34,6 +34,7 @@
 		58DEC83F1246C6B300DE7C7E /* RepositoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8311246C6B300DE7C7E /* RepositoryListController.m */; };
 		58DEC8401246C6B300DE7C7E /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8331246C6B300DE7C7E /* StatusBarController.m */; };
 		58DEC8411246C6B300DE7C7E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8351246C6B300DE7C7E /* Utils.m */; };
+		58DECCC9124969DE00DE7C7E /* DBPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DECCC8124969DE00DE7C7E /* DBPrefsWindowController.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -107,6 +108,8 @@
 		58DEC8331246C6B300DE7C7E /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		58DEC8341246C6B300DE7C7E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		58DEC8351246C6B300DE7C7E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		58DECCC7124969DE00DE7C7E /* DBPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPrefsWindowController.h; sourceTree = "<group>"; };
+		58DECCC8124969DE00DE7C7E /* DBPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPrefsWindowController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gitifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -209,6 +212,7 @@
 		58DEBC5B124009CD00DE7C7E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				58DECCC5124969BF00DE7C7E /* DBPrefsController */,
 				58DEC0C51242C16600DE7C7E /* Growl.framework */,
 				58DEC04E1242B47100DE7C7E /* RegexKitLite */,
 				58DEBC5C124009E500DE7C7E /* PsiToolkit */,
@@ -275,6 +279,15 @@
 				58DEC8351246C6B300DE7C7E /* Utils.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		58DECCC5124969BF00DE7C7E /* DBPrefsController */ = {
+			isa = PBXGroup;
+			children = (
+				58DECCC7124969DE00DE7C7E /* DBPrefsWindowController.h */,
+				58DECCC8124969DE00DE7C7E /* DBPrefsWindowController.m */,
+			);
+			path = DBPrefsController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +376,7 @@
 				58DEC83F1246C6B300DE7C7E /* RepositoryListController.m in Sources */,
 				58DEC8401246C6B300DE7C7E /* StatusBarController.m in Sources */,
 				58DEC8411246C6B300DE7C7E /* Utils.m in Sources */,
+				58DECCC9124969DE00DE7C7E /* DBPrefsWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
