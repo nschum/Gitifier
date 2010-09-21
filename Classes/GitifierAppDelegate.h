@@ -28,6 +28,8 @@
 @property IBOutlet PreferencesWindowController *preferencesWindowController;
 @property IBOutlet RepositoryListController *repositoryListController;
 
+- (IBAction) showPreferences: (id) sender;
+
 // private
 - (void) updateUserEmail;
 - (void) loadGitPath;

@@ -38,12 +38,22 @@
   [monitor startMonitoring];
 
   if ([[repositoryListController repositoryList] count] == 0) {
-    [preferencesWindowController showPreferences: self];
+    [self showPreferences: self];
   }
 }
 
 - (void) applicationWillTerminate: (NSNotification *) notification {
   [repositoryListController saveRepositories];
+}
+
+// --- actions ---
+
+- (IBAction) showPreferences: (id) sender {
+  if (!preferencesWindowController) {
+    preferencesWindowController = [[PreferencesWindowController alloc] init];
+  }
+  [NSApp activateIgnoringOtherApps: YES];
+  [preferencesWindowController showWindow: self];
 }
 
 // --- user email management ---

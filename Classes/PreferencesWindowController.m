@@ -14,33 +14,41 @@
 
 @implementation PreferencesWindowController
 
-@synthesize repositoryListController, monitorIntervalField, ignoreOwnEmailsField, chooseGitPathButton;
+@synthesize repositoryListController, monitorIntervalField, ignoreOwnEmailsField, chooseGitPathButton,
+  generalPreferencesView, repositoriesPreferencesView, aboutPreferencesView;
 
 - (id) gitClass {
   return [Git class];
 }
 
-- (IBAction) showPreferences: (id) sender {
-  if (!self.window) {
-    [NSBundle loadNibNamed: @"Preferences" owner: self];
-  }
-  [NSApp activateIgnoringOtherApps: YES];
-  [self showWindow: self];
+- (id) init {
+  return [super initWithWindowNibName: @"Preferences"];
 }
 
 - (void) awakeFromNib {
-  if (self.window) {
-    numberFormatter = [[NSNumberFormatter alloc] init];
-    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+  numberFormatter = [[NSNumberFormatter alloc] init];
+  numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
 
-    [self updateUserEmailText: [[NSApp delegate] userEmail]];
-    PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
+  [self updateUserEmailText: [[NSApp delegate] userEmail]];
+  PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
 
-    // 10.6 has significantly different API for this dialog, and I'm too lazy to code both versions
-    if (![NSOpenPanel instancesRespondToSelector: @selector(setShowsHiddenFiles:)]) {
-      [chooseGitPathButton removeFromSuperview];
-    }
+  // 10.6 has significantly different API for this dialog, and I'm too lazy to code both versions
+  if (![NSOpenPanel instancesRespondToSelector: @selector(setShowsHiddenFiles:)]) {
+    [chooseGitPathButton removeFromSuperview];
   }
+}
+
+- (void) setupToolbar {
+  [self addView: generalPreferencesView
+          label: @"General"
+          image: [NSImage imageNamed: @"NSPreferencesGeneral"]];
+  [self addView: repositoriesPreferencesView
+          label: @"Repositories"
+          image: [NSImage imageNamed: @"NSNetwork"]];
+  [self addView: aboutPreferencesView
+          label: @"About"
+          image: [NSImage imageNamed: @"NSInfo"]];
+  [self setCrossFade: NO];
 }
 
 - (IBAction) removeRepositories: (id) sender {
