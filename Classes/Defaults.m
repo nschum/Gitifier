@@ -13,10 +13,12 @@ NSDictionary *defaultPreferenceValues;
 
 + (void) initialize {
   NSNumber *yes = [NSNumber numberWithBool: YES];
+  NSNumber *no = [NSNumber numberWithBool: NO];
   defaultPreferenceValues = PSDict(
     PSInt(5), MONITOR_INTERVAL_KEY,
     yes, IGNORE_MERGES_KEY,
-    yes, IGNORE_OWN_COMMITS
+    yes, IGNORE_OWN_COMMITS,
+    no, STICKY_NOTIFICATIONS_KEY
   );
 }
 

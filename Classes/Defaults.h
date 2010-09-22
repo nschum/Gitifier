@@ -12,6 +12,7 @@
 #define IGNORE_MERGES_KEY @"ignoreMerges"
 #define IGNORE_OWN_COMMITS @"ignoreOwnCommits"
 #define GIT_EXECUTABLE_KEY @"gitExecutable"
+#define STICKY_NOTIFICATIONS_KEY @"stickyNotifications"
 
 extern NSDictionary *defaultPreferenceValues;
 

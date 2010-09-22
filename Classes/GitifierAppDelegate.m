@@ -160,6 +160,7 @@
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
   BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IGNORE_OWN_COMMITS];
+  BOOL sticky = [GitifierDefaults boolForKey: STICKY_NOTIFICATIONS_KEY];
   for (Commit *commit in [commits reverseObjectEnumerator]) {
     if (ignoreMerges && [commit isMergeCommit]) {
       return;
@@ -172,7 +173,7 @@
                            notificationName: @"Commit received"
                                    iconData: nil
                                    priority: 0
-                                   isSticky: NO
+                                   isSticky: sticky
                                clickContext: nil];
   }
 }
