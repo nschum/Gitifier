@@ -28,5 +28,9 @@
 	<string>NSApplication</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>SUPublicDSAKeyFile</key>
+	<string>sparkle_pub_key.pem</string>
+	<key>SUFeedURL</key>
+	<string>http://github.com/psionides/gitifier/raw/master/Sparkle/gitifier_appcast.xml</string>
 </dict>
 </plist>
