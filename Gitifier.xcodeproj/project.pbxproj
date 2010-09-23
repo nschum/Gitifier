@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		588ACB0F124AAF12004F3785 /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; };
+		588ACB10124AAF13004F3785 /* Askpass.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB01124AAE5E004F3785 /* Askpass.m */; };
+		588ACB15124AAF91004F3785 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
+		588ACBD9124AB094004F3785 /* AskPass in Resources */ = {isa = PBXBuildFile; fileRef = 588ACB09124AAE96004F3785 /* AskPass */; };
 		58AA4BDE123D607000E2E059 /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58AA4BDD123D607000E2E059 /* menu_icon.png */; };
 		58DEBC83124009E500DE7C7E /* PSCocoaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */; };
 		58DEBC84124009E500DE7C7E /* PSFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC6B124009E500DE7C7E /* PSFoundationExtensions.m */; };
@@ -40,6 +44,16 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		588ACBE6124AB0C3004F3785 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 588ACB08124AAE96004F3785;
+			remoteInfo = AskPass;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		58DEC0FD1242C39600DE7C7E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -62,6 +76,11 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		588ACB01124AAE5E004F3785 /* Askpass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Askpass.m; sourceTree = "<group>"; };
+		588ACB02124AAE5E004F3785 /* PasswordHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordHelper.h; sourceTree = "<group>"; };
+		588ACB03124AAE5E004F3785 /* PasswordHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordHelper.m; sourceTree = "<group>"; };
+		588ACB09124AAE96004F3785 /* AskPass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AskPass; sourceTree = BUILT_PRODUCTS_DIR; };
+		588ACB14124AAF91004F3785 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		58AA4BDD123D607000E2E059 /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		58DEBC68124009E500DE7C7E /* PSCocoaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCocoaExtensions.h; sourceTree = "<group>"; };
 		58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCocoaExtensions.m; sourceTree = "<group>"; };
@@ -115,6 +134,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		588ACB07124AAE96004F3785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				588ACB15124AAF91004F3785 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -143,6 +170,7 @@
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				588ACB14124AAF91004F3785 /* Security.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -151,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Gitifier.app */,
+				588ACB09124AAE96004F3785 /* AskPass */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +230,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		588ACAF7124AAE11004F3785 /* AskPass */ = {
+			isa = PBXGroup;
+			children = (
+				588ACB01124AAE5E004F3785 /* Askpass.m */,
+				588ACB02124AAE5E004F3785 /* PasswordHelper.h */,
+				588ACB03124AAE5E004F3785 /* PasswordHelper.m */,
+			);
+			path = AskPass;
+			sourceTree = "<group>";
+		};
 		58AA4BDA123D604A00E2E059 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +251,7 @@
 		58DEBC5B124009CD00DE7C7E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				588ACAF7124AAE11004F3785 /* AskPass */,
 				58DECCC5124969BF00DE7C7E /* DBPrefsController */,
 				58DEC0C51242C16600DE7C7E /* Growl.framework */,
 				58DEC04E1242B47100DE7C7E /* RegexKitLite */,
@@ -293,6 +333,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		588ACB08124AAE96004F3785 /* AskPass */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 588ACB0D124AAEB5004F3785 /* Build configuration list for PBXNativeTarget "AskPass" */;
+			buildPhases = (
+				588ACB06124AAE96004F3785 /* Sources */,
+				588ACB07124AAE96004F3785 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AskPass;
+			productName = AskPass;
+			productReference = 588ACB09124AAE96004F3785 /* AskPass */;
+			productType = "com.apple.product-type.tool";
+		};
 		8D1107260486CEB800E47090 /* Gitifier */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Gitifier" */;
@@ -305,6 +361,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				588ACBE7124AB0C3004F3785 /* PBXTargetDependency */,
 			);
 			name = Gitifier;
 			productInstallPath = "$(HOME)/Applications";
@@ -332,6 +389,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Gitifier */,
+				588ACB08124AAE96004F3785 /* AskPass */,
 			);
 		};
 /* End PBXProject section */
@@ -346,12 +404,22 @@
 				58AA4BDE123D607000E2E059 /* menu_icon.png in Resources */,
 				58DEC10E1242C3C200DE7C7E /* Growl Registration Ticket.growlRegDict in Resources */,
 				58DEC36612451E7D00DE7C7E /* Preferences.xib in Resources */,
+				588ACBD9124AB094004F3785 /* AskPass in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		588ACB06124AAE96004F3785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				588ACB0F124AAF12004F3785 /* PasswordHelper.m in Sources */,
+				588ACB10124AAF13004F3785 /* Askpass.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,6 +450,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		588ACBE7124AB0C3004F3785 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 588ACB08124AAE96004F3785 /* AskPass */;
+			targetProxy = 588ACBE6124AB0C3004F3785 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -410,6 +486,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		588ACB0B124AAE96004F3785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AskPass;
+			};
+			name = Debug;
+		};
+		588ACB0C124AAE96004F3785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AskPass;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -482,6 +604,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		588ACB0D124AAEB5004F3785 /* Build configuration list for PBXNativeTarget "AskPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				588ACB0B124AAE96004F3785 /* Debug */,
+				588ACB0C124AAE96004F3785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Gitifier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

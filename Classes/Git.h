@@ -11,7 +11,10 @@
   NSTask *currentTask;
   BOOL cancelled;
   id delegate;
+  NSString *repositoryUrl;
 }
+
+@property (copy) NSString *repositoryUrl;
 
 // public
 + (NSString *) gitExecutable;

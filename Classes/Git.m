@@ -12,6 +12,8 @@ static NSString *gitExecutable = nil;
 
 @implementation Git
 
+@synthesize repositoryUrl;
+
 + (NSString *) gitExecutable {
   return gitExecutable;
 }
@@ -52,8 +54,20 @@ static NSString *gitExecutable = nil;
   currentTask.arguments = [[NSArray arrayWithObject: command] arrayByAddingObjectsFromArray: arguments];
   currentTask.currentDirectoryPath = path;
   currentTask.launchPath = gitExecutable;
+  currentTask.standardInput = [NSFileHandle fileHandleWithNullDevice];
   currentTask.standardOutput = output;
   currentTask.standardError = output;
+
+  if (repositoryUrl) {
+    NSString *askPassPath = [[NSBundle mainBundle] pathForResource: @"AskPass" ofType: @""];
+    NSDictionary *environment = [[[NSProcessInfo processInfo] environment] mutableCopy];
+    [environment setValue: @"Gitifier" forKey: @"DISPLAY"];
+    [environment setValue: askPassPath forKey: @"SSH_ASKPASS"];
+    [environment setValue: repositoryUrl forKey: @"AUTH_HOSTNAME"];
+    [environment setValue: @"Gitifier" forKey: @"AUTH_USERNAME"];
+    currentTask.environment = environment;
+  }
+
   cancelled = NO;
 
   // this should work in the same thread without waitUntilExit, but it doesn't. oh well.

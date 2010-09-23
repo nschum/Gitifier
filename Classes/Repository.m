@@ -36,6 +36,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   if ([self isProperUrl: anUrl]) {
     url = anUrl;
     git = [[Git alloc] initWithDelegate: self];
+    git.repositoryUrl = self.url;
     name = [self nameFromUrl: url];
     return self;
   } else {

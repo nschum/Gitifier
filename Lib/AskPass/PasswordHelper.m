@@ -28,11 +28,10 @@
 	
 	NSMutableArray *returnArray = [NSMutableArray arrayWithObjects:@"PasswordString",[NSNumber numberWithInt:0],nil];
 	
-	NSString *passwordMessageString = [NSString stringWithFormat:@"For user %@ on host %@",
-									   username,
-									   hostname];
+	NSString *passwordMessageString = [NSString stringWithFormat: @"Repository %@ requires a password to log in "
+                                     @"(you'll only need to enter it once).", hostname];
 	
-	NSDictionary *panelDict = [NSDictionary dictionaryWithObjectsAndKeys:@"The Application Requires a Password",
+	NSDictionary *panelDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Please enter your SSH password",
 							   kCFUserNotificationAlertHeaderKey,passwordMessageString,kCFUserNotificationAlertMessageKey,
 							   @"",kCFUserNotificationTextFieldTitlesKey,
 							   @"Cancel",kCFUserNotificationAlternateButtonTitleKey,
