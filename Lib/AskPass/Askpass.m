@@ -11,6 +11,16 @@
  
 */
 
+void wakeUpGitifier(NSInteger pid) {
+  if (pid > 0) {
+    ProcessSerialNumber psn;
+    OSStatus status = GetProcessForPID(pid, &psn);
+    if (status == 0) {
+      SetFrontProcess(&psn);
+    }
+  }
+}
+
 int main() {
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	
@@ -18,7 +28,13 @@ int main() {
 	NSDictionary *dict = [[NSProcessInfo processInfo] environment];
 	NSString *usernameString = [dict valueForKey:@"AUTH_USERNAME"];
 	NSString *hostnameString = [dict valueForKey:@"AUTH_HOSTNAME"];
-
+  NSString *gitifierPid = [dict valueForKey:@"GITIFIER_PID"];
+  NSInteger pid;
+  if (gitifierPid) {
+    pid = [gitifierPid integerValue];
+  } else {
+    pid = -1;
+  }
 
 	// The arguments array should contain three elements. The second element is a string which we can use to determine the context in which this program was invoked. This string is either a message prompting for a yes/no or a message prompting for a password. We check it and supply the right response.
 	NSArray *argumentsArray = [[NSProcessInfo processInfo] arguments];
@@ -37,6 +53,7 @@ int main() {
 		NSString *pStr = [PasswordHelper passwordForHost:hostnameString user:usernameString];
 		if ( pStr==nil ){
 			// No password was found in the keychain so we should prompt the user for it.
+      wakeUpGitifier(pid);
 			NSArray *promptArray = [PasswordHelper promptForPassword:hostnameString user:usernameString];
 			NSInteger returnCode = [[promptArray objectAtIndex:1] intValue];
 			if ( returnCode == 0 ){ // Found a valid password entry
@@ -44,9 +61,11 @@ int main() {
 				// Set the new password in the keychain. 
 				[PasswordHelper setPassword:[promptArray objectAtIndex:0] forHost:hostnameString user:usernameString];
 				pStr=[promptArray objectAtIndex:0];
+        wakeUpGitifier(pid);
 				return 1;
 			} else if ( returnCode == 1 ){ // User cancelled so we'll just abort
 				// We return a non zero exit code here which should cause ssh to abort 
+        wakeUpGitifier(pid);
 				return 1;
 			}
 		}
