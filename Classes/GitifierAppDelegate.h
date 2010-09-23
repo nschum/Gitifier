@@ -29,6 +29,7 @@
 @property IBOutlet RepositoryListController *repositoryListController;
 
 - (IBAction) showPreferences: (id) sender;
+- (IBAction) quit: (id) sender;
 
 // private
 - (void) updateUserEmail;
