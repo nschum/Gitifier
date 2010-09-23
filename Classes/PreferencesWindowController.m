@@ -55,6 +55,12 @@
   [repositoryListController removeSelectedRepositories];
 }
 
+- (void) showWindow: (id) sender {
+  if (!self.window || !self.window.isVisible) {
+    [super showWindow: sender];
+  }
+}
+
 - (IBAction) openGitExecutableDialog: (id) sender {
   NSOpenPanel *panel = [NSOpenPanel openPanel];
   panel.title = @"Select Git executable";
