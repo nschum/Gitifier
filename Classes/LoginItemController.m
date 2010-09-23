@@ -35,6 +35,8 @@
     LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
 	if (item) {
 		CFRelease(item);
+  } else {
+    NSLog(@"Error: Gitifier could not be added to login items.");
   }
 }
 

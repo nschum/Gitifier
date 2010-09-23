@@ -44,8 +44,7 @@ static NSString *gitExecutable = nil;
   }
 
   if (!gitExecutable) {
-    NSLog(@"Error: no git executable found.");
-    // TODO: set warning icon
+    NSLog(@"Error: no git executable found."); // TODO: set warning icon
     return;
   }
 

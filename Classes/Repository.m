@@ -73,6 +73,8 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
         NSLog(@"Working copy directory %@ was deleted, I need to clone it again.", workingCopy);
         [self clone];
       }
+    } else {
+      NSLog(@"Error: can't fetch repository %@.", self.url);  // TODO: set warning icon
     }
   }
 }
@@ -119,7 +121,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   } else {
     NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
-    NSLog(@"command %@ failed: \"%@\"", command, truncated);
+    NSLog(@"command %@ failed: \"%@\"", command, truncated);  // TODO: set warning icon
   }
 }
 

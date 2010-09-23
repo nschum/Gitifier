@@ -156,7 +156,7 @@
 }
 
 - (void) repositoryCouldNotBeCloned: (Repository *) repository {
-  NSLog(@"Error: repository %@ could not be recloned.", repository.url);
+  NSLog(@"Error: repository %@ could not be recloned.", repository.url);  // TODO: set warning icon
 }
 
 // --- Monitor callbacks ---
