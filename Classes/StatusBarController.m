@@ -18,7 +18,8 @@
     [NSApp terminate: self];
   }
 
-  statusBarItem.image = [NSImage imageNamed: @"menu_icon.png"];
+  statusBarItem.image = [NSImage imageNamed: @"icon_menu.png"];
+  statusBarItem.alternateImage = [NSImage imageNamed: @"icon_menu_inverted.png"];
   statusBarItem.highlightMode = YES;
   statusBarItem.menu = statusBarMenu;
 }
