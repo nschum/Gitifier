@@ -52,6 +52,8 @@
 	
 	NSView *contentSubview;
 	NSViewAnimation *viewAnimation;
+
+  NSString *selectedTab;
 }
 
 

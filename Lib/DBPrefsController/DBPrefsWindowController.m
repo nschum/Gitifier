@@ -85,6 +85,8 @@ static DBPrefsWindowController *_sharedPrefsWindowController = nil;
 	[contentSubview setAutoresizingMask:(NSViewMinYMargin | NSViewWidthSizable)];
 	[[[self window] contentView] addSubview:contentSubview];
 	[[self window] setShowsToolbarButton:NO];
+
+	[self setupToolbar];
 }
 
 
@@ -192,10 +194,10 @@ static DBPrefsWindowController *_sharedPrefsWindowController = nil;
 	(void)[self window];
 
 		// Clear the last setup and get a fresh one.
-	[toolbarIdentifiers removeAllObjects];
+	/*[toolbarIdentifiers removeAllObjects];
 	[toolbarViews removeAllObjects];
 	[toolbarItems removeAllObjects];
-	[self setupToolbar];
+	[self setupToolbar];*/
 
 	NSAssert (([toolbarIdentifiers count] > 0),
 			  @"No items were added to the toolbar in -setupToolbar.");
@@ -211,9 +213,12 @@ static DBPrefsWindowController *_sharedPrefsWindowController = nil;
 		[toolbar release];
 	}
 	
-	NSString *firstIdentifier = [toolbarIdentifiers objectAtIndex:0];
-	[[[self window] toolbar] setSelectedItemIdentifier:firstIdentifier];
-	[self displayViewForIdentifier:firstIdentifier animate:NO];
+  if (!selectedTab) {
+    selectedTab = [toolbarIdentifiers objectAtIndex: 0];
+  }
+  
+	[[[self window] toolbar] setSelectedItemIdentifier: selectedTab];
+	[self displayViewForIdentifier: selectedTab animate: NO];
 	
 	[[self window] center];
 
@@ -276,7 +281,9 @@ static DBPrefsWindowController *_sharedPrefsWindowController = nil;
 
 - (void)displayViewForIdentifier:(NSString *)identifier animate:(BOOL)animate
 {	
-		// Find the view we want to display.
+  selectedTab = identifier;
+
+  // Find the view we want to display.
 	NSView *newView = [toolbarViews objectForKey:identifier];
 
 		// See if there are any visible views.
