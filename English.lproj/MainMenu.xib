@@ -83,9 +83,6 @@
 			<object class="NSCustomObject" id="710422944">
 				<string key="NSClassName">Monitor</string>
 			</object>
-			<object class="NSCustomObject" id="590954411">
-				<string key="NSClassName">PreferencesWindowController</string>
-			</object>
 			<object class="NSMenu" id="70315801">
 				<string key="NSTitle">AMainMenu</string>
 				<object class="NSMutableArray" key="NSMenuItems">
@@ -430,14 +427,6 @@
 					<int key="connectionID">891</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">preferencesWindowController</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="590954411"/>
-					</object>
-					<int key="connectionID">892</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showPreferences:</string>
 						<reference key="source" ref="976324537"/>
@@ -521,11 +510,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">614</int>
 						<reference key="object" ref="985059491"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">621</int>
-						<reference key="object" ref="590954411"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -689,7 +673,6 @@
 					<string>561.IBPluginDependency</string>
 					<string>604.IBPluginDependency</string>
 					<string>614.IBPluginDependency</string>
-					<string>621.IBPluginDependency</string>
 					<string>730.IBEditorWindowLastContentRect</string>
 					<string>730.IBPluginDependency</string>
 					<string>730.ImportedFromIB2</string>
@@ -747,7 +730,6 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>RepositoryListController</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1000,6 +982,7 @@
 							<string>monitorIntervalField</string>
 							<string>repositoriesPreferencesView</string>
 							<string>repositoryListController</string>
+							<string>websiteLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1010,6 +993,7 @@
 							<string>NSTextField</string>
 							<string>NSView</string>
 							<string>RepositoryListController</string>
+							<string>NSTextField</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1023,6 +1007,7 @@
 							<string>monitorIntervalField</string>
 							<string>repositoriesPreferencesView</string>
 							<string>repositoryListController</string>
+							<string>websiteLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1053,6 +1038,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">repositoryListController</string>
 								<string key="candidateClassName">RepositoryListController</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">websiteLabel</string>
+								<string key="candidateClassName">NSTextField</string>
 							</object>
 						</object>
 					</object>

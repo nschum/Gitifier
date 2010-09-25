@@ -15,7 +15,7 @@
 @implementation PreferencesWindowController
 
 @synthesize repositoryListController, monitorIntervalField, ignoreOwnEmailsField, chooseGitPathButton,
-  generalPreferencesView, repositoriesPreferencesView, aboutPreferencesView;
+  generalPreferencesView, repositoriesPreferencesView, aboutPreferencesView, websiteLabel;
 
 - (id) gitClass {
   return [Git class];
@@ -29,6 +29,7 @@
   numberFormatter = [[NSNumberFormatter alloc] init];
   numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
 
+  [self linkifyButton: websiteLabel];
   [self updateUserEmailText: [[NSApp delegate] userEmail]];
   PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
 
@@ -36,6 +37,20 @@
   if (![NSOpenPanel instancesRespondToSelector: @selector(setShowsHiddenFiles:)]) {
     [chooseGitPathButton removeFromSuperview];
   }
+}
+
+- (void) linkifyButton: (NSButton *) label {
+  NSString *url = label.title;
+  NSDictionary *linkAttributes = PSDict(
+    [NSColor blueColor], NSForegroundColorAttributeName,
+    [NSCursor pointingHandCursor], NSCursorAttributeName
+  );
+  NSAttributedString *link = [[NSAttributedString alloc] initWithString: url attributes: linkAttributes];
+  websiteLabel.attributedTitle = link;
+}
+
+- (IBAction) openProjectWebsite: (id) sender {
+  [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: [sender title]]];
 }
 
 - (void) setupToolbar {
