@@ -76,8 +76,7 @@ static DBPrefsWindowController *_sharedPrefsWindowController = nil;
 		// in Interface Builder, it gets replaced with this one.
 	NSWindow *window = [[[NSWindow alloc] initWithContentRect:NSMakeRect(0,0,1000,1000)
 												    styleMask:(NSTitledWindowMask |
-															   NSClosableWindowMask |
-															   NSMiniaturizableWindowMask)
+															   NSClosableWindowMask)
 													  backing:NSBackingStoreBuffered
 													    defer:YES] autorelease];
 	[self setWindow:window];
