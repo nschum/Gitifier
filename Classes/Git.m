@@ -6,6 +6,7 @@
 // -------------------------------------------------------
 
 #import "Git.h"
+#import "GitifierAppDelegate.h"
 #import "Utils.h"
 
 static NSString *gitExecutable = nil;
@@ -44,7 +45,9 @@ static NSString *gitExecutable = nil;
   }
 
   if (!gitExecutable) {
-    NSLog(@"Error: no git executable found."); // TODO: set warning icon
+    [self notifyDelegateWithSelector: @selector(commandFailed:output:)
+                             command: command
+                              output: @"No Git executable found."];
     return;
   }
 

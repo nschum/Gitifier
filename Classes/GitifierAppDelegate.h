@@ -30,11 +30,16 @@
 
 - (IBAction) showPreferences: (id) sender;
 - (IBAction) quit: (id) sender;
+- (void) showGrowlWithError: (NSString *) message;
 
 // private
 - (void) updateUserEmail;
 - (void) loadGitPath;
 - (void) findGitPath;
 - (void) validateGitPath;
+- (void) showGrowlWithTitle: (NSString *) title
+                    message: (NSString *) message
+                       type: (NSString *) type
+                     sticky: (BOOL) sticky;
 
 @end

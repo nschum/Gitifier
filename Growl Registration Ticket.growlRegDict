@@ -7,10 +7,12 @@
     <key>AllNotifications</key>
     <array>
       <string>Commit received</string>
+      <string>Repository update failed</string>
     </array>
     <key>DefaultNotifications</key>
     <array>
       <string>Commit received</string>
+      <string>Repository update failed</string>
     </array>
   </dict>
 </plist>

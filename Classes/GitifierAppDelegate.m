@@ -81,9 +81,14 @@
 }
 
 - (void) gitPathUpdated {
-  [self updateUserEmail];
-  [self validateGitPath];
-  [GitifierDefaults setObject: [Git gitExecutable] forKey: GIT_EXECUTABLE_KEY];
+  NSString *git = [Git gitExecutable];
+  if (git) {
+    [self updateUserEmail];
+    [self validateGitPath];
+    [GitifierDefaults setObject: git forKey: GIT_EXECUTABLE_KEY];
+  } else {
+    [GitifierDefaults removeObjectForKey: GIT_EXECUTABLE_KEY];
+  }
 }
 
 - (void) validateGitPath {
@@ -156,16 +161,16 @@
 }
 
 - (void) repositoryCouldNotBeCloned: (Repository *) repository {
-  NSLog(@"Error: repository %@ could not be recloned.", repository.url);  // TODO: set warning icon
+  NSString *message = PSFormat(@"Cached copy of repository %@ was deleted and can't be restored.", repository.name);
+  [self showGrowlWithError: message];
 }
 
-// --- Monitor callbacks ---
+// --- Growl notifications ---
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
   BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IGNORE_OWN_COMMITS];
   BOOL sticky = [GitifierDefaults boolForKey: STICKY_NOTIFICATIONS_KEY];
-  NSData *icon = [[NSImage imageNamed: @"icon_app_32.png"] TIFFRepresentation];
 
   for (Commit *commit in [commits reverseObjectEnumerator]) {
     if (ignoreMerges && [commit isMergeCommit]) {
@@ -174,14 +179,33 @@
     if (ignoreOwnCommits && [commit.authorEmail isEqual: userEmail]) {
       return;
     }
-    [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
-                                description: commit.subject
-                           notificationName: @"Commit received"
-                                   iconData: icon
-                                   priority: 0
-                                   isSticky: sticky
-                               clickContext: nil];
+    [self showGrowlWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
+                     message: commit.subject
+                        type: CommitReceivedGrowl
+                      sticky: sticky];
   }
+}
+
+- (void) showGrowlWithError: (NSString *) message {
+  NSLog(@"Error: %@", message);
+  [self showGrowlWithTitle: @"Error"
+                   message: message
+                      type: RepositoryUpdateFailedGrowl
+                    sticky: NO];
+}
+
+- (void) showGrowlWithTitle: (NSString *) title
+                    message: (NSString *) message
+                       type: (NSString *) type
+                     sticky: (BOOL) sticky {
+  NSData *icon = [[NSImage imageNamed: @"icon_app_32.png"] TIFFRepresentation];
+  [GrowlApplicationBridge notifyWithTitle: title
+                              description: message
+                         notificationName: type
+                                 iconData: icon
+                                 priority: 0
+                                 isSticky: sticky
+                             clickContext: nil];
 }
 
 @end
