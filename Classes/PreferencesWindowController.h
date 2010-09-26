@@ -31,6 +31,7 @@
 @property IBOutlet NSView *aboutPreferencesView;
 @property IBOutlet NSButton *websiteLabel;
 @property (readonly) id gitClass;
+@property (readonly) NSString *versionString;
 
 // public
 - (IBAction) removeRepositories: (id) sender;

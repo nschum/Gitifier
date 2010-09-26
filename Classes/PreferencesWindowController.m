@@ -21,6 +21,10 @@
   return [Git class];
 }
 
+- (NSString *) versionString {
+  return PSFormat(@"Gitifier %@", [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleVersion"]);
+}
+
 - (id) init {
   return [super initWithWindowNibName: @"Preferences"];
 }
