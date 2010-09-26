@@ -50,7 +50,7 @@
                        ofObject: (id) object
                          change: (NSDictionary *) change
                         context: (void *) context {
-  if ([keyPath isEqual: [self monitorKeyPath]]) {
+  if (timer && [keyPath isEqual: [self monitorKeyPath]]) {
     [self stopMonitoring];
     [self startMonitoring];
   }

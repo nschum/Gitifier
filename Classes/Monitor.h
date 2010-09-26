@@ -22,5 +22,6 @@
 
 // public
 - (void) startMonitoring;
+- (void) timerFired;
 
 @end

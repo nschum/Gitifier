@@ -36,6 +36,7 @@
   [repositoryListController loadRepositories];
   [statusBarController createStatusBarItem];
   [monitor startMonitoring];
+  [monitor timerFired];
 
   if ([[repositoryListController repositoryList] count] == 0) {
     [self showPreferences: self];
