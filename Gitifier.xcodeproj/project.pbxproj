@@ -19,6 +19,7 @@
 		588ACE02124C1CB1004F3785 /* appcast.css in Resources */ = {isa = PBXBuildFile; fileRef = 588ACE01124C1CB1004F3785 /* appcast.css */; };
 		58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC745F124EBACA003BA5EB /* icon_menu.png */; };
 		58CC7466124EBB20003BA5EB /* icon_menu_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */; };
+		58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC74F9124ECAEA003BA5EB /* icon_app_32.png */; };
 		58DEBC83124009E500DE7C7E /* PSCocoaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */; };
 		58DEBC84124009E500DE7C7E /* PSFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC6B124009E500DE7C7E /* PSFoundationExtensions.m */; };
 		58DEBC85124009E500DE7C7E /* PSIntArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEBC6D124009E500DE7C7E /* PSIntArray.m */; };
@@ -94,6 +95,7 @@
 		588ACE01124C1CB1004F3785 /* appcast.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = appcast.css; sourceTree = "<group>"; };
 		58CC745F124EBACA003BA5EB /* icon_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_menu.png; sourceTree = "<group>"; };
 		58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_menu_inverted.png; sourceTree = "<group>"; };
+		58CC74F9124ECAEA003BA5EB /* icon_app_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_app_32.png; sourceTree = "<group>"; };
 		58DEBC68124009E500DE7C7E /* PSCocoaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCocoaExtensions.h; sourceTree = "<group>"; };
 		58DEBC69124009E500DE7C7E /* PSCocoaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCocoaExtensions.m; sourceTree = "<group>"; };
 		58DEBC6A124009E500DE7C7E /* PSFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSFoundationExtensions.h; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			children = (
 				58CC745F124EBACA003BA5EB /* icon_menu.png */,
 				58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */,
+				58CC74F9124ECAEA003BA5EB /* icon_app_32.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				588ACE02124C1CB1004F3785 /* appcast.css in Resources */,
 				58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */,
 				58CC7466124EBB20003BA5EB /* icon_menu_inverted.png in Resources */,
+				58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

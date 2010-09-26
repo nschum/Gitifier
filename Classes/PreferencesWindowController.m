@@ -62,7 +62,7 @@
           image: [NSImage imageNamed: @"NSNetwork"]];
   [self addView: aboutPreferencesView
           label: @"About"
-          image: [NSImage imageNamed: @"NSInfo"]];
+          image: [NSImage imageNamed: @"icon_app_32.png"]];
   [self setCrossFade: NO];
 }
 

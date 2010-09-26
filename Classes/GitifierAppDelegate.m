@@ -165,6 +165,8 @@
   BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
   BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IGNORE_OWN_COMMITS];
   BOOL sticky = [GitifierDefaults boolForKey: STICKY_NOTIFICATIONS_KEY];
+  NSData *icon = [[NSImage imageNamed: @"icon_app_32.png"] TIFFRepresentation];
+
   for (Commit *commit in [commits reverseObjectEnumerator]) {
     if (ignoreMerges && [commit isMergeCommit]) {
       return;
@@ -175,7 +177,7 @@
     [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
                                 description: commit.subject
                            notificationName: @"Commit received"
-                                   iconData: nil
+                                   iconData: icon
                                    priority: 0
                                    isSticky: sticky
                                clickContext: nil];
