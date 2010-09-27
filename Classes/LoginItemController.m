@@ -74,7 +74,8 @@
 }
 
 - (NSURL *) applicationPath {
-  return [[NSBundle mainBundle] bundleURL];
+  NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+  return [NSURL fileURLWithPath: bundlePath];
 }
 
 @end

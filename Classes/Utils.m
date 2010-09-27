@@ -5,7 +5,7 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
-#import <openssl/md5.h>
+#import <CommonCrypto/CommonDigest.h>
 #import "Utils.h"
 
 @implementation NSString (Gitifier)
@@ -16,8 +16,8 @@
     return nil;
   }
   
-  NSMutableData *digest = [NSMutableData dataWithLength: MD5_DIGEST_LENGTH];
-  if (digest && MD5(data.bytes, data.length, digest.mutableBytes)) {
+  NSMutableData *digest = [NSMutableData dataWithLength: CC_MD5_DIGEST_LENGTH];
+  if (digest && CC_MD5(data.bytes, data.length, digest.mutableBytes)) {
     NSMutableString *buffer = [NSMutableString stringWithCapacity: digest.length * 2];
     const unsigned char *dataBuffer = digest.bytes;
     
