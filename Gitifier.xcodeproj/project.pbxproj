@@ -15,8 +15,6 @@
 		588ACDCF124C153A004F3785 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACDCE124C153A004F3785 /* Sparkle.framework */; };
 		588ACDE3124C15A0004F3785 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 588ACDCE124C153A004F3785 /* Sparkle.framework */; };
 		588ACDF3124C184E004F3785 /* sparkle_pub_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 588ACDF2124C184E004F3785 /* sparkle_pub_key.pem */; };
-		588ACE00124C1C80004F3785 /* gitifier_appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 588ACDFF124C1C80004F3785 /* gitifier_appcast.xml */; };
-		588ACE02124C1CB1004F3785 /* appcast.css in Resources */ = {isa = PBXBuildFile; fileRef = 588ACE01124C1CB1004F3785 /* appcast.css */; };
 		58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC745F124EBACA003BA5EB /* icon_menu.png */; };
 		58CC7466124EBB20003BA5EB /* icon_menu_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */; };
 		58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC74F9124ECAEA003BA5EB /* icon_app_32.png */; };
@@ -437,8 +435,6 @@
 				58DEC36612451E7D00DE7C7E /* Preferences.xib in Resources */,
 				588ACBD9124AB094004F3785 /* AskPass in Resources */,
 				588ACDF3124C184E004F3785 /* sparkle_pub_key.pem in Resources */,
-				588ACE00124C1C80004F3785 /* gitifier_appcast.xml in Resources */,
-				588ACE02124C1CB1004F3785 /* appcast.css in Resources */,
 				58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */,
 				58CC7466124EBB20003BA5EB /* icon_menu_inverted.png in Resources */,
 				58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */,
