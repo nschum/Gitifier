@@ -175,10 +175,10 @@
 
   for (Commit *commit in [commits reverseObjectEnumerator]) {
     if (ignoreMerges && [commit isMergeCommit]) {
-      return;
+      continue;
     }
     if (ignoreOwnCommits && [commit.authorEmail isEqual: userEmail]) {
-      return;
+      continue;
     }
     [self showGrowlWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
                      message: commit.subject
