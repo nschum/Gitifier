@@ -7,5 +7,20 @@
     <link>http://github.com/psionides/Gitifier/raw/master/Sparkle/gitifier_appcast.xml</link>
     <description>What's new in Gitifier</description>
     <language>en</language>
+
+    <item>
+      <title>Gitifier 1.0</title>
+      <sparkle:releaseNotesLink>
+        http://github.com/psionides/gitifier/raw/master/Sparkle/release-1.0.html
+      </sparkle:releaseNotesLink>
+      <pubDate>Tue, 28 Sep 2010 22:51:55 +0000</pubDate>
+      <enclosure
+        url="http://github.com/downloads/psionides/gitifier/Gitifier-1.0.zip"
+        sparkle:version="1.0"
+        length="828505"
+        type="application/octet-stream"
+        sparkle:dsaSignature="MCwCFFhafp0lLgyF7UipDF2Aqux9u8LbAhQs95HqxCNPuUTnHrLSVEsBWO/KWg==" />
+    </item>
+
   </channel>
 </rss>
