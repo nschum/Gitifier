@@ -27,7 +27,7 @@
 }
 
 - (IBAction) addRepository: (id) sender {
-  NSString *url = newRepositoryUrl.stringValue;
+  NSString *url = [[newRepositoryUrl stringValue] psTrimmedString];
   if ([url isEqual: @""]) {
     return;
   }
