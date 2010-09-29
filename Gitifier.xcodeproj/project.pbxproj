@@ -81,6 +81,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		5875B2181252BA9000E7B753 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		588ACB01124AAE5E004F3785 /* Askpass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Askpass.m; sourceTree = "<group>"; };
 		588ACB02124AAE5E004F3785 /* PasswordHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordHelper.h; sourceTree = "<group>"; };
 		588ACB03124AAE5E004F3785 /* PasswordHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordHelper.m; sourceTree = "<group>"; };
@@ -226,6 +227,7 @@
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				58DEC36512451E7D00DE7C7E /* Preferences.xib */,
 				58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */,
+				5875B2181252BA9000E7B753 /* README.markdown */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
