@@ -1,0 +1,15 @@
+body{font-family:Georgia,serif;margin:30px 0px 20px;}
+header{overflow:hidden;margin:0px auto 25px;width:960px;}header #logo{float:left;width:350px;min-height:120px;padding-left:130px;padding-top:25px;background:url(gitifier-logo.png) no-repeat top left;}header #logo h1{font-family:Palatino,Georgia,serif;font-size:30pt;margin:10px 10px 5px;}header #logo h1 a{color:black;text-decoration:none;}
+header #logo h3{font-size:10pt;margin:5px 14px;font-weight:normal;}
+header #download{margin-top:40px;float:left;clear:left;width:500px;text-align:center;font-family:Optima,Tahoma,sans-serif;}header #download a{display:block;position:relative;width:200px;margin:0px auto;text-align:center;text-decoration:none;padding:.7em;border-radius:.5em;-moz-border-radius:.5em;-webkit-border-radius:.5em;box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.2);color:#e8f0de;border:solid 1px #538312;background:#64991e;background:-webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));background:-moz-linear-gradient(top, #7db72f, #4e7d0e);}header #download a img{position:absolute;left:15px;top:3px;}
+header #download a:hover{background:#538018;background:-webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c));background:-moz-linear-gradient(top, #6b9d28, #436b0c);}
+header #download a:active{color:#a9c08c;background:-webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f));background:-moz-linear-gradient(top, #4e7d0e, #7db72f);}
+header #download .description{font-size:10pt;color:#666;}
+header #screenshot{float:right;width:450px;margin-top:30px;padding-bottom:20px;}header #screenshot img{border:1px solid #eee;box-shadow:6px 6px 20px #888;-moz-box-shadow:6px 6px 20px #888;-webkit-box-shadow:6px 6px 20px #888;}
+header #ribbon{position:absolute;top:0px;right:0px;}header #ribbon img{border:0px;}
+#details{margin:0px;overflow:hidden;background:#eee;background:-webkit-gradient(linear, left top, left bottom, from(#f8f8f4), to(#e8e8e4));background:-moz-linear-gradient(top, #f8f8f4, #e8e8e4);}#details div{width:960px;margin:30px auto 40px;overflow:hidden;}#details div #features{float:left;width:400px;}#details div #features p{text-indent:1em;line-height:150%;font-size:12pt;}
+#details div #features a{color:#666;}
+#details div #features .menu_icon{vertical-align:top;margin:2px;}
+#details div #screenshots{float:right;width:560px;text-align:right;}#details div #screenshots img{vertical-align:top;width:250px;}
+hr{background-color:#ccc;height:1px;border:0px;margin:0px;}
+footer{color:#666;font-size:10pt;text-align:center;font-family:Optima,Tahoma,sans-serif;}footer a{color:#666;}
