@@ -21,6 +21,11 @@
   [self saveRepositories];
 }  
 
+- (void) addObject: (id) repository {
+  [repository addObserver: self forKeyPath: @"name" options: 0 context: nil];
+  [super addObject: repository];
+}
+
 - (void) removeSelectedRepositories {
   NSArray *selectedRepositories = [self selectedObjects];
   [selectedRepositories makeObjectsPerformSelector: @selector(deleteWorkingCopy)];
@@ -45,6 +50,13 @@
   NSArray *repositories = [[self repositoryList] valueForKeyPath: @"hashRepresentation"];
   [GitifierDefaults setObject: repositories forKey: REPOSITORY_LIST_KEY];
   [GitifierDefaults synchronize];
+}
+
+- (void) observeValueForKeyPath: (NSString *) keyPath
+                       ofObject: (id) object
+                         change: (NSDictionary *) change
+                        context: (void *) context {
+  [self saveRepositories];
 }
 
 @end
