@@ -180,7 +180,7 @@
     if (ignoreOwnCommits && [commit.authorEmail isEqual: userEmail]) {
       continue;
     }
-    [self showGrowlWithTitle: PSFormat(@"%@ – %@", commit.authorName, repository.name)
+    [self showGrowlWithTitle: PSFormat(@"%@ – %@", repository.name, commit.authorName)
                      message: commit.subject
                         type: CommitReceivedGrowl
                       sticky: sticky];
