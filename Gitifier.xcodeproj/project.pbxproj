@@ -10,6 +10,7 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585886621264DB7A00AD2F1A /* CommitWindow.xib */; };
 		5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858866A1264E25000AD2F1A /* CommitWindowController.m */; };
+		5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */; };
 		588ACB0F124AAF12004F3785 /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; };
 		588ACB10124AAF13004F3785 /* Askpass.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB01124AAE5E004F3785 /* Askpass.m */; };
 		588ACB15124AAF91004F3785 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
@@ -86,6 +87,8 @@
 		585886601264DB6A00AD2F1A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CommitWindow.xib; sourceTree = "<group>"; };
 		585886691264E25000AD2F1A /* CommitWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitWindowController.h; sourceTree = "<group>"; };
 		5858866A1264E25000AD2F1A /* CommitWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitWindowController.m; sourceTree = "<group>"; };
+		5858898D1266417700AD2F1A /* ANSIEscapeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSIEscapeHelper.h; sourceTree = "<group>"; };
+		5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSIEscapeHelper.m; sourceTree = "<group>"; };
 		5875B2181252BA9000E7B753 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		588ACB01124AAE5E004F3785 /* Askpass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Askpass.m; sourceTree = "<group>"; };
 		588ACB02124AAE5E004F3785 /* PasswordHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordHelper.h; sourceTree = "<group>"; };
@@ -248,6 +251,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5858898C1266417700AD2F1A /* ANSIEscapeHelper */ = {
+			isa = PBXGroup;
+			children = (
+				5858898D1266417700AD2F1A /* ANSIEscapeHelper.h */,
+				5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */,
+			);
+			path = ANSIEscapeHelper;
+			sourceTree = "<group>";
+		};
 		588ACAF7124AAE11004F3785 /* AskPass */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +294,7 @@
 		58DEBC5B124009CD00DE7C7E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5858898C1266417700AD2F1A /* ANSIEscapeHelper */,
 				588ACAF7124AAE11004F3785 /* AskPass */,
 				58DECCC5124969BF00DE7C7E /* DBPrefsController */,
 				58DEBC5C124009E500DE7C7E /* PsiToolkit */,
@@ -485,6 +498,7 @@
 				58DEC8411246C6B300DE7C7E /* Utils.m in Sources */,
 				58DECCC9124969DE00DE7C7E /* DBPrefsWindowController.m in Sources */,
 				5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */,
+				5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

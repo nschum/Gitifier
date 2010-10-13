@@ -6,6 +6,7 @@
 // -------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
+#import "ANSIEscapeHelper.h"
 
 @class Commit;
 @class Repository;
@@ -17,6 +18,7 @@
   NSTextField *authorLabel;
   NSTextField *dateLabel;
   NSTextField *subjectLabel;
+  ANSIEscapeHelper *colorConverter;
 }
 
 @property IBOutlet NSTextView *textView;
@@ -29,7 +31,7 @@
 
 // private
 - (void) loadCommitDiff;
-- (void) handleResult: (NSString *) result;
-- (void) displayText: (NSString *) text;
+- (void) handleResult: (id) result;
+- (void) displayText: (id) text;
 
 @end

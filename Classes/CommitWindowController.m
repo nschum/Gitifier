@@ -22,6 +22,7 @@
   if (self) {
     repository = aRepository;
     commit = [aCommit copy];
+    colorConverter = [[ANSIEscapeHelper alloc] init];
   }
   return self;
 }
@@ -45,14 +46,14 @@
   NSString *workingCopy = [repository workingCopyDirectory];
 
   if (workingCopy && [repository directoryExists: workingCopy]) {
-    [git runCommand: @"show" withArguments: PSArray(commit.gitHash, @"--color=never", @"--format=%b") inPath: workingCopy];
+    [git runCommand: @"show" withArguments: PSArray(commit.gitHash, @"--color=always", @"--format=%b") inPath: workingCopy];
   } else {
     [self displayText: ERROR_TEXT];
   }
 }
 
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
-  NSString *text = [output psTrimmedString];
+  NSAttributedString *text = [colorConverter attributedStringWithANSIEscapedString: [output psTrimmedString]];
   [self handleResult: text];
 }
 
@@ -60,12 +61,16 @@
   [self handleResult: ERROR_TEXT];
 }
 
-- (void) handleResult: (NSString *) result {
+- (void) handleResult: (id) result {
   [self performSelectorOnMainThread: @selector(displayText:) withObject: result waitUntilDone: NO];
 }
 
-- (void) displayText: (NSString *) text {
-  textView.string = text;
+- (void) displayText: (id) text {
+  if ([text isKindOfClass: [NSAttributedString class]]) {
+    [textView.textStorage setAttributedString: text];
+  } else {
+    textView.string = text;
+  }
 }
 
 @end
