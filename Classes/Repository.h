@@ -37,15 +37,15 @@
 - (void) cancelCommands;
 - (void) deleteWorkingCopy;
 - (NSDictionary *) hashRepresentation;
+- (NSString *) workingCopyDirectory;
+- (BOOL) directoryExists: (NSString *) directory;
 
 // private
 - (BOOL) isProperUrl: (NSString *) url;
 - (NSString *) nameFromUrl: (NSString *) anUrl;
 - (NSString *) cachesDirectory;
-- (NSString *) workingCopyDirectory;
 - (void) notifyDelegateWithSelector: (SEL) selector;
 - (BOOL) ensureDirectoryIsDeleted: (NSString *) directory;
 - (BOOL) ensureDirectoryExists: (NSString *) directory;
-- (BOOL) directoryExists: (NSString *) directory;
 
 @end

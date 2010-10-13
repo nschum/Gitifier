@@ -26,6 +26,15 @@
   [super addObject: repository];
 }
 
+- (Repository *) findByUrl: (NSString *) url {
+  for (Repository *repository in self.arrangedObjects) {
+    if ([repository.url isEqualToString: url]) {
+      return repository;
+    }
+  }
+  return nil;
+}
+
 - (void) removeSelectedRepositories {
   NSArray *selectedRepositories = [self selectedObjects];
   [selectedRepositories makeObjectsPerformSelector: @selector(deleteWorkingCopy)];

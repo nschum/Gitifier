@@ -94,7 +94,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
   } else if ([command isEqual: @"fetch"]) {
     NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
-    NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%aN%n%aE%n%s%n"];
+    NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%ai%n%H%n%aN%n%aE%n%s%n"];
     NSString *workingCopy = [self workingCopyDirectory];
     if (commitRanges.count > 0 && workingCopy && [self directoryExists: workingCopy]) {
       [git runCommand: @"log" withArguments: arguments inPath: workingCopy];
@@ -102,13 +102,16 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       isBeingUpdated = NO;
     }
   } else if ([command isEqual: @"log"]) {
-    NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex: @"([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)(\\n\\n)"];
+    NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex:
+                                  @"([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)(\\n\\n)"];
     NSMutableArray *commits = [NSMutableArray arrayWithCapacity: commitData.count];
     for (NSArray *fields in commitData) {
       Commit *commit = [[Commit alloc] init];
-      commit.authorName = [fields objectAtIndex: 1];
-      commit.authorEmail = [fields objectAtIndex: 2];
-      commit.subject = [fields objectAtIndex: 3];
+      commit.date = [NSDate dateWithString: [fields objectAtIndex: 1]];
+      commit.gitHash = [fields objectAtIndex: 2];
+      commit.authorName = [fields objectAtIndex: 3];
+      commit.authorEmail = [fields objectAtIndex: 4];
+      commit.subject = [fields objectAtIndex: 5];
       [commits addObject: commit];
     }
     isBeingUpdated = NO;

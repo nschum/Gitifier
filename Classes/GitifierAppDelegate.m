@@ -5,10 +5,10 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
-#import <Growl/GrowlApplicationBridge.h>
 #import "RegexKitLite.h"
 
 #import "Commit.h"
+#import "CommitWindowController.h"
 #import "Defaults.h"
 #import "Git.h"
 #import "GitifierAppDelegate.h"
@@ -28,7 +28,7 @@
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   repositoryList = [NSMutableArray array];
   [Defaults registerDefaults];
-  [GrowlApplicationBridge setGrowlDelegate: (id) @""];
+  [GrowlApplicationBridge setGrowlDelegate: self];
 
   PSObserve(nil, GitExecutableSetNotification, gitPathUpdated);
   [self loadGitPath];
@@ -180,33 +180,47 @@
     if (ignoreOwnCommits && [commit.authorEmail isEqualToString: userEmail]) {
       continue;
     }
-    [self showGrowlWithTitle: PSFormat(@"%@ – %@", repository.name, commit.authorName)
-                     message: commit.subject
-                        type: CommitReceivedGrowl
-                      sticky: sticky];
+    NSDictionary *commitData = PSDict([commit toDictionary], @"commit", repository.url, @"repository");
+    [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", repository.name, commit.authorName)
+                                description: commit.subject
+                           notificationName: CommitReceivedGrowl
+                                   iconData: [self growlIcon]
+                                   priority: 0
+                                   isSticky: sticky
+                               clickContext: commitData];
   }
 }
 
 - (void) showGrowlWithError: (NSString *) message {
   NSLog(@"Error: %@", message);
-  [self showGrowlWithTitle: @"Error"
-                   message: message
-                      type: RepositoryUpdateFailedGrowl
-                    sticky: NO];
+  [GrowlApplicationBridge notifyWithTitle: @"Error"
+                              description: message
+                         notificationName: RepositoryUpdateFailedGrowl
+                                 iconData: [self growlIcon]
+                                 priority: 0
+                                 isSticky: NO
+                             clickContext: nil];
 }
 
-- (void) showGrowlWithTitle: (NSString *) title
-                    message: (NSString *) message
-                       type: (NSString *) type
-                     sticky: (BOOL) sticky {
-  NSData *icon = [[NSImage imageNamed: @"icon_app_32.png"] TIFFRepresentation];
-  [GrowlApplicationBridge notifyWithTitle: title
-                              description: message
-                         notificationName: type
-                                 iconData: icon
-                                 priority: 0
-                                 isSticky: sticky
-                             clickContext: nil];
+- (void) growlNotificationWasClicked: (id) clickContext {
+  if (clickContext) {
+    NSString *url = [clickContext objectForKey: @"repository"];
+    Repository *repository = [repositoryListController findByUrl: url];
+    if (repository) {
+      Commit *commit = [Commit commitFromDictionary: [clickContext objectForKey: @"commit"]];
+      CommitWindowController *window = [[CommitWindowController alloc] initWithRepository: repository commit: commit];
+      [window showWindow: self];
+      [NSApp activateIgnoringOtherApps: YES];
+    }
+  }
+}
+
+- (NSData *) growlIcon {
+  static NSData *icon = nil;
+  if (!icon) {
+    icon = [[NSImage imageNamed: @"icon_app_32.png"] TIFFRepresentation];
+  }
+  return icon;
 }
 
 @end
