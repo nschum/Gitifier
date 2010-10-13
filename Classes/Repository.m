@@ -139,7 +139,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   if ([projectName hasSuffix: @".git"]) {
     projectName = [projectName substringToIndex: projectName.length - 4];
   }
-  if ([[projectName lowercaseString] isEqual: projectName]) {
+  if ([[projectName lowercaseString] isEqualToString: projectName]) {
     projectName = [projectName capitalizedString];
   }
   return projectName;

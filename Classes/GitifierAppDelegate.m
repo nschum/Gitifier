@@ -177,7 +177,7 @@
     if (ignoreMerges && [commit isMergeCommit]) {
       continue;
     }
-    if (ignoreOwnCommits && [commit.authorEmail isEqual: userEmail]) {
+    if (ignoreOwnCommits && [commit.authorEmail isEqualToString: userEmail]) {
       continue;
     }
     [self showGrowlWithTitle: PSFormat(@"%@ – %@", repository.name, commit.authorName)
