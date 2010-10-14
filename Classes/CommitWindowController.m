@@ -32,7 +32,11 @@
 
   authorLabel.stringValue = PSFormat(@"%@ <%@>", commit.authorName, commit.authorEmail);
   subjectLabel.stringValue = commit.subject;
-  dateLabel.stringValue = [commit.date description];
+
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  formatter.dateStyle = NSDateFormatterMediumStyle;
+  formatter.timeStyle = NSDateFormatterMediumStyle;
+  dateLabel.stringValue = [formatter stringFromDate: commit.date];
 
   NSFont *font = [NSFont fontWithName: @"Courier" size: 12.0];
   textView.font = font;
