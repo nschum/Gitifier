@@ -13,11 +13,35 @@
 #import "Repository.h"
 #import "Utils.h"
 
+static NSString *nameRegexp = @"[\\w\\-\\.]+";
 static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 @implementation Repository
 
-@synthesize url, name, delegate;
+@synthesize url, name, delegate, commitUrlPattern;
+
++ (NSDictionary *) repositoryUrlPatterns {
+  static NSMutableDictionary *patterns = nil;
+  if (!patterns) {
+    patterns = [NSMutableDictionary dictionary];
+
+    [patterns setObject: @"http://github.com/$1/$2/commit/%@"
+                 forKey: @"git@github\\.com:(NAME)\\/(NAME)\\.git"];
+
+    [patterns setObject: @"http://github.com/$2/$3/commit/%@"
+                 forKey: @"https?:\\/\\/(NAME)@github\\.com\\/(NAME)\\/(NAME)\\.git"];
+
+    [patterns setObject: @"http://github.com/$1/$2/commit/%@"
+                 forKey: @"git:\\/\\/gitub\\.com\\/(NAME)\\/(NAME)\\.git"];
+
+    [patterns setObject: @"http://gitorious.org/$1/$2/commit/%@"
+                 forKey: @"git:\\/\\/gitorious\\.org\\/(NAME)\\/(NAME)\\.git"];
+
+    [patterns setObject: @"http://gitorious.org/$1/$2/commit/%@"
+                 forKey: @"http:\\/\\/git\\.gitorious\\.org\\/(NAME)\\/(NAME)\\.git"];
+  }
+  return patterns;
+}
 
 + (Repository *) repositoryFromHash: (NSDictionary *) hash {
   NSString *url = [hash objectForKey: @"url"];
@@ -39,6 +63,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     git = [[Git alloc] initWithDelegate: self];
     git.repositoryUrl = self.url;
     name = [self nameFromUrl: url];
+    commitUrlPattern = [self findCommitUrlPattern];
     return self;
   } else {
     return nil;
@@ -47,6 +72,22 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (NSDictionary *) hashRepresentation {
   return PSDict(url, @"url", name, @"name");
+}
+
+- (NSString *) findCommitUrlPattern {
+  NSDictionary *patterns = [Repository repositoryUrlPatterns];
+
+  for (NSString *repoPattern in patterns) {
+    NSString *commitPattern = [patterns objectForKey: repoPattern];
+    repoPattern = [repoPattern stringByReplacingOccurrencesOfString: @"NAME" withString: nameRegexp];
+    repoPattern = PSFormat(@"^%@$", repoPattern); // looks like a curse that was censored, doesn't it? ;)
+
+    if ([url isMatchedByRegex: repoPattern]) {
+      return [url stringByReplacingOccurrencesOfRegex: repoPattern withString: commitPattern];
+    }
+  }
+
+  return nil;
 }
 
 - (void) clone {

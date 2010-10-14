@@ -15,7 +15,7 @@
 
 @implementation CommitWindowController
 
-@synthesize textView, authorLabel, dateLabel, subjectLabel;
+@synthesize textView, authorLabel, dateLabel, subjectLabel, viewInBrowserButton;
 
 - (id) initWithRepository: (Repository *) aRepository commit: (Commit *) aCommit {
   self = [super initWithWindowNibName: @"CommitWindow"];
@@ -40,6 +40,12 @@
 
   NSFont *font = [NSFont fontWithName: @"Courier" size: 12.0];
   textView.font = font;
+
+  if (repository.commitUrlPattern) {
+    viewInBrowserButton.title = PSFormat(@"View on %@", [[self commitPageUrl] host]);
+  } else {
+    [viewInBrowserButton psHide];
+  }
 
   [self loadCommitDiff];
 }
@@ -75,6 +81,16 @@
   } else {
     textView.string = text;
   }
+}
+
+- (NSURL *) commitPageUrl {
+  NSString *url = PSFormat(repository.commitUrlPattern, commit.gitHash);
+  return [NSURL URLWithString: url];
+}
+
+- (IBAction) viewInBrowser: (id) sender {
+  [[NSWorkspace sharedWorkspace] openURL: [self commitPageUrl]];
+  [self close];
 }
 
 @end

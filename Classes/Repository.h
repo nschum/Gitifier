@@ -21,6 +21,7 @@
   Git *git;
   NSString *url;
   NSString *name;
+  NSString *commitUrlPattern;
   id delegate;
   BOOL isBeingUpdated;
 }
@@ -28,6 +29,7 @@
 @property (copy) NSString *url;
 @property (copy) NSString *name;
 @property id delegate;
+@property (readonly) NSString *commitUrlPattern;
 
 // public
 + (Repository *) repositoryFromHash: (NSDictionary *) hash;
@@ -41,6 +43,8 @@
 - (BOOL) directoryExists: (NSString *) directory;
 
 // private
++ (NSDictionary *) repositoryUrlPatterns;
+- (NSString *) findCommitUrlPattern;
 - (BOOL) isProperUrl: (NSString *) url;
 - (NSString *) nameFromUrl: (NSString *) anUrl;
 - (NSString *) cachesDirectory;
