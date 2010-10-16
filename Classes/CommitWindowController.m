@@ -33,6 +33,9 @@
   authorLabel.stringValue = PSFormat(@"%@ <%@>", commit.authorName, commit.authorEmail);
   subjectLabel.stringValue = commit.subject;
 
+  [textView.textContainer setWidthTracksTextView: NO];
+  [textView.textContainer setContainerSize: NSMakeSize(2000, 2000)];
+
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
   formatter.dateStyle = NSDateFormatterMediumStyle;
   formatter.timeStyle = NSDateFormatterMediumStyle;
