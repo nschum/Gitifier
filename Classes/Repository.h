@@ -15,6 +15,7 @@
 
 // ------------------------------
 
+@class Commit;
 @class Git;
 
 @interface Repository : NSObject {
@@ -29,7 +30,6 @@
 @property (copy) NSString *url;
 @property (copy) NSString *name;
 @property id delegate;
-@property (readonly) NSString *commitUrlPattern;
 
 // public
 + (Repository *) repositoryFromHash: (NSDictionary *) hash;
@@ -41,6 +41,7 @@
 - (NSDictionary *) hashRepresentation;
 - (NSString *) workingCopyDirectory;
 - (BOOL) directoryExists: (NSString *) directory;
+- (NSURL *) webUrlForCommit: (Commit *) commit;
 
 // private
 + (NSDictionary *) repositoryUrlPatterns;

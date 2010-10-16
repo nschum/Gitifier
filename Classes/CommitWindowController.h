@@ -36,6 +36,5 @@
 - (void) loadCommitDiff;
 - (void) handleResult: (id) result;
 - (void) displayText: (id) text;
-- (NSURL *) commitPageUrl;
 
 @end

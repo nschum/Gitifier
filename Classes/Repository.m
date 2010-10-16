@@ -18,7 +18,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 @implementation Repository
 
-@synthesize url, name, delegate, commitUrlPattern;
+@synthesize url, name, delegate;
 
 + (NSDictionary *) repositoryUrlPatterns {
   static NSMutableDictionary *patterns = nil;
@@ -88,6 +88,15 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   }
 
   return nil;
+}
+
+- (NSURL *) webUrlForCommit: (Commit *) commit {
+  if (commitUrlPattern) {
+    NSString *webUrl = PSFormat(commitUrlPattern, commit.gitHash);
+    return [NSURL URLWithString: webUrl];
+  } else {
+    return nil;
+  }
 }
 
 - (void) clone {

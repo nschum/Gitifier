@@ -18,7 +18,9 @@ NSDictionary *defaultPreferenceValues;
     PSInt(5), MONITOR_INTERVAL_KEY,
     yes, IGNORE_MERGES_KEY,
     yes, IGNORE_OWN_COMMITS,
-    no, STICKY_NOTIFICATIONS_KEY
+    no, STICKY_NOTIFICATIONS_KEY,
+    yes, SHOW_DIFF_WINDOW_KEY,
+    no, OPEN_DIFF_IN_BROWSER_KEY
   );
 }
 

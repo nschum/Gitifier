@@ -41,8 +41,9 @@
   NSFont *font = [NSFont fontWithName: @"Courier" size: 12.0];
   textView.font = font;
 
-  if (repository.commitUrlPattern) {
-    viewInBrowserButton.title = PSFormat(@"View on %@", [[self commitPageUrl] host]);
+  NSURL *webUrl = [repository webUrlForCommit: commit];
+  if (webUrl) {
+    viewInBrowserButton.title = PSFormat(@"View on %@", webUrl.host);
   } else {
     [viewInBrowserButton psHide];
   }
@@ -83,13 +84,8 @@
   }
 }
 
-- (NSURL *) commitPageUrl {
-  NSString *url = PSFormat(repository.commitUrlPattern, commit.gitHash);
-  return [NSURL URLWithString: url];
-}
-
 - (IBAction) viewInBrowser: (id) sender {
-  [[NSWorkspace sharedWorkspace] openURL: [self commitPageUrl]];
+  [[NSWorkspace sharedWorkspace] openURL: [repository webUrlForCommit: commit]];
   [self close];
 }
 

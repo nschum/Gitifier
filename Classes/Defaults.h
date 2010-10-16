@@ -13,6 +13,8 @@
 #define IGNORE_OWN_COMMITS @"ignoreOwnCommits"
 #define GIT_EXECUTABLE_KEY @"gitExecutable"
 #define STICKY_NOTIFICATIONS_KEY @"stickyNotifications"
+#define SHOW_DIFF_WINDOW_KEY @"showDiffWindow"
+#define OPEN_DIFF_IN_BROWSER_KEY @"openDiffInBrowser"
 
 extern NSDictionary *defaultPreferenceValues;
 

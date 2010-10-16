@@ -203,14 +203,24 @@
 }
 
 - (void) growlNotificationWasClicked: (id) clickContext {
-  if (clickContext) {
+  BOOL shouldShowDiffs = [GitifierDefaults boolForKey: SHOW_DIFF_WINDOW_KEY];
+  BOOL shouldOpenInBrowser = [GitifierDefaults boolForKey: OPEN_DIFF_IN_BROWSER_KEY];
+
+  if (clickContext && shouldShowDiffs) {
     NSString *url = [clickContext objectForKey: @"repository"];
+    NSDictionary *commitHash = [clickContext objectForKey: @"commit"];
     Repository *repository = [repositoryListController findByUrl: url];
+    Commit *commit = [Commit commitFromDictionary: commitHash];
+    NSURL *webUrl = [repository webUrlForCommit: commit];
+
     if (repository) {
-      Commit *commit = [Commit commitFromDictionary: [clickContext objectForKey: @"commit"]];
-      CommitWindowController *window = [[CommitWindowController alloc] initWithRepository: repository commit: commit];
-      [window showWindow: self];
-      [NSApp activateIgnoringOtherApps: YES];
+      if (webUrl && shouldOpenInBrowser) {
+        [[NSWorkspace sharedWorkspace] openURL: webUrl];
+      } else {
+        CommitWindowController *window = [[CommitWindowController alloc] initWithRepository: repository commit: commit];
+        [window showWindow: self];
+        [NSApp activateIgnoringOtherApps: YES];
+      }
     }
   }
 }
