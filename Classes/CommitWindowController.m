@@ -38,9 +38,6 @@
   formatter.timeStyle = NSDateFormatterMediumStyle;
   dateLabel.stringValue = [formatter stringFromDate: commit.date];
 
-  NSFont *font = [NSFont fontWithName: @"Courier" size: 12.0];
-  textView.font = font;
-
   NSURL *webUrl = [repository webUrlForCommit: commit];
   if (webUrl) {
     viewInBrowserButton.title = PSFormat(@"View on %@", webUrl.host);
@@ -64,7 +61,12 @@
 }
 
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
-  NSAttributedString *text = [colorConverter attributedStringWithANSIEscapedString: [output psTrimmedString]];
+  NSFont *font = [NSFont fontWithName: @"Monaco" size: 11.0];
+
+  NSMutableAttributedString *text = [[NSMutableAttributedString alloc] init];
+  [text appendAttributedString: [colorConverter attributedStringWithANSIEscapedString: [output psTrimmedString]]];
+  [text addAttribute: NSFontAttributeName value: font range: NSMakeRange(0, text.length)];
+
   [self handleResult: text];
 }
 
