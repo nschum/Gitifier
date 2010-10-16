@@ -32,7 +32,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
                  forKey: @"https?:\\/\\/(NAME)@github\\.com\\/(NAME)\\/(NAME)\\.git"];
 
     [patterns setObject: @"http://github.com/$1/$2/commit/%@"
-                 forKey: @"git:\\/\\/gitub\\.com\\/(NAME)\\/(NAME)\\.git"];
+                 forKey: @"git:\\/\\/github\\.com\\/(NAME)\\/(NAME)\\.git"];
 
     [patterns setObject: @"http://gitorious.org/$1/$2/commit/%@"
                  forKey: @"git:\\/\\/gitorious\\.org\\/(NAME)\\/(NAME)\\.git"];
