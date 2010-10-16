@@ -12,6 +12,8 @@
 #import "RepositoryListController.h"
 #import "Utils.h"
 
+#define IGNORE_MY_COMMITS_TEXT @"Ignore my own commits"
+
 @implementation PreferencesWindowController
 
 @synthesize repositoryListController, monitorIntervalField, ignoreOwnEmailsField, chooseGitPathButton,
@@ -128,9 +130,22 @@
 
 - (void) updateUserEmailText: (NSString *) email {
   if (email) {
-    ignoreOwnEmailsField.title = PSFormat(@"Ignore my own commits (%@)", email);
+    NSString *title = PSFormat(@"%@ (%@)", IGNORE_MY_COMMITS_TEXT, email);
+    NSInteger labelLength = IGNORE_MY_COMMITS_TEXT.length;
+    NSRange labelRange = NSMakeRange(0, labelLength);
+    NSRange emailRange = NSMakeRange(labelLength, title.length - labelLength);
+
+    NSFont *standardFont = [NSFont systemFontOfSize: 13.0];
+    NSFont *smallerFont = [NSFont systemFontOfSize: 11.0];
+    NSColor *gray = [NSColor colorWithDeviceWhite: 0.5 alpha: 1.0];
+
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString: title];
+    [text addAttribute: NSFontAttributeName value: standardFont range: labelRange];
+    [text addAttribute: NSFontAttributeName value: smallerFont range: emailRange];
+    [text addAttribute: NSForegroundColorAttributeName value: gray range: emailRange];
+    ignoreOwnEmailsField.attributedTitle = text;
   } else {
-    ignoreOwnEmailsField.title = @"Ignore my own commits";
+    ignoreOwnEmailsField.title = IGNORE_MY_COMMITS_TEXT;
   }
 }
 
