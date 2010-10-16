@@ -34,6 +34,7 @@
 - (void) showGrowlWithError: (NSString *) message;
 
 // private
+- (void) openGrowlPreferences;
 - (void) updateUserEmail;
 - (void) loadGitPath;
 - (void) findGitPath;

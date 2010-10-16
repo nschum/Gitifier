@@ -30,6 +30,24 @@
   [Defaults registerDefaults];
   [GrowlApplicationBridge setGrowlDelegate: self];
 
+  if (![GrowlApplicationBridge isGrowlInstalled]) {
+    NSInteger output = NSRunAlertPanel(@"Warning: Growl framework is not installed.",
+                         @"Gitifier requires Growl to display notifications - please download and install it first.",
+                         @"Open Growl website", @"Nevermind", nil);
+    if (output == NSAlertDefaultReturn) {
+      [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://growl.info"]];
+    }
+  }
+
+  if (![GrowlApplicationBridge isGrowlRunning]) {
+    NSInteger output = NSRunAlertPanel(@"Warning: Growl is not running.",
+                                       @"To get any notifications from Gitifier, you need to start Growl.",
+                                       @"Open Growl Preferences", @"Nevermind", nil);
+    if (output == NSAlertDefaultReturn) {
+      [self openGrowlPreferences];
+    }
+  }
+
   PSObserve(nil, GitExecutableSetNotification, gitPathUpdated);
   [self loadGitPath];
 
@@ -44,6 +62,27 @@
 }
 
 // --- actions ---
+
+- (void) openGrowlPreferences {
+  NSArray *globalPathArray = PSArray(NSOpenStepRootDirectory(), @"Library", @"PreferencePanes", @"Growl.prefPane");
+  NSArray *localPathArray = PSArray(NSHomeDirectory(), @"Library", @"PreferencePanes", @"Growl.prefPane");
+  NSArray *preferencesPathArray = PSArray(NSOpenStepRootDirectory(), @"Applications", @"System Preferences.app");
+
+  NSString *globalPath = [NSString pathWithComponents: globalPathArray];
+  NSString *localPath = [NSString pathWithComponents: localPathArray];
+  NSString *preferencesPath = [NSString pathWithComponents: preferencesPathArray];
+
+  NSFileManager *manager = [NSFileManager defaultManager];
+  NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+
+  if ([manager fileExistsAtPath: globalPath]) {
+    [workspace openURL: [NSURL fileURLWithPath: globalPath]];
+  } else if ([manager fileExistsAtPath: localPath]) {
+    [workspace openURL: [NSURL fileURLWithPath: localPath]];
+  } else {
+    [workspace openURL: [NSURL fileURLWithPath: preferencesPath]];
+  }
+}
 
 - (IBAction) showPreferences: (id) sender {
   if (!preferencesWindowController) {
