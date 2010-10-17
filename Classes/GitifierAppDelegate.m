@@ -8,10 +8,10 @@
 #import "RegexKitLite.h"
 
 #import "Commit.h"
-#import "CommitWindowController.h"
 #import "Defaults.h"
 #import "Git.h"
 #import "GitifierAppDelegate.h"
+#import "GrowlController.h"
 #import "PreferencesWindowController.h"
 #import "Repository.h"
 #import "RepositoryListController.h"
@@ -28,28 +28,12 @@
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   repositoryList = [NSMutableArray array];
   [Defaults registerDefaults];
-  [GrowlApplicationBridge setGrowlDelegate: self];
-
-  if (![GrowlApplicationBridge isGrowlInstalled]) {
-    NSInteger output = NSRunAlertPanel(@"Warning: Growl framework is not installed.",
-                         @"Gitifier requires Growl to display notifications - please download and install it first.",
-                         @"Open Growl website", @"Nevermind", nil);
-    if (output == NSAlertDefaultReturn) {
-      [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://growl.info"]];
-    }
-  }
-
-  if (![GrowlApplicationBridge isGrowlRunning]) {
-    NSInteger output = NSRunAlertPanel(@"Warning: Growl is not running.",
-                                       @"To get any notifications from Gitifier, you need to start Growl.",
-                                       @"Open Growl Preferences", @"Nevermind", nil);
-    if (output == NSAlertDefaultReturn) {
-      [self openGrowlPreferences];
-    }
-  }
 
   PSObserve(nil, GitExecutableSetNotification, gitPathUpdated);
   [self loadGitPath];
+
+  [[GrowlController sharedController] setRepositoryListController: repositoryListController];
+  [[GrowlController sharedController] checkGrowlAvailability];
 
   [repositoryListController loadRepositories];
   [statusBarController createStatusBarItem];
@@ -62,27 +46,6 @@
 }
 
 // --- actions ---
-
-- (void) openGrowlPreferences {
-  NSArray *globalPathArray = PSArray(NSOpenStepRootDirectory(), @"Library", @"PreferencePanes", @"Growl.prefPane");
-  NSArray *localPathArray = PSArray(NSHomeDirectory(), @"Library", @"PreferencePanes", @"Growl.prefPane");
-  NSArray *preferencesPathArray = PSArray(NSOpenStepRootDirectory(), @"Applications", @"System Preferences.app");
-
-  NSString *globalPath = [NSString pathWithComponents: globalPathArray];
-  NSString *localPath = [NSString pathWithComponents: localPathArray];
-  NSString *preferencesPath = [NSString pathWithComponents: preferencesPathArray];
-
-  NSFileManager *manager = [NSFileManager defaultManager];
-  NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-
-  if ([manager fileExistsAtPath: globalPath]) {
-    [workspace openURL: [NSURL fileURLWithPath: globalPath]];
-  } else if ([manager fileExistsAtPath: localPath]) {
-    [workspace openURL: [NSURL fileURLWithPath: localPath]];
-  } else {
-    [workspace openURL: [NSURL fileURLWithPath: preferencesPath]];
-  }
-}
 
 - (IBAction) showPreferences: (id) sender {
   if (!preferencesWindowController) {
@@ -194,6 +157,18 @@
 
 // --- repository callbacks ---
 
+- (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
+  BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
+  BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IGNORE_OWN_COMMITS];
+
+  for (Commit *commit in [commits reverseObjectEnumerator]) {
+    if (ignoreMerges && [commit isMergeCommit]) continue;
+    if (ignoreOwnCommits && [commit.authorEmail isEqualToString: userEmail]) continue;
+
+    [[GrowlController sharedController] showGrowlWithCommit: commit repository: repository];
+  }
+}
+
 // these should be rare, only when a fetch fails and a repository needs to be recloned
 
 - (void) repositoryWasCloned: (Repository *) repository {
@@ -202,74 +177,7 @@
 
 - (void) repositoryCouldNotBeCloned: (Repository *) repository {
   NSString *message = PSFormat(@"Cached copy of repository %@ was deleted and can't be restored.", repository.name);
-  [self showGrowlWithError: message];
-}
-
-// --- Growl notifications ---
-
-- (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
-  BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
-  BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IGNORE_OWN_COMMITS];
-  BOOL sticky = [GitifierDefaults boolForKey: STICKY_NOTIFICATIONS_KEY];
-
-  for (Commit *commit in [commits reverseObjectEnumerator]) {
-    if (ignoreMerges && [commit isMergeCommit]) {
-      continue;
-    }
-    if (ignoreOwnCommits && [commit.authorEmail isEqualToString: userEmail]) {
-      continue;
-    }
-    NSDictionary *commitData = PSDict([commit toDictionary], @"commit", repository.url, @"repository");
-    [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", repository.name, commit.authorName)
-                                description: commit.subject
-                           notificationName: CommitReceivedGrowl
-                                   iconData: [self growlIcon]
-                                   priority: 0
-                                   isSticky: sticky
-                               clickContext: commitData];
-  }
-}
-
-- (void) showGrowlWithError: (NSString *) message {
-  NSLog(@"Error: %@", message);
-  [GrowlApplicationBridge notifyWithTitle: @"Error"
-                              description: message
-                         notificationName: RepositoryUpdateFailedGrowl
-                                 iconData: [self growlIcon]
-                                 priority: 0
-                                 isSticky: NO
-                             clickContext: nil];
-}
-
-- (void) growlNotificationWasClicked: (id) clickContext {
-  BOOL shouldShowDiffs = [GitifierDefaults boolForKey: SHOW_DIFF_WINDOW_KEY];
-  BOOL shouldOpenInBrowser = [GitifierDefaults boolForKey: OPEN_DIFF_IN_BROWSER_KEY];
-
-  if (clickContext && shouldShowDiffs) {
-    NSString *url = [clickContext objectForKey: @"repository"];
-    NSDictionary *commitHash = [clickContext objectForKey: @"commit"];
-    Repository *repository = [repositoryListController findByUrl: url];
-    Commit *commit = [Commit commitFromDictionary: commitHash];
-    NSURL *webUrl = [repository webUrlForCommit: commit];
-
-    if (repository) {
-      if (webUrl && shouldOpenInBrowser) {
-        [[NSWorkspace sharedWorkspace] openURL: webUrl];
-      } else {
-        CommitWindowController *window = [[CommitWindowController alloc] initWithRepository: repository commit: commit];
-        [window showWindow: self];
-        [NSApp activateIgnoringOtherApps: YES];
-      }
-    }
-  }
-}
-
-- (NSData *) growlIcon {
-  static NSData *icon = nil;
-  if (!icon) {
-    icon = [[NSImage imageNamed: @"icon_app_32.png"] TIFFRepresentation];
-  }
-  return icon;
+  [[GrowlController sharedController] showGrowlWithError: message];
 }
 
 @end

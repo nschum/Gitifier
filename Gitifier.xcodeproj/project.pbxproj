@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		582E744F126B1D3E0077D935 /* GrowlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 582E744E126B1D3E0077D935 /* GrowlController.m */; };
 		585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585886621264DB7A00AD2F1A /* CommitWindow.xib */; };
 		5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858866A1264E25000AD2F1A /* CommitWindowController.m */; };
 		5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */; };
@@ -84,6 +85,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		582E744D126B1D3E0077D935 /* GrowlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlController.h; sourceTree = "<group>"; };
+		582E744E126B1D3E0077D935 /* GrowlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlController.m; sourceTree = "<group>"; };
 		585886601264DB6A00AD2F1A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CommitWindow.xib; sourceTree = "<group>"; };
 		585886691264E25000AD2F1A /* CommitWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitWindowController.h; sourceTree = "<group>"; };
 		5858866A1264E25000AD2F1A /* CommitWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitWindowController.m; sourceTree = "<group>"; };
@@ -348,6 +351,8 @@
 				58DEC8231246C6B300DE7C7E /* Git.m */,
 				58DEC8241246C6B300DE7C7E /* GitifierAppDelegate.h */,
 				58DEC8251246C6B300DE7C7E /* GitifierAppDelegate.m */,
+				582E744D126B1D3E0077D935 /* GrowlController.h */,
+				582E744E126B1D3E0077D935 /* GrowlController.m */,
 				58DEC8261246C6B300DE7C7E /* LoginItemController.h */,
 				58DEC8271246C6B300DE7C7E /* LoginItemController.m */,
 				58DEC8281246C6B300DE7C7E /* Monitor.h */,
@@ -499,6 +504,7 @@
 				58DECCC9124969DE00DE7C7E /* DBPrefsWindowController.m in Sources */,
 				5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */,
 				5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */,
+				582E744F126B1D3E0077D935 /* GrowlController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

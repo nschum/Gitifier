@@ -6,14 +6,13 @@
 // -------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
-#import <Growl/GrowlApplicationBridge.h>
 
 @class Monitor;
 @class PreferencesWindowController;
 @class RepositoryListController;
 @class StatusBarController;
 
-@interface GitifierAppDelegate : NSObject <NSApplicationDelegate, GrowlApplicationBridgeDelegate> {
+@interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
   NSString *userEmail;
   NSMutableArray *repositoryList;
   Monitor *monitor;
@@ -31,14 +30,11 @@
 
 - (IBAction) showPreferences: (id) sender;
 - (IBAction) quit: (id) sender;
-- (void) showGrowlWithError: (NSString *) message;
 
 // private
-- (void) openGrowlPreferences;
 - (void) updateUserEmail;
 - (void) loadGitPath;
 - (void) findGitPath;
 - (void) validateGitPath;
-- (NSData *) growlIcon;
 
 @end

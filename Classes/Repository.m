@@ -9,7 +9,7 @@
 
 #import "Commit.h"
 #import "Git.h"
-#import "GitifierAppDelegate.h"
+#import "GrowlController.h"
 #import "Repository.h"
 #import "Utils.h"
 
@@ -125,7 +125,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
         [self clone];
       }
     } else {
-      [[NSApp delegate] showGrowlWithError: PSFormat(@"Can't fetch repository %@.", self.name)];
+      [[GrowlController sharedController] showGrowlWithError: PSFormat(@"Can't fetch repository %@.", self.name)];
     }
   }
 }
@@ -175,7 +175,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   } else {
     NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
-    [[NSApp delegate] showGrowlWithError: PSFormat(@"Command %@ failed: %@", command, truncated)];
+    [[GrowlController sharedController] showGrowlWithError: PSFormat(@"Command %@ failed: %@", command, truncated)];
   }
 }
 
