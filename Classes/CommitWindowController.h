@@ -20,6 +20,7 @@
   NSTextField *subjectLabel;
   ANSIEscapeHelper *colorConverter;
   NSButton *viewInBrowserButton;
+  NSProgressIndicator *spinner;
 }
 
 @property IBOutlet NSTextView *textView;
@@ -27,6 +28,7 @@
 @property IBOutlet NSTextField *dateLabel;
 @property IBOutlet NSTextField *subjectLabel;
 @property IBOutlet NSButton *viewInBrowserButton;
+@property IBOutlet NSProgressIndicator *spinner;
 
 // public
 - (id) initWithRepository: (Repository *) aRepository commit: (Commit *) commit;

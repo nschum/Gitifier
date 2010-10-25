@@ -15,7 +15,7 @@
 
 @implementation CommitWindowController
 
-@synthesize textView, authorLabel, dateLabel, subjectLabel, viewInBrowserButton;
+@synthesize textView, authorLabel, dateLabel, subjectLabel, viewInBrowserButton, spinner;
 
 - (id) initWithRepository: (Repository *) aRepository commit: (Commit *) aCommit {
   self = [super initWithWindowNibName: @"CommitWindow"];
@@ -57,6 +57,7 @@
   NSString *workingCopy = [repository workingCopyDirectory];
 
   if (workingCopy && [repository directoryExists: workingCopy]) {
+    [spinner performSelector: @selector(startAnimation:) withObject: self afterDelay: 0.1];
     [git runCommand: @"show" withArguments: PSArray(commit.gitHash, @"--color=always", @"--format=%b") inPath: workingCopy];
   } else {
     [self displayText: ERROR_TEXT];
@@ -82,6 +83,8 @@
 }
 
 - (void) displayText: (id) text {
+  [[spinner class] cancelPreviousPerformRequestsWithTarget: spinner];
+  [spinner stopAnimation: self];
   if ([text isKindOfClass: [NSAttributedString class]]) {
     [textView.textStorage setAttributedString: text];
   } else {
