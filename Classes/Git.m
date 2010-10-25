@@ -51,6 +51,8 @@ static NSString *gitExecutable = nil;
     return;
   }
 
+  currentData = [[NSMutableData alloc] init];
+
   NSPipe *output = [NSPipe pipe];
   currentTask = [[NSTask alloc] init];
   currentTask.arguments = [[NSArray arrayWithObject: command] arrayByAddingObjectsFromArray: arguments];
@@ -85,30 +87,43 @@ static NSString *gitExecutable = nil;
 
 - (void) executeTask {
   @try {
+    NSFileHandle *readHandle = [[currentTask standardOutput] fileHandleForReading];
+
+    PSObserve(readHandle, NSFileHandleReadCompletionNotification, receivedData:);
+    [readHandle readInBackgroundAndNotify];
     [currentTask launch];
     [currentTask waitUntilExit];
+    PSStopObserving(readHandle, NSFileHandleReadCompletionNotification);
+
+    if (cancelled) {
+      currentTask = currentData = nil;
+    } else {
+      [currentData appendData: [readHandle readDataToEndOfFile]];
+
+      NSInteger status = [currentTask terminationStatus];
+      NSString *command = [[currentTask arguments] objectAtIndex: 0];
+      NSString *output = [[NSString alloc] initWithData: currentData encoding: NSUTF8StringEncoding];
+      currentTask = currentData = nil;
+
+      if (status == 0) {
+        [self notifyDelegateWithSelector: @selector(commandCompleted:output:) command: command output: output];
+      } else {
+        [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: output];
+      }
+    }
   } @catch (NSException *e) {
     NSString *command = [[currentTask arguments] objectAtIndex: 0];
-    currentTask = nil;
+    currentTask = currentData = nil;
     [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: [e description]];
     return;
   }
+}
 
-  if (cancelled) {
-    currentTask = nil;
-  } else {
-    NSInteger status = [currentTask terminationStatus];
-    NSString *command = [[currentTask arguments] objectAtIndex: 0];
-    NSData *data = [[[currentTask standardOutput] fileHandleForReading] readDataToEndOfFile];
-    NSString *output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-    currentTask = nil;
-
-    if (status == 0) {
-      [self notifyDelegateWithSelector: @selector(commandCompleted:output:) command: command output: output];
-    } else {
-      [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: output];
-    }
-  }
+- (void) receivedData: (NSNotification *) notification {
+  NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
+  NSFileHandle *readHandle = [notification object];
+  [currentData appendData: data];
+  [readHandle readInBackgroundAndNotify];
 }
 
 - (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command output: (NSString *) output {

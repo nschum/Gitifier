@@ -9,6 +9,7 @@
 
 @interface Git : NSObject {
   NSTask *currentTask;
+  NSMutableData *currentData;
   BOOL cancelled;
   id delegate;
   NSString *repositoryUrl;

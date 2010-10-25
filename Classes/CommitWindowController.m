@@ -34,7 +34,7 @@
   subjectLabel.stringValue = commit.subject;
 
   [textView.textContainer setWidthTracksTextView: NO];
-  [textView.textContainer setContainerSize: NSMakeSize(2000, 2000)];
+  [textView.textContainer setContainerSize: NSMakeSize(1000000, 1000000)];
 
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
   formatter.dateStyle = NSDateFormatterMediumStyle;
