@@ -37,6 +37,7 @@
 
   authorLabel.stringValue = PSFormat(@"%@ <%@>", commit.authorName, commit.authorEmail);
   subjectLabel.stringValue = commit.subject;
+  [self resizeLabelToFit: subjectLabel];
 
   [textView.textContainer setWidthTracksTextView: NO];
   [textView.textContainer setContainerSize: NSMakeSize(1000000, 1000000)];
@@ -54,6 +55,19 @@
   }
 
   [self loadCommitDiff];
+}
+
+- (void) resizeLabelToFit: (NSControl *) label {
+  NSAttributedString *text = label.attributedStringValue;
+  NSSize currentSize = label.frame.size;
+  NSRect requiredFrame = [text boundingRectWithSize: NSMakeSize(currentSize.width, 200.0)
+                                            options: NSStringDrawingUsesLineFragmentOrigin];
+  CGFloat difference = requiredFrame.size.height - currentSize.height;
+
+  [subjectLabel psResizeVerticallyBy: difference];
+  [subjectLabel psMoveVerticallyBy: -difference];
+  [self.window psResizeVerticallyBy: difference];
+  [self.window psMoveVerticallyBy: -difference];
 }
 
 - (void) loadCommitDiff {

@@ -38,5 +38,6 @@
 - (void) loadCommitDiff;
 - (void) handleResult: (id) result;
 - (void) displayText: (id) text;
+- (void) resizeLabelToFit: (NSControl *) label;
 
 @end
