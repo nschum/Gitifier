@@ -40,6 +40,54 @@
   [self setHidden: NO];
 }
 
+- (void) psMoveVerticallyBy: (CGFloat) pixels {
+  CGRect frame = self.frame;
+  frame.origin.y += pixels;
+  self.frame = frame;
+}
+
+- (void) psMoveVerticallyTo: (CGFloat) position {
+  CGRect frame = self.frame;
+  frame.origin.y = position;
+  self.frame = frame;
+}
+
+- (void) psMoveHorizontallyBy: (CGFloat) pixels {
+  CGRect frame = self.frame;
+  frame.origin.x += pixels;
+  self.frame = frame;
+}
+
+- (void) psMoveHorizontallyTo: (CGFloat) position {
+  CGRect frame = self.frame;
+  frame.origin.x = position;
+  self.frame = frame;
+}
+
+- (void) psResizeVerticallyBy: (CGFloat) pixels {
+  CGRect frame = self.frame;
+  frame.size.height += pixels;
+  self.frame = frame;
+}
+
+- (void) psResizeVerticallyTo: (CGFloat) position {
+  CGRect frame = self.frame;
+  frame.size.height = position;
+  self.frame = frame;
+}
+
+- (void) psResizeHorizontallyBy: (CGFloat) pixels {
+  CGRect frame = self.frame;
+  frame.size.width += pixels;
+  self.frame = frame;
+}
+
+- (void) psResizeHorizontallyTo: (CGFloat) position {
+  CGRect frame = self.frame;
+  frame.size.width = position;
+  self.frame = frame;
+}
+
 @end
 
 @implementation NSWindow (PsiToolkit)
@@ -54,6 +102,54 @@
                           modalDelegate: nil
                          didEndSelector: nil
                             contextInfo: nil];
+}
+
+- (void) psMoveVerticallyBy: (CGFloat) pixels {
+  CGRect frame = self.frame;
+  frame.origin.y += pixels;
+  [self setFrame: frame display: YES];
+}
+
+- (void) psMoveVerticallyTo: (CGFloat) position {
+  CGRect frame = self.frame;
+  frame.origin.y = position;
+  [self setFrame: frame display: YES];
+}
+
+- (void) psMoveHorizontallyBy: (CGFloat) pixels {
+  CGRect frame = self.frame;
+  frame.origin.x += pixels;
+  [self setFrame: frame display: YES];
+}
+
+- (void) psMoveHorizontallyTo: (CGFloat) position {
+  CGRect frame = self.frame;
+  frame.origin.x = position;
+  [self setFrame: frame display: YES];
+}
+
+- (void) psResizeVerticallyBy: (CGFloat) pixels {
+  CGRect frame = self.frame;
+  frame.size.height += pixels;
+  [self setFrame: frame display: YES];
+}
+
+- (void) psResizeVerticallyTo: (CGFloat) position {
+  CGRect frame = self.frame;
+  frame.size.height = position;
+  [self setFrame: frame display: YES];
+}
+
+- (void) psResizeHorizontallyBy: (CGFloat) pixels {
+  CGRect frame = self.frame;
+  frame.size.width += pixels;
+  [self setFrame: frame display: YES];
+}
+
+- (void) psResizeHorizontallyTo: (CGFloat) position {
+  CGRect frame = self.frame;
+  frame.size.width = position;
+  [self setFrame: frame display: YES];
 }
 
 @end
