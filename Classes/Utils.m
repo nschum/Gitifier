@@ -30,4 +30,20 @@
   }
 }
 
+- (NSString *) lastKeyPathElement {
+  return [[self componentsSeparatedByString: @"."] lastObject];
+}
+
+@end
+
+@implementation NSWindow (Gitifier)
+
+- (BOOL) keepOnTop {
+  return (self.level == NSModalPanelWindowLevel);
+}
+
+- (void) setKeepOnTop: (BOOL) keepOnTop {
+  self.level = keepOnTop ? NSModalPanelWindowLevel : NSNormalWindowLevel;
+}
+
 @end

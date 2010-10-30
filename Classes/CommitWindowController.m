@@ -7,8 +7,10 @@
 
 #import "Commit.h"
 #import "CommitWindowController.h"
+#import "Defaults.h"
 #import "Git.h"
 #import "Repository.h"
+#import "Utils.h"
 
 #define ERROR_TEXT @"Error loading commit diff."
 
@@ -28,7 +30,10 @@
 }
 
 - (void) windowDidLoad {
+  ObserveDefaults(KEEP_WINDOWS_ON_TOP_KEY);
+
   self.window.title = PSFormat(@"%@ – commit %@", repository.name, commit.gitHash);
+  self.window.keepOnTop = [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY];
 
   authorLabel.stringValue = PSFormat(@"%@ <%@>", commit.authorName, commit.authorEmail);
   subjectLabel.stringValue = commit.subject;
@@ -95,6 +100,15 @@
 - (IBAction) viewInBrowser: (id) sender {
   [[NSWorkspace sharedWorkspace] openURL: [repository webUrlForCommit: commit]];
   [self close];
+}
+
+- (void) observeValueForKeyPath: (NSString *) keyPath
+                       ofObject: (id) object
+                         change: (NSDictionary *) change
+                        context: (void *) context {
+  if (self.window && [[keyPath lastKeyPathElement] isEqual: KEEP_WINDOWS_ON_TOP_KEY]) {
+    self.window.keepOnTop = [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY];
+  }
 }
 
 @end

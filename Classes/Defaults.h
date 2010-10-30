@@ -15,6 +15,7 @@
 #define STICKY_NOTIFICATIONS_KEY @"stickyNotifications"
 #define SHOW_DIFF_WINDOW_KEY @"showDiffWindow"
 #define OPEN_DIFF_IN_BROWSER_KEY @"openDiffInBrowser"
+#define KEEP_WINDOWS_ON_TOP_KEY @"keepWindowsOnTop"
 
 extern NSDictionary *defaultPreferenceValues;
 

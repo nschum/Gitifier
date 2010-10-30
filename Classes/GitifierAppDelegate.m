@@ -51,6 +51,7 @@
   if (!preferencesWindowController) {
     preferencesWindowController = [[PreferencesWindowController alloc] init];
   }
+
   [NSApp activateIgnoringOtherApps: YES];
   [preferencesWindowController showWindow: self];
 }

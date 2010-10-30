@@ -8,21 +8,14 @@
 #import "Defaults.h"
 #import "Monitor.h"
 #import "Repository.h"
+#import "Utils.h"
 
 @implementation Monitor
 
 @synthesize dataSource;
 
-- (NSString *) monitorKeyPath {
-  return PSFormat(@"values.%@", MONITOR_INTERVAL_KEY);
-}
-
 - (void) awakeFromNib {
-  NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
-  [defaultsController addObserver: self
-                       forKeyPath: [self monitorKeyPath]
-                          options: 0
-                          context: nil];
+  ObserveDefaults(MONITOR_INTERVAL_KEY);
 }
 
 - (void) startMonitoring {
@@ -50,7 +43,7 @@
                        ofObject: (id) object
                          change: (NSDictionary *) change
                         context: (void *) context {
-  if (timer && [keyPath isEqual: [self monitorKeyPath]]) {
+  if (timer && [[keyPath lastKeyPathElement] isEqual: MONITOR_INTERVAL_KEY]) {
     [self stopMonitoring];
     [self startMonitoring];
   }

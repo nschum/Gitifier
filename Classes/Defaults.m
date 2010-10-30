@@ -20,7 +20,8 @@ NSDictionary *defaultPreferenceValues;
     yes, IGNORE_OWN_COMMITS,
     no, STICKY_NOTIFICATIONS_KEY,
     yes, SHOW_DIFF_WINDOW_KEY,
-    no, OPEN_DIFF_IN_BROWSER_KEY
+    no, OPEN_DIFF_IN_BROWSER_KEY,
+    yes, KEEP_WINDOWS_ON_TOP_KEY
   );
 }
 
