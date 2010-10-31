@@ -62,7 +62,6 @@ int main() {
 				[PasswordHelper setPassword:[promptArray objectAtIndex:0] forHost:hostnameString user:usernameString];
 				pStr=[promptArray objectAtIndex:0];
         wakeUpGitifier(pid);
-				return 1;
 			} else if ( returnCode == 1 ){ // User cancelled so we'll just abort
 				// We return a non zero exit code here which should cause ssh to abort 
         wakeUpGitifier(pid);
