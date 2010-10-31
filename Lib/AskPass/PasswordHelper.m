@@ -81,6 +81,25 @@
 	return returnArray;	
 }
 
++ (void) removePasswordForHost:(NSString*)hostname user:(NSString*)username {
+  if (hostname == nil || username == nil) {
+    return;
+  }
+
+  // Look for a password in the keychain
+  SecKeychainItemRef itemRef = nil;
+  UInt32 passwordLen = 0;
+  void *passwordData = NULL;
+
+  OSStatus findKeychainItemStatus;
+  findKeychainItemStatus = [PasswordHelper getPasswordKeychain:&passwordData length:&passwordLen itemRef:&itemRef host:hostname user:username];
+
+  if (findKeychainItemStatus == noErr) {
+    SecKeychainItemDelete(itemRef);
+    SecKeychainItemFreeContent(NULL, passwordData);
+    CFRelease(itemRef);
+  }
+}
 
 //! Simply looks for the keychain entry corresponding to a username and hostname and returns it. Returns nil if the password is not found
 + (NSString*) passwordForHost:(NSString*)hostnameStr user:(NSString*) usernameStr {

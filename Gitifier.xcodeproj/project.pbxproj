@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		581C9E91127E046D003ECF6A /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; };
+		581C9E9E127E050A003ECF6A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
 		582E744F126B1D3E0077D935 /* GrowlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 582E744E126B1D3E0077D935 /* GrowlController.m */; };
 		585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585886621264DB7A00AD2F1A /* CommitWindow.xib */; };
 		5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858866A1264E25000AD2F1A /* CommitWindowController.m */; };
@@ -173,6 +175,7 @@
 				58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */,
 				58DEC0C61242C16600DE7C7E /* Growl.framework in Frameworks */,
 				588ACDCF124C153A004F3785 /* Sparkle.framework in Frameworks */,
+				581C9E9E127E050A003ECF6A /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +508,7 @@
 				5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */,
 				5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */,
 				582E744F126B1D3E0077D935 /* GrowlController.m in Sources */,
+				581C9E91127E046D003ECF6A /* PasswordHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

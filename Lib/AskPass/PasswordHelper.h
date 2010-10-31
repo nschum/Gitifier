@@ -14,7 +14,7 @@
 + (BOOL) setPassword:(NSString*)newPassword forHost:(NSString*)hostname user:(NSString*) username;
 + (NSString*) passwordForHost:(NSString*)hostname user:(NSString*) username;
 + (NSArray *) promptForPassword:(NSString*)hostname user:(NSString*) username;
-
++ (void) removePasswordForHost:(NSString*)hostname user:(NSString*)username;
 
 
 

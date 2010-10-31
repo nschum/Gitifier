@@ -5,8 +5,10 @@
 // Licensed under MIT license
 // -------------------------------------------------------
 
+#import "RegexKitLite.h"
 #import "Git.h"
 #import "GitifierAppDelegate.h"
+#import "PasswordHelper.h"
 #import "Utils.h"
 
 static NSString *gitExecutable = nil;
@@ -108,6 +110,9 @@ static NSString *gitExecutable = nil;
       if (status == 0) {
         [self notifyDelegateWithSelector: @selector(commandCompleted:output:) command: command output: output];
       } else {
+        if ([output isMatchedByRegex: @"Authentication failed"]) {
+          [PasswordHelper removePasswordForHost: repositoryUrl user: @"Gitifier"];
+        }
         [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: output];
       }
     }
