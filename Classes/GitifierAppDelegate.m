@@ -35,6 +35,16 @@
   [[GrowlController sharedController] setRepositoryListController: repositoryListController];
   [[GrowlController sharedController] checkGrowlAvailability];
 
+  NSNotificationCenter *center = [[NSWorkspace sharedWorkspace] notificationCenter];
+  [center addObserver: self
+             selector: @selector(wakeupEvent:)
+                 name: NSWorkspaceDidWakeNotification
+               object: nil];
+  [center addObserver: self
+             selector: @selector(wakeupEvent:)
+                 name: NSWorkspaceSessionDidBecomeActiveNotification
+               object: nil];
+
   [repositoryListController loadRepositories];
   [statusBarController createStatusBarItem];
   [monitor startMonitoring];
@@ -43,6 +53,12 @@
   if ([[repositoryListController repositoryList] count] == 0) {
     [self showPreferences: self];
   }
+}
+
+- (void) wakeupEvent: (NSNotification *) notification {
+  // on a new day, notify the user about repositories that are still failing
+  // also, give the network some time to reconnect after the wakeup
+  [repositoryListController performSelector: @selector(resetRepositoryStatuses) withObject: nil afterDelay: 10.0];
 }
 
 // --- actions ---

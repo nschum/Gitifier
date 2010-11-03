@@ -42,6 +42,10 @@
   [self saveRepositories];
 }
 
+- (void) resetRepositoryStatuses {
+  [[self arrangedObjects] makeObjectsPerformSelector: @selector(resetStatus)];
+}
+
 - (void) loadRepositories {
   NSArray *hashes = [GitifierDefaults arrayForKey: REPOSITORY_LIST_KEY];
   if (hashes) {

@@ -64,6 +64,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     git.repositoryUrl = self.url;
     name = [self nameFromUrl: url];
     commitUrlPattern = [self findCommitUrlPattern];
+    status = ActiveRepository;
     return self;
   } else {
     return nil;
@@ -72,6 +73,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (NSDictionary *) hashRepresentation {
   return PSDict(url, @"url", name, @"name");
+}
+
+- (void) resetStatus {
+  status = ActiveRepository;
 }
 
 - (NSString *) findCommitUrlPattern {
@@ -150,6 +155,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       [git runCommand: @"log" withArguments: arguments inPath: workingCopy];
     } else {
       isBeingUpdated = NO;
+      status = ActiveRepository;
     }
   } else if ([command isEqual: @"log"]) {
     NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex:
@@ -165,6 +171,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       [commits addObject: commit];
     }
     isBeingUpdated = NO;
+    status = ActiveRepository;
     [delegate commitsReceived: commits inRepository: self];
   }
 }
@@ -173,7 +180,8 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   isBeingUpdated = NO;
   if ([command isEqual: @"clone"]) {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
-  } else {
+  } else if (status != UnavailableRepository) {
+    status = UnavailableRepository;
     NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
     [[GrowlController sharedController] showGrowlWithError: PSFormat(@"Command %@ failed: %@", command, truncated)];
   }

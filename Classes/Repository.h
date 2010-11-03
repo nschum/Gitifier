@@ -9,6 +9,8 @@
 
 @class Repository;
 
+typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
+
 @protocol RepositoryDelegate
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository;
 @end
@@ -19,6 +21,7 @@
 @class Git;
 
 @interface Repository : NSObject {
+  RepositoryStatus status;
   Git *git;
   NSString *url;
   NSString *name;
@@ -38,6 +41,7 @@
 - (void) fetchNewCommits;
 - (void) cancelCommands;
 - (void) deleteWorkingCopy;
+- (void) resetStatus;
 - (NSDictionary *) hashRepresentation;
 - (NSString *) workingCopyDirectory;
 - (BOOL) directoryExists: (NSString *) directory;
