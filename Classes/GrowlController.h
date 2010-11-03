@@ -24,7 +24,7 @@
 // public
 + (GrowlController *) sharedController;
 - (void) checkGrowlAvailability;
-- (void) showGrowlWithError: (NSString *) message;
+- (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository;
 - (void) showGrowlWithCommit: (Commit *) commit repository: (Repository *) repository;
 
 // private

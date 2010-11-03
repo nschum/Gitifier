@@ -193,8 +193,8 @@
 }
 
 - (void) repositoryCouldNotBeCloned: (Repository *) repository {
-  NSString *message = PSFormat(@"Cached copy of repository %@ was deleted and can't be restored.", repository.name);
-  [[GrowlController sharedController] showGrowlWithError: message];
+  [[GrowlController sharedController] showGrowlWithError: @"Cached copy was deleted and can't be restored."
+                                              repository: repository];
 }
 
 @end

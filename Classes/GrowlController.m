@@ -86,9 +86,16 @@
                              clickContext: commitData];
 }  
 
-- (void) showGrowlWithError: (NSString *) message {
-  NSLog(@"Error: %@", message);
-  [GrowlApplicationBridge notifyWithTitle: @"Error"
+- (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository {
+  NSString *title;
+  if (repository) {
+    NSLog(@"Error in %@: %@", repository.name, message);
+    title = PSFormat(@"Error in %@", repository.name);
+  } else {
+    NSLog(@"Error: %@", message);
+    title = @"Error";
+  }
+  [GrowlApplicationBridge notifyWithTitle: title
                               description: message
                          notificationName: RepositoryUpdateFailedGrowl
                                  iconData: [self growlIcon]
