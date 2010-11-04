@@ -77,7 +77,7 @@
 
   if (workingCopy && [repository directoryExists: workingCopy]) {
     [spinner performSelector: @selector(startAnimation:) withObject: self afterDelay: 0.1];
-    [git runCommand: @"show" withArguments: PSArray(commit.gitHash, @"--color=always", @"--format=%b") inPath: workingCopy];
+    [git runCommand: @"show" withArguments: PSArray(commit.gitHash, @"--color", @"--pretty=format:%b") inPath: workingCopy];
   } else {
     [self displayText: ERROR_TEXT];
   }
