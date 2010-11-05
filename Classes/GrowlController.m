@@ -40,9 +40,7 @@
     if (output == NSAlertDefaultReturn) {
       [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://growl.info"]];
     }
-  }
-
-  if (![GrowlApplicationBridge isGrowlRunning]) {
+  } else if (![GrowlApplicationBridge isGrowlRunning]) {
     NSInteger output = NSRunAlertPanel(@"Warning: Growl is not running.",
                                        @"To get any notifications from Gitifier, you need to start Growl.",
                                        @"Open Growl Preferences", @"Nevermind", nil);
