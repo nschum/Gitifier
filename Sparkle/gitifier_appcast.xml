@@ -9,6 +9,43 @@
     <language>en</language>
 
     <item>
+      <title>Gitifier 1.1</title>
+      <description>
+        <![CDATA[
+          <html>
+            <head>
+              <meta http-equiv="content-type" content="text/html;charset=utf-8">
+              <title>Gitifier 1.1</title>
+              <link href="http://github.com/psionides/gitifier/raw/master/Sparkle/appcast.css"
+                type="text/css" rel="stylesheet" media="all">
+            </head>
+
+            <body>
+              <br>
+              <h3>Release 1.1</h3>
+              <ul>
+                <li>showing commit diffs by clicking on growl notifications</li>
+                <li>some commits (e.g. from GitHub) can also be opened in the browser</li>
+                <li>keep windows on top option (on by default)</li>
+                <li>error notifications appear less often</li>
+                <li>switched repo/author order in growl header</li>
+                <li>fixed some issues with password dialog</li>
+                <li>checking if growl is installed at startup</li>
+              </ul>
+            </body>
+          </html>
+        ]]>
+      </description>
+      <pubDate>Tue, 09 Nov 2010 22:05:21 +0000</pubDate>
+      <enclosure
+        url="http://github.com/downloads/psionides/gitifier/Gitifier-1.1.zip"
+        sparkle:version="1.1"
+        length="890301"
+        type="application/octet-stream"
+        sparkle:dsaSignature="MCwCFB3BX+uyL/ll0t6Mylx31rkx/G5oAhR4uyydjdvO0uQZpGGaWIZvcnM5gw==" />
+    </item>
+
+    <item>
       <title>Gitifier 1.0</title>
       <description>
         <![CDATA[
