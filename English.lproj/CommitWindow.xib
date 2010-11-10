@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -47,6 +47,7 @@
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<string key="NSWindowContentMinSize">{600, 450}</string>
 				<object class="NSView" key="NSWindowView" id="1006">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -54,7 +55,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSBox" id="735794697">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">34</int>
+							<int key="NSvFlags">18</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSView" id="700003402">
@@ -64,7 +65,7 @@
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<object class="NSScrollView" id="178518729">
 											<reference key="NSNextResponder" ref="700003402"/>
-											<int key="NSvFlags">290</int>
+											<int key="NSvFlags">274</int>
 											<object class="NSMutableArray" key="NSSubviews">
 												<bool key="EncodedWithXMLCoder">YES</bool>
 												<object class="NSClipView" id="1033106024">
@@ -75,7 +76,7 @@
 														<object class="NSTextView" id="426762805">
 															<reference key="NSNextResponder" ref="1033106024"/>
 															<int key="NSvFlags">2322</int>
-															<string key="NSFrameSize">{223, 14}</string>
+															<string key="NSFrameSize">{10, 14}</string>
 															<reference key="NSSuperview" ref="1033106024"/>
 															<object class="NSTextContainer" key="NSTextContainer" id="695930140">
 																<object class="NSLayoutManager" key="NSLayoutManager">
@@ -93,7 +94,7 @@
 																	<nil key="NSDelegate"/>
 																</object>
 																<reference key="NSTextView" ref="426762805"/>
-																<double key="NSWidth">223</double>
+																<double key="NSWidth">10</double>
 																<int key="NSTCFlags">1</int>
 															</object>
 															<object class="NSTextViewSharedData" key="NSSharedData">
@@ -162,7 +163,7 @@
 															</object>
 															<int key="NSTVFlags">7</int>
 															<string key="NSMaxSize">{843, 1e+07}</string>
-															<string key="NSMinize">{223, 0}</string>
+															<string key="NSMinize">{0, 0}</string>
 															<nil key="NSDelegate"/>
 														</object>
 													</object>
@@ -337,7 +338,7 @@
 						</object>
 						<object class="NSBox" id="143113689">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">34</int>
+							<int key="NSvFlags">10</int>
 							<string key="NSFrame">{{12, 422}, {752, 5}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<string key="NSOffsets">{0, 0}</string>
@@ -391,7 +392,7 @@
 						</object>
 						<object class="NSButton" id="1034521208">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">265</int>
 							<string key="NSFrame">{{556, 484}, {200, 29}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<bool key="NSEnabled">YES</bool>
@@ -414,6 +415,7 @@
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSMinSize">{600, 472}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
 			<object class="NSUserDefaultsController" id="417763481">
@@ -486,6 +488,30 @@
 						<reference key="destination" ref="334193391"/>
 					</object>
 					<int key="connectionID">105</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">scrollView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="178518729"/>
+					</object>
+					<int key="connectionID">106</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">scrollViewBox</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="735794697"/>
+					</object>
+					<int key="connectionID">107</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">separator</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="143113689"/>
+					</object>
+					<int key="connectionID">108</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -702,6 +728,8 @@
 					<string>1.NSWindowTemplate.visibleAtLaunch</string>
 					<string>1.WindowOrigin</string>
 					<string>1.editorWindowContentRectSynchronizationRect</string>
+					<string>1.windowTemplate.hasMinSize</string>
+					<string>1.windowTemplate.minSize</string>
 					<string>103.IBPluginDependency</string>
 					<string>103.IBViewBoundsToFrameTransform</string>
 					<string>2.IBPluginDependency</string>
@@ -738,12 +766,14 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{391, 396}, {776, 532}}</string>
+					<string>{{246, 377}, {776, 532}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{391, 396}, {776, 532}}</string>
+					<string>{{246, 377}, {776, 532}}</string>
 					<boolean value="NO"/>
 					<string>{196, 240}</string>
 					<string>{{202, 428}, {480, 270}}</string>
+					<boolean value="YES"/>
+					<string>{600, 450}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDxIAAxAAAAA</bytes>
@@ -817,7 +847,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">105</int>
+			<int key="maxID">108</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -842,6 +872,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>authorLabel</string>
 							<string>dateLabel</string>
+							<string>scrollView</string>
+							<string>scrollViewBox</string>
+							<string>separator</string>
 							<string>spinner</string>
 							<string>subjectLabel</string>
 							<string>textView</string>
@@ -851,6 +884,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
+							<string>NSScrollView</string>
+							<string>NSBox</string>
+							<string>NSBox</string>
 							<string>NSProgressIndicator</string>
 							<string>NSTextField</string>
 							<string>NSTextView</string>
@@ -863,6 +899,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>authorLabel</string>
 							<string>dateLabel</string>
+							<string>scrollView</string>
+							<string>scrollViewBox</string>
+							<string>separator</string>
 							<string>spinner</string>
 							<string>subjectLabel</string>
 							<string>textView</string>
@@ -877,6 +916,18 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">dateLabel</string>
 								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">scrollView</string>
+								<string key="candidateClassName">NSScrollView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">scrollViewBox</string>
+								<string key="candidateClassName">NSBox</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">separator</string>
+								<string key="candidateClassName">NSBox</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">spinner</string>

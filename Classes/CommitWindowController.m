@@ -17,7 +17,8 @@
 
 @implementation CommitWindowController
 
-@synthesize textView, authorLabel, dateLabel, subjectLabel, viewInBrowserButton, spinner;
+@synthesize textView, authorLabel, dateLabel, subjectLabel, viewInBrowserButton, spinner,
+  scrollView, scrollViewBox, separator;
 
 - (id) initWithRepository: (Repository *) aRepository commit: (Commit *) aCommit {
   self = [super initWithWindowNibName: @"CommitWindow"];
@@ -37,7 +38,7 @@
 
   authorLabel.stringValue = PSFormat(@"%@ <%@>", commit.authorName, commit.authorEmail);
   subjectLabel.stringValue = commit.subject;
-  [self resizeLabelToFit: subjectLabel];
+  [self resizeSubjectLabelToFit];
 
   [textView.textContainer setWidthTracksTextView: NO];
   [textView.textContainer setContainerSize: NSMakeSize(1000000, 1000000)];
@@ -57,9 +58,9 @@
   [self loadCommitDiff];
 }
 
-- (void) resizeLabelToFit: (NSControl *) label {
-  NSAttributedString *text = label.attributedStringValue;
-  NSSize currentSize = label.frame.size;
+- (void) resizeSubjectLabelToFit {
+  NSAttributedString *text = subjectLabel.attributedStringValue;
+  NSSize currentSize = subjectLabel.frame.size;
   NSRect requiredFrame = [text boundingRectWithSize: NSMakeSize(currentSize.width, 200.0)
                                             options: NSStringDrawingUsesLineFragmentOrigin];
   CGFloat difference = requiredFrame.size.height - currentSize.height;
@@ -68,6 +69,9 @@
   [subjectLabel psMoveVerticallyBy: -difference];
   [self.window psResizeVerticallyBy: difference];
   [self.window psMoveVerticallyBy: -difference];
+  [scrollViewBox psResizeVerticallyBy: -difference];
+  [scrollView psResizeVerticallyBy: -difference];
+  [separator psMoveVerticallyBy: -difference];
 }
 
 - (void) loadCommitDiff {

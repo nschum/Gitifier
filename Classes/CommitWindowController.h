@@ -21,6 +21,9 @@
   ANSIEscapeHelper *colorConverter;
   NSButton *viewInBrowserButton;
   NSProgressIndicator *spinner;
+  NSScrollView *scrollView;
+  NSBox *scrollViewBox;
+  NSBox *separator;
 }
 
 @property IBOutlet NSTextView *textView;
@@ -29,6 +32,9 @@
 @property IBOutlet NSTextField *subjectLabel;
 @property IBOutlet NSButton *viewInBrowserButton;
 @property IBOutlet NSProgressIndicator *spinner;
+@property IBOutlet NSScrollView *scrollView;
+@property IBOutlet NSBox *scrollViewBox;
+@property IBOutlet NSBox *separator;
 
 // public
 - (id) initWithRepository: (Repository *) aRepository commit: (Commit *) commit;
@@ -38,6 +44,6 @@
 - (void) loadCommitDiff;
 - (void) handleResult: (id) result;
 - (void) displayText: (id) text;
-- (void) resizeLabelToFit: (NSControl *) label;
+- (void) resizeSubjectLabelToFit;
 
 @end
