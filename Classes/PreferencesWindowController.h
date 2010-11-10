@@ -39,7 +39,6 @@
 - (IBAction) openProjectWebsite: (id) sender;
 
 // private
-- (void) linkifyButton: (NSButton *) label;
 - (void) updateUserEmailText: (NSString *) email;
 
 @end
