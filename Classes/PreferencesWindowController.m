@@ -37,7 +37,6 @@
 
   [self updateUserEmailText: [[NSApp delegate] userEmail]];
   PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
-  ObserveDefaults(KEEP_WINDOWS_ON_TOP_KEY);
 
   // 10.6 has significantly different API for this dialog, and I'm too lazy to code both versions
   if (![NSOpenPanel instancesRespondToSelector: @selector(setShowsHiddenFiles:)]) {
@@ -69,7 +68,6 @@
 - (void) showWindow: (id) sender {
   if (!self.window || !self.window.isVisible) {
     [super showWindow: sender];
-    [[self window] setKeepOnTop: [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY]];
   }
 }
 
@@ -162,15 +160,6 @@
   }
 
   return NO;
-}
-
-- (void) observeValueForKeyPath: (NSString *) keyPath
-                       ofObject: (id) object
-                         change: (NSDictionary *) change
-                        context: (void *) context {
-  if (self.window && [[keyPath lastKeyPathElement] isEqual: KEEP_WINDOWS_ON_TOP_KEY]) {
-    self.window.keepOnTop = [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY];
-  }
 }
 
 @end

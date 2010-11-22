@@ -29,7 +29,9 @@
   repositoryList = [NSMutableArray array];
   [Defaults registerDefaults];
 
+  PSObserve(nil, NSWindowDidBecomeMainNotification, windowBecameMain:);
   PSObserve(nil, GitExecutableSetNotification, gitPathUpdated);
+  ObserveDefaults(KEEP_WINDOWS_ON_TOP_KEY);
   [self loadGitPath];
 
   [[GrowlController sharedController] setRepositoryListController: repositoryListController];
@@ -59,6 +61,30 @@
   // on a new day, notify the user about repositories that are still failing
   // also, give the network some time to reconnect after the wakeup
   [repositoryListController performSelector: @selector(resetRepositoryStatuses) withObject: nil afterDelay: 10.0];
+}
+
+- (void) windowBecameMain: (NSNotification *) notification {
+  NSWindow *window = [notification object];
+  window.keepOnTop = [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY];
+}
+
+- (void) observeValueForKeyPath: (NSString *) keyPath
+                       ofObject: (id) object
+                         change: (NSDictionary *) change
+                        context: (void *) context {
+  if ([[keyPath lastKeyPathElement] isEqual: KEEP_WINDOWS_ON_TOP_KEY]) {
+    BOOL keepOnTop = [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY];
+    NSArray *windows = [NSApp windows];
+    NSWindow *mainWindow = nil;
+    for (NSWindow *window in windows) {
+      if ([window isMainWindow]) {
+        mainWindow = window;
+      } else {
+        window.keepOnTop = keepOnTop;
+      }
+    }
+    mainWindow.keepOnTop = keepOnTop;
+  }
 }
 
 // --- actions ---
