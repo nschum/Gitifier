@@ -21,6 +21,11 @@ line.
 
 ## Changelog
 
+### Version 1.1.1
+
+* fixed layout issues in commit diff window
+* fixed Sparkle update window hiding behind preferences window
+
 ### Version 1.1
 
 * showing commit diffs by clicking on growl notifications

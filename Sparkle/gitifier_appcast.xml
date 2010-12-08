@@ -9,6 +9,38 @@
     <language>en</language>
 
     <item>
+      <title>Gitifier 1.1.1</title>
+      <description>
+        <![CDATA[
+          <html>
+            <head>
+              <meta http-equiv="content-type" content="text/html;charset=utf-8">
+              <title>Gitifier 1.1.1</title>
+              <link href="http://github.com/psionides/gitifier/raw/master/Sparkle/appcast.css"
+                type="text/css" rel="stylesheet" media="all">
+            </head>
+
+            <body>
+              <br>
+              <h3>Version 1.1.1 - bugfix release:</h3>
+              <ul>
+                <li>fixed layout issues in commit diff window</li>
+                <li>fixed Sparkle update window hiding behind preferences window</li>
+              </ul>
+            </body>
+          </html>
+        ]]>
+      </description>
+      <pubDate>Wed, 08 Dec 2010 20:51:34 +0000</pubDate>
+      <enclosure
+        url="http://github.com/downloads/psionides/gitifier/Gitifier-1.1.1.zip"
+        sparkle:version="1.1.1"
+        length="893252"
+        type="application/octet-stream"
+        sparkle:dsaSignature="MCwCFD2/+BXC/eHrU9wsD9l/lG9+aKMnAhQxdmawLN8RKt/MbhGNXTWE0+TMyA==" />
+    </item>
+
+    <item>
       <title>Gitifier 1.1</title>
       <description>
         <![CDATA[
