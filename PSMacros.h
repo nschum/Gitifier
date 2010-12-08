@@ -8,6 +8,7 @@
 #define PSGenericCell @"PSGenericCell"
 
 #define PSArray(...)      [NSArray arrayWithObjects: __VA_ARGS__, nil]
+#define PSBool(...)       [NSNumber numberWithBool: __VA_ARGS__]
 #define PSDict(...)       [NSDictionary dictionaryWithObjectsAndKeys: __VA_ARGS__, nil]
 #define PSFloat(i)        [NSNumber numberWithFloat: i]
 #define PSFormat(...)     [NSString stringWithFormat: __VA_ARGS__]
