@@ -126,7 +126,7 @@
 
     NSFont *standardFont = [NSFont systemFontOfSize: 13.0];
     NSFont *smallerFont = [NSFont systemFontOfSize: 11.0];
-    NSColor *gray = [NSColor colorWithDeviceWhite: 0.5 alpha: 1.0];
+    NSColor *gray = [NSColor colorWithCalibratedWhite: 0.5 alpha: 1.0];
 
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString: title];
     [text addAttribute: NSFontAttributeName value: standardFont range: labelRange];
