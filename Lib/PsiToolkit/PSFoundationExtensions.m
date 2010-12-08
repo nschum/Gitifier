@@ -19,7 +19,9 @@
 }
 
 - (NSArray *) psSortedArrayUsingField: (NSString *) field ascending: (BOOL) ascending {
-  NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey: field ascending: ascending];
+  NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey: field
+                                                             ascending: ascending
+                                                              selector: @selector(caseInsensitiveCompare:)];
   NSArray *descriptors = [[NSArray alloc] initWithObjects: descriptor, nil];
   NSArray *sortedArray = [self sortedArrayUsingDescriptors: descriptors];
   [descriptor release];
