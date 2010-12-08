@@ -101,7 +101,7 @@
 - (IBAction) quit: (id) sender {
   // if quit fails because of an open sheet, move the window to front
   [NSApp performSelector: @selector(activateIgnoringOtherApps:)
-              withObject: [NSNumber numberWithBool: YES]
+              withObject: PSBool(YES)
               afterDelay: 0.1];
   [NSApp terminate: self];
 }
