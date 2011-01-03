@@ -1,8 +1,11 @@
 <?xml version='1.0'?>
 <!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
 <signatures version='0.9'>
-<class name='PSModel'>
-<method selector='isEqual:'>
+<class name='PSAccount'>
+<method selector='hasAllRequiredProperties'>
+<retval type='B'/>
+</method>
+<method selector='isPropertySavedSecurely:' class_method='true'>
 <retval type='B'/>
 </method>
 </class>

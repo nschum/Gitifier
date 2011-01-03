@@ -2,12 +2,14 @@
 // PSCocoaExtensions.m
 //
 // Copyright (c) 2010 Jakub Suder <jakub.suder@gmail.com>
-// Licensed under WTFPL license
+// Licensed under MIT license
 // -------------------------------------------------------
 
-#if !TARGET_OS_IPHONE
+#ifdef PSITOOLKIT_ENABLE_COCOA
 
 #import "PSCocoaExtensions.h"
+
+// ------------------------------------------------------------------------------------------------
 
 @implementation NSControl (PsiToolkit)
 
@@ -21,6 +23,8 @@
 
 @end
 
+// ------------------------------------------------------------------------------------------------
+
 @implementation NSTextField (PsiToolkit)
 
 - (void) psUnselectText {
@@ -29,6 +33,8 @@
 }
 
 @end
+
+// ------------------------------------------------------------------------------------------------
 
 @implementation NSView (PsiToolkit)
 
@@ -89,6 +95,8 @@
 }
 
 @end
+
+// ------------------------------------------------------------------------------------------------
 
 @implementation NSWindow (PsiToolkit)
 

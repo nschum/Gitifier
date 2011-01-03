@@ -1,9 +1,13 @@
 // -------------------------------------------------------
 // PSModelManager.h
 //
-// Copyright (c) 2010 Jakub Suder <jakub.suder@gmail.com>
-// Licensed under WTFPL license
+// Copyright (c) 2010-11 Jakub Suder <jakub.suder@gmail.com>
+// Licensed under MIT license
 // -------------------------------------------------------
+
+/*
+  Class storage helper used internally by PSModel. Nothing interesting here, move along.
+*/
 
 #import <Foundation/Foundation.h>
 

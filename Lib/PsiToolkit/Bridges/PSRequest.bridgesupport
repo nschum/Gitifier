@@ -1,0 +1,11 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='0.9'>
+<enum name='PSAnyResponseType' value='0'/>
+<enum name='PSBinaryResponseType' value='6'/>
+<enum name='PSHTMLResponseType' value='1'/>
+<enum name='PSImageDataResponseType' value='3'/>
+<enum name='PSImageResponseType' value='2'/>
+<enum name='PSJSONResponseType' value='4'/>
+<enum name='PSXMLResponseType' value='5'/>
+</signatures>

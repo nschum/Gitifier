@@ -1,0 +1,30 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='0.9'>
+<string_constant name='PSDeleteMethod' nsstring='true' value='DELETE'/>
+<string_constant name='PSGenericCell' nsstring='true' value='PSGenericCell'/>
+<string_constant name='PSGetMethod' nsstring='true' value='GET'/>
+<string_constant name='PSPostMethod' nsstring='true' value='POST'/>
+<string_constant name='PSPutMethod' nsstring='true' value='PUT'/>
+<string_constant name='PsiToolkitErrorDomain' nsstring='true' value='PsiToolkitErrorDomain'/>
+<enum name='PSDay' value='86400'/>
+<enum name='PSGigabyte' value='1073741824'/>
+<enum name='PSHTTPStatusAccepted' value='202'/>
+<enum name='PSHTTPStatusBadGateway' value='502'/>
+<enum name='PSHTTPStatusBadRequest' value='400'/>
+<enum name='PSHTTPStatusConflict' value='409'/>
+<enum name='PSHTTPStatusCreated' value='201'/>
+<enum name='PSHTTPStatusForbidden' value='403'/>
+<enum name='PSHTTPStatusInternalServerError' value='500'/>
+<enum name='PSHTTPStatusNotFound' value='404'/>
+<enum name='PSHTTPStatusOK' value='200'/>
+<enum name='PSHTTPStatusPreconditionFailed' value='412'/>
+<enum name='PSHTTPStatusServiceUnavailable' value='503'/>
+<enum name='PSHTTPStatusUnauthorized' value='401'/>
+<enum name='PSHour' value='3600'/>
+<enum name='PSIncorrectContentTypeError' value='-1'/>
+<enum name='PSJSONParsingError' value='-2'/>
+<enum name='PSKilobyte' value='1024'/>
+<enum name='PSMegabyte' value='1048576'/>
+<enum name='PSMinute' value='60'/>
+</signatures>

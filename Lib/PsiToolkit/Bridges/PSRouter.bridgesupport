@@ -1,0 +1,8 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='0.9'>
+<informal_protocol name='NSObject'>
+<method type='@12@0:4#8' selector='pathForModel:'/>
+<method type='@12@0:4@8' selector='pathForObject:'/>
+</informal_protocol>
+</signatures>

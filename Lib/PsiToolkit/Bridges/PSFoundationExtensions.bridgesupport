@@ -11,13 +11,19 @@
 <retval type='B'/>
 </method>
 </class>
+<class name='NSDictionary'>
+<method variadic='true' selector='psDictionaryWithKeysAndObjects:' class_method='true'/>
+</class>
 <class name='NSNull'>
-<method selector='psIsBlank'>
+<method selector='psIsPresent'>
 <retval type='B'/>
 </method>
 </class>
 <class name='NSString'>
-<method selector='psIsBlank'>
+<method selector='psContainsString:'>
+<retval type='B'/>
+</method>
+<method selector='psIsPresent'>
 <retval type='B'/>
 </method>
 </class>

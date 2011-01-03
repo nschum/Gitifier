@@ -2,8 +2,10 @@
 // PSModelManager.m
 //
 // Copyright (c) 2010 Jakub Suder <jakub.suder@gmail.com>
-// Licensed under WTFPL license
+// Licensed under MIT license
 // -------------------------------------------------------
+
+#ifdef PSITOOLKIT_ENABLE_MODELS
 
 #import "PSModelManager.h"
 
@@ -37,3 +39,5 @@ static NSMutableDictionary *managers;
 }
 
 @end
+
+#endif

@@ -2,24 +2,14 @@
 // PSPathBuilder.m
 //
 // Copyright (c) 2010 Jakub Suder <jakub.suder@gmail.com>
-// Licensed under WTFPL license
+// Licensed under MIT license
 // -------------------------------------------------------
 
-#import "PSPathBuilder.h"
-#import "PSMacros.h"
-#import "PSModel.h"
+#ifdef PSITOOLKIT_ENABLE_NETWORK
 
-@interface PSPathBuilder ()
-- (id) initWithBasePath: (NSString *) path;
-@end
+#import "PSPathBuilder.h"
 
 @implementation PSPathBuilder
-
-+ (PSPathBuilder *) builderWithBasePath: (NSString *) path record: (PSModel *) record {
-  NSString *basePath = PSFormat(path, record.recordIdValue);
-  PSPathBuilder *builder = [[PSPathBuilder alloc] initWithBasePath: basePath];
-  return [builder autorelease];
-}
 
 + (PSPathBuilder *) builderWithBasePath: (NSString *) path {
   PSPathBuilder *builder = [[PSPathBuilder alloc] initWithBasePath: path];
@@ -30,19 +20,19 @@
   self = [super init];
   if (self) {
     fullPath = [[NSMutableString alloc] initWithString: path];
-    hasParams = NO;
+    hasParams = [fullPath psContainsString: @"?"];
   }
   return self;
 }
 
-- (void) setObject: (id) value forKey: (NSString *) key {
+- (void) addParameterWithName: (NSString *) name value: (id) value {
   [fullPath appendString: (hasParams ? @"&" : @"?")];
-  [fullPath appendString: PSFormat(@"%@=%@", key, [value description])];
+  [fullPath appendString: PSFormat(@"%@=%@", name, [value description])];
   hasParams = YES;
 }
 
-- (void) setInt: (NSInteger) number forKey: (NSString *) key {
-  [self setObject: PSInt(number) forKey: key];
+- (void) addParameterWithName: (NSString *) name integerValue: (NSInteger) value {
+  [self addParameterWithName: name value: PSInt(value)];
 }
 
 - (NSString *) path {
@@ -50,3 +40,5 @@
 }
 
 @end
+
+#endif
