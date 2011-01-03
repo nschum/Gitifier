@@ -73,7 +73,7 @@
 
 - (void) showGrowlWithCommit: (Commit *) commit repository: (Repository *) repository {
   BOOL sticky = [GitifierDefaults boolForKey: STICKY_NOTIFICATIONS_KEY];
-  NSDictionary *commitData = PSDict([commit toDictionary], @"commit", repository.url, @"repository");
+  NSDictionary *commitData = PSHash(@"commit", [commit toDictionary], @"repository", repository.url);
 
   [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", repository.name, commit.authorName)
                               description: commit.subject

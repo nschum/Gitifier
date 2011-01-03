@@ -25,12 +25,12 @@
 }
 
 - (NSDictionary *) toDictionary {
-  return PSDict(
-    authorName, @"authorName",
-    authorEmail, @"authorEmail",
-    subject, @"subject",
-    gitHash, @"gitHash",
-    date, @"date"
+  return PSHash(
+    @"authorName", authorName,
+    @"authorEmail", authorEmail,
+    @"subject", subject,
+    @"gitHash", gitHash,
+    @"date", date
   );
 }
 

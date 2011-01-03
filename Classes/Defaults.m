@@ -12,14 +12,14 @@ NSDictionary *defaultPreferenceValues;
 @implementation Defaults
 
 + (void) initialize {
-  defaultPreferenceValues = PSDict(
-    PSInt(5),    MONITOR_INTERVAL_KEY,
-    PSBool(YES), IGNORE_MERGES_KEY,
-    PSBool(YES), IGNORE_OWN_COMMITS,
-    PSBool(NO),  STICKY_NOTIFICATIONS_KEY,
-    PSBool(YES), SHOW_DIFF_WINDOW_KEY,
-    PSBool(NO),  OPEN_DIFF_IN_BROWSER_KEY,
-    PSBool(YES), KEEP_WINDOWS_ON_TOP_KEY
+  defaultPreferenceValues = PSHash(
+    MONITOR_INTERVAL_KEY,      PSInt(5),
+    IGNORE_MERGES_KEY,         PSBool(YES),
+    IGNORE_OWN_COMMITS,        PSBool(YES),
+    STICKY_NOTIFICATIONS_KEY,  PSBool(NO),
+    SHOW_DIFF_WINDOW_KEY,      PSBool(YES),
+    OPEN_DIFF_IN_BROWSER_KEY,  PSBool(NO),
+    KEEP_WINDOWS_ON_TOP_KEY,   PSBool(YES)
   );
 }
 

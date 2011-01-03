@@ -183,7 +183,7 @@
   if ([command isEqual: @"config"]) {
     if (output && output.length > 0) {
       userEmail = [output psTrimmedString];
-      PSNotifyWithData(UserEmailChangedNotification, PSDict(userEmail, @"email"));
+      PSNotifyWithData(UserEmailChangedNotification, PSHash(@"email", userEmail));
     }
   } else if ([command isEqual: @"version"]) {
     if (!output || ![output isMatchedByRegex: @"^git version \\d"]) {

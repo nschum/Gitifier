@@ -4,5 +4,7 @@
 
 #ifdef __OBJC__
   #import <Cocoa/Cocoa.h>
+  #define PSITOOLKIT_ENABLE_COCOA
+  #define PSITOOLKIT_ENABLE_MODELS
   #import "PsiToolkit.h"
 #endif

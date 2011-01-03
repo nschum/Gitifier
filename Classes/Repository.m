@@ -72,7 +72,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (NSDictionary *) hashRepresentation {
-  return PSDict(url, @"url", name, @"name");
+  return PSHash(@"url", url, @"name", name);
 }
 
 - (void) resetStatus {
