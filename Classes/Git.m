@@ -67,12 +67,19 @@ static NSString *gitExecutable = nil;
   if (repositoryUrl) {
     NSString *askPassPath = [[NSBundle mainBundle] pathForResource: @"AskPass" ofType: @""];
     NSInteger pid = [[NSProcessInfo processInfo] processIdentifier];
-    NSDictionary *environment = [[[NSProcessInfo processInfo] environment] mutableCopy];
-    [environment setValue: @"Gitifier" forKey: @"DISPLAY"];
-    [environment setValue: askPassPath forKey: @"SSH_ASKPASS"];
-    [environment setValue: repositoryUrl forKey: @"AUTH_HOSTNAME"];
-    [environment setValue: @"Gitifier" forKey: @"AUTH_USERNAME"];
-    [environment setValue: PSInt(pid) forKey: @"GITIFIER_PID"];
+    NSMutableDictionary *environment = [[[NSProcessInfo processInfo] environment] mutableCopy];
+
+    NSDictionary *customEnvironment = [[NSUserDefaults standardUserDefaults] objectForKey: @"gitEnvironment"];
+    if (customEnvironment) {
+      [environment addEntriesFromDictionary: customEnvironment];
+    }
+
+    [environment setObject: @"Gitifier"   forKey: @"DISPLAY"];
+    [environment setObject: askPassPath   forKey: @"SSH_ASKPASS"];
+    [environment setObject: repositoryUrl forKey: @"AUTH_HOSTNAME"];
+    [environment setObject: @"Gitifier"   forKey: @"AUTH_USERNAME"];
+    [environment setObject: PSInt(pid)    forKey: @"GITIFIER_PID"];
+
     currentTask.environment = environment;
   }
 
