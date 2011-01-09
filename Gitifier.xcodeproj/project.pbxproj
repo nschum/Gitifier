@@ -14,25 +14,6 @@
 		583BB3E312D28431002AD442 /* PSFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 583BB3A312D28430002AD442 /* PSFoundationExtensions.m */; };
 		583BB3E412D28431002AD442 /* PSIntArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 583BB3A512D28430002AD442 /* PSIntArray.m */; };
 		583BB3E512D28431002AD442 /* PSModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 583BB3A812D28430002AD442 /* PSModule.m */; };
-		583BB3E612D28431002AD442 /* PSAccount.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3AA12D28430002AD442 /* PSAccount.bridgesupport */; };
-		583BB3E712D28431002AD442 /* PSCocoaExtensions.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3AB12D28430002AD442 /* PSCocoaExtensions.bridgesupport */; };
-		583BB3E812D28431002AD442 /* PSConnector.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3AC12D28430002AD442 /* PSConnector.bridgesupport */; };
-		583BB3E912D28431002AD442 /* PSConnectorAccount.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3AD12D28430002AD442 /* PSConnectorAccount.bridgesupport */; };
-		583BB3EA12D28431002AD442 /* PSConnectorDelegate.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3AE12D28430002AD442 /* PSConnectorDelegate.bridgesupport */; };
-		583BB3EB12D28431002AD442 /* PSConstants.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3AF12D28430002AD442 /* PSConstants.bridgesupport */; };
-		583BB3EC12D28431002AD442 /* PSDependencies.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B012D28430002AD442 /* PSDependencies.bridgesupport */; };
-		583BB3ED12D28431002AD442 /* PSFoundationExtensions.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B112D28430002AD442 /* PSFoundationExtensions.bridgesupport */; };
-		583BB3EE12D28431002AD442 /* PSIntArray.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B212D28430002AD442 /* PSIntArray.bridgesupport */; };
-		583BB3EF12D28431002AD442 /* PsiToolkit.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B312D28430002AD442 /* PsiToolkit.bridgesupport */; };
-		583BB3F012D28431002AD442 /* PSMacros.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B412D28430002AD442 /* PSMacros.bridgesupport */; };
-		583BB3F112D28431002AD442 /* PSModel.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B512D28430002AD442 /* PSModel.bridgesupport */; };
-		583BB3F212D28431002AD442 /* PSModelManager.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B612D28430002AD442 /* PSModelManager.bridgesupport */; };
-		583BB3F312D28431002AD442 /* PSPathBuilder.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B712D28430002AD442 /* PSPathBuilder.bridgesupport */; };
-		583BB3F412D28431002AD442 /* PSRequest.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B812D28430002AD442 /* PSRequest.bridgesupport */; };
-		583BB3F512D28431002AD442 /* PSResponse.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3B912D28430002AD442 /* PSResponse.bridgesupport */; };
-		583BB3F612D28431002AD442 /* PSRestRouter.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3BA12D28430002AD442 /* PSRestRouter.bridgesupport */; };
-		583BB3F712D28431002AD442 /* PSRouter.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3BB12D28430002AD442 /* PSRouter.bridgesupport */; };
-		583BB3F812D28431002AD442 /* PSSecurityExtensions.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = 583BB3BC12D28430002AD442 /* PSSecurityExtensions.bridgesupport */; };
 		583BB3F912D28431002AD442 /* PSCocoaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 583BB3BF12D28430002AD442 /* PSCocoaExtensions.m */; };
 		583BB3FC12D28431002AD442 /* PSAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 583BB3C412D28430002AD442 /* PSAccount.m */; };
 		583BB3FD12D28431002AD442 /* PSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 583BB3C612D28430002AD442 /* PSModel.m */; };
@@ -128,25 +109,6 @@
 		583BB3A612D28430002AD442 /* PSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMacros.h; sourceTree = "<group>"; };
 		583BB3A712D28430002AD442 /* PSModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSModule.h; sourceTree = "<group>"; };
 		583BB3A812D28430002AD442 /* PSModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSModule.m; sourceTree = "<group>"; };
-		583BB3AA12D28430002AD442 /* PSAccount.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSAccount.bridgesupport; sourceTree = "<group>"; };
-		583BB3AB12D28430002AD442 /* PSCocoaExtensions.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSCocoaExtensions.bridgesupport; sourceTree = "<group>"; };
-		583BB3AC12D28430002AD442 /* PSConnector.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSConnector.bridgesupport; sourceTree = "<group>"; };
-		583BB3AD12D28430002AD442 /* PSConnectorAccount.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSConnectorAccount.bridgesupport; sourceTree = "<group>"; };
-		583BB3AE12D28430002AD442 /* PSConnectorDelegate.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSConnectorDelegate.bridgesupport; sourceTree = "<group>"; };
-		583BB3AF12D28430002AD442 /* PSConstants.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSConstants.bridgesupport; sourceTree = "<group>"; };
-		583BB3B012D28430002AD442 /* PSDependencies.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSDependencies.bridgesupport; sourceTree = "<group>"; };
-		583BB3B112D28430002AD442 /* PSFoundationExtensions.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSFoundationExtensions.bridgesupport; sourceTree = "<group>"; };
-		583BB3B212D28430002AD442 /* PSIntArray.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSIntArray.bridgesupport; sourceTree = "<group>"; };
-		583BB3B312D28430002AD442 /* PsiToolkit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PsiToolkit.bridgesupport; sourceTree = "<group>"; };
-		583BB3B412D28430002AD442 /* PSMacros.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSMacros.bridgesupport; sourceTree = "<group>"; };
-		583BB3B512D28430002AD442 /* PSModel.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSModel.bridgesupport; sourceTree = "<group>"; };
-		583BB3B612D28430002AD442 /* PSModelManager.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSModelManager.bridgesupport; sourceTree = "<group>"; };
-		583BB3B712D28430002AD442 /* PSPathBuilder.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSPathBuilder.bridgesupport; sourceTree = "<group>"; };
-		583BB3B812D28430002AD442 /* PSRequest.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSRequest.bridgesupport; sourceTree = "<group>"; };
-		583BB3B912D28430002AD442 /* PSResponse.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSResponse.bridgesupport; sourceTree = "<group>"; };
-		583BB3BA12D28430002AD442 /* PSRestRouter.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSRestRouter.bridgesupport; sourceTree = "<group>"; };
-		583BB3BB12D28430002AD442 /* PSRouter.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSRouter.bridgesupport; sourceTree = "<group>"; };
-		583BB3BC12D28430002AD442 /* PSSecurityExtensions.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PSSecurityExtensions.bridgesupport; sourceTree = "<group>"; };
 		583BB3BE12D28430002AD442 /* PSCocoaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCocoaExtensions.h; sourceTree = "<group>"; };
 		583BB3BF12D28430002AD442 /* PSCocoaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCocoaExtensions.m; sourceTree = "<group>"; };
 		583BB3C312D28430002AD442 /* PSAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAccount.h; sourceTree = "<group>"; };
@@ -337,7 +299,6 @@
 			isa = PBXGroup;
 			children = (
 				583BB39F12D28430002AD442 /* Base */,
-				583BB3A912D28430002AD442 /* Bridges */,
 				583BB3BD12D28430002AD442 /* Cocoa */,
 				583BB3C212D28430002AD442 /* Models */,
 				583BB3C912D28430002AD442 /* Network */,
@@ -362,32 +323,6 @@
 				583BB3A812D28430002AD442 /* PSModule.m */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		583BB3A912D28430002AD442 /* Bridges */ = {
-			isa = PBXGroup;
-			children = (
-				583BB3AA12D28430002AD442 /* PSAccount.bridgesupport */,
-				583BB3AB12D28430002AD442 /* PSCocoaExtensions.bridgesupport */,
-				583BB3AC12D28430002AD442 /* PSConnector.bridgesupport */,
-				583BB3AD12D28430002AD442 /* PSConnectorAccount.bridgesupport */,
-				583BB3AE12D28430002AD442 /* PSConnectorDelegate.bridgesupport */,
-				583BB3AF12D28430002AD442 /* PSConstants.bridgesupport */,
-				583BB3B012D28430002AD442 /* PSDependencies.bridgesupport */,
-				583BB3B112D28430002AD442 /* PSFoundationExtensions.bridgesupport */,
-				583BB3B212D28430002AD442 /* PSIntArray.bridgesupport */,
-				583BB3B312D28430002AD442 /* PsiToolkit.bridgesupport */,
-				583BB3B412D28430002AD442 /* PSMacros.bridgesupport */,
-				583BB3B512D28430002AD442 /* PSModel.bridgesupport */,
-				583BB3B612D28430002AD442 /* PSModelManager.bridgesupport */,
-				583BB3B712D28430002AD442 /* PSPathBuilder.bridgesupport */,
-				583BB3B812D28430002AD442 /* PSRequest.bridgesupport */,
-				583BB3B912D28430002AD442 /* PSResponse.bridgesupport */,
-				583BB3BA12D28430002AD442 /* PSRestRouter.bridgesupport */,
-				583BB3BB12D28430002AD442 /* PSRouter.bridgesupport */,
-				583BB3BC12D28430002AD442 /* PSSecurityExtensions.bridgesupport */,
-			);
-			path = Bridges;
 			sourceTree = "<group>";
 		};
 		583BB3BD12D28430002AD442 /* Cocoa */ = {
@@ -643,25 +578,6 @@
 				58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */,
 				58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */,
 				585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */,
-				583BB3E612D28431002AD442 /* PSAccount.bridgesupport in Resources */,
-				583BB3E712D28431002AD442 /* PSCocoaExtensions.bridgesupport in Resources */,
-				583BB3E812D28431002AD442 /* PSConnector.bridgesupport in Resources */,
-				583BB3E912D28431002AD442 /* PSConnectorAccount.bridgesupport in Resources */,
-				583BB3EA12D28431002AD442 /* PSConnectorDelegate.bridgesupport in Resources */,
-				583BB3EB12D28431002AD442 /* PSConstants.bridgesupport in Resources */,
-				583BB3EC12D28431002AD442 /* PSDependencies.bridgesupport in Resources */,
-				583BB3ED12D28431002AD442 /* PSFoundationExtensions.bridgesupport in Resources */,
-				583BB3EE12D28431002AD442 /* PSIntArray.bridgesupport in Resources */,
-				583BB3EF12D28431002AD442 /* PsiToolkit.bridgesupport in Resources */,
-				583BB3F012D28431002AD442 /* PSMacros.bridgesupport in Resources */,
-				583BB3F112D28431002AD442 /* PSModel.bridgesupport in Resources */,
-				583BB3F212D28431002AD442 /* PSModelManager.bridgesupport in Resources */,
-				583BB3F312D28431002AD442 /* PSPathBuilder.bridgesupport in Resources */,
-				583BB3F412D28431002AD442 /* PSRequest.bridgesupport in Resources */,
-				583BB3F512D28431002AD442 /* PSResponse.bridgesupport in Resources */,
-				583BB3F612D28431002AD442 /* PSRestRouter.bridgesupport in Resources */,
-				583BB3F712D28431002AD442 /* PSRouter.bridgesupport in Resources */,
-				583BB3F812D28431002AD442 /* PSSecurityExtensions.bridgesupport in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
