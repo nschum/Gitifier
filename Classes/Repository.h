@@ -36,6 +36,7 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 
 // public
 + (Repository *) repositoryFromHash: (NSDictionary *) hash;
++ (Repository *) repositoryWithUrl: (NSString *) anUrl;
 - (id) initWithUrl: (NSString *) anUrl;
 - (void) clone;
 - (void) fetchNewCommits;

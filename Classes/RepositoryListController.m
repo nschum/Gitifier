@@ -49,8 +49,15 @@
 - (void) loadRepositories {
   NSArray *hashes = [GitifierDefaults arrayForKey: REPOSITORY_LIST_KEY];
   if (hashes) {
-    for (NSDictionary *hash in hashes) {
-      Repository *repo = [Repository repositoryFromHash: hash];
+    for (id data in hashes) {
+      Repository *repo;
+
+      if ([data isKindOfClass: [NSDictionary class]]) {
+        repo = [Repository repositoryFromHash: data];
+      } else if ([data isKindOfClass: [NSString class]]) {
+        repo = [Repository repositoryWithUrl: data];
+      }
+
       if (repo) {
         [repo setDelegate: [NSApp delegate]];
         [self addObject: repo];

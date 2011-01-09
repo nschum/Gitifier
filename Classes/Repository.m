@@ -56,6 +56,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   return repo;
 }
 
++ (Repository *) repositoryWithUrl: (NSString *) anUrl {
+  return [[[Repository alloc] initWithUrl: anUrl] autorelease];
+}
+
 - (id) initWithUrl: (NSString *) anUrl {
   self = [super init];
   if ([self isProperUrl: anUrl]) {
