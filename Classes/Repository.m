@@ -197,7 +197,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (NSString *) nameFromUrl: (NSString *) anUrl {
-  NSArray *names = [anUrl componentsSeparatedByString: @"/"];
+  NSArray *names = [anUrl componentsSeparatedByRegex: @"[/:]"];
   NSString *projectName = [names lastObject];
   if ([projectName isEqual: @""]) {
     projectName = [names objectAtIndex: names.count - 2];
