@@ -66,7 +66,7 @@ If you want to monitor everything that's happening in your GitHub RSS feed,
 
 ## License
 
-Copyright by Jakub Suder <jakub.suder at gmail.com>. Licensed under MIT license.
+Copyright by Jakub Suder <jakub.suder at gmail.com>. Licensed under Eclipse Public License v1.0.
 
 Includes open source libraries by Dave Batton (DBPrefsWindowController), John Engelhart (RegexKitLite), Andy Matuschak
 (Sparkle), Ira Cooke (SSH NSTask), Ali Rantakari (ANSIEscapeHelper) and Growl framework by the Growl Team.

@@ -2,7 +2,7 @@
 // LoginItemController.m
 //
 // Copyright (c) 2010 Jakub Suder <jakub.suder@gmail.com>
-// Licensed under MIT license
+// Licensed under Eclipse Public License v1.0
 //
 // Thx to Justin Williams
 // http://carpeaqua.com/2008/03/01/adding-an-application-to-login-items-in-mac-os-x-leopard/
