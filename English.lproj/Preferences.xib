@@ -12,8 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="170"/>
+			<integer value="5"/>
+			<integer value="169"/>
 			<integer value="26"/>
+			<integer value="170"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -225,7 +227,7 @@
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSCustomView" id="105842419">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -280,7 +282,7 @@
 					<object class="NSTextField" id="541608919">
 						<reference key="NSNextResponder" ref="105842419"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{291, 221}, {215, 17}}</string>
+						<string key="NSFrame">{{291, 315}, {215, 17}}</string>
 						<reference key="NSSuperview" ref="105842419"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="980856538">
@@ -299,7 +301,7 @@
 					<object class="NSTextField" id="166697834">
 						<reference key="NSNextResponder" ref="105842419"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 221}, {106, 17}}</string>
+						<string key="NSFrame">{{17, 315}, {106, 17}}</string>
 						<reference key="NSSuperview" ref="105842419"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="418166440">
@@ -325,7 +327,7 @@
 									<object class="NSTableView" id="746567670">
 										<reference key="NSNextResponder" ref="147591804"/>
 										<int key="NSvFlags">4352</int>
-										<string key="NSFrameSize">{481, 147}</string>
+										<string key="NSFrameSize">{481, 241}</string>
 										<reference key="NSSuperview" ref="147591804"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTableHeaderView" key="NSHeaderView" id="177314152">
@@ -430,7 +432,7 @@
 											</object>
 										</object>
 										<double key="NSRowHeight">17</double>
-										<int key="NSTvFlags">448790528</int>
+										<int key="NSTvFlags">1522532352</int>
 										<reference key="NSDelegate"/>
 										<reference key="NSDataSource"/>
 										<int key="NSColumnAutoresizingStyle">4</int>
@@ -440,7 +442,7 @@
 										<int key="NSTableViewDraggingDestinationStyle">0</int>
 									</object>
 								</object>
-								<string key="NSFrame">{{1, 17}, {481, 147}}</string>
+								<string key="NSFrame">{{1, 17}, {481, 241}}</string>
 								<reference key="NSSuperview" ref="253471945"/>
 								<reference key="NSNextKeyView" ref="746567670"/>
 								<reference key="NSDocView" ref="746567670"/>
@@ -482,7 +484,7 @@
 							</object>
 							<reference ref="607047876"/>
 						</object>
-						<string key="NSFrame">{{20, 48}, {483, 165}}</string>
+						<string key="NSFrame">{{20, 48}, {483, 259}}</string>
 						<reference key="NSSuperview" ref="105842419"/>
 						<reference key="NSNextKeyView" ref="147591804"/>
 						<int key="NSsFlags">562</int>
@@ -494,11 +496,12 @@
 						<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 					</object>
 				</object>
-				<string key="NSFrameSize">{525, 258}</string>
+				<string key="NSFrameSize">{525, 352}</string>
+				<reference key="NSSuperview"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="248703769">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1045,6 +1048,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{525, 388}</string>
+				<reference key="NSSuperview"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="862241276">
@@ -2909,7 +2913,7 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABDgYAAw2wAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{517, 392}, {525, 258}}</string>
+					<string>{{720, 289}, {525, 352}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{344, 400}, {525, 388}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
