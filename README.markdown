@@ -25,27 +25,7 @@ commit, etc.), check if the same problem occurs when you clone the same URL to a
 
 ## Tips and tricks
 
-### Cache directory
-
-As mentioned above, Gitifier's clones of the repositories are stored in `~/Library/Caches/net.psionides.Gitifier`. In
-case you're wondering, cache directories are automatically excluded from Time Machine backup by OSX.
-
-### Setting SSH key to access the repository
-
-You should be able to configure this in your `.ssh/config` file, like this:
-
-    Host github.com
-      IdentityFile /Users/psionides/.ssh/my_github_key
-
-### Using multiple keys with GitHub
-
-Check out this tutorial: [Multiple SSH keys](http://help.github.com/multiple-keys/).
-
-### Monitoring all GitHub activity
-
-If you want to monitor everything that's happening in your GitHub RSS feed,
-[GithubNotifier](https://github.com/ctshryock/GithubNotifier) might be a better tool for you.
-
+See [this wiki page](https://github.com/psionides/gitifier/wiki/Tips-%26-tricks).
 
 ## Changelog
 
