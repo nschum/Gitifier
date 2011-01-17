@@ -193,7 +193,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (BOOL) isProperUrl: (NSString *) anUrl {
-  return ![anUrl isMatchedByRegex: @"\\s"];
+  return [anUrl psIsPresent];
 }
 
 - (NSString *) nameFromUrl: (NSString *) anUrl {
