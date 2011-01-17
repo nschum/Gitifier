@@ -37,6 +37,9 @@
 - (IBAction) removeRepositories: (id) sender;
 - (IBAction) openGitExecutableDialog: (id) sender;
 - (IBAction) openProjectWebsite: (id) sender;
+- (IBAction) openGitHubPage: (id) sender;
+- (IBAction) openIssueTrackerPage: (id) sender;
+- (IBAction) openTipsAndTricksPage: (id) sender;
 
 // private
 - (void) updateUserEmailText: (NSString *) email;

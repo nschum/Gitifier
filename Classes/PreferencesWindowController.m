@@ -44,8 +44,24 @@
   }
 }
 
+- (void) openPage: (NSString *) url {
+  [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: url]];
+}
+
 - (IBAction) openProjectWebsite: (id) sender {
-  [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: [sender title]]];
+  [self openPage: [sender title]];
+}
+
+- (IBAction) openGitHubPage: (id) sender {
+  [self openPage: @"http://github.com/psionides/gitifier"];
+}
+
+- (IBAction) openIssueTrackerPage: (id) sender {
+  [self openPage: @"http://github.com/psionides/gitifier/issues"];
+}
+
+- (IBAction) openTipsAndTricksPage: (id) sender {
+  [self openPage: @"https://github.com/psionides/gitifier/wiki/Tips-%26-tricks"];
 }
 
 - (void) setupToolbar {
