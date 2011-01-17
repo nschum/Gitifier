@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		2FB1A33312E4F1D800AC826B /* ImportRepositoryDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB1A33212E4F1D800AC826B /* ImportRepositoryDialogController.m */; };
 		581C9E91127E046D003ECF6A /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; };
 		581C9E9E127E050A003ECF6A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
 		582E744F126B1D3E0077D935 /* GrowlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 582E744E126B1D3E0077D935 /* GrowlController.m */; };
@@ -98,6 +99,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2FB1A33112E4F1D800AC826B /* ImportRepositoryDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportRepositoryDialogController.h; sourceTree = "<group>"; };
+		2FB1A33212E4F1D800AC826B /* ImportRepositoryDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportRepositoryDialogController.m; sourceTree = "<group>"; };
 		582E744D126B1D3E0077D935 /* GrowlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlController.h; sourceTree = "<group>"; };
 		582E744E126B1D3E0077D935 /* GrowlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlController.m; sourceTree = "<group>"; };
 		583BB3A012D28430002AD442 /* PSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSConstants.h; sourceTree = "<group>"; };
@@ -485,6 +488,8 @@
 				58DEC8331246C6B300DE7C7E /* StatusBarController.m */,
 				58DEC8341246C6B300DE7C7E /* Utils.h */,
 				58DEC8351246C6B300DE7C7E /* Utils.m */,
+				2FB1A33112E4F1D800AC826B /* ImportRepositoryDialogController.h */,
+				2FB1A33212E4F1D800AC826B /* ImportRepositoryDialogController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -633,6 +638,7 @@
 				583BB40612D28431002AD442 /* SDKeychain.m in Sources */,
 				583BB40712D28431002AD442 /* SFHFKeychainUtils.m in Sources */,
 				583BB40812D28431002AD442 /* PSUIExtensions.m in Sources */,
+				2FB1A33312E4F1D800AC826B /* ImportRepositoryDialogController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
