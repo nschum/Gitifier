@@ -205,6 +205,9 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   if ([projectName hasSuffix: @".git"]) {
     projectName = [projectName substringToIndex: projectName.length - 4];
   }
+  if ([projectName isEqual: @""]) {
+    projectName = [names objectAtIndex: names.count - 3];
+  }
   if ([[projectName lowercaseString] isEqualToString: projectName] && ![projectName psContainsString: @"_"]) {
     projectName = [projectName capitalizedString];
   }
