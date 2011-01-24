@@ -50,7 +50,7 @@
   NSArray *hashes = [GitifierDefaults arrayForKey: REPOSITORY_LIST_KEY];
   if (hashes) {
     for (id data in hashes) {
-      Repository *repo;
+      Repository *repo = nil;
 
       if ([data isKindOfClass: [NSDictionary class]]) {
         repo = [Repository repositoryFromHash: data];
