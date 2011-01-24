@@ -110,7 +110,7 @@ static NSString *gitExecutable = nil;
       [currentData appendData: [readHandle readDataToEndOfFile]];
 
       NSInteger status = [currentTask terminationStatus];
-      NSString *command = [[currentTask arguments] objectAtIndex: 0];
+      NSString *command = [[currentTask arguments] psFirstObject];
       NSString *output = [[NSString alloc] initWithData: currentData encoding: NSUTF8StringEncoding];
       currentTask = currentData = nil;
 
@@ -124,7 +124,7 @@ static NSString *gitExecutable = nil;
       }
     }
   } @catch (NSException *e) {
-    NSString *command = [[currentTask arguments] objectAtIndex: 0];
+    NSString *command = [[currentTask arguments] psFirstObject];
     currentTask = currentData = nil;
     [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: [e description]];
     return;
