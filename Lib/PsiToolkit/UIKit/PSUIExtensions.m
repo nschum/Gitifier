@@ -32,6 +32,34 @@
 
 // ------------------------------------------------------------------------------------------------
 
+@implementation UINavigationController (PsiToolkit)
+
+- (UIViewController *) psRootController {
+  return [[self viewControllers] psFirstObject];
+}
+
+@end
+
+// ------------------------------------------------------------------------------------------------
+
+@implementation UITableView (PsiToolkit)
+
+- (UITableViewCell *) psCellWithStyle: (UITableViewCellStyle) style andIdentifier: (NSString *) identifier {
+  UITableViewCell *cell = [self dequeueReusableCellWithIdentifier: identifier];
+  if (!cell) {
+    cell = [[[UITableViewCell alloc] initWithStyle: style reuseIdentifier: identifier] autorelease];
+  }
+  return cell;
+}
+
+- (UITableViewCell *) psGenericCellWithStyle: (UITableViewCellStyle) style {
+  return [self psCellWithStyle: style andIdentifier: PSGenericCell];
+}
+
+@end
+
+// ------------------------------------------------------------------------------------------------
+
 @implementation UIView (PsiToolkit)
 
 - (void) psMoveVerticallyBy: (CGFloat) pixels {
@@ -86,24 +114,6 @@
 
 // ------------------------------------------------------------------------------------------------
 
-@implementation UITableView (PsiToolkit)
-
-- (UITableViewCell *) psCellWithStyle: (UITableViewCellStyle) style andIdentifier: (NSString *) identifier {
-  UITableViewCell *cell = [self dequeueReusableCellWithIdentifier: identifier];
-  if (!cell) {
-    cell = [[[UITableViewCell alloc] initWithStyle: style reuseIdentifier: identifier] autorelease];
-  }
-  return cell;
-}
-
-- (UITableViewCell *) psGenericCellWithStyle: (UITableViewCellStyle) style {
-  return [self psCellWithStyle: style andIdentifier: PSGenericCell];
-}
-
-@end
-
-// ------------------------------------------------------------------------------------------------
-
 @implementation UIViewController (PsiToolkit)
 
 - (void) psSetBackButtonTitle: (NSString *) title {
@@ -112,6 +122,27 @@
                                                             target: nil
                                                             action: nil];
   self.navigationItem.backBarButtonItem = [button autorelease];
+}
+
+- (void) psHidePopupView {
+  [self dismissModalViewControllerAnimated: YES];
+}
+
+- (void) psShowPopupView: (UIViewController *) controller {
+  UINavigationController *navigation = [controller psWrapInNavigationController];
+  [self presentModalViewController: navigation animated: YES];
+}
+
+- (void) psShowPopupView: (UIViewController *) controller withStyle: (UIModalPresentationStyle) style {
+  UINavigationController *navigation = [controller psWrapInNavigationController];
+  if ([navigation respondsToSelector: @selector(setModalPresentationStyle:)]) {
+    navigation.modalPresentationStyle = style;
+  }
+  [self presentModalViewController: navigation animated: YES];
+}
+
+- (UINavigationController *) psWrapInNavigationController {
+  return [[[UINavigationController alloc] initWithRootViewController: self] autorelease];
 }
 
 @end

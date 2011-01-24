@@ -24,6 +24,7 @@
 #define PSHTTPStatusOK                  200
 #define PSHTTPStatusCreated             201
 #define PSHTTPStatusAccepted            202
+#define PSHTTPStatusNoContent           204
 #define PSHTTPStatusBadRequest          400
 #define PSHTTPStatusUnauthorized        401
 #define PSHTTPStatusForbidden           403

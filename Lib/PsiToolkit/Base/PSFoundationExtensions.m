@@ -12,18 +12,41 @@
 
 @implementation NSArray (PsiToolkit)
 
-- (NSArray *) psCompact {
-  static NSPredicate *notNullPredicate = nil;
-  if (!notNullPredicate) {
-    notNullPredicate = [[NSPredicate predicateWithFormat: @"SELF != NIL"] retain];
+- (id) psFirstObject {
+  if (self.count > 0) {
+    return [self objectAtIndex: 0];
+  } else {
+    return nil;
   }
-  return [self filteredArrayUsingPredicate: notNullPredicate];
+}
+
+- (NSArray *) psArrayByCalling: (SEL) selector {
+  NSMutableArray *collected = [[NSMutableArray alloc] initWithCapacity: self.count];
+  for (id element in self) {
+    [collected addObject: [element performSelector: selector]];
+  }
+
+  NSArray *returned = [NSArray arrayWithArray: collected];
+  [collected release];
+  return returned;
+}
+
+- (NSArray *) psCompact {
+  return [self psFilterWithPredicate: @"SELF != NIL"];
+}
+
+- (NSArray *) psFilterWithPredicate: (NSString *) filter {
+  return [self filteredArrayUsingPredicate: [NSPredicate predicateWithFormat: filter]];
 }
 
 - (NSArray *) psSortedArrayUsingField: (NSString *) field ascending: (BOOL) ascending {
+  return [self psSortedArrayUsingField: field ascending: ascending compareWith: @selector(compare:)];
+}
+
+- (NSArray *) psSortedArrayUsingField: (NSString *) field ascending: (BOOL) ascending compareWith: (SEL) compareMethod {
   NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey: field
                                                              ascending: ascending
-                                                              selector: @selector(caseInsensitiveCompare:)];
+                                                              selector: compareMethod];
   NSArray *descriptors = [[NSArray alloc] initWithObjects: descriptor, nil];
   NSArray *sortedArray = [self sortedArrayUsingDescriptors: descriptors];
   [descriptor release];
@@ -141,6 +164,34 @@
 
 // ------------------------------------------------------------------------------------------------
 
+@implementation NSObject (PsiToolkit)
+
++ (NSArray *) psArrayByCalling: (SEL) selector withObjectsFrom: (NSArray *) array {
+  NSMutableArray *collected = [[NSMutableArray alloc] initWithCapacity: array.count];
+  for (id element in array) {
+    [collected addObject: [self performSelector: selector withObject: element]];
+  }
+
+  NSArray *returned = [NSArray arrayWithArray: collected];
+  [collected release];
+  return returned;
+}
+
+- (NSArray *) psArrayByCalling: (SEL) selector withObjectsFrom: (NSArray *) array {
+  NSMutableArray *collected = [[NSMutableArray alloc] initWithCapacity: array.count];
+  for (id element in array) {
+    [collected addObject: [self performSelector: selector withObject: element]];
+  }
+
+  NSArray *returned = [NSArray arrayWithArray: collected];
+  [collected release];
+  return returned;
+}
+
+@end
+
+// ------------------------------------------------------------------------------------------------
+
 @implementation NSString (PsiToolkit)
 
 + (NSString *) psStringWithFormEncodedFields: (NSDictionary *) fields {
@@ -179,7 +230,7 @@
   if (words.count == 1) {
     return [[self copy] autorelease];
   } else {
-    NSMutableString *camelized = [[NSMutableString alloc] initWithString: [words objectAtIndex: 0]];
+    NSMutableString *camelized = [[NSMutableString alloc] initWithString: [words psFirstObject]];
     for (NSInteger i = 1; i < words.count; i++) {
       [camelized appendString: [[words objectAtIndex: i] capitalizedString]];
     }
@@ -190,13 +241,41 @@
 - (NSString *) psPluralizedString {
   static NSDictionary *exceptions;
   if (!exceptions) {
-    exceptions = [PSHash(@"person", @"people") retain];
+    exceptions = PSHash(
+      @"person", @"people",
+      @"man", @"men",
+      @"woman", @"women",
+      @"child", @"children"
+    );
+    [exceptions retain];
   }
 
   NSString *downcased = [self lowercaseString];
   NSString *result = [exceptions objectForKey: downcased];
   if (result) {
+    // one of the exceptions above
     return result;
+  } else if ([downcased hasSuffix: @"ch"]) {
+    // e.g. match -> matches
+    return [downcased stringByAppendingString: @"es"];
+  } else if ([downcased hasSuffix: @"fe"]) {
+    // e.g. knife -> knives
+    return [[downcased substringToIndex: downcased.length - 2] stringByAppendingString: @"ves"];
+  } else if ([downcased hasSuffix: @"sh"]) {
+    // e.g. flash -> flashes
+    return [downcased stringByAppendingString: @"es"];
+  } else if ([downcased hasSuffix: @"ss"]) {
+    // e.g. boss -> bosses
+    return [downcased stringByAppendingString: @"es"];
+  } else if ([downcased hasSuffix: @"us"]) {
+    // e.g. bus -> buses
+    return [downcased stringByAppendingString: @"es"];
+  } else if ([downcased hasSuffix: @"x"]) {
+    // e.g. box -> boxes
+    return [downcased stringByAppendingString: @"es"];
+  } else if ([downcased hasSuffix: @"y"]) {
+    // e.g. activity -> activities
+    return [[downcased substringToIndex: downcased.length - 1] stringByAppendingString: @"ies"];
   } else if ([downcased hasSuffix: @"s"]) {
     return downcased;
   } else {

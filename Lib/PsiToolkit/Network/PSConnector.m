@@ -309,9 +309,7 @@ static PSConnector *sharedConnector = nil;
 }
 
 - (void) cancelAllRequests {
-  for (ASIHTTPRequest *request in currentRequests) {
-    [request cancel];
-  }
+  [currentRequests makeObjectsPerformSelector: @selector(cancel)];
   [currentRequests removeAllObjects];
 }
 

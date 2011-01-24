@@ -19,6 +19,8 @@
 #define PSiPadDevice      (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define PSiPhoneDevice    (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 
+#define PSAbstractMethod(returnType) { [self doesNotRecognizeSelector: _cmd]; return (returnType) 0; }
+
 // from http://www.cimgf.com/2009/01/24/dropping-nslog-in-release-builds/
 #ifdef DEBUG
   #define PSLog(...) NSLog(__VA_ARGS__)
@@ -58,4 +60,17 @@
   - (void) dealloc { \
     PSRelease(__VA_ARGS__); \
     [super dealloc]; \
+  }
+
+// synthesize + PSModel's propertyList
+#define PSModelProperties(...) \
+  @synthesize __VA_ARGS__;  \
+  + (NSArray *) propertyList { \
+    static NSArray *list = nil; \
+    if (!list) { \
+      NSArray *superlist = [super propertyList]; \
+      NSArray *mylist = [[@#__VA_ARGS__ componentsSeparatedByString: @","] psArrayByCalling: @selector(psTrimmedString)]; \
+      list = [[superlist arrayByAddingObjectsFromArray: mylist] retain]; \
+    } \
+    return list; \
   }

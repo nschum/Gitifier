@@ -17,6 +17,9 @@
       NSLog(@"%d", [Message count]);
       NSLog(@"%@", [Message list]);
       NSLog(@"%@", [Message objectWithIntegerId: 2011]);
+
+  You can use this macro to quickly define @synthesize and propertyList() class method for your properties:
+      PSModelProperties(name, surname, address);
 */
 
 #import <Foundation/Foundation.h>
@@ -104,6 +107,12 @@
 
 // used by [record copy] - copies all registered fields to the new record (shallow copy)
 - (id) copyWithZone: (NSZone *) zone;
+
+// copies all fields from a given PSModel or NSDictionary to this record; skipNullValues = only copy if not nil
+- (void) copyFieldsFrom: (id) object skipNullValues: (BOOL) skipNullValues;
+
+// copies all fields from a given PSModel or NSDictionary to this record, but only if they aren't already set
+- (void) copyMissingFieldsFrom: (id) object;
 
 // string representation - prints all properties with names and values
 - (NSString *) description;
