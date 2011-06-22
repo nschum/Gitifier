@@ -739,6 +739,7 @@
 				GCC_PREFIX_HEADER = Gitifier_Prefix.pch;
 				INFOPLIST_FILE = "Gitifier-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = Gitifier;
 			};
 			name = Debug;
@@ -757,6 +758,7 @@
 				GCC_PREFIX_HEADER = Gitifier_Prefix.pch;
 				INFOPLIST_FILE = "Gitifier-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = Gitifier;
 			};
 			name = Release;
@@ -773,7 +775,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -787,7 +789,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

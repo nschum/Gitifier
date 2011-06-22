@@ -1,3 +1,5 @@
 build
 *.xcodeproj/*.pbxuser
 *.xcodeproj/*.perspective*
+*.xcodeproj/xcuserdata/*.xcuserdatad
+*.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad
