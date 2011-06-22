@@ -70,7 +70,7 @@ int main() {
 		}
 		void *pword=(void*)[pStr UTF8String];
 		printf("%s",(char*)pword);		
-		[pool release];
+		[pool drain];
 		return 0;
 	}
 	

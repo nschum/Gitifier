@@ -107,14 +107,16 @@ static NSString *gitExecutable = nil;
     PSStopObserving(readHandle, NSFileHandleReadCompletionNotification);
 
     if (cancelled) {
-      currentTask = currentData = nil;
+      currentTask = nil;
+      currentData = nil;
     } else {
       [currentData appendData: [readHandle readDataToEndOfFile]];
 
       NSInteger status = [currentTask terminationStatus];
       NSString *command = [[currentTask arguments] psFirstObject];
       NSString *output = [[NSString alloc] initWithData: currentData encoding: NSUTF8StringEncoding];
-      currentTask = currentData = nil;
+      currentTask = nil;
+      currentData = nil;
 
       if (status == 0) {
         PSLog(@"command git %@ completed with output: %@", command, output);
@@ -129,7 +131,8 @@ static NSString *gitExecutable = nil;
     }
   } @catch (NSException *e) {
     NSString *command = [[currentTask arguments] psFirstObject];
-    currentTask = currentData = nil;
+    currentTask = nil;
+    currentData = nil;
     PSLog(@"command git %@ failed with exception: %@", command, e);
     [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: [e description]];
     return;
