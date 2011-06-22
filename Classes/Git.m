@@ -111,6 +111,7 @@ static NSString *gitExecutable = nil;
       currentData = nil;
     } else {
       [currentData appendData: [readHandle readDataToEndOfFile]];
+      [readHandle closeFile];
 
       NSInteger status = [currentTask terminationStatus];
       NSString *command = [[currentTask arguments] psFirstObject];
