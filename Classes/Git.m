@@ -55,6 +55,8 @@ static NSString *gitExecutable = nil;
 
   currentData = [[NSMutableData alloc] init];
 
+  PSLog(@"running command git %@ %@", command, arguments);
+
   NSPipe *output = [NSPipe pipe];
   currentTask = [[NSTask alloc] init];
   currentTask.arguments = [[NSArray arrayWithObject: command] arrayByAddingObjectsFromArray: arguments];
@@ -115,17 +117,20 @@ static NSString *gitExecutable = nil;
       currentTask = currentData = nil;
 
       if (status == 0) {
+        PSLog(@"command git %@ completed with output: %@", command, output);
         [self notifyDelegateWithSelector: @selector(commandCompleted:output:) command: command output: output];
       } else {
         if ([output isMatchedByRegex: @"Authentication failed"]) {
           [PasswordHelper removePasswordForHost: repositoryUrl user: @"Gitifier"];
         }
+        PSLog(@"command git %@ failed with output: %@", command, output);
         [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: output];
       }
     }
   } @catch (NSException *e) {
     NSString *command = [[currentTask arguments] psFirstObject];
     currentTask = currentData = nil;
+    PSLog(@"command git %@ failed with exception: %@", command, e);
     [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: [e description]];
     return;
   }
