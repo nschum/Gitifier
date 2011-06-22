@@ -50,7 +50,7 @@
   [repositoryListController loadRepositories];
   [statusBarController createStatusBarItem];
   [monitor startMonitoring];
-  [monitor timerFired];
+  [monitor executeFetch];
 
   if ([[repositoryListController repositoryList] count] == 0) {
     [self showPreferences: self];
@@ -96,6 +96,11 @@
 
   [NSApp activateIgnoringOtherApps: YES];
   [preferencesWindowController showWindow: self];
+}
+
+- (IBAction) checkNow: (id) sender {
+  [monitor restartMonitoring];
+  [monitor executeFetch];
 }
 
 - (IBAction) quit: (id) sender {

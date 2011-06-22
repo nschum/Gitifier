@@ -22,6 +22,7 @@
 
 // public
 - (void) startMonitoring;
-- (void) timerFired;
+- (void) restartMonitoring;
+- (void) executeFetch;
 
 @end

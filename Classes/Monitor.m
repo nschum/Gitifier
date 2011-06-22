@@ -34,9 +34,18 @@
   timer = nil;
 }
 
-- (void) timerFired {
+- (void) restartMonitoring {
+  [self stopMonitoring];
+  [self startMonitoring];
+}
+
+- (void) executeFetch {
   NSArray *repositories = [[dataSource repositoryList] copy];
   [repositories makeObjectsPerformSelector: @selector(fetchNewCommits)];
+}
+
+- (void) timerFired {
+  [self executeFetch];
 }
 
 - (void) observeValueForKeyPath: (NSString *) keyPath
@@ -44,8 +53,7 @@
                          change: (NSDictionary *) change
                         context: (void *) context {
   if (timer && [[keyPath lastKeyPathElement] isEqual: MONITOR_INTERVAL_KEY]) {
-    [self stopMonitoring];
-    [self startMonitoring];
+    [self restartMonitoring];
   }
 }
 

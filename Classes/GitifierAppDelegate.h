@@ -30,6 +30,7 @@
 
 - (IBAction) showPreferences: (id) sender;
 - (IBAction) quit: (id) sender;
+- (IBAction) checkNow: (id) sender;
 
 // private
 - (void) updateUserEmail;
