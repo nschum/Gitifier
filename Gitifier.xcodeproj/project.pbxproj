@@ -26,6 +26,8 @@
 		5831CCC512EE0EFC008169A7 /* SDKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9D12EE0EFC008169A7 /* SDKeychain.m */; };
 		5831CCC612EE0EFC008169A7 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9F12EE0EFC008169A7 /* SFHFKeychainUtils.m */; };
 		5831CCC712EE0EFC008169A7 /* PSUIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CCA212EE0EFC008169A7 /* PSUIExtensions.m */; };
+		584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */; };
+		584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */; };
 		585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585886621264DB7A00AD2F1A /* CommitWindow.xib */; };
 		5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858866A1264E25000AD2F1A /* CommitWindowController.m */; };
 		5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */; };
@@ -136,6 +138,10 @@
 		5831CC9F12EE0EFC008169A7 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		5831CCA112EE0EFC008169A7 /* PSUIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSUIExtensions.h; sourceTree = "<group>"; };
 		5831CCA212EE0EFC008169A7 /* PSUIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSUIExtensions.m; sourceTree = "<group>"; };
+		584ED6F213B36B940085E65C /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
+		584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
+		584ED6F413B36B940085E65C /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
+		584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
 		585886601264DB6A00AD2F1A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CommitWindow.xib; sourceTree = "<group>"; };
 		585886691264E25000AD2F1A /* CommitWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitWindowController.h; sourceTree = "<group>"; };
 		5858866A1264E25000AD2F1A /* CommitWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitWindowController.m; sourceTree = "<group>"; };
@@ -384,6 +390,17 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		584ED6F113B36B940085E65C /* MASPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				584ED6F213B36B940085E65C /* MASPreferencesViewController.h */,
+				584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */,
+				584ED6F413B36B940085E65C /* MASPreferencesWindowController.h */,
+				584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */,
+			);
+			path = MASPreferences;
+			sourceTree = "<group>";
+		};
 		5858898C1266417700AD2F1A /* ANSIEscapeHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +447,7 @@
 				5858898C1266417700AD2F1A /* ANSIEscapeHelper */,
 				588ACAF7124AAE11004F3785 /* AskPass */,
 				58DECCC5124969BF00DE7C7E /* DBPrefsController */,
+				584ED6F113B36B940085E65C /* MASPreferences */,
 				5831CC6012EE0EFB008169A7 /* PsiToolkit */,
 				58DEC04E1242B47100DE7C7E /* RegexKitLite */,
 				58DEC0C51242C16600DE7C7E /* Growl.framework */,
@@ -573,6 +591,7 @@
 				58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */,
 				58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */,
 				585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */,
+				584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +646,7 @@
 				5831CCC512EE0EFC008169A7 /* SDKeychain.m in Sources */,
 				5831CCC612EE0EFC008169A7 /* SFHFKeychainUtils.m in Sources */,
 				5831CCC712EE0EFC008169A7 /* PSUIExtensions.m in Sources */,
+				584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
