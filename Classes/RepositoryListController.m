@@ -37,9 +37,14 @@
 
 - (void) removeSelectedRepositories {
   NSArray *selectedRepositories = [self selectedObjects];
-  [selectedRepositories makeObjectsPerformSelector: @selector(deleteWorkingCopy)];
+  [self performSelectorInBackground: @selector(deleteRepositoryDirectories:) withObject: selectedRepositories];
   [self removeObjects: selectedRepositories];
   [self saveRepositories];
+}
+
+- (void) deleteRepositoryDirectories: (NSArray *) selectedRepositories {
+  [NSThread sleepForTimeInterval: 3.0];
+  [selectedRepositories makeObjectsPerformSelector: @selector(deleteWorkingCopy)];
 }
 
 - (void) resetRepositoryStatuses {
