@@ -82,7 +82,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
-    [self resetFirstResponderInView:[[self window] contentView]];
+//    [self resetFirstResponderInView:[[self window] contentView]];
 }
 
 #pragma mark -
@@ -254,7 +254,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 - (void)setContentView:(NSView *)view
 {
     [self.window.contentView addSubview:view];
-    [self resetFirstResponderInView:self.window.contentView];
+//    [self resetFirstResponderInView:self.window.contentView];
 }
 
 - (void)toolbarItemDidClick:(id)sender
