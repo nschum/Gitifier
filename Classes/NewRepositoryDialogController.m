@@ -77,6 +77,7 @@
 
 - (void) modalWasClosed: (NSAlert *) alert {
   [NSApp stopModal];
+  [newRepositoryUrl becomeFirstResponder];
 }
 
 - (void) lockDialog {
