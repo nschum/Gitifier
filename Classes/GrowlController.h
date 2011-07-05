@@ -10,6 +10,7 @@
 
 #define CommitReceivedGrowl @"Commit received"
 #define RepositoryUpdateFailedGrowl @"Repository update failed"
+#define OtherMessageGrowl @"Other message"
 
 @class Commit;
 @class Repository;
@@ -24,8 +25,9 @@
 // public
 + (GrowlController *) sharedController;
 - (void) checkGrowlAvailability;
-- (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository;
 - (void) showGrowlWithCommit: (Commit *) commit repository: (Repository *) repository;
+- (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository;
+- (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type;
 
 // private
 - (void) openGrowlPreferences;

@@ -93,9 +93,14 @@
     NSLog(@"Error: %@", message);
     title = @"Error";
   }
+
+  [self showGrowlWithTitle: title message: message type: RepositoryUpdateFailedGrowl];
+}
+
+- (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type {
   [GrowlApplicationBridge notifyWithTitle: title
                               description: message
-                         notificationName: RepositoryUpdateFailedGrowl
+                         notificationName: type
                                  iconData: [self growlIcon]
                                  priority: 0
                                  isSticky: NO

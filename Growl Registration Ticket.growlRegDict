@@ -8,11 +8,13 @@
     <array>
       <string>Commit received</string>
       <string>Repository update failed</string>
+      <string>Other message</string>
     </array>
     <key>DefaultNotifications</key>
     <array>
       <string>Commit received</string>
       <string>Repository update failed</string>
+      <string>Other message</string>
     </array>
   </dict>
 </plist>

@@ -20,6 +20,7 @@
   NSButton *cancelButton;
   NSButton *addButton;
   NSTextField *label;
+  BOOL waitingForSlowClone;
 }
 
 @property IBOutlet RepositoryListController *repositoryListController;

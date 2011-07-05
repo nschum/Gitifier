@@ -5,6 +5,7 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
+#import "GrowlController.h"
 #import "NewRepositoryDialogController.h"
 #import "Repository.h"
 #import "RepositoryListController.h"
@@ -15,6 +16,7 @@
 
 - (void) awakeFromNib {
   labelText = label.stringValue;
+  waitingForSlowClone = NO;
 }
 
 - (IBAction) showNewRepositorySheet: (id) sender {
@@ -107,11 +109,13 @@
 }
 
 - (void) showSlowCloneWarning {
+  waitingForSlowClone = YES;
   label.stringValue = @"Please be patient - I'm cloning the repository...";
   label.textColor = [NSColor textColor];
 }
 
 - (void) hideSlowCloneWarning {
+  waitingForSlowClone = NO;
   label.stringValue = labelText;
   label.textColor = [NSColor disabledControlTextColor];
 }
@@ -119,6 +123,14 @@
 - (void) repositoryWasCloned: (Repository *) repository {
   [repositoryListController addRepository: repository];
   [self hideNewRepositorySheet];
+
+  if (waitingForSlowClone) {
+    GrowlController *growl = [GrowlController sharedController];
+    [growl showGrowlWithTitle: @"Repository cloned"
+                      message: PSFormat(@"Repository at %@ has been successfully added to Gitifier.", repository.url)
+                         type: OtherMessageGrowl];
+  }
+
   [self unlockDialog];
 }
 
