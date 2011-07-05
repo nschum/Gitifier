@@ -21,6 +21,10 @@
   return [super initWithViewControllers: controllers title: @"Preferences"];
 }
 
+- (void) windowDidLoad {
+  [[self.window standardWindowButton: NSWindowZoomButton] setEnabled: NO];
+}
+
 - (void) setContentView: (NSView *) view {
   [super setContentView: view];
   self.window.showsResizeIndicator = [self.window.toolbar.selectedItemIdentifier isEqual: @"Repositories"];
