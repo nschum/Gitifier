@@ -236,14 +236,14 @@ b2tlKQooQWxpIFJhbnRha2FyaSkKKGJ5IHRoZSBHcm93bCB0ZWFtKQ</string>
 					<object class="NSTextField" id="965075486">
 						<reference key="NSNextResponder" ref="862241276"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{194, 224}, {136, 14}}</string>
+						<string key="NSFrame">{{189, 224}, {146, 14}}</string>
 						<reference key="NSSuperview" ref="862241276"/>
 						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="992944126">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">© Jakub Suder, 2010-11</string>
+							<string key="NSContents">© 2010-2011 Jakub Suder</string>
 							<reference key="NSSupport" ref="771200772"/>
 							<reference key="NSControlView" ref="965075486"/>
 							<reference key="NSBackgroundColor" ref="977119410"/>
