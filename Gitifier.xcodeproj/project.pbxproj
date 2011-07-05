@@ -65,7 +65,6 @@
 		58DEC83F1246C6B300DE7C7E /* RepositoryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8311246C6B300DE7C7E /* RepositoryListController.m */; };
 		58DEC8401246C6B300DE7C7E /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8331246C6B300DE7C7E /* StatusBarController.m */; };
 		58DEC8411246C6B300DE7C7E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8351246C6B300DE7C7E /* Utils.m */; };
-		58DECCC9124969DE00DE7C7E /* DBPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DECCC8124969DE00DE7C7E /* DBPrefsWindowController.m */; };
 		58E81DC4128B2B7000062F15 /* LinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E81DC3128B2B7000062F15 /* LinkLabel.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -204,8 +203,6 @@
 		58DEC8331246C6B300DE7C7E /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		58DEC8341246C6B300DE7C7E /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		58DEC8351246C6B300DE7C7E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
-		58DECCC7124969DE00DE7C7E /* DBPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPrefsWindowController.h; sourceTree = "<group>"; };
-		58DECCC8124969DE00DE7C7E /* DBPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPrefsWindowController.m; sourceTree = "<group>"; };
 		58E81DC2128B2B7000062F15 /* LinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkLabel.h; sourceTree = "<group>"; };
 		58E81DC3128B2B7000062F15 /* LinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkLabel.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
@@ -461,7 +458,6 @@
 			children = (
 				5858898C1266417700AD2F1A /* ANSIEscapeHelper */,
 				588ACAF7124AAE11004F3785 /* AskPass */,
-				58DECCC5124969BF00DE7C7E /* DBPrefsController */,
 				584ED6F113B36B940085E65C /* MASPreferences */,
 				5831CC6012EE0EFB008169A7 /* PsiToolkit */,
 				58DEC04E1242B47100DE7C7E /* RegexKitLite */,
@@ -521,15 +517,6 @@
 				58DEC8351246C6B300DE7C7E /* Utils.m */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		58DECCC5124969BF00DE7C7E /* DBPrefsController */ = {
-			isa = PBXGroup;
-			children = (
-				58DECCC7124969DE00DE7C7E /* DBPrefsWindowController.h */,
-				58DECCC8124969DE00DE7C7E /* DBPrefsWindowController.m */,
-			);
-			path = DBPrefsController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,7 +635,6 @@
 				58DEC83F1246C6B300DE7C7E /* RepositoryListController.m in Sources */,
 				58DEC8401246C6B300DE7C7E /* StatusBarController.m in Sources */,
 				58DEC8411246C6B300DE7C7E /* Utils.m in Sources */,
-				58DECCC9124969DE00DE7C7E /* DBPrefsWindowController.m in Sources */,
 				5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */,
 				5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */,
 				582E744F126B1D3E0077D935 /* GrowlController.m in Sources */,
