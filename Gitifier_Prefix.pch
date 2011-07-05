@@ -7,4 +7,5 @@
   #define PSITOOLKIT_ENABLE_COCOA
   #define PSITOOLKIT_ENABLE_MODELS
   #import "PsiToolkit.h"
+  #import "Utils.h"
 #endif

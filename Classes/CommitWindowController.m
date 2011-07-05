@@ -10,7 +10,6 @@
 #import "Defaults.h"
 #import "Git.h"
 #import "Repository.h"
-#import "Utils.h"
 
 #define ERROR_TEXT @"Error loading commit diff."
 

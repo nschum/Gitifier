@@ -11,7 +11,6 @@
 #import "Git.h"
 #import "GrowlController.h"
 #import "Repository.h"
-#import "Utils.h"
 
 static NSString *nameRegexp = @"[\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\-\\.]+";
 static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";

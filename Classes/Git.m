@@ -9,7 +9,6 @@
 #import "Git.h"
 #import "GitifierAppDelegate.h"
 #import "PasswordHelper.h"
-#import "Utils.h"
 
 static NSString *gitExecutable = nil;
 

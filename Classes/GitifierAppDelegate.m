@@ -16,7 +16,6 @@
 #import "Repository.h"
 #import "RepositoryListController.h"
 #import "StatusBarController.h"
-#import "Utils.h"
 
 @implementation GitifierAppDelegate
 
