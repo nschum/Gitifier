@@ -6,42 +6,7 @@
 // -------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
-#import "DBPrefsWindowController.h"
+#import "MASPreferencesWindowController.h"
 
-@class RepositoryListController;
-
-@interface PreferencesWindowController : DBPrefsWindowController <NSOpenSavePanelDelegate> {
-  NSNumberFormatter *numberFormatter;
-  RepositoryListController *repositoryListController;
-  NSTextField *monitorIntervalField;
-  NSButton *ignoreOwnEmailsField;
-  NSButton *chooseGitPathButton;
-  NSView *generalPreferencesView;
-  NSView *repositoriesPreferencesView;
-  NSView *aboutPreferencesView;
-  NSButton *websiteLabel;
-}
-
-@property IBOutlet RepositoryListController *repositoryListController;
-@property IBOutlet NSTextField *monitorIntervalField;
-@property IBOutlet NSButton *ignoreOwnEmailsField;
-@property IBOutlet NSButton *chooseGitPathButton;
-@property IBOutlet NSView *generalPreferencesView;
-@property IBOutlet NSView *repositoriesPreferencesView;
-@property IBOutlet NSView *aboutPreferencesView;
-@property IBOutlet NSButton *websiteLabel;
-@property (readonly) id gitClass;
-@property (readonly) NSString *versionString;
-
-// public
-- (IBAction) removeRepositories: (id) sender;
-- (IBAction) openGitExecutableDialog: (id) sender;
-- (IBAction) openProjectWebsite: (id) sender;
-- (IBAction) openGitHubPage: (id) sender;
-- (IBAction) openIssueTrackerPage: (id) sender;
-- (IBAction) openTipsAndTricksPage: (id) sender;
-
-// private
-- (void) updateUserEmailText: (NSString *) email;
-
+@interface PreferencesWindowController : MASPreferencesWindowController {}
 @end

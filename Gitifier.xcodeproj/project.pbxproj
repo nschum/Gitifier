@@ -28,6 +28,12 @@
 		5831CCC712EE0EFC008169A7 /* PSUIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CCA212EE0EFC008169A7 /* PSUIExtensions.m */; };
 		584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */; };
 		584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */; };
+		584ED6FA13B37BF40085E65C /* GeneralPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F913B37BF40085E65C /* GeneralPanelController.m */; };
+		584ED6FD13B37F650085E65C /* RepositoriesPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6FC13B37F650085E65C /* RepositoriesPanelController.m */; };
+		584ED70013B37F780085E65C /* AboutPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6FF13B37F780085E65C /* AboutPanelController.m */; };
+		584ED70513B3C49A0085E65C /* GeneralPreferencesPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED70313B3C49A0085E65C /* GeneralPreferencesPanel.xib */; };
+		584ED70813B3C80A0085E65C /* AboutPreferencesPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED70613B3C80A0085E65C /* AboutPreferencesPanel.xib */; };
+		584ED70B13B3D32A0085E65C /* RepositoriesPreferencesPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED70913B3D32A0085E65C /* RepositoriesPreferencesPanel.xib */; };
 		585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585886621264DB7A00AD2F1A /* CommitWindow.xib */; };
 		5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858866A1264E25000AD2F1A /* CommitWindowController.m */; };
 		5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */; };
@@ -47,7 +53,6 @@
 		58DEC0C61242C16600DE7C7E /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
 		58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
 		58DEC10E1242C3C200DE7C7E /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */; };
-		58DEC36612451E7D00DE7C7E /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58DEC36512451E7D00DE7C7E /* Preferences.xib */; };
 		58DEC8361246C6B300DE7C7E /* Commit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC81F1246C6B300DE7C7E /* Commit.m */; };
 		58DEC8371246C6B300DE7C7E /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8211246C6B300DE7C7E /* Defaults.m */; };
 		58DEC8381246C6B300DE7C7E /* Git.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8231246C6B300DE7C7E /* Git.m */; };
@@ -142,6 +147,15 @@
 		584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
 		584ED6F413B36B940085E65C /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
 		584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
+		584ED6F813B37BF40085E65C /* GeneralPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPanelController.h; sourceTree = "<group>"; };
+		584ED6F913B37BF40085E65C /* GeneralPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPanelController.m; sourceTree = "<group>"; };
+		584ED6FB13B37F650085E65C /* RepositoriesPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoriesPanelController.h; sourceTree = "<group>"; };
+		584ED6FC13B37F650085E65C /* RepositoriesPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoriesPanelController.m; sourceTree = "<group>"; };
+		584ED6FE13B37F780085E65C /* AboutPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPanelController.h; sourceTree = "<group>"; };
+		584ED6FF13B37F780085E65C /* AboutPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPanelController.m; sourceTree = "<group>"; };
+		584ED70413B3C49A0085E65C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/GeneralPreferencesPanel.xib; sourceTree = "<group>"; };
+		584ED70713B3C80A0085E65C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/AboutPreferencesPanel.xib; sourceTree = "<group>"; };
+		584ED70A13B3D32A0085E65C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RepositoriesPreferencesPanel.xib; sourceTree = "<group>"; };
 		585886601264DB6A00AD2F1A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CommitWindow.xib; sourceTree = "<group>"; };
 		585886691264E25000AD2F1A /* CommitWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitWindowController.h; sourceTree = "<group>"; };
 		5858866A1264E25000AD2F1A /* CommitWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitWindowController.m; sourceTree = "<group>"; };
@@ -166,7 +180,6 @@
 		58DEC0581242B6EB00DE7C7E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		58DEC0C51242C16600DE7C7E /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
-		58DEC35F12451E5C00DE7C7E /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
 		58DEC81E1246C6B300DE7C7E /* Commit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commit.h; sourceTree = "<group>"; };
 		58DEC81F1246C6B300DE7C7E /* Commit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Commit.m; sourceTree = "<group>"; };
 		58DEC8201246C6B300DE7C7E /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
@@ -279,10 +292,12 @@
 				58AA4BDA123D604A00E2E059 /* Images */,
 				8D1107310486CEB800E47090 /* Gitifier-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
-				58DEC36512451E7D00DE7C7E /* Preferences.xib */,
-				58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */,
+				584ED70613B3C80A0085E65C /* AboutPreferencesPanel.xib */,
 				585886621264DB7A00AD2F1A /* CommitWindow.xib */,
+				584ED70313B3C49A0085E65C /* GeneralPreferencesPanel.xib */,
+				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				584ED70913B3D32A0085E65C /* RepositoriesPreferencesPanel.xib */,
+				58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */,
 				5875B2181252BA9000E7B753 /* README.markdown */,
 			);
 			name = Resources;
@@ -468,6 +483,8 @@
 		58DEC81D1246C63400DE7C7E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				584ED6FE13B37F780085E65C /* AboutPanelController.h */,
+				584ED6FF13B37F780085E65C /* AboutPanelController.m */,
 				58DEC81E1246C6B300DE7C7E /* Commit.h */,
 				58DEC81F1246C6B300DE7C7E /* Commit.m */,
 				585886691264E25000AD2F1A /* CommitWindowController.h */,
@@ -476,6 +493,8 @@
 				58DEC8211246C6B300DE7C7E /* Defaults.m */,
 				58DEC8221246C6B300DE7C7E /* Git.h */,
 				58DEC8231246C6B300DE7C7E /* Git.m */,
+				584ED6F813B37BF40085E65C /* GeneralPanelController.h */,
+				584ED6F913B37BF40085E65C /* GeneralPanelController.m */,
 				58DEC8241246C6B300DE7C7E /* GitifierAppDelegate.h */,
 				58DEC8251246C6B300DE7C7E /* GitifierAppDelegate.m */,
 				582E744D126B1D3E0077D935 /* GrowlController.h */,
@@ -490,6 +509,8 @@
 				58DEC82B1246C6B300DE7C7E /* NewRepositoryDialogController.m */,
 				58DEC82C1246C6B300DE7C7E /* PreferencesWindowController.h */,
 				58DEC82D1246C6B300DE7C7E /* PreferencesWindowController.m */,
+				584ED6FB13B37F650085E65C /* RepositoriesPanelController.h */,
+				584ED6FC13B37F650085E65C /* RepositoriesPanelController.m */,
 				58DEC82E1246C6B300DE7C7E /* Repository.h */,
 				58DEC82F1246C6B300DE7C7E /* Repository.m */,
 				58DEC8301246C6B300DE7C7E /* RepositoryListController.h */,
@@ -583,7 +604,6 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				58DEC10E1242C3C200DE7C7E /* Growl Registration Ticket.growlRegDict in Resources */,
-				58DEC36612451E7D00DE7C7E /* Preferences.xib in Resources */,
 				588ACBD9124AB094004F3785 /* AskPass in Resources */,
 				588ACDF3124C184E004F3785 /* sparkle_pub_key.pem in Resources */,
 				58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */,
@@ -592,6 +612,9 @@
 				58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */,
 				585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */,
 				584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */,
+				584ED70513B3C49A0085E65C /* GeneralPreferencesPanel.xib in Resources */,
+				584ED70813B3C80A0085E65C /* AboutPreferencesPanel.xib in Resources */,
+				584ED70B13B3D32A0085E65C /* RepositoriesPreferencesPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +670,9 @@
 				5831CCC612EE0EFC008169A7 /* SFHFKeychainUtils.m in Sources */,
 				5831CCC712EE0EFC008169A7 /* PSUIExtensions.m in Sources */,
 				584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */,
+				584ED6FA13B37BF40085E65C /* GeneralPanelController.m in Sources */,
+				584ED6FD13B37F650085E65C /* RepositoriesPanelController.m in Sources */,
+				584ED70013B37F780085E65C /* AboutPanelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,20 +703,36 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
+		584ED70313B3C49A0085E65C /* GeneralPreferencesPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				584ED70413B3C49A0085E65C /* English */,
+			);
+			name = GeneralPreferencesPanel.xib;
+			sourceTree = "<group>";
+		};
+		584ED70613B3C80A0085E65C /* AboutPreferencesPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				584ED70713B3C80A0085E65C /* English */,
+			);
+			name = AboutPreferencesPanel.xib;
+			sourceTree = "<group>";
+		};
+		584ED70913B3D32A0085E65C /* RepositoriesPreferencesPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				584ED70A13B3D32A0085E65C /* English */,
+			);
+			name = RepositoriesPreferencesPanel.xib;
+			sourceTree = "<group>";
+		};
 		585886621264DB7A00AD2F1A /* CommitWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				585886601264DB6A00AD2F1A /* English */,
 			);
 			name = CommitWindow.xib;
-			sourceTree = "<group>";
-		};
-		58DEC36512451E7D00DE7C7E /* Preferences.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				58DEC35F12451E5C00DE7C7E /* English */,
-			);
-			name = Preferences.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
