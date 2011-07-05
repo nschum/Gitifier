@@ -21,4 +21,9 @@
   return [super initWithViewControllers: controllers title: @"Preferences"];
 }
 
+- (void) setContentView: (NSView *) view {
+  [super setContentView: view];
+  self.window.showsResizeIndicator = [self.window.toolbar.selectedItemIdentifier isEqual: @"Repositories"];
+}
+
 @end
