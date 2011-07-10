@@ -25,24 +25,11 @@ commit, etc.), check if the same problem occurs when you clone the same URL to a
 
 ## Tips and tricks
 
-See [this wiki page](https://github.com/psionides/gitifier/wiki/Tips-%26-tricks).
+See [this wiki page](https://github.com/psionides/Gitifier/wiki/Tips-%26-tricks).
 
 ## Changelog
 
-### Version 1.1.1
-
-* fixed layout issues in commit diff window
-* fixed Sparkle update window hiding behind preferences window
-
-### Version 1.1
-
-* showing commit diffs by clicking on growl notifications
-* some commits (e.g. from GitHub) can also be opened in the browser
-* keep windows on top option (on by default)
-* error notifications appear less often
-* switched repo/author order in growl header
-* fixed some issues with password dialog
-* checking if growl is installed at startup
+See [this page](https://github.com/psionides/Gitifier/blob/master/CHANGELOG.markdown).
 
 ## License
 
