@@ -33,6 +33,7 @@
 - (IBAction) checkNow: (id) sender;
 
 // private
+- (void) askAboutStats;
 - (void) updateUserEmail;
 - (void) loadGitPath;
 - (void) findGitPath;

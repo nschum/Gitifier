@@ -5,6 +5,9 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
+#define SUEnableAutomaticChecksKey @"SUEnableAutomaticChecks"
+#define SUSendProfileInfoKey @"SUSendProfileInfo"
+
 #import "RegexKitLite.h"
 
 #import "Commit.h"
@@ -36,6 +39,8 @@
   [[GrowlController sharedController] setRepositoryListController: repositoryListController];
   [[GrowlController sharedController] checkGrowlAvailability];
 
+  [self askAboutStats];
+
   NSNotificationCenter *center = [[NSWorkspace sharedWorkspace] notificationCenter];
   [center addObserver: self
              selector: @selector(wakeupEvent:)
@@ -54,6 +59,24 @@
   if ([[repositoryListController repositoryList] count] == 0) {
     [self showPreferences: self];
   }
+}
+
+- (void) askAboutStats {
+  if ([GitifierDefaults boolForKey: SUEnableAutomaticChecksKey]
+      && ![GitifierDefaults boolForKey: ASKED_ABOUT_PROFILE_INFO]) {
+    NSInteger output = NSRunAlertPanel(
+      @"Is it OK if Gitifier sends anonymous system stats (CPU, OS version etc.) with update requests?",
+      @"This doesn't include any personal data, just some numbers. You won't be asked about this again.",
+      @"Yeah, whatever",
+      @"Please don't",
+      nil
+    );
+    if (output == NSAlertDefaultReturn) {
+      [GitifierDefaults setBool: YES forKey: SUSendProfileInfoKey];
+    }
+  }
+
+  [GitifierDefaults setBool: YES forKey: ASKED_ABOUT_PROFILE_INFO];
 }
 
 - (void) wakeupEvent: (NSNotification *) notification {

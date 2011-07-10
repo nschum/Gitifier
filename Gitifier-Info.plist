@@ -28,8 +28,10 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUEnableSystemProfiling</key>
+	<true/>
 	<key>SUFeedURL</key>
-	<string>http://github.com/psionides/gitifier/raw/master/Sparkle/gitifier_appcast.xml</string>
+	<string>http://sparkle.psionides.eu/feed/gitifier</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_pub_key.pem</string>
 </dict>
