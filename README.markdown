@@ -35,5 +35,5 @@ See [this page](https://github.com/psionides/Gitifier/blob/master/CHANGELOG.mark
 
 Copyright by Jakub Suder <jakub.suder at gmail.com>. Licensed under Eclipse Public License v1.0.
 
-Includes open source libraries by Dave Batton (DBPrefsWindowController), John Engelhart (RegexKitLite), Andy Matuschak
+Includes open source libraries by Vadim Shpakovski (MASPreferences), John Engelhart (RegexKitLite), Andy Matuschak
 (Sparkle), Ira Cooke (SSH NSTask), Ali Rantakari (ANSIEscapeHelper) and Growl framework by the Growl Team.
