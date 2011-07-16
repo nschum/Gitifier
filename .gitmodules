@@ -1,0 +1,3 @@
+[submodule "Lib/PsiToolkit"]
+	path = Lib/PsiToolkit
+	url = git://github.com/psionides/PsiToolkit.git
