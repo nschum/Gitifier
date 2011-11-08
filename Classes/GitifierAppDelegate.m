@@ -37,7 +37,6 @@
   [self loadGitPath];
 
   [[GrowlController sharedController] setRepositoryListController: repositoryListController];
-  [[GrowlController sharedController] checkGrowlAvailability];
 
   [self askAboutStats];
 

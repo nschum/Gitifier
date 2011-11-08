@@ -24,13 +24,11 @@
 
 // public
 + (GrowlController *) sharedController;
-- (void) checkGrowlAvailability;
 - (void) showGrowlWithCommit: (Commit *) commit repository: (Repository *) repository;
 - (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository;
 - (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type;
 
 // private
-- (void) openGrowlPreferences;
 - (NSData *) growlIcon;
 
 @end
