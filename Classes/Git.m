@@ -25,7 +25,7 @@ static NSString *gitExecutable = nil;
   path = [path psTrimmedString];
   gitExecutable = [path isEqual: @""] ? nil : path;
   [self didChangeValueForKey: @"gitExecutable"];
-  PSNotifyWithData(GitExecutableSetNotification, PSHash(@"path", path));
+  PSNotifyWithData(GitExecutableSetNotification, PSHash(@"path", path ? path : PSNull));
 }
 
 - (id) initWithDelegate: (id) aDelegate {
