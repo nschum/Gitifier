@@ -39,11 +39,13 @@
 @implementation NSWindow (Gitifier)
 
 - (BOOL) keepOnTop {
-  return (self.level == NSModalPanelWindowLevel);
+  return (self.level == NSModalPanelWindowLevel || self.level == NSStatusWindowLevel);
 }
 
 - (void) setKeepOnTop: (BOOL) keepOnTop {
-  self.level = keepOnTop ? NSModalPanelWindowLevel : NSNormalWindowLevel;
+  if (self.level != NSStatusWindowLevel) {
+    self.level = keepOnTop ? NSModalPanelWindowLevel : NSNormalWindowLevel;
+  }
 }
 
 @end

@@ -97,6 +97,7 @@
     BOOL keepOnTop = [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY];
     NSArray *windows = [NSApp windows];
     NSWindow *mainWindow = nil;
+
     for (NSWindow *window in windows) {
       if ([window isMainWindow]) {
         mainWindow = window;
@@ -104,6 +105,7 @@
         window.keepOnTop = keepOnTop;
       }
     }
+
     mainWindow.keepOnTop = keepOnTop;
   }
 }
