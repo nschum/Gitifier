@@ -17,6 +17,8 @@ extern NSString *ShowDiffWindowKey;
 extern NSString *OpenDiffInBrowserKey;
 extern NSString *KeepWindowsOnTopKey;
 extern NSString *AskedAboutProfileInfoKey;
+extern NSString *NotificationLimitEnabledKey;
+extern NSString *NotificationLimitValueKey;
 
 @interface Defaults
 

@@ -23,6 +23,8 @@
 @property (copy) NSDate *date;
 
 + (Commit *) commitFromDictionary: (NSDictionary *) dictionary;
++ (NSArray *) chooseRelevantCommits: (NSArray *) commits forUser: (NSString *) userEmail;
+
 - (BOOL) isMergeCommit;
 - (NSDictionary *) toDictionary;
 

@@ -6,6 +6,7 @@
 // -------------------------------------------------------
 
 #import "Commit.h"
+#import "Defaults.h"
 #import "RegexKitLite.h"
 
 @implementation Commit
@@ -18,6 +19,21 @@
 
 + (NSArray *) propertyList {
   return PSArray(@"authorName", @"authorEmail", @"subject", @"gitHash", @"date");
+}
+
++ (NSArray *) chooseRelevantCommits: (NSArray *) commits forUser: (NSString *) userEmail {
+  BOOL ignoreMerges = [GitifierDefaults boolForKey: IgnoreMergesKey];
+  BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IgnoreOwnCommitsKey];
+  NSMutableArray *relevantCommits = [NSMutableArray arrayWithCapacity: commits.count];
+
+  for (Commit *commit in commits) {
+    if (ignoreMerges && [commit isMergeCommit]) continue;
+    if (ignoreOwnCommits && [commit.authorEmail isEqualToString: userEmail]) continue;
+
+    [relevantCommits addObject: commit];
+  }
+
+  return relevantCommits;
 }
 
 - (BOOL) isMergeCommit {

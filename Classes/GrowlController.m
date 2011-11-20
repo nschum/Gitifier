@@ -48,7 +48,24 @@ NSString *OtherMessageGrowl           = @"Other message";
                                  priority: 0
                                  isSticky: sticky
                              clickContext: commitData];
-}  
+}
+
+- (void) showGrowlWithCommitGroup: (NSArray *) commits
+               includesAllCommits: (BOOL) includesAll
+                       repository: (Repository *) repository {
+  BOOL sticky = [GitifierDefaults boolForKey: StickyNotificationsKey];
+  NSArray *authorNames = [commits valueForKeyPath: @"@distinctUnionOfObjects.authorName"];
+  NSString *authorList = [authorNames componentsJoinedByString: @", "];
+  NSString *message = includesAll ? @"%d commits received" : @"… and %d other commits";
+
+  [GrowlApplicationBridge notifyWithTitle: PSFormat(message, commits.count)
+                              description: PSFormat(@"Author%@: %@", (authorNames.count > 1) ? @"s" : @"", authorList)
+                         notificationName: CommitReceivedGrowl
+                                 iconData: [self growlIcon]
+                                 priority: 0
+                                 isSticky: sticky
+                             clickContext: nil];
+}
 
 - (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository {
   NSString *title;

@@ -229,14 +229,30 @@ static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
 // --- repository callbacks ---
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
-  BOOL ignoreMerges = [GitifierDefaults boolForKey: IgnoreMergesKey];
-  BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IgnoreOwnCommitsKey];
+  BOOL hasNotificationLimit = [GitifierDefaults boolForKey: NotificationLimitEnabledKey];
+  NSInteger notificationLimit = [GitifierDefaults integerForKey: NotificationLimitValueKey];
 
-  for (Commit *commit in [commits reverseObjectEnumerator]) {
-    if (ignoreMerges && [commit isMergeCommit]) continue;
-    if (ignoreOwnCommits && [commit.authorEmail isEqualToString: userEmail]) continue;
+  NSArray *reversedCommits = [[commits reverseObjectEnumerator] allObjects];
+  NSArray *relevantCommits = [Commit chooseRelevantCommits: reversedCommits forUser: userEmail];
+  NSArray *displayedCommits, *remainingCommits;
 
+  if (hasNotificationLimit && relevantCommits.count > notificationLimit) {
+    NSInteger displayed = notificationLimit - 1;
+    displayedCommits = [relevantCommits subarrayWithRange: NSMakeRange(0, displayed)];
+    remainingCommits = [relevantCommits subarrayWithRange: NSMakeRange(displayed, relevantCommits.count - displayed)];
+  } else {
+    displayedCommits = relevantCommits;
+    remainingCommits = [NSArray array];
+  }
+
+  for (Commit *commit in displayedCommits) {
     [[GrowlController sharedController] showGrowlWithCommit: commit repository: repository];
+  }
+
+  if (remainingCommits.count > 0) {
+    [[GrowlController sharedController] showGrowlWithCommitGroup: remainingCommits
+                                              includesAllCommits: notificationLimit == 1
+                                                      repository: repository];
   }
 }
 
