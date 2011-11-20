@@ -282,7 +282,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (void) notifyDelegateWithSelector: (SEL) selector {
   if ([delegate respondsToSelector: selector]) {
-    [delegate performSelector: selector withObject: self];
+    [delegate performSelectorOnMainThread: selector withObject: self waitUntilDone: NO];
   }
 }
 

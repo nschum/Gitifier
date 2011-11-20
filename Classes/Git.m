@@ -148,7 +148,9 @@ static NSString *gitExecutable = nil;
 
 - (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command output: (NSString *) output {
   if ([delegate respondsToSelector: selector]) {
-    [delegate performSelector: selector withObject: command withObject: output];
+    [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+      [delegate performSelector: selector withObject: command withObject: output];
+    }];
   }
 }
 
