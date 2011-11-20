@@ -26,11 +26,6 @@
 
   [self updateUserEmailText: [[NSApp delegate] userEmail]];
   PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
-  
-  // 10.6 has significantly different API for this dialog, and I'm too lazy to code both versions
-  if (![NSOpenPanel instancesRespondToSelector: @selector(setShowsHiddenFiles:)]) {
-    [chooseGitPathButton removeFromSuperview];
-  }
 }
 
 - (id) gitClass {
