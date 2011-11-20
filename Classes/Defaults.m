@@ -7,19 +7,30 @@
 
 #import "Defaults.h"
 
-NSDictionary *defaultPreferenceValues;
+NSString *MonitorIntervalKey       = @"monitorInterval";
+NSString *RepositoryListKey        = @"repositoryList";
+NSString *IgnoreMergesKey          = @"ignoreMerges";
+NSString *IgnoreOwnCommitsKey      = @"ignoreOwnCommits";
+NSString *GitExecutableKey         = @"gitExecutable";
+NSString *StickyNotificationsKey   = @"stickyNotifications";
+NSString *ShowDiffWindowKey        = @"showDiffWindow";
+NSString *OpenDiffInBrowserKey     = @"openDiffInBrowser";
+NSString *KeepWindowsOnTopKey      = @"keepWindowsOnTop";
+NSString *AskedAboutProfileInfoKey = @"askedAboutProfileInfo";
+
+static NSDictionary *defaultPreferenceValues;
 
 @implementation Defaults
 
 + (void) initialize {
   defaultPreferenceValues = PSHash(
-    MONITOR_INTERVAL_KEY,      PSInt(5),
-    IGNORE_MERGES_KEY,         PSBool(YES),
-    IGNORE_OWN_COMMITS,        PSBool(YES),
-    STICKY_NOTIFICATIONS_KEY,  PSBool(NO),
-    SHOW_DIFF_WINDOW_KEY,      PSBool(YES),
-    OPEN_DIFF_IN_BROWSER_KEY,  PSBool(NO),
-    KEEP_WINDOWS_ON_TOP_KEY,   PSBool(YES)
+    MonitorIntervalKey,     PSInt(5),
+    IgnoreMergesKey,        PSBool(YES),
+    IgnoreOwnCommitsKey,    PSBool(YES),
+    StickyNotificationsKey, PSBool(NO),
+    ShowDiffWindowKey,      PSBool(YES),
+    OpenDiffInBrowserKey,   PSBool(NO),
+    KeepWindowsOnTopKey,    PSBool(YES)
   );
 }
 

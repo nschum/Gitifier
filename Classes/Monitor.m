@@ -14,12 +14,12 @@
 @synthesize dataSource;
 
 - (void) awakeFromNib {
-  ObserveDefaults(MONITOR_INTERVAL_KEY);
+  ObserveDefaults(MonitorIntervalKey);
 }
 
 - (void) startMonitoring {
   if (!timer) {
-    NSInteger interval = [GitifierDefaults integerForKey: MONITOR_INTERVAL_KEY];
+    NSInteger interval = [GitifierDefaults integerForKey: MonitorIntervalKey];
     timer = [NSTimer scheduledTimerWithTimeInterval: (interval * 60)
                                              target: self
                                            selector: @selector(timerFired)
@@ -51,7 +51,7 @@
                        ofObject: (id) object
                          change: (NSDictionary *) change
                         context: (void *) context {
-  if (timer && [[keyPath lastKeyPathElement] isEqual: MONITOR_INTERVAL_KEY]) {
+  if (timer && [[keyPath lastKeyPathElement] isEqual: MonitorIntervalKey]) {
     [self restartMonitoring];
   }
 }

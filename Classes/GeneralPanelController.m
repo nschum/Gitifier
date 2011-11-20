@@ -10,7 +10,7 @@
 #import "Git.h"
 #import "GitifierAppDelegate.h"
 
-#define IGNORE_MY_COMMITS_TEXT @"Ignore my own commits"
+static NSString *IgnoreMyCommitsText = @"Ignore my own commits";
 
 @implementation GeneralPanelController
 
@@ -92,8 +92,8 @@
 
 - (void) updateUserEmailText: (NSString *) email {
   if (email) {
-    NSString *title = PSFormat(@"%@ (%@)", IGNORE_MY_COMMITS_TEXT, email);
-    NSInteger labelLength = IGNORE_MY_COMMITS_TEXT.length;
+    NSString *title = PSFormat(@"%@ (%@)", IgnoreMyCommitsText, email);
+    NSInteger labelLength = IgnoreMyCommitsText.length;
     NSRange labelRange = NSMakeRange(0, labelLength);
     NSRange emailRange = NSMakeRange(labelLength, title.length - labelLength);
     
@@ -107,7 +107,7 @@
     [text addAttribute: NSForegroundColorAttributeName value: gray range: emailRange];
     ignoreOwnEmailsField.attributedTitle = text;
   } else {
-    ignoreOwnEmailsField.title = IGNORE_MY_COMMITS_TEXT;
+    ignoreOwnEmailsField.title = IgnoreMyCommitsText;
   }
 }
 
@@ -127,7 +127,7 @@
         monitorIntervalField.integerValue = value;
       }
     } else {
-      monitorIntervalField.integerValue = [GitifierDefaults integerForKey: MONITOR_INTERVAL_KEY];
+      monitorIntervalField.integerValue = [GitifierDefaults integerForKey: MonitorIntervalKey];
     }
     return YES;
   }

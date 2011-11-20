@@ -12,6 +12,11 @@
 #import "Repository.h"
 #import "RepositoryListController.h"
 
+NSString *CommitReceivedGrowl         = @"Commit received";
+NSString *RepositoryUpdateFailedGrowl = @"Repository update failed";
+NSString *OtherMessageGrowl           = @"Other message";
+
+
 @implementation GrowlController
 
 @synthesize repositoryListController;
@@ -33,7 +38,7 @@
 }
 
 - (void) showGrowlWithCommit: (Commit *) commit repository: (Repository *) repository {
-  BOOL sticky = [GitifierDefaults boolForKey: STICKY_NOTIFICATIONS_KEY];
+  BOOL sticky = [GitifierDefaults boolForKey: StickyNotificationsKey];
   NSDictionary *commitData = PSHash(@"commit", [commit toDictionary], @"repository", repository.url);
 
   [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", repository.name, commit.authorName)
@@ -77,8 +82,8 @@
 }
 
 - (void) growlNotificationWasClicked: (id) clickContext {
-  BOOL shouldShowDiffs = [GitifierDefaults boolForKey: SHOW_DIFF_WINDOW_KEY];
-  BOOL shouldOpenInBrowser = [GitifierDefaults boolForKey: OPEN_DIFF_IN_BROWSER_KEY];
+  BOOL shouldShowDiffs = [GitifierDefaults boolForKey: ShowDiffWindowKey];
+  BOOL shouldOpenInBrowser = [GitifierDefaults boolForKey: OpenDiffInBrowserKey];
   
   if (clickContext && shouldShowDiffs) {
     NSString *url = [clickContext objectForKey: @"repository"];

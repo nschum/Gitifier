@@ -8,13 +8,11 @@
 #import <Cocoa/Cocoa.h>
 #import <Growl/GrowlApplicationBridge.h>
 
-#define CommitReceivedGrowl @"Commit received"
-#define RepositoryUpdateFailedGrowl @"Repository update failed"
-#define OtherMessageGrowl @"Other message"
-
 @class Commit;
 @class Repository;
 @class RepositoryListController;
+
+extern NSString *OtherMessageGrowl;
 
 @interface GrowlController : NSObject <GrowlApplicationBridgeDelegate> {
   RepositoryListController *repositoryListController;

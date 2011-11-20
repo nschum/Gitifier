@@ -52,7 +52,7 @@
 }
 
 - (void) loadRepositories {
-  NSArray *hashes = [GitifierDefaults arrayForKey: REPOSITORY_LIST_KEY];
+  NSArray *hashes = [GitifierDefaults arrayForKey: RepositoryListKey];
   if (hashes) {
     for (id data in hashes) {
       Repository *repo = nil;
@@ -73,7 +73,7 @@
 
 - (void) saveRepositories {
   NSArray *repositories = [[self repositoryList] valueForKeyPath: @"hashRepresentation"];
-  [GitifierDefaults setObject: repositories forKey: REPOSITORY_LIST_KEY];
+  [GitifierDefaults setObject: repositories forKey: RepositoryListKey];
   [GitifierDefaults synchronize];
 }
 

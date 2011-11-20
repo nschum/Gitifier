@@ -7,20 +7,18 @@
 
 #define GitifierDefaults [NSUserDefaults standardUserDefaults]
 
-#define MONITOR_INTERVAL_KEY @"monitorInterval"
-#define REPOSITORY_LIST_KEY @"repositoryList"
-#define IGNORE_MERGES_KEY @"ignoreMerges"
-#define IGNORE_OWN_COMMITS @"ignoreOwnCommits"
-#define GIT_EXECUTABLE_KEY @"gitExecutable"
-#define STICKY_NOTIFICATIONS_KEY @"stickyNotifications"
-#define SHOW_DIFF_WINDOW_KEY @"showDiffWindow"
-#define OPEN_DIFF_IN_BROWSER_KEY @"openDiffInBrowser"
-#define KEEP_WINDOWS_ON_TOP_KEY @"keepWindowsOnTop"
-#define ASKED_ABOUT_PROFILE_INFO @"askedAboutProfileInfo"
+extern NSString *MonitorIntervalKey;
+extern NSString *RepositoryListKey;
+extern NSString *IgnoreMergesKey;
+extern NSString *IgnoreOwnCommitsKey;
+extern NSString *GitExecutableKey;
+extern NSString *StickyNotificationsKey;
+extern NSString *ShowDiffWindowKey;
+extern NSString *OpenDiffInBrowserKey;
+extern NSString *KeepWindowsOnTopKey;
+extern NSString *AskedAboutProfileInfoKey;
 
-extern NSDictionary *defaultPreferenceValues;
-
-@interface Defaults {}
+@interface Defaults
 
 + (void) registerDefaults;
 

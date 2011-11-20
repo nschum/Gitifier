@@ -8,6 +8,10 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "Utils.h"
 
+NSString *UserEmailChangedNotification = @"UserEmailChangedNotification";
+NSString *GitExecutableSetNotification = @"GitExecutableSetNotification";
+
+
 @implementation NSString (Gitifier)
 
 - (NSString *) MD5Hash {

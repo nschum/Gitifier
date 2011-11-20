@@ -5,9 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#define SUEnableAutomaticChecksKey @"SUEnableAutomaticChecks"
-#define SUSendProfileInfoKey @"SUSendProfileInfo"
-
 #import "RegexKitLite.h"
 
 #import "Commit.h"
@@ -19,6 +16,9 @@
 #import "Repository.h"
 #import "RepositoryListController.h"
 #import "StatusBarController.h"
+
+static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
+static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
 
 @implementation GitifierAppDelegate
 
@@ -33,7 +33,7 @@
 
   PSObserve(nil, NSWindowDidBecomeMainNotification, windowBecameMain:);
   PSObserve(nil, GitExecutableSetNotification, gitPathUpdated);
-  ObserveDefaults(KEEP_WINDOWS_ON_TOP_KEY);
+  ObserveDefaults(KeepWindowsOnTopKey);
   [self loadGitPath];
 
   [[GrowlController sharedController] setRepositoryListController: repositoryListController];
@@ -62,7 +62,7 @@
 
 - (void) askAboutStats {
   if ([GitifierDefaults boolForKey: SUEnableAutomaticChecksKey]
-      && ![GitifierDefaults boolForKey: ASKED_ABOUT_PROFILE_INFO]) {
+      && ![GitifierDefaults boolForKey: AskedAboutProfileInfoKey]) {
     NSInteger output = NSRunAlertPanel(
       @"Is it OK if Gitifier sends anonymous system stats (CPU, OS version etc.) with update requests?",
       @"This doesn't include any personal data, just some numbers. You won't be asked about this again.",
@@ -75,7 +75,7 @@
     }
   }
 
-  [GitifierDefaults setBool: YES forKey: ASKED_ABOUT_PROFILE_INFO];
+  [GitifierDefaults setBool: YES forKey: AskedAboutProfileInfoKey];
 }
 
 - (void) wakeupEvent: (NSNotification *) notification {
@@ -86,15 +86,15 @@
 
 - (void) windowBecameMain: (NSNotification *) notification {
   NSWindow *window = [notification object];
-  window.keepOnTop = [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY];
+  window.keepOnTop = [GitifierDefaults boolForKey: KeepWindowsOnTopKey];
 }
 
 - (void) observeValueForKeyPath: (NSString *) keyPath
                        ofObject: (id) object
                          change: (NSDictionary *) change
                         context: (void *) context {
-  if ([[keyPath lastKeyPathElement] isEqual: KEEP_WINDOWS_ON_TOP_KEY]) {
-    BOOL keepOnTop = [GitifierDefaults boolForKey: KEEP_WINDOWS_ON_TOP_KEY];
+  if ([[keyPath lastKeyPathElement] isEqual: KeepWindowsOnTopKey]) {
+    BOOL keepOnTop = [GitifierDefaults boolForKey: KeepWindowsOnTopKey];
     NSArray *windows = [NSApp windows];
     NSWindow *mainWindow = nil;
 
@@ -146,7 +146,7 @@
 // --- git path management ---
 
 - (void) loadGitPath {
-  NSString *path = [GitifierDefaults objectForKey: GIT_EXECUTABLE_KEY];
+  NSString *path = [GitifierDefaults objectForKey: GitExecutableKey];
   if (path) {
     [Git setGitExecutable: path];
   } else {
@@ -159,9 +159,9 @@
   if (git) {
     [self updateUserEmail];
     [self validateGitPath];
-    [GitifierDefaults setObject: git forKey: GIT_EXECUTABLE_KEY];
+    [GitifierDefaults setObject: git forKey: GitExecutableKey];
   } else {
-    [GitifierDefaults removeObjectForKey: GIT_EXECUTABLE_KEY];
+    [GitifierDefaults removeObjectForKey: GitExecutableKey];
   }
 }
 
@@ -229,8 +229,8 @@
 // --- repository callbacks ---
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
-  BOOL ignoreMerges = [GitifierDefaults boolForKey: IGNORE_MERGES_KEY];
-  BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IGNORE_OWN_COMMITS];
+  BOOL ignoreMerges = [GitifierDefaults boolForKey: IgnoreMergesKey];
+  BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IgnoreOwnCommitsKey];
 
   for (Commit *commit in [commits reverseObjectEnumerator]) {
     if (ignoreMerges && [commit isMergeCommit]) continue;

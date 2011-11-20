@@ -7,11 +7,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define UserEmailChangedNotification @"UserEmailChangedNotification"
-#define GitExecutableSetNotification @"GitExecutableSetNotification"
-
 #define ObserveDefaults(setting) [[NSUserDefaultsController sharedUserDefaultsController] \
   addObserver: self forKeyPath: PSFormat(@"values.%@", setting) options: 0 context: nil]
+
+extern NSString *UserEmailChangedNotification;
+extern NSString *GitExecutableSetNotification;
 
 @interface NSString (Gitifier)
 - (NSString *) MD5Hash;

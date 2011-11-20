@@ -11,7 +11,7 @@
 #import "Git.h"
 #import "Repository.h"
 
-#define ERROR_TEXT @"Error loading commit diff."
+static NSString *ErrorText = @"Error loading commit diff.";
 
 
 @implementation CommitWindowController
@@ -79,7 +79,7 @@
     [spinner performSelector: @selector(startAnimation:) withObject: self afterDelay: 0.1];
     [git runCommand: @"show" withArguments: PSArray(commit.gitHash, @"--color", @"--pretty=format:%b") inPath: workingCopy];
   } else {
-    [self displayText: ERROR_TEXT];
+    [self displayText: ErrorText];
   }
 }
 
@@ -94,7 +94,7 @@
 }
 
 - (void) commandFailed: (NSString *) command output: (NSString *) output {
-  [self handleResult: ERROR_TEXT];
+  [self handleResult: ErrorText];
 }
 
 - (void) handleResult: (id) result {
