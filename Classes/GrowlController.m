@@ -99,6 +99,11 @@ NSString *OtherMessageGrowl           = @"Other message";
 }
 
 - (void) growlNotificationWasClicked: (id) clickContext {
+  // temporary fix for a bug in Growl 1.3
+  // see http://code.google.com/p/growl/issues/detail?id=377
+  id date = [[clickContext objectForKey: @"commit"] objectForKey: @"date"];
+  if ([date isKindOfClass: [NSString class]]) return;
+
   BOOL shouldShowDiffs = [GitifierDefaults boolForKey: ShowDiffWindowKey];
   BOOL shouldOpenInBrowser = [GitifierDefaults boolForKey: OpenDiffInBrowserKey];
   
