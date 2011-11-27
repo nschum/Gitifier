@@ -118,7 +118,6 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 // --- actions ---
 
 - (IBAction) showPreferences: (id) sender {
-
   [NSApp activateIgnoringOtherApps: YES];
   [preferencesWindowController showWindow: self];
 }
