@@ -19,6 +19,7 @@ extern NSString *KeepWindowsOnTopKey;
 extern NSString *AskedAboutProfileInfoKey;
 extern NSString *NotificationLimitEnabledKey;
 extern NSString *NotificationLimitValueKey;
+extern NSString *RecentCommitsListLengthKey;
 
 @interface Defaults
 

@@ -7,9 +7,8 @@
 
 #import "Commit.h"
 #import "CommitWindowController.h"
+#import "Defaults.h"
 #import "StatusBarController.h"
-
-static NSInteger recentCommitsLimit = 5;
 
 @implementation StatusBarController
 
@@ -37,8 +36,10 @@ static NSInteger recentCommitsLimit = 5;
 }
 
 - (void) updateRecentCommitsList: (NSArray *) newCommits {
+  NSInteger limit = [GitifierDefaults integerForKey: RecentCommitsListLengthKey];
+
   recentCommits = [newCommits arrayByAddingObjectsFromArray: recentCommits];
-  recentCommits = [recentCommits subarrayWithRange: NSMakeRange(0, MIN(recentCommits.count, recentCommitsLimit))];
+  recentCommits = [recentCommits subarrayWithRange: NSMakeRange(0, MIN(recentCommits.count, limit))];
 
   [self updateRecentCommitsSection];
 }

@@ -19,6 +19,7 @@ NSString *KeepWindowsOnTopKey         = @"keepWindowsOnTop";
 NSString *AskedAboutProfileInfoKey    = @"askedAboutProfileInfo";
 NSString *NotificationLimitEnabledKey = @"notificationLimitEnabled";
 NSString *NotificationLimitValueKey   = @"notificationLimitValue";
+NSString *RecentCommitsListLengthKey  = @"recentCommitsListLength";
 
 static NSDictionary *defaultPreferenceValues;
 
@@ -34,7 +35,8 @@ static NSDictionary *defaultPreferenceValues;
     OpenDiffInBrowserKey,        PSBool(NO),
     KeepWindowsOnTopKey,         PSBool(YES),
     NotificationLimitEnabledKey, PSBool(YES),
-    NotificationLimitValueKey,   PSInt(15)
+    NotificationLimitValueKey,   PSInt(15),
+    RecentCommitsListLengthKey,  PSInt(5)
   );
 }
 
