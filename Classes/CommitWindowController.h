@@ -12,7 +12,6 @@
 @class Repository;
 
 @interface CommitWindowController : NSWindowController {
-  Repository *repository;
   Commit *commit;
   NSTextView *textView;
   NSTextField *authorLabel;
@@ -37,7 +36,8 @@
 @property IBOutlet NSBox *separator;
 
 // public
-- (id) initWithRepository: (Repository *) aRepository commit: (Commit *) commit;
+- (id) initWithCommit: (Commit *) commit;
+- (void) show;
 - (IBAction) viewInBrowser: (id) sender;
 
 // private

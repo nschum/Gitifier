@@ -171,6 +171,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       commit.authorName = [fields objectAtIndex: 3];
       commit.authorEmail = [fields objectAtIndex: 4];
       commit.subject = [fields objectAtIndex: 5];
+      commit.repository = self;
       [commits addObject: commit];
     }
     isBeingUpdated = NO;

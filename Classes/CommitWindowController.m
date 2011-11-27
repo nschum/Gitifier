@@ -19,10 +19,9 @@ static NSString *ErrorText = @"Error loading commit diff.";
 @synthesize textView, authorLabel, dateLabel, subjectLabel, viewInBrowserButton, spinner,
   scrollView, scrollViewBox, separator;
 
-- (id) initWithRepository: (Repository *) aRepository commit: (Commit *) aCommit {
+- (id) initWithCommit: (Commit *) aCommit {
   self = [super initWithWindowNibName: @"CommitWindow"];
   if (self) {
-    repository = aRepository;
     commit = [aCommit copy];
     colorConverter = [[ANSIEscapeHelper alloc] init];
   }
@@ -30,7 +29,7 @@ static NSString *ErrorText = @"Error loading commit diff.";
 }
 
 - (void) windowDidLoad {
-  self.window.title = PSFormat(@"%@ – commit %@", repository.name, commit.gitHash);
+  self.window.title = PSFormat(@"%@ – commit %@", commit.repository.name, commit.gitHash);
 
   authorLabel.stringValue = PSFormat(@"%@ <%@>", commit.authorName, commit.authorEmail);
   subjectLabel.stringValue = commit.subject;
@@ -44,7 +43,7 @@ static NSString *ErrorText = @"Error loading commit diff.";
   formatter.timeStyle = NSDateFormatterMediumStyle;
   dateLabel.stringValue = [formatter stringFromDate: commit.date];
 
-  NSURL *webUrl = [repository webUrlForCommit: commit];
+  NSURL *webUrl = [commit.repository webUrlForCommit: commit];
   if (webUrl) {
     viewInBrowserButton.title = PSFormat(@"View on %@", webUrl.host);
   } else {
@@ -72,10 +71,10 @@ static NSString *ErrorText = @"Error loading commit diff.";
 
 - (void) loadCommitDiff {
   Git *git = [[Git alloc] initWithDelegate: self];
-  git.repositoryUrl = repository.url;
-  NSString *workingCopy = [repository workingCopyDirectory];
+  git.repositoryUrl = commit.repository.url;
+  NSString *workingCopy = [commit.repository workingCopyDirectory];
 
-  if (workingCopy && [repository directoryExists: workingCopy]) {
+  if (workingCopy && [commit.repository directoryExists: workingCopy]) {
     [spinner performSelector: @selector(startAnimation:) withObject: self afterDelay: 0.1];
     [git runCommand: @"show" withArguments: PSArray(commit.gitHash, @"--color", @"--pretty=format:%b") inPath: workingCopy];
   } else {
@@ -112,8 +111,13 @@ static NSString *ErrorText = @"Error loading commit diff.";
 }
 
 - (IBAction) viewInBrowser: (id) sender {
-  [[NSWorkspace sharedWorkspace] openURL: [repository webUrlForCommit: commit]];
+  [[NSWorkspace sharedWorkspace] openURL: [commit.repository webUrlForCommit: commit]];
   [self close];
+}
+
+- (void) show {
+  [self showWindow: self];
+  [NSApp activateIgnoringOtherApps: YES];
 }
 
 @end

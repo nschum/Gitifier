@@ -11,14 +11,14 @@
 
 @implementation Commit
 
-@synthesize authorName, authorEmail, subject, gitHash, date;
+@synthesize authorName, authorEmail, subject, gitHash, date, repository;
 
 + (Commit *) commitFromDictionary: (NSDictionary *) dictionary {
   return (Commit *) [Commit objectFromJSON: dictionary];
 }
 
 + (NSArray *) propertyList {
-  return PSArray(@"authorName", @"authorEmail", @"subject", @"gitHash", @"date");
+  return PSArray(@"authorName", @"authorEmail", @"subject", @"gitHash", @"date", @"repository");
 }
 
 + (NSArray *) chooseRelevantCommits: (NSArray *) commits forUser: (NSString *) userEmail {

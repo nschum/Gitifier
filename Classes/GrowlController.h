@@ -23,10 +23,8 @@ extern NSString *OtherMessageGrowl;
 // public
 + (GrowlController *) sharedController;
 
-- (void) showGrowlWithCommit: (Commit *) commit repository: (Repository *) repository;
-- (void) showGrowlWithCommitGroup: (NSArray *) commits
-               includesAllCommits: (BOOL) includesAll
-                       repository: (Repository *) repository;
+- (void) showGrowlWithCommit: (Commit *) commit;
+- (void) showGrowlWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll;
 
 - (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository;
 - (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type;

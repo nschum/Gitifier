@@ -8,12 +8,15 @@
 #import <Foundation/Foundation.h>
 #import "PSModel.h"
 
+@class Repository;
+
 @interface Commit : PSModel {
   NSString *authorName;
   NSString *authorEmail;
   NSString *subject;
   NSString *gitHash;
   NSDate *date;
+  Repository *repository;
 }
 
 @property (copy) NSString *authorName;
@@ -21,6 +24,7 @@
 @property (copy) NSString *subject;
 @property (copy) NSString *gitHash;
 @property (copy) NSDate *date;
+@property (retain) Repository *repository;
 
 + (Commit *) commitFromDictionary: (NSDictionary *) dictionary;
 + (NSArray *) chooseRelevantCommits: (NSArray *) commits forUser: (NSString *) userEmail;

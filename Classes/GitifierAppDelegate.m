@@ -246,13 +246,12 @@ static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
   }
 
   for (Commit *commit in displayedCommits) {
-    [[GrowlController sharedController] showGrowlWithCommit: commit repository: repository];
+    [[GrowlController sharedController] showGrowlWithCommit: commit];
   }
 
   if (remainingCommits.count > 0) {
     [[GrowlController sharedController] showGrowlWithCommitGroup: remainingCommits
-                                              includesAllCommits: notificationLimit == 1
-                                                      repository: repository];
+                                              includesAllCommits: notificationLimit == 1];
   }
 }
 
