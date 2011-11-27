@@ -65,6 +65,14 @@ NSString *OtherMessageGrowl           = @"Other message";
                              clickContext: nil];
 }
 
+- (void) showGrowlWithCommitGroupIncludingAllCommits: (NSArray *) commits {
+  [self showGrowlWithCommitGroup: commits includesAllCommits: YES];
+}
+
+- (void) showGrowlWithCommitGroupIncludingSomeCommits: (NSArray *) commits {
+  [self showGrowlWithCommitGroup: commits includesAllCommits: NO];
+}
+
 - (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository {
   NSString *title;
   if (repository) {

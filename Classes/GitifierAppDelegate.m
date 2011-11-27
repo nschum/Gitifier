@@ -19,6 +19,7 @@
 
 static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
+static CGFloat IntervalBetweenGrowls        = 0.05;
 
 @implementation GitifierAppDelegate
 
@@ -244,13 +245,25 @@ static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
     remainingCommits = [NSArray array];
   }
 
+  GrowlController *growl = [GrowlController sharedController];
+  NSInteger i = 0;
+
   for (Commit *commit in displayedCommits) {
-    [[GrowlController sharedController] showGrowlWithCommit: commit];
+    // intervals added because Growl 1.3 can't figure out the proper order by itself...
+    [growl performSelector: @selector(showGrowlWithCommit:) withObject: commit afterDelay: i * IntervalBetweenGrowls];
+    i += 1;
   }
 
   if (remainingCommits.count > 0) {
-    [[GrowlController sharedController] showGrowlWithCommitGroup: remainingCommits
-                                              includesAllCommits: notificationLimit == 1];
+    SEL action;
+
+    if (notificationLimit == 1) {
+      action = @selector(showGrowlWithCommitGroupIncludingAllCommits:);
+    } else {
+      action = @selector(showGrowlWithCommitGroupIncludingSomeCommits:);
+    }
+
+    [growl performSelector: action withObject: remainingCommits afterDelay: i * IntervalBetweenGrowls];
   }
 
   [statusBarController updateRecentCommitsList: relevantCommits];
