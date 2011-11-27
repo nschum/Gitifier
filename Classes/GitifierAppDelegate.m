@@ -56,6 +56,10 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   [monitor startMonitoring];
   [monitor executeFetch];
 
+  // preload preferences window to make it open faster
+  preferencesWindowController = [[PreferencesWindowController alloc] init];
+  [preferencesWindowController window];
+
   if ([[repositoryListController repositoryList] count] == 0) {
     [self showPreferences: self];
   }
@@ -114,9 +118,6 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 // --- actions ---
 
 - (IBAction) showPreferences: (id) sender {
-  if (!preferencesWindowController) {
-    preferencesWindowController = [[PreferencesWindowController alloc] init];
-  }
 
   [NSApp activateIgnoringOtherApps: YES];
   [preferencesWindowController showWindow: self];
