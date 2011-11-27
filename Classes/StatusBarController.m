@@ -5,11 +5,23 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
+#import "Commit.h"
+#import "CommitWindowController.h"
 #import "StatusBarController.h"
+
+static NSInteger recentCommitsLimit = 5;
 
 @implementation StatusBarController
 
 @synthesize statusBarMenu;
+
+- (id) init {
+  self = [super init];
+  if (self) {
+    recentCommits = [NSArray array];
+  }
+  return self;
+}
 
 - (void) createStatusBarItem {
   statusBarItem = [[NSStatusBar systemStatusBar] statusItemWithLength: NSSquareStatusItemLength];
@@ -22,6 +34,43 @@
   statusBarItem.alternateImage = [NSImage imageNamed: @"icon_menu_inverted.png"];
   statusBarItem.highlightMode = YES;
   statusBarItem.menu = statusBarMenu;
+}
+
+- (void) updateRecentCommitsList: (NSArray *) newCommits {
+  recentCommits = [newCommits arrayByAddingObjectsFromArray: recentCommits];
+  recentCommits = [recentCommits subarrayWithRange: NSMakeRange(0, MIN(recentCommits.count, recentCommitsLimit))];
+
+  [self updateRecentCommitsSection];
+}
+
+- (void) updateRecentCommitsSection {
+  NSMenu *menu = statusBarItem.menu;
+
+  while ([[menu itemAtIndex: 0] representedObject]) {
+    [menu removeItemAtIndex: 0];
+  }
+
+  if (![[menu itemAtIndex: 0] isSeparatorItem]) {
+    [menu insertItem: [NSMenuItem separatorItem] atIndex: 0];
+  }
+
+  for (NSInteger i = 0; i < recentCommits.count; i++) {
+    Commit *commit = [recentCommits objectAtIndex: i];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: commit.subject
+                                                  action: @selector(commitEntryClickedInMenu:)
+                                           keyEquivalent: @""];
+    [item setRepresentedObject: commit];
+    [item setTarget: self];
+    [menu insertItem: item atIndex: i];
+  }
+}
+
+- (void) commitEntryClickedInMenu: (id) sender {
+  Commit *commit = [sender representedObject];
+
+  if (commit) {
+    [[[CommitWindowController alloc] initWithCommit: commit] show];
+  }
 }
 
 @end

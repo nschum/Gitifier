@@ -10,11 +10,16 @@
 @interface StatusBarController : NSObject {
   NSStatusItem *statusBarItem;
   NSMenu *statusBarMenu;
+  NSArray *recentCommits;
 }
 
 @property (assign) IBOutlet NSMenu *statusBarMenu;
 
 // public
 - (void) createStatusBarItem;
+- (void) updateRecentCommitsList: (NSArray *) newCommits;
+
+// private
+- (void) updateRecentCommitsSection;
 
 @end

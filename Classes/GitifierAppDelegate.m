@@ -232,8 +232,7 @@ static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
   BOOL hasNotificationLimit = [GitifierDefaults boolForKey: NotificationLimitEnabledKey];
   NSInteger notificationLimit = [GitifierDefaults integerForKey: NotificationLimitValueKey];
 
-  NSArray *reversedCommits = [[commits reverseObjectEnumerator] allObjects];
-  NSArray *relevantCommits = [Commit chooseRelevantCommits: reversedCommits forUser: userEmail];
+  NSArray *relevantCommits = [Commit chooseRelevantCommits: commits forUser: userEmail];
   NSArray *displayedCommits, *remainingCommits;
 
   if (hasNotificationLimit && relevantCommits.count > notificationLimit) {
@@ -253,6 +252,8 @@ static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
     [[GrowlController sharedController] showGrowlWithCommitGroup: remainingCommits
                                               includesAllCommits: notificationLimit == 1];
   }
+
+  [statusBarController updateRecentCommitsList: relevantCommits];
 }
 
 // these should be rare, only when a fetch fails and a repository needs to be recloned
