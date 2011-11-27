@@ -10,6 +10,8 @@
 #import "Defaults.h"
 #import "StatusBarController.h"
 
+static NSInteger RecentCommitsTitleLimit = 50;
+
 @implementation StatusBarController
 
 @synthesize statusBarMenu;
@@ -57,9 +59,14 @@
 
   for (NSInteger i = 0; i < recentCommits.count; i++) {
     Commit *commit = [recentCommits objectAtIndex: i];
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: commit.subject
-                                                  action: @selector(commitEntryClickedInMenu:)
-                                           keyEquivalent: @""];
+
+    NSString *title = commit.subject;
+    if (title.length > RecentCommitsTitleLimit) {
+      title = [[title substringToIndex: RecentCommitsTitleLimit - 1] stringByAppendingString: @"…"];
+    }
+
+    SEL action = @selector(commitEntryClickedInMenu:);
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: title action: action keyEquivalent: @""];
     [item setRepresentedObject: commit];
     [item setTarget: self];
     [menu insertItem: item atIndex: i];
