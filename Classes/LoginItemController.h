@@ -5,9 +5,7 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
-
-@interface LoginItemController : NSObject {}
+@interface LoginItemController : NSObject
 
 @property BOOL loginItemEnabled;
 

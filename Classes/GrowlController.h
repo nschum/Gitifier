@@ -5,7 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
 #import <Growl/GrowlApplicationBridge.h>
 
 @class Commit;

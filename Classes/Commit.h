@@ -5,7 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Foundation/Foundation.h>
 #import "PSModel.h"
 
 @class Repository;

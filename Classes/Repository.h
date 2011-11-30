@@ -5,8 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Foundation/Foundation.h>
-
 @class Repository;
 
 typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;

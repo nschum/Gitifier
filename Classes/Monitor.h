@@ -5,8 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Foundation/Foundation.h>
-
 @protocol MonitorDataSource
 - (NSArray *) repositoryList;
 @end
@@ -20,7 +18,6 @@
 
 @property IBOutlet id dataSource;
 
-// public
 - (void) startMonitoring;
 - (void) restartMonitoring;
 - (void) executeFetch;

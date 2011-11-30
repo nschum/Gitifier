@@ -5,8 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
-
-@interface LinkLabel : NSButton {}
+@interface LinkLabel : NSButton
 
 @end

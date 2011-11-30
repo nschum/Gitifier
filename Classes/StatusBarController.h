@@ -5,8 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
-
 @interface StatusBarController : NSObject {
   NSStatusItem *statusBarItem;
   NSMenu *statusBarMenu;

@@ -5,8 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
-
 @class Monitor;
 @class PreferencesWindowController;
 @class RepositoryListController;
@@ -28,6 +26,7 @@
 @property IBOutlet PreferencesWindowController *preferencesWindowController;
 @property IBOutlet RepositoryListController *repositoryListController;
 
+// public
 - (IBAction) showPreferences: (id) sender;
 - (IBAction) quit: (id) sender;
 - (IBAction) checkNow: (id) sender;

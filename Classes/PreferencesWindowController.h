@@ -5,8 +5,8 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
 #import "MASPreferencesWindowController.h"
 
-@interface PreferencesWindowController : MASPreferencesWindowController {}
+@interface PreferencesWindowController : MASPreferencesWindowController
+
 @end

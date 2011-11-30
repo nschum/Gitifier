@@ -5,8 +5,6 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
-
 #define ObserveDefaults(setting) [[NSUserDefaultsController sharedUserDefaultsController] \
   addObserver: self forKeyPath: PSFormat(@"values.%@", setting) options: 0 context: nil]
 
