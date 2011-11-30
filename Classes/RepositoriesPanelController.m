@@ -22,7 +22,7 @@
 }
 
 - (NSImage *) toolbarItemImage {
-  return [NSImage imageNamed: NSImageNameNetwork];
+  return [NSImage imageNamed: @"repositories_icon"];
 }
 
 - (NSString *) toolbarItemLabel {

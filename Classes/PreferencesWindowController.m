@@ -7,16 +7,18 @@
 
 #import "AboutPanelController.h"
 #import "GeneralPanelController.h"
+#import "NotificationsPanelController.h"
 #import "PreferencesWindowController.h"
 #import "RepositoriesPanelController.h"
 
 @implementation PreferencesWindowController
 
 - (id) init {
-  NSViewController *generalPanelController = [[GeneralPanelController alloc] init];
-  NSViewController *repositoriesPanelController = [[RepositoriesPanelController alloc] init];
-  NSViewController *aboutPanelController = [[AboutPanelController alloc] init];
-  NSArray *controllers = PSArray(generalPanelController, repositoriesPanelController, aboutPanelController);
+  NSViewController *generalPanel = [[GeneralPanelController alloc] init];
+  NSViewController *notificationsPanel = [[NotificationsPanelController alloc] init];
+  NSViewController *repositoriesPanel = [[RepositoriesPanelController alloc] init];
+  NSViewController *aboutPanel = [[AboutPanelController alloc] init];
+  NSArray *controllers = PSArray(generalPanel, notificationsPanel, repositoriesPanel, aboutPanel);
 
   return [super initWithViewControllers: controllers title: @"Preferences"];
 }

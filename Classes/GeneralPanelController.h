@@ -11,18 +11,12 @@
   NSNumberFormatter *numberFormatter;
   NSTextField *monitorIntervalField;
   NSButton *chooseGitPathButton;
-  NSButton *ignoreOwnEmailsField;
 }
 
 @property IBOutlet NSTextField *monitorIntervalField;
 @property IBOutlet NSButton *chooseGitPathButton;
-@property IBOutlet NSButton *ignoreOwnEmailsField;
 @property (readonly) id gitClass;
 
-// @public
 - (IBAction) openGitExecutableDialog: (id) sender;
-
-// @private
-- (void) updateUserEmailText: (NSString *) email;
 
 @end

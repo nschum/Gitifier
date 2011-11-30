@@ -7,6 +7,10 @@
 
 #import "AboutPanelController.h"
 
+static NSString *ProjectPageURL = @"http://github.com/psionides/gitifier";
+static NSString *IssueTrackerURL = @"http://github.com/psionides/gitifier/issues";
+static NSString *TipsAndTricksPageURL = @"https://github.com/psionides/gitifier/wiki/Tips-%26-tricks";
+
 @implementation AboutPanelController
 
 @synthesize websiteLabel;
@@ -20,7 +24,7 @@
 }
 
 - (NSImage *) toolbarItemImage {
-  return [NSImage imageNamed: @"icon_app_32.png"];
+  return [NSImage imageNamed: @"about_icon.png"];
 }
 
 - (NSString *) toolbarItemLabel {
@@ -40,15 +44,15 @@
 }
 
 - (IBAction) openGitHubPage: (id) sender {
-  [self openPage: @"http://github.com/psionides/gitifier"];
+  [self openPage: ProjectPageURL];
 }
 
 - (IBAction) openIssueTrackerPage: (id) sender {
-  [self openPage: @"http://github.com/psionides/gitifier/issues"];
+  [self openPage: IssueTrackerURL];
 }
 
 - (IBAction) openTipsAndTricksPage: (id) sender {
-  [self openPage: @"https://github.com/psionides/gitifier/wiki/Tips-%26-tricks"];
+  [self openPage: TipsAndTricksPageURL];
 }
 
 @end

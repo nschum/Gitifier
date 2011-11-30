@@ -8,13 +8,10 @@
 #import "Defaults.h"
 #import "GeneralPanelController.h"
 #import "Git.h"
-#import "GitifierAppDelegate.h"
-
-static NSString *IgnoreMyCommitsText = @"Ignore my own commits";
 
 @implementation GeneralPanelController
 
-@synthesize monitorIntervalField, ignoreOwnEmailsField, chooseGitPathButton;
+@synthesize monitorIntervalField, chooseGitPathButton;
 
 - (id) init {
   return [super initWithNibName: @"GeneralPreferencesPanel" bundle: nil];
@@ -23,9 +20,6 @@ static NSString *IgnoreMyCommitsText = @"Ignore my own commits";
 - (void) awakeFromNib {
   numberFormatter = [[NSNumberFormatter alloc] init];
   numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-
-  [self updateUserEmailText: [[NSApp delegate] userEmail]];
-  PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
 }
 
 - (id) gitClass {
@@ -82,32 +76,6 @@ static NSString *IgnoreMyCommitsText = @"Ignore my own commits";
     return YES;
   } else {
     return [[url lastPathComponent] isEqual: @"git"];
-  }
-}
-
-- (void) userEmailChanged: (NSNotification *) notification {
-  NSString *email = [notification.userInfo objectForKey: @"email"];
-  [self updateUserEmailText: email];
-}
-
-- (void) updateUserEmailText: (NSString *) email {
-  if (email) {
-    NSString *title = PSFormat(@"%@ (%@)", IgnoreMyCommitsText, email);
-    NSInteger labelLength = IgnoreMyCommitsText.length;
-    NSRange labelRange = NSMakeRange(0, labelLength);
-    NSRange emailRange = NSMakeRange(labelLength, title.length - labelLength);
-    
-    NSFont *standardFont = [NSFont systemFontOfSize: 13.0];
-    NSFont *smallerFont = [NSFont systemFontOfSize: 11.0];
-    NSColor *gray = [NSColor colorWithCalibratedWhite: 0.5 alpha: 1.0];
-    
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString: title];
-    [text addAttribute: NSFontAttributeName value: standardFont range: labelRange];
-    [text addAttribute: NSFontAttributeName value: smallerFont range: emailRange];
-    [text addAttribute: NSForegroundColorAttributeName value: gray range: emailRange];
-    ignoreOwnEmailsField.attributedTitle = text;
-  } else {
-    ignoreOwnEmailsField.title = IgnoreMyCommitsText;
   }
 }
 
