@@ -21,6 +21,7 @@ extern NSString *OtherMessageGrowl;
 
 // public
 + (GrowlController *) sharedController;
++ (BOOL) growlDetected;
 
 - (void) showGrowlWithCommit: (Commit *) commit;
 - (void) showGrowlWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll;

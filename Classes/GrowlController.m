@@ -29,6 +29,10 @@ NSString *OtherMessageGrowl           = @"Other message";
   return instance;
 }
 
++ (BOOL) growlDetected {
+  return [GrowlApplicationBridge isGrowlRunning];
+}
+
 - (id) init {
   self = [super init];
   if (self) {

@@ -10,9 +10,15 @@
 
 @interface NotificationsPanelController : NSViewController <MASPreferencesViewController> {
   NSButton *ignoreOwnEmailsField;
+  NSView *growlInfoPanel;
 }
 
 @property IBOutlet NSButton *ignoreOwnEmailsField;
+@property IBOutlet NSView *growlInfoPanel;
+
+// public
+- (IBAction) getGrowlButtonPressed: (id) sender;
+- (void) updateGrowlInfoPanel;
 
 // private
 - (void) updateUserEmailText: (NSString *) email;

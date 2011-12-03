@@ -7,12 +7,14 @@
 //
 
 #import "GitifierAppDelegate.h"
+#import "GrowlController.h"
 #import "NotificationsPanelController.h"
 
 static NSString *IgnoreMyCommitsText = @"Ignore my own commits";
+static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/growl/id467939042";
 
 @implementation NotificationsPanelController
-@synthesize ignoreOwnEmailsField;
+@synthesize growlInfoPanel, ignoreOwnEmailsField;
 
 - (id) init {
   return [super initWithNibName: @"NotificationsPreferencesPanel" bundle: nil];
@@ -59,6 +61,23 @@ static NSString *IgnoreMyCommitsText = @"Ignore my own commits";
   } else {
     ignoreOwnEmailsField.title = IgnoreMyCommitsText;
   }
+}
+
+- (void) updateGrowlInfoPanel {
+  BOOL growlDetected = [GrowlController growlDetected];
+  BOOL panelVisible = ![growlInfoPanel isHidden];
+
+  if (!growlDetected && !panelVisible) {
+    [growlInfoPanel psShow];
+    [self.view psResizeVerticallyBy: growlInfoPanel.frame.size.height];
+  } else if (growlDetected && panelVisible) {
+    [growlInfoPanel psHide];
+    [self.view psResizeVerticallyBy: -growlInfoPanel.frame.size.height];
+  }
+}
+
+- (IBAction) getGrowlButtonPressed: (id) sender {
+  [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: GrowlAppStoreURL]];
 }
 
 @end
