@@ -26,6 +26,7 @@
 		5831CCC512EE0EFC008169A7 /* SDKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9D12EE0EFC008169A7 /* SDKeychain.m */; };
 		5831CCC612EE0EFC008169A7 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9F12EE0EFC008169A7 /* SFHFKeychainUtils.m */; };
 		5831CCC712EE0EFC008169A7 /* PSUIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CCA212EE0EFC008169A7 /* PSUIExtensions.m */; };
+		5834F24B1493C962001B9286 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 5834F24A1493C962001B9286 /* Credits.html */; };
 		584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */; };
 		584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */; };
 		584ED6FA13B37BF40085E65C /* GeneralPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F913B37BF40085E65C /* GeneralPanelController.m */; };
@@ -148,6 +149,7 @@
 		5831CC9F12EE0EFC008169A7 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		5831CCA112EE0EFC008169A7 /* PSUIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSUIExtensions.h; sourceTree = "<group>"; };
 		5831CCA212EE0EFC008169A7 /* PSUIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSUIExtensions.m; sourceTree = "<group>"; };
+		5834F24A1493C962001B9286 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		584ED6F213B36B940085E65C /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
 		584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
 		584ED6F413B36B940085E65C /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			children = (
 				584ED70613B3C80A0085E65C /* AboutPreferencesPanel.xib */,
 				585886621264DB7A00AD2F1A /* CommitWindow.xib */,
+				5834F24A1493C962001B9286 /* Credits.html */,
 				584ED70313B3C49A0085E65C /* GeneralPreferencesPanel.xib */,
 				8D1107310486CEB800E47090 /* Gitifier-Info.plist */,
 				58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */,
@@ -630,6 +633,7 @@
 				58A181FE14843B2900835E97 /* notifications_icon.png in Resources */,
 				58950DA61486E08A00DE49FA /* about_icon.png in Resources */,
 				58950DA71486E08A00DE49FA /* repositories_icon.png in Resources */,
+				5834F24B1493C962001B9286 /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

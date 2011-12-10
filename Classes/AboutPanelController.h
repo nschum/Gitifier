@@ -5,6 +5,7 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
+#import <Webkit/WebKit.h>
 #import "MASPreferencesViewController.h"
 
 @interface AboutPanelController : NSViewController <MASPreferencesViewController> {
@@ -12,6 +13,7 @@
 }
 
 @property IBOutlet NSButton *websiteLabel;
+@property IBOutlet WebView *creditsList;
 @property (readonly) NSString *versionString;
 
 - (IBAction) openProjectWebsite: (id) sender;
