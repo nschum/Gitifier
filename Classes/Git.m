@@ -52,8 +52,6 @@ static NSString *gitExecutable = nil;
     return;
   }
 
-  currentData = [[NSMutableData alloc] init];
-
   PSLog(@"running command git %@ %@", command, arguments);
 
   NSPipe *output = [NSPipe pipe];
@@ -99,24 +97,32 @@ static NSString *gitExecutable = nil;
   @try {
     NSFileHandle *readHandle = [[currentTask standardOutput] fileHandleForReading];
 
-    PSObserve(readHandle, NSFileHandleReadCompletionNotification, receivedData:);
-    [readHandle readInBackgroundAndNotify];
     [currentTask launch];
+
+    NSMutableData *collectedData = [[NSMutableData alloc] init];
+    NSData *incomingData;
+
+    while (true) {
+      incomingData = [readHandle availableData];
+
+      if (incomingData.length == 0) {
+        break;
+      } else {
+        [collectedData appendData: incomingData];
+      }
+    }
+
     [currentTask waitUntilExit];
-    PSStopObserving(readHandle, NSFileHandleReadCompletionNotification);
 
     if (cancelled) {
       currentTask = nil;
-      currentData = nil;
     } else {
-      [currentData appendData: [readHandle readDataToEndOfFile]];
       [readHandle closeFile];
 
       NSInteger status = [currentTask terminationStatus];
       NSString *command = [[currentTask arguments] psFirstObject];
-      NSString *output = [[NSString alloc] initWithData: currentData encoding: NSUTF8StringEncoding];
+      NSString *output = [[NSString alloc] initWithData: collectedData encoding: NSUTF8StringEncoding];
       currentTask = nil;
-      currentData = nil;
 
       if (status == 0) {
         PSLog(@"command git %@ completed with output: %@", command, output);
@@ -132,18 +138,10 @@ static NSString *gitExecutable = nil;
   } @catch (NSException *e) {
     NSString *command = [[currentTask arguments] psFirstObject];
     currentTask = nil;
-    currentData = nil;
     PSLog(@"command git %@ failed with exception: %@", command, e);
     [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: [e description]];
     return;
   }
-}
-
-- (void) receivedData: (NSNotification *) notification {
-  NSData *data = [[notification userInfo] objectForKey: NSFileHandleNotificationDataItem];
-  NSFileHandle *readHandle = [notification object];
-  [currentData appendData: data];
-  [readHandle readInBackgroundAndNotify];
 }
 
 - (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command output: (NSString *) output {
