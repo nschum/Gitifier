@@ -10,6 +10,7 @@
 
 @interface AboutPanelController : NSViewController <MASPreferencesViewController> {
   NSButton *websiteLabel;
+  WebView *creditsList;
 }
 
 @property IBOutlet NSButton *websiteLabel;
