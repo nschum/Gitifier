@@ -106,29 +106,15 @@
 												<bool key="EncodedWithXMLCoder">YES</bool>
 												<object class="NSArray" key="dict.sortedKeys">
 													<bool key="EncodedWithXMLCoder">YES</bool>
-													<string>WebKitAllowAnimatedImageLoopingPreferenceKey</string>
-													<string>WebKitAllowAnimatedImagesPreferenceKey</string>
 													<string>WebKitDefaultFixedFontSize</string>
 													<string>WebKitDefaultFontSize</string>
-													<string>WebKitDisplayImagesKey</string>
-													<string>WebKitJavaEnabled</string>
-													<string>WebKitJavaScriptCanOpenWindowsAutomatically</string>
-													<string>WebKitJavaScriptEnabled</string>
 													<string>WebKitMinimumFontSize</string>
-													<string>WebKitPluginsEnabled</string>
 												</object>
 												<object class="NSMutableArray" key="dict.values">
 													<bool key="EncodedWithXMLCoder">YES</bool>
-													<boolean value="NO"/>
-													<boolean value="NO"/>
 													<integer value="12"/>
 													<integer value="12"/>
-													<boolean value="NO"/>
-													<boolean value="NO"/>
-													<boolean value="NO"/>
-													<boolean value="NO"/>
 													<integer value="1"/>
-													<boolean value="NO"/>
 												</object>
 											</object>
 										</object>
@@ -290,7 +276,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="992944126">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">© 2010-2011 Jakub Suder</string>
+							<string key="NSContents">© 2010-2012 Jakub Suder</string>
 							<reference key="NSSupport" ref="771200772"/>
 							<reference key="NSControlView" ref="965075486"/>
 							<object class="NSColor" key="NSBackgroundColor" id="977119410">
