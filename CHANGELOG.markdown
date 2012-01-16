@@ -1,3 +1,13 @@
+### Version 1.3
+
+* Snow Leopard is now required
+* updated Growl SDK - fixes problems with Growl 1.3
+* option to limit number of notifications in one batch
+* added history of recent commit notifications to the top bar menu
+* fixed 'windows on top' option hiding the menu bar icon on Lion
+* fixed crash if git path is incorrect
+* fixed problem with truncated output from Git which caused missing commits or git path issues
+
 ### Version 1.2
 
 * "Check Now" option in the system tray menu
