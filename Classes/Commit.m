@@ -21,14 +21,14 @@
   return PSArray(@"authorName", @"authorEmail", @"subject", @"gitHash", @"date", @"repository");
 }
 
-+ (NSArray *) chooseRelevantCommits: (NSArray *) commits forUser: (NSString *) userEmail {
++ (NSArray *) chooseRelevantCommits: (NSArray *) commits forUserEmails: (NSArray *) userEmails {
   BOOL ignoreMerges = [GitifierDefaults boolForKey: IgnoreMergesKey];
   BOOL ignoreOwnCommits = [GitifierDefaults boolForKey: IgnoreOwnCommitsKey];
   NSMutableArray *relevantCommits = [NSMutableArray arrayWithCapacity: commits.count];
 
   for (Commit *commit in commits) {
     if (ignoreMerges && [commit isMergeCommit]) continue;
-    if (ignoreOwnCommits && [commit.authorEmail isEqualToString: userEmail]) continue;
+    if (ignoreOwnCommits && [userEmails containsObject:commit.authorEmail]) continue;
 
     [relevantCommits addObject: commit];
   }

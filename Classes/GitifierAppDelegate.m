@@ -17,13 +17,15 @@
 #import "RepositoryListController.h"
 #import "StatusBarController.h"
 
+#import <AddressBook/AddressBook.h>
+
 static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
 static CGFloat IntervalBetweenGrowls        = 0.05;
 
 @implementation GitifierAppDelegate
 
-@synthesize monitor, userEmail, preferencesWindowController, statusBarController, repositoryListController,
+@synthesize monitor, preferencesWindowController, statusBarController, repositoryListController,
   repositoryList;
 
 // --- initialization and termination ---
@@ -138,7 +140,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 // --- user email management ---
 
 - (void) updateUserEmail {
-  if (!userEmail && [Git gitExecutable]) {
+  if (!userEmailFromGit && [Git gitExecutable]) {
     Git *git = [[Git alloc] initWithDelegate: self];
     [git runCommand: @"config" withArguments: PSArray(@"user.email") inPath: NSHomeDirectory()];
   }
@@ -211,8 +213,8 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
   if ([command isEqual: @"config"]) {
     if (output && output.length > 0) {
-      userEmail = [output psTrimmedString];
-      PSNotifyWithData(UserEmailChangedNotification, PSHash(@"email", userEmail));
+      userEmailFromGit = [output psTrimmedString];
+      PSNotifyWithData(UserEmailChangedNotification, PSHash(@"emails", self.userEmailAddresses));
     }
   } else if ([command isEqual: @"version"]) {
     if (!output || ![output isMatchedByRegex: @"^git version \\d"]) {
@@ -227,13 +229,61 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   }
 }
 
+- (NSArray *)userEmailsFromAddressBook
+{
+  ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
+  ABPerson *mePerson = [addressBook me];
+  NSMutableArray *userEmailsToReturn = nil;
+  if (mePerson != nil)  {
+    ABMultiValue *emailMultiValue = [mePerson valueForProperty:kABEmailProperty];
+    for (NSString *identifier in emailMultiValue)
+    {
+      NSString *emailAddress = [[emailMultiValue valueForIdentifier:identifier] psTrimmedString];
+      if ([emailAddress length] > 0) {
+        if (userEmailsToReturn == nil) {
+          userEmailsToReturn = [NSMutableArray array];
+        }
+        [userEmailsToReturn addObject:emailAddress];
+      }
+    }
+  }
+  return userEmailsToReturn;
+}
+
+- (NSArray *)userEmailAddresses
+{
+  NSMutableArray *emailsToReturn = nil;
+  NSString *gitEmail = userEmailFromGit;
+  if (gitEmail != nil) {
+    if (emailsToReturn == nil) {
+      emailsToReturn = [NSMutableArray array];
+    }
+    [emailsToReturn addObject:gitEmail];
+  }
+  
+  NSArray *addressBookEmails = [self userEmailsFromAddressBook];
+  if ([addressBookEmails count] > 0)
+  {
+    for (NSString *emailFromAddressBook in addressBookEmails) {
+      if (emailsToReturn == nil) {
+        emailsToReturn = [NSMutableArray array];
+      }
+      if ([emailsToReturn containsObject:emailFromAddressBook] == NO) {
+        [emailsToReturn addObject:emailFromAddressBook];
+      }
+    }
+  }
+  return emailsToReturn;
+}
+
+
 // --- repository callbacks ---
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   BOOL hasNotificationLimit = [GitifierDefaults boolForKey: NotificationLimitEnabledKey];
   NSInteger notificationLimit = [GitifierDefaults integerForKey: NotificationLimitValueKey];
 
-  NSArray *relevantCommits = [Commit chooseRelevantCommits: commits forUser: userEmail];
+  NSArray *relevantCommits = [Commit chooseRelevantCommits: commits forUserEmails: self.userEmailAddresses];
   NSArray *displayedCommits, *remainingCommits;
 
   if (hasNotificationLimit && relevantCommits.count > notificationLimit) {
