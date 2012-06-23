@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">11C74</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.23</string>
-		<string key="IBDocument.HIToolboxVersion">567.00</string>
+		<string key="IBDocument.SystemVersion">11E53</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1938</string>
+			<string key="NS.object.0">2182</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -59,6 +59,7 @@
 								<string key="NSFrame">{{0, 18}, {485, 5}}</string>
 								<reference key="NSSuperview" ref="99672514"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="996414272"/>
 								<string key="NSOffsets">{0, 0}</string>
 								<object class="NSTextFieldCell" key="NSTitleCell">
 									<int key="NSCellFlags">67239424</int>
@@ -265,7 +266,7 @@
 										<string>nilSymbol</string>
 										<string>positiveInfinitySymbol</string>
 									</object>
-									<object class="NSMutableArray" key="dict.values">
+									<object class="NSArray" key="dict.values">
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<boolean value="YES"/>
 										<integer value="1040"/>
@@ -358,6 +359,7 @@
 						<string key="NSFrame">{{163, 18}, {196, 18}}</string>
 						<reference key="NSSuperview" ref="185234335"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="492552876">
 							<int key="NSCellFlags">-2080244224</int>
@@ -450,8 +452,8 @@
 						<reference key="NSNextKeyView" ref="601672583"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="545050183">
-							<int key="NSCellFlags">-2080244224</int>
-							<int key="NSCellFlags2">0</int>
+							<int key="NSCellFlags">-2080244160</int>
+							<int key="NSCellFlags2">2304</int>
 							<string key="NSContents">Ignore my own commits</string>
 							<reference key="NSSupport" ref="1057182896"/>
 							<reference key="NSControlView" ref="69059234"/>
@@ -493,7 +495,7 @@
 				<string key="NSFrameSize">{525, 327}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="996414272"/>
+				<reference key="NSNextKeyView" ref="99672514"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSUserDefaultsController" id="983611490">
@@ -983,7 +985,7 @@
 					<string>65.IBPluginDependency</string>
 					<string>85.IBPluginDependency</string>
 				</object>
-				<object class="NSMutableArray" key="dict.values">
+				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1061,7 +1063,7 @@
 							<string>growlInfoPanel</string>
 							<string>ignoreOwnEmailsField</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSView</string>
 							<string>NSButton</string>
@@ -1074,7 +1076,7 @@
 							<string>growlInfoPanel</string>
 							<string>ignoreOwnEmailsField</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">growlInfoPanel</string>
@@ -1108,7 +1110,7 @@
 				<string>NSSwitch</string>
 				<string>growl_icon</string>
 			</object>
-			<object class="NSMutableArray" key="dict.values">
+			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{15, 15}</string>
 				<string>{64, 64}</string>

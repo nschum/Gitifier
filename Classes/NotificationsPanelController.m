@@ -13,6 +13,10 @@
 static NSString *IgnoreMyCommitsText = @"Ignore my own commits";
 static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/growl/id467939042";
 
+@interface NotificationsPanelController ()
+- (void)updateUserEmailText:(NSArray *)emailAddresses;
+@end
+
 @implementation NotificationsPanelController
 @synthesize growlInfoPanel, ignoreOwnEmailsField;
 
@@ -21,7 +25,7 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
 }
 
 - (void) awakeFromNib {
-  [self updateUserEmailText: [[NSApp delegate] userEmail]];
+  [self updateUserEmailText:[[NSApp delegate] userEmailAddresses]];
   PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
 }
 
@@ -38,13 +42,13 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
 }
 
 - (void) userEmailChanged: (NSNotification *) notification {
-  NSString *email = [notification.userInfo objectForKey: @"email"];
-  [self updateUserEmailText: email];
+  NSArray *userEmailAddresses = [notification.userInfo objectForKey:@"emails"];
+  [self updateUserEmailText:userEmailAddresses];
 }
 
-- (void) updateUserEmailText: (NSString *) email {
-  if (email) {
-    NSString *title = PSFormat(@"%@ (%@)", IgnoreMyCommitsText, email);
+- (void) updateUserEmailText:(NSArray *)emailAddresses {
+  if ([emailAddresses count] > 0) {
+    NSString *title = PSFormat(@"%@ (%@)", IgnoreMyCommitsText, [emailAddresses componentsJoinedByString:@","]);
     NSInteger labelLength = IgnoreMyCommitsText.length;
     NSRange labelRange = NSMakeRange(0, labelLength);
     NSRange emailRange = NSMakeRange(labelLength, title.length - labelLength);
@@ -57,6 +61,12 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
     [text addAttribute: NSFontAttributeName value: standardFont range: labelRange];
     [text addAttribute: NSFontAttributeName value: smallerFont range: emailRange];
     [text addAttribute: NSForegroundColorAttributeName value: gray range: emailRange];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
+    [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
+    
+    [text addAttribute: NSParagraphStyleAttributeName value:paragraphStyle range: NSMakeRange(0, [text length])];
+    
     ignoreOwnEmailsField.attributedTitle = text;
   } else {
     ignoreOwnEmailsField.title = IgnoreMyCommitsText;

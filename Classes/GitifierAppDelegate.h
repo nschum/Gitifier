@@ -11,7 +11,7 @@
 @class StatusBarController;
 
 @interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
-  NSString *userEmail;
+  NSString *userEmailFromGit;
   NSMutableArray *repositoryList;
   Monitor *monitor;
   StatusBarController *statusBarController;
@@ -19,12 +19,13 @@
   RepositoryListController *repositoryListController;
 }
 
-@property (readonly) NSString *userEmail;
 @property (assign) NSMutableArray *repositoryList;
 @property IBOutlet Monitor *monitor;
 @property IBOutlet StatusBarController *statusBarController;
 @property IBOutlet PreferencesWindowController *preferencesWindowController;
 @property IBOutlet RepositoryListController *repositoryListController;
+
+@property (nonatomic, readonly, retain) NSArray *userEmailAddresses;
 
 // public
 - (IBAction) showPreferences: (id) sender;

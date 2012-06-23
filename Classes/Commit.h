@@ -26,7 +26,7 @@
 @property (retain) Repository *repository;
 
 + (Commit *) commitFromDictionary: (NSDictionary *) dictionary;
-+ (NSArray *) chooseRelevantCommits: (NSArray *) commits forUser: (NSString *) userEmail;
++ (NSArray *) chooseRelevantCommits: (NSArray *) commits forUserEmails: (NSArray *) userEmails;
 
 - (BOOL) isMergeCommit;
 - (NSDictionary *) toDictionary;
