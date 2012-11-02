@@ -22,13 +22,12 @@
 
 - (NSArray *) psArrayByCalling: (SEL) selector {
   NSMutableArray *collected = [[NSMutableArray alloc] initWithCapacity: self.count];
+
   for (id element in self) {
     [collected addObject: [element performSelector: selector]];
   }
 
-  NSArray *returned = [NSArray arrayWithArray: collected];
-  [collected release];
-  return returned;
+  return [NSArray arrayWithArray: collected];
 }
 
 - (NSArray *) psCompact {
@@ -47,11 +46,7 @@
   NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey: field
                                                              ascending: ascending
                                                               selector: compareMethod];
-  NSArray *descriptors = [[NSArray alloc] initWithObjects: descriptor, nil];
-  NSArray *sortedArray = [self sortedArrayUsingDescriptors: descriptors];
-  [descriptor release];
-  [descriptors release];
-  return sortedArray;
+  return [self sortedArrayUsingDescriptors: PSArray(descriptor)];
 }
 
 - (NSDictionary *) psGroupByKey: (NSString *) key {
@@ -65,7 +60,7 @@
     }
     [list addObject: object];
   }
-  return [groups autorelease];
+  return groups;
 }
 
 @end
@@ -82,9 +77,8 @@
   NSCalendar *calendar = [NSCalendar currentCalendar];
   NSDateComponents *interval = [[NSDateComponents alloc] init];
   [interval setDay: days];
-  NSDate *date = [calendar dateByAddingComponents: interval toDate: [NSDate date] options: 0];
-  [interval release];
-  return date;
+
+  return [calendar dateByAddingComponents: interval toDate: [NSDate date] options: 0];
 }
 
 + (NSDateFormatter *) psJSONDateFormatter {
@@ -143,10 +137,7 @@
 
     va_end(args);
 
-    NSDictionary *result = [NSDictionary dictionaryWithObjects: objects forKeys: keys];
-    [keys release];
-    [objects release];
-    return result;
+    return [NSDictionary dictionaryWithObjects: objects forKeys: keys];
   }
 }
 
@@ -172,9 +163,7 @@
     [collected addObject: [self performSelector: selector withObject: element]];
   }
 
-  NSArray *returned = [NSArray arrayWithArray: collected];
-  [collected release];
-  return returned;
+  return [NSArray arrayWithArray: collected];
 }
 
 - (NSArray *) psArrayByCalling: (SEL) selector withObjectsFrom: (NSArray *) array {
@@ -183,9 +172,7 @@
     [collected addObject: [self performSelector: selector withObject: element]];
   }
 
-  NSArray *returned = [NSArray arrayWithArray: collected];
-  [collected release];
-  return returned;
+  return [NSArray arrayWithArray: collected];
 }
 
 @end
@@ -196,24 +183,22 @@
 
 + (NSString *) psStringWithFormEncodedFields: (NSDictionary *) fields {
   NSMutableArray *parts = [[NSMutableArray alloc] initWithCapacity: fields.count];
+
   for (NSString *field in fields) {
     [parts addObject: PSFormat(@"%@=%@", field, [fields objectForKey: field])];
   }
 
-  NSString *result = [parts componentsJoinedByString: @"&"];
-  [parts release];
-  return result;
+  return [parts componentsJoinedByString: @"&"];
 }
 
 + (NSString *) psStringWithFormEncodedFields: (NSDictionary *) fields ofModelNamed: (NSString *) name {
   NSMutableArray *parts = [[NSMutableArray alloc] initWithCapacity: fields.count];
+
   for (NSString *field in fields) {
     [parts addObject: PSFormat(@"%@[%@]=%@", name, field, [fields objectForKey: field])];
   }
 
-  NSString *result = [parts componentsJoinedByString: @"&"];
-  [parts release];
-  return result;
+  return [parts componentsJoinedByString: @"&"];
 }
 
 - (BOOL) psIsPresent {
@@ -228,13 +213,13 @@
 - (NSString *) psCamelizedString {
   NSArray *words = [self componentsSeparatedByString: @"_"];
   if (words.count == 1) {
-    return [[self copy] autorelease];
+    return [self copy];
   } else {
     NSMutableString *camelized = [[NSMutableString alloc] initWithString: [words psFirstObject]];
     for (NSInteger i = 1; i < words.count; i++) {
       [camelized appendString: [[words objectAtIndex: i] capitalizedString]];
     }
-    return [camelized autorelease];
+    return camelized;
   }
 }
 
@@ -247,7 +232,6 @@
       @"woman", @"women",
       @"child", @"children"
     );
-    [exceptions retain];
   }
 
   NSString *downcased = [self lowercaseString];
@@ -285,10 +269,15 @@
 
 - (NSString *) psStringWithPercentEscapesForFormValues {
   CFStringRef escapedSymbols = CFSTR("￼=,!$&'()*+;@?\n\"<>#\t :/");
-  CFStringRef string = (CFStringRef) [[self mutableCopy] autorelease];
-  NSString *escaped =
-    (NSString *) CFURLCreateStringByAddingPercentEscapes(NULL, string, NULL, escapedSymbols, kCFStringEncodingUTF8);
-  return NSMakeCollectable([escaped autorelease]);
+  CFStringRef escaped = CFURLCreateStringByAddingPercentEscapes(
+    NULL,
+    (__bridge CFStringRef) self,
+    NULL,
+    escapedSymbols,
+    kCFStringEncodingUTF8
+  );
+
+  return CFBridgingRelease(escaped);
 }
 
 - (NSString *) psStringWithUppercaseFirstLetter {
@@ -335,9 +324,7 @@
     }
   }
 
-  NSString *result = [NSString stringWithString: buffer];
-  [buffer release];
-  return result;
+  return [NSString stringWithString: buffer];
 }
 
 @end

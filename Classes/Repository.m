@@ -55,14 +55,14 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   return repo;
 }
 
-+ (Repository *) repositoryWithUrl: (NSString *) anUrl {
-  return [[[Repository alloc] initWithUrl: anUrl] autorelease];
++ (Repository *) repositoryWithUrl: (NSString *) aUrl {
+  return [[Repository alloc] initWithUrl: aUrl];
 }
 
-- (id) initWithUrl: (NSString *) anUrl {
+- (id) initWithUrl: (NSString *) aUrl {
   self = [super init];
-  if ([self isProperUrl: anUrl]) {
-    url = anUrl;
+  if ([self isProperUrl: aUrl]) {
+    url = aUrl;
     git = [[Git alloc] initWithDelegate: self];
     git.repositoryUrl = self.url;
     name = [self nameFromUrl: url];
@@ -85,9 +85,9 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 - (NSString *) findCommitUrlPattern {
   NSDictionary *patterns = [Repository repositoryUrlPatterns];
 
-  for (NSString *repoPattern in patterns) {
-    NSString *commitPattern = [patterns objectForKey: repoPattern];
-    repoPattern = [repoPattern stringByReplacingOccurrencesOfString: @"NAME" withString: nameRegexp];
+  for (NSString *pattern in patterns) {
+    NSString *commitPattern = [patterns objectForKey: pattern];
+    NSString *repoPattern = [pattern stringByReplacingOccurrencesOfString: @"NAME" withString: nameRegexp];
     repoPattern = PSFormat(@"^%@$", repoPattern); // looks like a curse that was censored, doesn't it? ;)
 
     if ([url isMatchedByRegex: repoPattern]) {

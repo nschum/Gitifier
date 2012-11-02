@@ -20,7 +20,7 @@
 }
 
 @property (readonly) NSString *userEmail;
-@property (assign) NSMutableArray *repositoryList;
+@property (readonly) NSMutableArray *repositoryList;
 @property IBOutlet Monitor *monitor;
 @property IBOutlet StatusBarController *statusBarController;
 @property IBOutlet PreferencesWindowController *preferencesWindowController;

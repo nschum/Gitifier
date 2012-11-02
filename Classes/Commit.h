@@ -23,7 +23,7 @@
 @property (copy) NSString *subject;
 @property (copy) NSString *gitHash;
 @property (copy) NSDate *date;
-@property (retain) Repository *repository;
+@property (strong) Repository *repository;
 
 + (Commit *) commitFromDictionary: (NSDictionary *) dictionary;
 + (NSArray *) chooseRelevantCommits: (NSArray *) commits forUser: (NSString *) userEmail;

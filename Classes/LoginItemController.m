@@ -30,7 +30,7 @@
 }
 
 - (void) addApplicationToLoginList: (LSSharedFileListRef) list {
-  CFURLRef url = (CFURLRef) [self applicationPath];
+  CFURLRef url = (__bridge CFURLRef) [self applicationPath];
   LSSharedFileListItemRef item =
     LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
 	if (item) {
@@ -51,17 +51,15 @@
   for (NSInteger i = 0; i < itemCount; i++) {
     LSSharedFileListItemRef item = (LSSharedFileListItemRef) CFArrayGetValueAtIndex(array, i);
     if (LSSharedFileListItemResolve(item, 0, &url, NULL) == noErr) {
-      nsurl = (NSURL *) url;
+      nsurl = (NSURL *) CFBridgingRelease(url);
       if ([nsurl isEqual: applicationUrl]) {
         found = YES;
         if (remove) {
           LSSharedFileListItemRemove(list, item);
         } else {
-          CFRelease(url);
           break;
         }
       }
-      CFRelease(url);
     }
   }
 

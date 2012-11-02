@@ -12,7 +12,7 @@
 
 @implementation NewRepositoryDialogController
 
-@synthesize repositoryListController, newRepositoryUrl, label, spinner, addButton, cancelButton;
+@synthesize repositoryListController, repositoryUrlField, label, spinner, addButton, cancelButton;
 
 - (void) awakeFromNib {
   labelText = label.stringValue;
@@ -20,7 +20,7 @@
 }
 
 - (IBAction) showNewRepositorySheet: (id) sender {
-  [newRepositoryUrl setStringValue: @""];
+  [repositoryUrlField setStringValue: @""];
   [NSApp beginSheet: [self window]
      modalForWindow: [sender window]
       modalDelegate: nil
@@ -29,7 +29,7 @@
 }
 
 - (IBAction) addRepository: (id) sender {
-  NSString *url = [[newRepositoryUrl stringValue] psTrimmedString];
+  NSString *url = [[repositoryUrlField stringValue] psTrimmedString];
   if ([url isEqual: @""]) {
     return;
   }
@@ -77,19 +77,19 @@
 
 - (void) modalWasClosed: (NSAlert *) alert {
   [NSApp stopModal];
-  [newRepositoryUrl becomeFirstResponder];
+  [repositoryUrlField becomeFirstResponder];
 }
 
 - (void) lockDialog {
   [spinner startAnimation: self];
   [addButton psDisable];
-  [newRepositoryUrl psDisable];
+  [repositoryUrlField psDisable];
 }
 
 - (void) unlockDialog {
   [spinner stopAnimation: self];
   [addButton psEnable];
-  [newRepositoryUrl psEnable];
+  [repositoryUrlField psEnable];
   [self hideSlowCloneWarning];
   [slowCloneTimer invalidate];
   slowCloneTimer = nil;

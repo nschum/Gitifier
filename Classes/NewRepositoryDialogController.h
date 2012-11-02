@@ -13,7 +13,7 @@
   NSString *labelText;
   Repository *editedRepository;
   RepositoryListController *repositoryListController;
-  NSTextField *newRepositoryUrl;
+  NSTextField *repositoryUrlField;
   NSProgressIndicator *spinner;
   NSButton *cancelButton;
   NSButton *addButton;
@@ -22,7 +22,7 @@
 }
 
 @property IBOutlet RepositoryListController *repositoryListController;
-@property IBOutlet NSTextField *newRepositoryUrl;
+@property IBOutlet NSTextField *repositoryUrlField;
 @property IBOutlet NSProgressIndicator *spinner;
 @property IBOutlet NSButton *cancelButton;
 @property IBOutlet NSButton *addButton;

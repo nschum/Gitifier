@@ -208,7 +208,7 @@ enum sgrCode
 				contain a key for a specific SGR code, the default color will be used
 				instead.
  */
-@property(retain) NSMutableDictionary *ansiColors;
+@property(strong) NSMutableDictionary *ansiColors;
 
 
 /*!

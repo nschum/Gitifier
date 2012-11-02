@@ -43,7 +43,7 @@
 											  |
 											  CFUserNotificationSecureTextField(0),
 											  &error,
-											  (CFDictionaryRef)panelDict);
+											  (__bridge CFDictionaryRef) panelDict);
 	
 	
 	if (error){
@@ -76,7 +76,7 @@
 													 0);
 	
 
-	[returnArray replaceObjectAtIndex:0 withObject:(NSString*)passwordRef];
+	[returnArray replaceObjectAtIndex: 0 withObject: (__bridge NSString *) passwordRef];
 	CFRelease(passwordDialog); // Note that this will release the passwordRef as well
 	return returnArray;	
 }
@@ -115,8 +115,8 @@
 	OSStatus findKeychainItemStatus = [PasswordHelper getPasswordKeychain:&passwordData length:&passwordLen itemRef:&itemRef host:hostnameStr user:usernameStr];
 	
 	if ( findKeychainItemStatus == noErr ){
-		NSString *returnString = [[[NSString alloc] initWithBytes:passwordData
-														  length:passwordLen encoding:NSUTF8StringEncoding] autorelease];
+		NSString *returnString = [[NSString alloc] initWithBytes:passwordData
+														  length:passwordLen encoding:NSUTF8StringEncoding];
 		SecKeychainItemFreeContent(NULL,passwordData);
 		return returnString;
 	} else {

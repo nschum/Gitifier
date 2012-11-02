@@ -21,8 +21,6 @@
 
 @implementation PSModel
 
-PSReleaseOnDealloc(numericRecordId);
-
 // -------------------------------------------------------------------------------------------
 #pragma mark Overridable methods
 
@@ -86,11 +84,11 @@ PSReleaseOnDealloc(numericRecordId);
 
 + (id) objectFromJSON: (NSDictionary *) json {
   if ([json isKindOfClass: [PSModel class]]) {
-    return [[json copy] autorelease];
+    return [json copy];
   } else {
     PSModel *object = [[self alloc] init];
     [object copyFieldsFrom: json skipNullValues: YES];
-    return [object autorelease];
+    return object;
   }
 }
 
@@ -185,7 +183,6 @@ PSReleaseOnDealloc(numericRecordId);
   NSUInteger position = [list indexOfObject: self];
 
   if (position != NSNotFound) {
-    [[self retain] autorelease];
     NSIndexSet *indexes = [NSIndexSet indexSetWithIndex: position];
     [[self class] willChange: NSKeyValueChangeRemoval valuesAtIndexes: indexes forKey: @"list"];
     [list removeObjectAtIndex: position];
@@ -340,7 +337,7 @@ PSReleaseOnDealloc(numericRecordId);
   }
 
   [result appendString: @">"];
-  return [result autorelease];
+  return result;
 }
 
 - (NSString *) encodeToPostData {

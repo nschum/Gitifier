@@ -11,7 +11,7 @@
   NSArray *recentCommits;
 }
 
-@property (assign) IBOutlet NSMenu *statusBarMenu;
+@property (strong) IBOutlet NSMenu *statusBarMenu;
 
 // public
 - (void) createStatusBarItem;

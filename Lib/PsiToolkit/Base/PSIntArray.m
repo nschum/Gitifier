@@ -14,7 +14,7 @@
 
 + (PSIntArray *) arrayWithIntegers: (NSInteger) first, ... {
   if (first == PSIntArrayStop) {
-    return [[[PSIntArray alloc] initWithCapacity: 0] autorelease];
+    return [[PSIntArray alloc] initWithCapacity: 0];
   } else {
     NSMutableArray *nsarray = [[NSMutableArray alloc] init];
     [nsarray addObject: PSInt(first)];
@@ -34,8 +34,7 @@
     for (NSInteger i = 0; i < nsarray.count; i++) {
       [array setInteger: [[nsarray objectAtIndex: i] intValue] atIndex: i];
     }
-    [nsarray release];
-    return [array autorelease];
+    return array;
   }
 }
 

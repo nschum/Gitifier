@@ -58,13 +58,6 @@ THE SOFTWARE.
 	return self;
 }
 
-- (void) dealloc
-{
-	self.font = nil;
-	self.ansiColors = nil;
-	self.defaultStringColor = nil;
-	[super dealloc];
-}
 
 
 
@@ -75,14 +68,14 @@ THE SOFTWARE.
 	
 	NSString *cleanString;
 	NSArray *attributesAndRanges = [self attributesForString:aString cleanString:&cleanString];
-	NSMutableAttributedString *attributedString = [[[NSMutableAttributedString alloc]
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]
 													initWithString:cleanString
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                 self.font, NSFontAttributeName,
                                                                 self.defaultStringColor, NSForegroundColorAttributeName,
                                                                 nil
 																]
-													] autorelease];
+													];
 	
 	NSDictionary *thisAttributeDict;
 	for (thisAttributeDict in attributesAndRanges)
@@ -300,7 +293,7 @@ THE SOFTWARE.
 {
 	NSMutableString* retStr = [NSMutableString stringWithCapacity:[aCleanString length]];
 	
-	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:kCodeDictKey_location ascending:YES] autorelease];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kCodeDictKey_location ascending:YES];
 	NSArray *codesArray = [aCodesArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 	
 	NSUInteger aCleanStringIndex = 0;

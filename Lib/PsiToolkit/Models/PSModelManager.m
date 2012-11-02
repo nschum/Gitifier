@@ -33,7 +33,6 @@ static NSMutableDictionary *managers;
   if (!manager) {
     manager = [[PSModelManager alloc] init];
     [managers setObject: manager forKey: className];
-    [manager release];
   }
   return manager;
 }
