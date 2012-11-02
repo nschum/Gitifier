@@ -76,7 +76,7 @@ static NSString *ErrorText = @"Error loading commit diff.";
 
   if (workingCopy && [commit.repository directoryExists: workingCopy]) {
     [spinner performSelector: @selector(startAnimation:) withObject: self afterDelay: 0.1];
-    [git runCommand: @"show" withArguments: PSArray(commit.gitHash, @"--color", @"--pretty=format:%b") inPath: workingCopy];
+    [git runCommand: @"show" withArguments: @[commit.gitHash, @"--color", @"--pretty=format:%b"] inPath: workingCopy];
   } else {
     [self displayText: ErrorText];
   }

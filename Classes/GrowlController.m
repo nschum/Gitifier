@@ -43,7 +43,7 @@ NSString *OtherMessageGrowl           = @"Other message";
 
 - (void) showGrowlWithCommit: (Commit *) commit {
   BOOL sticky = [GitifierDefaults boolForKey: StickyNotificationsKey];
-  NSDictionary *commitData = PSHash(@"commit", [commit toDictionary], @"repository", commit.repository.url);
+  NSDictionary *commitData = @{@"commit": [commit toDictionary], @"repository": commit.repository.url};
 
   [GrowlApplicationBridge notifyWithTitle: PSFormat(@"%@ – %@", commit.repository.name, commit.authorName)
                               description: commit.subject
@@ -111,15 +111,15 @@ NSString *OtherMessageGrowl           = @"Other message";
 - (void) growlNotificationWasClicked: (id) clickContext {
   // temporary fix for a bug in Growl 1.3
   // see http://code.google.com/p/growl/issues/detail?id=377
-  id date = [[clickContext objectForKey: @"commit"] objectForKey: @"date"];
+  id date = clickContext[@"commit"][@"date"];
   if ([date isKindOfClass: [NSString class]]) return;
 
   BOOL shouldShowDiffs = [GitifierDefaults boolForKey: ShowDiffWindowKey];
   BOOL shouldOpenInBrowser = [GitifierDefaults boolForKey: OpenDiffInBrowserKey];
   
   if (clickContext && shouldShowDiffs) {
-    NSString *url = [clickContext objectForKey: @"repository"];
-    NSDictionary *commitHash = [clickContext objectForKey: @"commit"];
+    NSString *url = clickContext[@"repository"];
+    NSDictionary *commitHash = clickContext[@"commit"];
     Repository *repository = [repositoryListController findByUrl: url];
 
     if (repository) {

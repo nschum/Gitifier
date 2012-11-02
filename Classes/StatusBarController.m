@@ -19,7 +19,7 @@ static NSInteger RecentCommitsTitleLimit = 50;
 - (id) init {
   self = [super init];
   if (self) {
-    recentCommits = [NSArray array];
+    recentCommits = @[];
   }
   return self;
 }
@@ -58,7 +58,7 @@ static NSInteger RecentCommitsTitleLimit = 50;
   }
 
   for (NSInteger i = 0; i < recentCommits.count; i++) {
-    Commit *commit = [recentCommits objectAtIndex: i];
+    Commit *commit = recentCommits[i];
 
     NSString *title = commit.subject;
     if (title.length > RecentCommitsTitleLimit) {

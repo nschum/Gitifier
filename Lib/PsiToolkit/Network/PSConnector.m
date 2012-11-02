@@ -105,27 +105,27 @@ static PSConnector *sharedConnector = nil;
 
 - (PSRequest *) createRequestForObject: (PSModel *) object {
   PSRequest *request = [self requestToPath: [router pathForModel: [object class]] method: PSPostMethod];
-  request.userInfo = PSHash(@"object", object);
+  request.userInfo = @{@"object": object};
   request.postData = [object encodeToPostData];
   return request;
 }
 
 - (PSRequest *) showRequestForObject: (PSModel *) object {
   PSRequest *request = [self requestToPath: [router pathForObject: object]];
-  request.userInfo = PSHash(@"object", object);
+  request.userInfo = @{@"object": object};
   return request;
 }
 
 - (PSRequest *) updateRequestForObject: (PSModel *) object {
   PSRequest *request = [self requestToPath: [router pathForObject: object] method: PSPutMethod];
-  request.userInfo = PSHash(@"object", object);
+  request.userInfo = @{@"object": object};
   request.postData = [object encodeToPostData];
   return request;
 }
 
 - (PSRequest *) deleteRequestForObject: (PSModel *) object {
   PSRequest *request = [self requestToPath: [router pathForObject: object] method: PSDeleteMethod];
-  request.userInfo = PSHash(@"object", object);
+  request.userInfo = @{@"object": object};
   return request;
 }
 
@@ -236,7 +236,7 @@ static PSConnector *sharedConnector = nil;
 - (NSError *) errorWithCode: (NSInteger) code message: (NSString *) message {
   return [NSError errorWithDomain: PsiToolkitErrorDomain
                              code: code
-                         userInfo: PSHash(NSLocalizedDescriptionKey, PSTranslate(message))];
+                         userInfo: @{NSLocalizedDescriptionKey: PSTranslate(message)}];
 }
 
 - (id) parseResponseFromRequest: (PSRequest *) request {

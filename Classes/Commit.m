@@ -18,7 +18,7 @@
 }
 
 + (NSArray *) propertyList {
-  return PSArray(@"authorName", @"authorEmail", @"subject", @"gitHash", @"date", @"repository");
+  return @[@"authorName", @"authorEmail", @"subject", @"gitHash", @"date", @"repository"];
 }
 
 + (NSArray *) chooseRelevantCommits: (NSArray *) commits forUser: (NSString *) userEmail {
@@ -41,13 +41,13 @@
 }
 
 - (NSDictionary *) toDictionary {
-  return PSHash(
-    @"authorName", authorName,
-    @"authorEmail", authorEmail,
-    @"subject", subject,
-    @"gitHash", gitHash,
-    @"date", date
-  );
+  return @{
+    @"authorName": authorName,
+    @"authorEmail": authorEmail,
+    @"subject": subject,
+    @"gitHash": gitHash,
+    @"date": date
+  };
 }
 
 @end

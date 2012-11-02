@@ -29,10 +29,10 @@ static NSMutableDictionary *managers;
 }
 
 + (PSModelManager *) managerForClass: (NSString *) className {
-  PSModelManager *manager = [managers objectForKey: className];
+  PSModelManager *manager = managers[className];
   if (!manager) {
     manager = [[PSModelManager alloc] init];
-    [managers setObject: manager forKey: className];
+    managers[className] = manager;
   }
   return manager;
 }

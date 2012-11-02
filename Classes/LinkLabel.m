@@ -15,11 +15,11 @@
   NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
   NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
   [paragraph setAlignment: NSCenterTextAlignment];
-  [attributes setObject: [NSColor blueColor] forKey: NSForegroundColorAttributeName];
-  [attributes setObject: PSInt(NSUnderlineStyleSingle) forKey: NSUnderlineStyleAttributeName];
-  [attributes setObject: underlineColor forKey: NSUnderlineColorAttributeName];
-  [attributes setObject: self.font forKey: NSFontAttributeName];
-  [attributes setObject: paragraph forKey: NSParagraphStyleAttributeName];
+  attributes[NSForegroundColorAttributeName] = [NSColor blueColor];
+  attributes[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
+  attributes[NSUnderlineColorAttributeName] = underlineColor;
+  attributes[NSFontAttributeName] = self.font;
+  attributes[NSParagraphStyleAttributeName] = paragraph;
 
   self.attributedTitle = [[NSAttributedString alloc] initWithString: self.title attributes: attributes];
 }  

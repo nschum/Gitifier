@@ -14,7 +14,7 @@
 
 - (id) psFirstObject {
   if (self.count > 0) {
-    return [self objectAtIndex: 0];
+    return self[0];
   } else {
     return nil;
   }
@@ -46,17 +46,17 @@
   NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey: field
                                                              ascending: ascending
                                                               selector: compareMethod];
-  return [self sortedArrayUsingDescriptors: PSArray(descriptor)];
+  return [self sortedArrayUsingDescriptors: @[descriptor]];
 }
 
 - (NSDictionary *) psGroupByKey: (NSString *) key {
   NSMutableDictionary *groups = [[NSMutableDictionary alloc] init];
   for (id object in self) {
     id keyForObject = [object valueForKey: key];
-    NSMutableArray *list = [groups objectForKey: keyForObject];
+    NSMutableArray *list = groups[keyForObject];
     if (!list) {
       list = [NSMutableArray arrayWithCapacity: 5];
-      [groups setObject: list forKey: keyForObject];
+      groups[keyForObject] = list;
     }
     [list addObject: object];
   }
@@ -115,7 +115,7 @@
 
 + (NSDictionary *) psDictionaryWithKeysAndObjects: (id) firstObject, ... {
   if (!firstObject) {
-    return [NSDictionary dictionary];
+    return @{};
   } else {
     va_list args;
     va_start(args, firstObject);
@@ -185,7 +185,7 @@
   NSMutableArray *parts = [[NSMutableArray alloc] initWithCapacity: fields.count];
 
   for (NSString *field in fields) {
-    [parts addObject: PSFormat(@"%@=%@", field, [fields objectForKey: field])];
+    [parts addObject: PSFormat(@"%@=%@", field, fields[field])];
   }
 
   return [parts componentsJoinedByString: @"&"];
@@ -195,7 +195,7 @@
   NSMutableArray *parts = [[NSMutableArray alloc] initWithCapacity: fields.count];
 
   for (NSString *field in fields) {
-    [parts addObject: PSFormat(@"%@[%@]=%@", name, field, [fields objectForKey: field])];
+    [parts addObject: PSFormat(@"%@[%@]=%@", name, field, fields[field])];
   }
 
   return [parts componentsJoinedByString: @"&"];
@@ -217,7 +217,7 @@
   } else {
     NSMutableString *camelized = [[NSMutableString alloc] initWithString: [words psFirstObject]];
     for (NSInteger i = 1; i < words.count; i++) {
-      [camelized appendString: [[words objectAtIndex: i] capitalizedString]];
+      [camelized appendString: [words[i] capitalizedString]];
     }
     return camelized;
   }
@@ -226,16 +226,16 @@
 - (NSString *) psPluralizedString {
   static NSDictionary *exceptions;
   if (!exceptions) {
-    exceptions = PSHash(
-      @"person", @"people",
-      @"man", @"men",
-      @"woman", @"women",
-      @"child", @"children"
-    );
+    exceptions = @{
+      @"person": @"people",
+      @"man": @"men",
+      @"woman": @"women",
+      @"child": @"children"
+    };
   }
 
   NSString *downcased = [self lowercaseString];
-  NSString *result = [exceptions objectForKey: downcased];
+  NSString *result = exceptions[downcased];
   if (result) {
     // one of the exceptions above
     return result;

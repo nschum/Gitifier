@@ -36,7 +36,7 @@
       PSRequest *request = [self requestToPath: PSFormat(@"/foos/%d", foo.recordId) method: PSPutMethod];
       request.postData = [foo encodeToPostData];
       request.successHandler = @selector(fooUpdated:);
-      request.userInfo = PSHash(@"object", foo);
+      request.userInfo = @{@"object": foo};
       return request;
 
       // or using CRUD helpers:
@@ -48,7 +48,7 @@
       Foo *newFoo = [self parseObjectFromRequest: request model: [Foo class]];
       if (newFoo) {
         // if parsed response is nil, stop processing
-        Foo *oldFoo = [request objectAtKey: @"object"];
+        Foo *oldFoo = [request objectForKey: @"object"];
         oldFoo.updatedAt = newFoo.updatedAt;
         [request notifyTargetOfSuccessWithObject: oldFoo];
       }

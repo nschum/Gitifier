@@ -25,7 +25,7 @@ static NSString *gitExecutable = nil;
   path = [path psTrimmedString];
   gitExecutable = [path isEqual: @""] ? nil : path;
   [self didChangeValueForKey: @"gitExecutable"];
-  PSNotifyWithData(GitExecutableSetNotification, PSHash(@"path", path ? path : PSNull));
+  PSNotifyWithData(GitExecutableSetNotification, @{@"path": path ? path : PSNull});
 }
 
 - (id) initWithDelegate: (id) aDelegate {
@@ -37,7 +37,7 @@ static NSString *gitExecutable = nil;
 }
 
 - (void) runCommand: (NSString *) command inPath: (NSString *) path {
-  [self runCommand: command withArguments: [NSArray array] inPath: path];
+  [self runCommand: command withArguments: @[] inPath: path];
 }
 
 - (void) runCommand: (NSString *) command withArguments: (NSArray *) arguments inPath: (NSString *) path {
@@ -56,7 +56,7 @@ static NSString *gitExecutable = nil;
 
   NSPipe *output = [NSPipe pipe];
   currentTask = [[NSTask alloc] init];
-  currentTask.arguments = [[NSArray arrayWithObject: command] arrayByAddingObjectsFromArray: arguments];
+  currentTask.arguments = [@[command] arrayByAddingObjectsFromArray: arguments];
   currentTask.currentDirectoryPath = path;
   currentTask.launchPath = gitExecutable;
   currentTask.standardInput = [NSFileHandle fileHandleWithNullDevice];
@@ -73,11 +73,11 @@ static NSString *gitExecutable = nil;
       [environment addEntriesFromDictionary: customEnvironment];
     }
 
-    [environment setObject: @"Gitifier"   forKey: @"DISPLAY"];
-    [environment setObject: askPassPath   forKey: @"SSH_ASKPASS"];
-    [environment setObject: repositoryUrl forKey: @"AUTH_HOSTNAME"];
-    [environment setObject: @"Gitifier"   forKey: @"AUTH_USERNAME"];
-    [environment setObject: PSInt(pid)    forKey: @"GITIFIER_PID"];
+    environment[@"DISPLAY"] = @"Gitifier";
+    environment[@"SSH_ASKPASS"] = askPassPath;
+    environment[@"AUTH_HOSTNAME"] = repositoryUrl;
+    environment[@"AUTH_USERNAME"] = @"Gitifier";
+    environment[@"GITIFIER_PID"] = @(pid);
 
     currentTask.environment = environment;
   }

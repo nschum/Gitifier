@@ -24,7 +24,7 @@
   NSViewController *notificationsPanel = [[NotificationsPanelController alloc] init];
   NSViewController *repositoriesPanel = [[RepositoriesPanelController alloc] init];
   NSViewController *aboutPanel = [[AboutPanelController alloc] init];
-  NSArray *controllers = PSArray(generalPanel, notificationsPanel, repositoriesPanel, aboutPanel);
+  NSArray *controllers = @[generalPanel, notificationsPanel, repositoriesPanel, aboutPanel];
 
   return [super initWithViewControllers: controllers title: @"Preferences"];
 }
@@ -49,7 +49,7 @@
   NSUInteger controllerIndex = [identifiers indexOfObject: itemIdentifier];
 
   if (controllerIndex != NSNotFound) {
-    NSViewController *controller = [self.viewControllers objectAtIndex: controllerIndex];
+    NSViewController *controller = self.viewControllers[controllerIndex];
     if ([controller isKindOfClass: [NotificationsPanelController class]]) {
       NotificationsPanelController *npc = (NotificationsPanelController *) controller;
       [npc view];

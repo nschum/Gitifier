@@ -38,7 +38,7 @@ static NSString *TipsAndTricksPageURL = @"https://github.com/psionides/gitifier/
 }
 
 - (NSString *) versionString {
-  return PSFormat(@"Gitifier %@", [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleVersion"]);
+  return PSFormat(@"Gitifier %@", [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"]);
 }
 
 - (void) openPage: (NSString *) url {

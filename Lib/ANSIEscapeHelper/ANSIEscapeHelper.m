@@ -70,20 +70,17 @@ THE SOFTWARE.
 	NSArray *attributesAndRanges = [self attributesForString:aString cleanString:&cleanString];
 	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]
 													initWithString:cleanString
-													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                self.font, NSFontAttributeName,
-                                                                self.defaultStringColor, NSForegroundColorAttributeName,
-                                                                nil
-																]
+													attributes:@{NSFontAttributeName: self.font,
+                                                                NSForegroundColorAttributeName: self.defaultStringColor}
 													];
 	
 	NSDictionary *thisAttributeDict;
 	for (thisAttributeDict in attributesAndRanges)
 	{
 		[attributedString
-		 addAttribute:[thisAttributeDict objectForKey:kAttrDictKey_attrName]
-		 value:[thisAttributeDict objectForKey:kAttrDictKey_attrValue]
-		 range:[[thisAttributeDict objectForKey:kAttrDictKey_range] rangeValue]
+		 addAttribute:thisAttributeDict[kAttrDictKey_attrName]
+		 value:thisAttributeDict[kAttrDictKey_attrValue]
+		 range:[thisAttributeDict[kAttrDictKey_range] rangeValue]
 		 ];
 	}
 	
@@ -100,11 +97,8 @@ THE SOFTWARE.
 	
 	NSMutableArray *codesAndLocations = [NSMutableArray array];
 	
-	NSArray *attrNames = [NSArray arrayWithObjects:
-						  NSFontAttributeName, NSForegroundColorAttributeName,
-						  NSBackgroundColorAttributeName, NSUnderlineStyleAttributeName,
-						  nil
-						  ];
+	NSArray *attrNames = @[NSFontAttributeName, NSForegroundColorAttributeName, NSBackgroundColorAttributeName,
+    NSUnderlineStyleAttributeName];
 	NSString *thisAttrName;
 	for (thisAttrName in attrNames)
 	{
@@ -163,11 +157,8 @@ THE SOFTWARE.
 			if (thisSGRCode != SGRCodeNoneOrInvalid)
 			{
 				[codesAndLocations addObject:
-				 [NSDictionary dictionaryWithObjectsAndKeys:
-				  [NSNumber numberWithInt:thisSGRCode], kCodeDictKey_code,
-				  [NSNumber numberWithUnsignedInteger:effectiveRange.location], kCodeDictKey_location,
-				  nil
-				 ]
+				 @{kCodeDictKey_code: [NSNumber numberWithInt:thisSGRCode],
+				  kCodeDictKey_location: @(effectiveRange.location)}
 				];
 			}
 			
@@ -189,7 +180,7 @@ THE SOFTWARE.
 	if ([aString length] <= [kANSIEscapeCSI length])
 	{
 		*aCleanString = [NSString stringWithString:aString];
-		return [NSArray array];
+		return @[];
 	}
 	
 	NSString *cleanString = @"";
@@ -235,7 +226,7 @@ THE SOFTWARE.
 				// for the output; exactly what we're interested in.
 				if (c == 109)
 				{
-					[codes addObject:[NSNumber numberWithUnsignedInt:code]];
+					[codes addObject:@(code)];
 					break;
 				}
 				else if ((64 <= c) && (c <= 126)) // any other valid final byte
@@ -245,7 +236,7 @@ THE SOFTWARE.
 				}
 				else if (c == 59) // semicolon (;) separates codes within the same sequence
 				{
-					[codes addObject:[NSNumber numberWithUnsignedInt:code]];
+					[codes addObject:@(code)];
 					code = 0;
 				}
 				
@@ -259,11 +250,8 @@ THE SOFTWARE.
 			for (iCode = 0; iCode < [codes count]; iCode++)
 			{
 				[formatCodes addObject:
-				 [NSDictionary dictionaryWithObjectsAndKeys:
-				  [codes objectAtIndex:iCode], kCodeDictKey_code,
-				  [NSNumber numberWithUnsignedInteger:locationInCleanString], kCodeDictKey_location,
-				  nil
-				  ]
+				 @{kCodeDictKey_code: codes[iCode],
+				  kCodeDictKey_location: @(locationInCleanString)}
 				 ];
 			}
 			
@@ -294,7 +282,7 @@ THE SOFTWARE.
 	NSMutableString* retStr = [NSMutableString stringWithCapacity:[aCleanString length]];
 	
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kCodeDictKey_location ascending:YES];
-	NSArray *codesArray = [aCodesArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+	NSArray *codesArray = [aCodesArray sortedArrayUsingDescriptors:@[sortDescriptor]];
 	
 	NSUInteger aCleanStringIndex = 0;
 	NSUInteger aCleanStringLength = [aCleanString length];
@@ -306,8 +294,8 @@ THE SOFTWARE.
 			))
 			continue;
 		
-		enum sgrCode thisCode = [[thisCodeDict objectForKey:kCodeDictKey_code] unsignedIntValue];
-		NSUInteger formattingRunStartLocation = [[thisCodeDict objectForKey:kCodeDictKey_location] unsignedIntegerValue];
+		enum sgrCode thisCode = [thisCodeDict[kCodeDictKey_code] unsignedIntValue];
+		NSUInteger formattingRunStartLocation = [thisCodeDict[kCodeDictKey_location] unsignedIntegerValue];
 		
 		if (formattingRunStartLocation > aCleanStringLength)
 			continue;
@@ -339,7 +327,7 @@ THE SOFTWARE.
 	{
 		if (aCleanString != NULL)
 			*aCleanString = [NSString stringWithString:aString];
-		return [NSArray array];
+		return @[];
 	}
 	
 	NSMutableArray *attrsAndRanges = [NSMutableArray array];
@@ -356,9 +344,9 @@ THE SOFTWARE.
 	NSUInteger iCode;
 	for (iCode = 0; iCode < [formatCodes count]; iCode++)
 	{
-		NSDictionary *thisCodeDict = [formatCodes objectAtIndex:iCode];
-		enum sgrCode thisCode = [[thisCodeDict objectForKey:kCodeDictKey_code] unsignedIntValue];
-		NSUInteger formattingRunStartLocation = [[thisCodeDict objectForKey:kCodeDictKey_location] unsignedIntegerValue];
+		NSDictionary *thisCodeDict = formatCodes[iCode];
+		enum sgrCode thisCode = [thisCodeDict[kCodeDictKey_code] unsignedIntValue];
+		NSUInteger formattingRunStartLocation = [thisCodeDict[kCodeDictKey_location] unsignedIntegerValue];
 		
 		// the attributed string attribute name for the formatting run introduced
 		// by this code
@@ -470,10 +458,10 @@ THE SOFTWARE.
 				}
 				break;
 			case SGRCodeUnderlineSingle:
-				thisAttributeValue = [NSNumber numberWithInteger:NSUnderlineStyleSingle];
+				thisAttributeValue = @(NSUnderlineStyleSingle);
 				break;
 			case SGRCodeUnderlineDouble:
-				thisAttributeValue = [NSNumber numberWithInteger:NSUnderlineStyleDouble];
+				thisAttributeValue = @(NSUnderlineStyleDouble);
 				break;
 			default:
 				break;
@@ -489,12 +477,12 @@ THE SOFTWARE.
 			unichar thisEndCodeCandidate;
 			for (iEndCode = iCode+1; iEndCode < [formatCodes count]; iEndCode++)
 			{
-				thisEndCodeCandidateDict = [formatCodes objectAtIndex:iEndCode];
-				thisEndCodeCandidate = [[thisEndCodeCandidateDict objectForKey:kCodeDictKey_code] unsignedIntValue];
+				thisEndCodeCandidateDict = formatCodes[iEndCode];
+				thisEndCodeCandidate = [thisEndCodeCandidateDict[kCodeDictKey_code] unsignedIntValue];
 				
 				if ([self sgrCode:thisEndCodeCandidate endsFormattingIntroducedByCode:thisCode])
 				{
-					formattingRunEndLocation = [[thisEndCodeCandidateDict objectForKey:kCodeDictKey_location] unsignedIntegerValue];
+					formattingRunEndLocation = [thisEndCodeCandidateDict[kCodeDictKey_location] unsignedIntegerValue];
 					break;
 				}
 			}
@@ -505,12 +493,9 @@ THE SOFTWARE.
 		// add attribute name, attribute value and formatting run range
 		// to the array we're going to return
 		[attrsAndRanges addObject:
-		 [NSDictionary dictionaryWithObjectsAndKeys:
-		  [NSValue valueWithRange:NSMakeRange(formattingRunStartLocation, (formattingRunEndLocation-formattingRunStartLocation))], kAttrDictKey_range,
-		  thisAttributeName, kAttrDictKey_attrName,
-		  thisAttributeValue, kAttrDictKey_attrValue,
-		  nil
-		 ]
+		 @{kAttrDictKey_range: [NSValue valueWithRange:NSMakeRange(formattingRunStartLocation, (formattingRunEndLocation-formattingRunStartLocation))],
+		  kAttrDictKey_attrName: thisAttributeName,
+		  kAttrDictKey_attrValue: thisAttributeValue}
 		];
 	}
 	
@@ -605,7 +590,7 @@ THE SOFTWARE.
 {
 	if (self.ansiColors != nil)
 	{
-		NSColor *preferredColor = [self.ansiColors objectForKey:[NSNumber numberWithInt:code]];
+		NSColor *preferredColor = (self.ansiColors)[[NSNumber numberWithInt:code]];
 		if (preferredColor != nil)
 			return preferredColor;
 	}
@@ -866,9 +851,7 @@ BOOL floatsEqual(CGFloat first, CGFloat second, CGFloat maxAbsError)
 	
 	// (background SGR codes are +10 from foreground ones:)
 	NSUInteger sgrCodeShift = (foreground)?0:10;
-	NSArray *ansiFgColorCodes = [NSArray
-		arrayWithObjects:
-			[NSNumber numberWithInt:SGRCodeFgBlack+sgrCodeShift],
+	NSArray *ansiFgColorCodes = @[[NSNumber numberWithInt:SGRCodeFgBlack+sgrCodeShift],
 			[NSNumber numberWithInt:SGRCodeFgRed+sgrCodeShift],
 			[NSNumber numberWithInt:SGRCodeFgGreen+sgrCodeShift],
 			[NSNumber numberWithInt:SGRCodeFgYellow+sgrCodeShift],
@@ -883,9 +866,7 @@ BOOL floatsEqual(CGFloat first, CGFloat second, CGFloat maxAbsError)
 			[NSNumber numberWithInt:SGRCodeFgBrightBlue+sgrCodeShift],
 			[NSNumber numberWithInt:SGRCodeFgBrightMagenta+sgrCodeShift],
 			[NSNumber numberWithInt:SGRCodeFgBrightCyan+sgrCodeShift],
-			[NSNumber numberWithInt:SGRCodeFgBrightWhite+sgrCodeShift],
-			nil
-		];
+			[NSNumber numberWithInt:SGRCodeFgBrightWhite+sgrCodeShift]];
 	for (NSNumber *thisSGRCodeNumber in ansiFgColorCodes)
 	{
 		enum sgrCode thisSGRCode = [thisSGRCodeNumber intValue];

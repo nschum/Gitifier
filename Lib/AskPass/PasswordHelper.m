@@ -26,16 +26,14 @@
 	int button;
 	CFStringRef passwordRef;
 	
-	NSMutableArray *returnArray = [NSMutableArray arrayWithObjects:@"PasswordString",[NSNumber numberWithInt:0],nil];
+	NSMutableArray *returnArray = [NSMutableArray arrayWithObjects:@"PasswordString",@0,nil];
 	
 	NSString *passwordMessageString = [NSString stringWithFormat: @"Repository %@ requires a password to log in "
                                      @"(you'll only need to enter it once).", hostname];
 	
-	NSDictionary *panelDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Please enter your SSH password",
-							   kCFUserNotificationAlertHeaderKey,passwordMessageString,kCFUserNotificationAlertMessageKey,
-							   @"",kCFUserNotificationTextFieldTitlesKey,
-							   @"Cancel",kCFUserNotificationAlternateButtonTitleKey,
-							   nil];
+	NSDictionary *panelDict = @{(id)kCFUserNotificationAlertHeaderKey: @"Please enter your SSH password",(id)kCFUserNotificationAlertMessageKey: passwordMessageString,
+							   (id)kCFUserNotificationTextFieldTitlesKey: @"",
+							   (id)kCFUserNotificationAlternateButtonTitleKey: @"Cancel"};
 	
 	passwordDialog = CFUserNotificationCreate(kCFAllocatorDefault,
 											  0,
@@ -49,7 +47,7 @@
 	if (error){
 		// There was an error creating the password dialog
 		CFRelease(passwordDialog);
-		[returnArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:error]];
+		returnArray[1] = @(error);
 		return returnArray;
 	}
 	
@@ -59,7 +57,7 @@
 
 	if (error){
 		CFRelease(passwordDialog);
-		[returnArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:error]];
+		returnArray[1] = @(error);
 		return returnArray;
 	}
 	
@@ -67,7 +65,7 @@
 	button = responseFlags & 0x3;
 	if (button == kCFUserNotificationAlternateResponse) {
 		CFRelease(passwordDialog);
-		[returnArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:1]];
+		returnArray[1] = @1;
 		return returnArray;		
 	}
 	
@@ -76,7 +74,7 @@
 													 0);
 	
 
-	[returnArray replaceObjectAtIndex: 0 withObject: (__bridge NSString *) passwordRef];
+	returnArray[0] = (__bridge NSString *) passwordRef;
 	CFRelease(passwordDialog); // Note that this will release the passwordRef as well
 	return returnArray;	
 }

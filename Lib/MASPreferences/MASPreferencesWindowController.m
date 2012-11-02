@@ -106,7 +106,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     NSUInteger selectedIndex = [identifiers indexOfObject:selectedIdentifier];
     NSViewController *selectedController = nil;
     if (NSLocationInRange(selectedIndex, NSMakeRange(0, self.viewControllers.count)))
-        selectedController = [self.viewControllers objectAtIndex:selectedIndex];
+        selectedController = self.viewControllers[selectedIndex];
     return selectedController;
 }
 
@@ -138,7 +138,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     NSUInteger controllerIndex = [identifiers indexOfObject:itemIdentifier];
     if (controllerIndex != NSNotFound)
     {
-        id <MASPreferencesViewController> controller = [_viewControllers objectAtIndex:controllerIndex];
+        id <MASPreferencesViewController> controller = _viewControllers[controllerIndex];
         toolbarItem.image = controller.toolbarItemImage;
         toolbarItem.label = controller.toolbarItemLabel;
         toolbarItem.target = self;
@@ -183,7 +183,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     NSString *itemIdentifier = self.window.toolbar.selectedItemIdentifier;
     NSUInteger controllerIndex = [identifiers indexOfObject:itemIdentifier];
     if (controllerIndex == NSNotFound) return;
-    NSViewController <MASPreferencesViewController> *controller = [_viewControllers objectAtIndex:controllerIndex];
+    NSViewController <MASPreferencesViewController> *controller = _viewControllers[controllerIndex];
     
     // Retrieve the new window tile from the controller view
     if ([self.title length] == 0)
@@ -266,7 +266,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     if (!NSLocationInRange(controllerIndex, NSMakeRange(0, _viewControllers.count)))
         return;
 
-    NSViewController <MASPreferencesViewController> *controller = [_viewControllers objectAtIndex:controllerIndex];
+    NSViewController <MASPreferencesViewController> *controller = _viewControllers[controllerIndex];
     NSString *newItemIdentifier = controller.toolbarItemIdentifier;
     self.window.toolbar.selectedItemIdentifier = newItemIdentifier;
     [self updateViewControllerWithAnimation:animate];

@@ -38,8 +38,7 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
 }
 
 - (void) userEmailChanged: (NSNotification *) notification {
-  NSString *email = [notification.userInfo objectForKey: @"email"];
-  [self updateUserEmailText: email];
+  [self updateUserEmailText: notification.userInfo[@"email"]];
 }
 
 - (void) updateUserEmailText: (NSString *) email {

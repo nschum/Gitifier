@@ -129,9 +129,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 
 - (IBAction) quit: (id) sender {
   // if quit fails because of an open sheet, move the window to front
-  [NSApp performSelector: @selector(activateIgnoringOtherApps:)
-              withObject: PSBool(YES)
-              afterDelay: 0.1];
+  [NSApp performSelector: @selector(activateIgnoringOtherApps:) withObject: @YES afterDelay: 0.1];
   [NSApp terminate: self];
 }
 
@@ -140,7 +138,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 - (void) updateUserEmail {
   if (!userEmail && [Git gitExecutable]) {
     Git *git = [[Git alloc] initWithDelegate: self];
-    [git runCommand: @"config" withArguments: PSArray(@"user.email") inPath: NSHomeDirectory()];
+    [git runCommand: @"config" withArguments: @[@"user.email"] inPath: NSHomeDirectory()];
   }
 }
 
@@ -176,7 +174,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   NSPipe *outputPipe = [NSPipe pipe];
   NSTask *task = [[NSTask alloc] init];
   task.launchPath = @"/bin/bash";
-  task.arguments = PSArray(@"--login", @"-c", @"which git");
+  task.arguments = @[@"--login", @"-c", @"which git"];
   task.currentDirectoryPath = NSHomeDirectory();
   task.standardOutput = outputPipe;
   task.standardError = outputPipe;
@@ -212,7 +210,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   if ([command isEqual: @"config"]) {
     if (output && output.length > 0) {
       userEmail = [output psTrimmedString];
-      PSNotifyWithData(UserEmailChangedNotification, PSHash(@"email", userEmail));
+      PSNotifyWithData(UserEmailChangedNotification, @{@"email": userEmail});
     }
   } else if ([command isEqual: @"version"]) {
     if (!output || ![output isMatchedByRegex: @"^git version \\d"]) {
@@ -242,7 +240,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
     remainingCommits = [relevantCommits subarrayWithRange: NSMakeRange(displayed, relevantCommits.count - displayed)];
   } else {
     displayedCommits = relevantCommits;
-    remainingCommits = [NSArray array];
+    remainingCommits = @[];
   }
 
   GrowlController *growl = [GrowlController sharedController];

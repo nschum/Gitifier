@@ -20,31 +20,22 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 @synthesize url, name, delegate;
 
 + (NSDictionary *) repositoryUrlPatterns {
-  static NSMutableDictionary *patterns = nil;
+  static NSDictionary *patterns = nil;
   if (!patterns) {
-    patterns = [NSMutableDictionary dictionary];
-
-    [patterns setObject: @"http://github.com/$1/$2/commit/%@"
-                 forKey: @"git@github\\.com:(NAME)\\/(NAME)\\.git"];
-
-    [patterns setObject: @"http://github.com/$2/$3/commit/%@"
-                 forKey: @"https?:\\/\\/(NAME)@github\\.com\\/(NAME)\\/(NAME)\\.git"];
-
-    [patterns setObject: @"http://github.com/$1/$2/commit/%@"
-                 forKey: @"git:\\/\\/github\\.com\\/(NAME)\\/(NAME)\\.git"];
-
-    [patterns setObject: @"http://gitorious.org/$1/$2/commit/%@"
-                 forKey: @"git:\\/\\/gitorious\\.org\\/(NAME)\\/(NAME)\\.git"];
-
-    [patterns setObject: @"http://gitorious.org/$1/$2/commit/%@"
-                 forKey: @"http:\\/\\/git\\.gitorious\\.org\\/(NAME)\\/(NAME)\\.git"];
+    patterns = @{
+      @"git@github\\.com:(NAME)\\/(NAME)\\.git":                   @"http://github.com/$1/$2/commit/%@",
+      @"https?:\\/\\/(NAME)@github\\.com\\/(NAME)\\/(NAME)\\.git": @"http://github.com/$2/$3/commit/%@",
+      @"git:\\/\\/github\\.com\\/(NAME)\\/(NAME)\\.git":           @"http://github.com/$1/$2/commit/%@",
+      @"git:\\/\\/gitorious\\.org\\/(NAME)\\/(NAME)\\.git":        @"http://gitorious.org/$1/$2/commit/%@",
+      @"http:\\/\\/git\\.gitorious\\.org\\/(NAME)\\/(NAME)\\.git": @"http://gitorious.org/$1/$2/commit/%@"
+    };
   }
   return patterns;
 }
 
 + (Repository *) repositoryFromHash: (NSDictionary *) hash {
-  NSString *url = [hash objectForKey: @"url"];
-  NSString *name = [hash objectForKey: @"name"];
+  NSString *url = hash[@"url"];
+  NSString *name = hash[@"name"];
   Repository *repo = nil;
   if (url) {
     repo = [[Repository alloc] initWithUrl: url];
@@ -75,7 +66,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (NSDictionary *) hashRepresentation {
-  return PSHash(@"url", url, @"name", name);
+  return @{@"url": url, @"name": name};
 }
 
 - (void) resetStatus {
@@ -86,7 +77,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   NSDictionary *patterns = [Repository repositoryUrlPatterns];
 
   for (NSString *pattern in patterns) {
-    NSString *commitPattern = [patterns objectForKey: pattern];
+    NSString *commitPattern = patterns[pattern];
     NSString *repoPattern = [pattern stringByReplacingOccurrencesOfString: @"NAME" withString: nameRegexp];
     repoPattern = PSFormat(@"^%@$", repoPattern); // looks like a curse that was censored, doesn't it? ;)
 
@@ -115,7 +106,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
   if (cachesDirectoryExists && workingCopyDoesntExist) {
     isBeingUpdated = YES;
-    [git runCommand: @"clone" withArguments: PSArray(url, workingCopy, @"-n") inPath: cachesDirectory];
+    [git runCommand: @"clone" withArguments: @[url, workingCopy, @"-n"] inPath: cachesDirectory];
   } else {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   }
@@ -166,11 +157,11 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     NSMutableArray *commits = [NSMutableArray arrayWithCapacity: commitData.count];
     for (NSArray *fields in commitData) {
       Commit *commit = [[Commit alloc] init];
-      commit.date = [NSDate dateWithString: [fields objectAtIndex: 1]];
-      commit.gitHash = [fields objectAtIndex: 2];
-      commit.authorName = [fields objectAtIndex: 3];
-      commit.authorEmail = [fields objectAtIndex: 4];
-      commit.subject = [fields objectAtIndex: 5];
+      commit.date = [NSDate dateWithString: fields[1]];
+      commit.gitHash = fields[2];
+      commit.authorName = fields[3];
+      commit.authorEmail = fields[4];
+      commit.subject = fields[5];
       commit.repository = self;
       [commits addObject: commit];
     }
@@ -200,13 +191,13 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   NSArray *names = [anUrl componentsSeparatedByRegex: @"[/:]"];
   NSString *projectName = [names lastObject];
   if ([projectName isEqual: @""]) {
-    projectName = [names objectAtIndex: names.count - 2];
+    projectName = names[names.count - 2];
   }
   if ([projectName hasSuffix: @".git"]) {
     projectName = [projectName substringToIndex: projectName.length - 4];
   }
   if ([projectName isEqual: @""]) {
-    projectName = [names objectAtIndex: names.count - 3];
+    projectName = names[names.count - 3];
   }
   if ([[projectName lowercaseString] isEqualToString: projectName] && ![projectName psContainsString: @"_"]) {
     projectName = [projectName capitalizedString];

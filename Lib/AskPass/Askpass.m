@@ -40,7 +40,7 @@ int main() {
 
     NSArray *argumentsArray = [[NSProcessInfo processInfo] arguments];
     if (argumentsArray.count >= 2) {
-      NSRange yesnoRange = [[argumentsArray objectAtIndex: 1] rangeOfString: [NSString stringWithFormat: @"(yes/no)"]];
+      NSRange yesnoRange = [argumentsArray[1] rangeOfString: [NSString stringWithFormat: @"(yes/no)"]];
 
       // If the string yes/no was found in the arguments array then we need to return a YES instead of password
       if (yesnoRange.location != NSNotFound) {
@@ -56,12 +56,12 @@ int main() {
         // No password was found in the keychain so we should prompt the user for it.
         wakeUpGitifier(pid);
         NSArray *promptArray = [PasswordHelper promptForPassword: hostnameString user: usernameString];
-        NSInteger returnCode = [[promptArray objectAtIndex: 1] intValue];
+        NSInteger returnCode = [promptArray[1] intValue];
 
         if (returnCode == 0) { // Found a valid password entry
           // Set the new password in the keychain.
-          [PasswordHelper setPassword: [promptArray objectAtIndex: 0] forHost: hostnameString user: usernameString];
-          pStr = [promptArray objectAtIndex: 0];
+          [PasswordHelper setPassword: promptArray[0] forHost: hostnameString user: usernameString];
+          pStr = promptArray[0];
           wakeUpGitifier(pid);
         } else if (returnCode == 1) { // User cancelled so we'll just abort
           // We return a non zero exit code here which should cause ssh to abort

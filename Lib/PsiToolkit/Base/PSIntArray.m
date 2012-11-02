@@ -17,7 +17,7 @@
     return [[PSIntArray alloc] initWithCapacity: 0];
   } else {
     NSMutableArray *nsarray = [[NSMutableArray alloc] init];
-    [nsarray addObject: PSInt(first)];
+    [nsarray addObject: @(first)];
     va_list args;
     va_start(args, first);
     NSInteger next;
@@ -26,13 +26,13 @@
       if (next == PSIntArrayStop) {
         break;
       }
-      [nsarray addObject: PSInt(next)];
+      [nsarray addObject: @(next)];
     }
     va_end(args);
 
     PSIntArray *array = [[PSIntArray alloc] initWithCapacity: nsarray.count];
     for (NSInteger i = 0; i < nsarray.count; i++) {
-      [array setInteger: [[nsarray objectAtIndex: i] intValue] atIndex: i];
+      [array setInteger: [nsarray[i] intValue] atIndex: i];
     }
     return array;
   }

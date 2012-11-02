@@ -38,9 +38,9 @@
   return [[propertyForm psUnderscoreSeparatedString] psPluralizedString];
 }
 
-// e.g. PSArray(@"name", @"telephoneMain", @"address")
+// e.g. @[@"name", @"telephoneMain", @"address"]
 + (NSArray *) propertyList {
-  return [NSArray array];
+  return @[];
 }
 
 // change only if you want a custom record id field
@@ -112,11 +112,11 @@
 }
 
 + (id) objectWithId: (id) objectId {
-  return [[self identityMap] objectForKey: objectId];
+  return [self identityMap][objectId];
 }
 
 + (id) objectWithIntegerId: (NSInteger) objectId {
-  return [self objectWithId: PSInt(objectId)];
+  return [self objectWithId: @(objectId)];
 }
 
 + (id) objectWithId: (id) objectId context: (id) context {
@@ -134,7 +134,7 @@
   for (id object in objects) {
     id recordId = [object recordId];
     NSAssert1(recordId != nil, @"Can't add object with no recordId to list: %@", object);
-    [identityMap setObject: object forKey: recordId];
+    identityMap[recordId] = object;
   }
 }
 
@@ -201,7 +201,7 @@
   // set all properties
   for (NSString *key in [json allKeys]) {
     property = nil;
-    value = [json objectForKey: key];
+    value = json[key];
     if (skipNullValues && [value isEqual: PSNull]) {
       continue;
     }
@@ -315,7 +315,7 @@
   [result appendString: NSStringFromClass([self class])];
   [result appendFormat: @": 0x%x", self];
 
-  NSArray *fields = [PSArray(@"recordId") arrayByAddingObjectsFromArray: [[self class] propertyList]];
+  NSArray *fields = [@[@"recordId"] arrayByAddingObjectsFromArray: [[self class] propertyList]];
   id value, output;
 
   for (NSString *property in fields) {

@@ -15,7 +15,7 @@
 PSReleaseOnDealloc(username, password);
 
 + (NSArray *) propertyList {
-  return PSArray(@"username", @"password");
+  return @[@"username", @"password"];
 }
 
 + (NSArray *) propertiesSavedInSettings {

@@ -26,18 +26,18 @@ static NSDictionary *defaultPreferenceValues;
 @implementation Defaults
 
 + (void) initialize {
-  defaultPreferenceValues = PSHash(
-    MonitorIntervalKey,          PSInt(5),
-    IgnoreMergesKey,             PSBool(YES),
-    IgnoreOwnCommitsKey,         PSBool(YES),
-    StickyNotificationsKey,      PSBool(NO),
-    ShowDiffWindowKey,           PSBool(YES),
-    OpenDiffInBrowserKey,        PSBool(NO),
-    KeepWindowsOnTopKey,         PSBool(YES),
-    NotificationLimitEnabledKey, PSBool(YES),
-    NotificationLimitValueKey,   PSInt(15),
-    RecentCommitsListLengthKey,  PSInt(5)
-  );
+  defaultPreferenceValues = @{
+    MonitorIntervalKey: @5,
+    IgnoreMergesKey: @YES,
+    IgnoreOwnCommitsKey: @YES,
+    StickyNotificationsKey: @NO,
+    ShowDiffWindowKey: @YES,
+    OpenDiffInBrowserKey: @NO,
+    KeepWindowsOnTopKey: @YES,
+    NotificationLimitEnabledKey: @YES,
+    NotificationLimitValueKey: @15,
+    RecentCommitsListLengthKey: @5
+  };
 }
 
 + (void) registerDefaults {
