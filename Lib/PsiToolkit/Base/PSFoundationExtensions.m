@@ -111,40 +111,6 @@
 
 // ------------------------------------------------------------------------------------------------
 
-@implementation NSDictionary (PsiToolkit)
-
-+ (NSDictionary *) psDictionaryWithKeysAndObjects: (id) firstObject, ... {
-  if (!firstObject) {
-    return @{};
-  } else {
-    va_list args;
-    va_start(args, firstObject);
-
-    NSMutableArray *keys = [[NSMutableArray alloc] initWithCapacity: 5];
-    NSMutableArray *objects = [[NSMutableArray alloc] initWithCapacity: 5];
-    id object = firstObject;
-    BOOL isKey = YES;
-
-    do {
-      if (isKey) {
-        [keys addObject: object];
-      } else {
-        [objects addObject: object];
-      }
-      object = va_arg(args, id);
-      isKey = !isKey;
-    } while (object);
-
-    va_end(args);
-
-    return [NSDictionary dictionaryWithObjects: objects forKeys: keys];
-  }
-}
-
-@end
-
-// ------------------------------------------------------------------------------------------------
-
 @implementation NSNull (PsiToolkit)
 
 - (BOOL) psIsPresent {

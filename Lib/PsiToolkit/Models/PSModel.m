@@ -51,37 +51,6 @@
 // -------------------------------------------------------------------------------------------
 #pragma mark Creating from JSON
 
-#ifdef PSITOOLKIT_ENABLE_MODELS_JSON
-
-+ (id) valueFromJSONString: (NSString *) jsonString {
-  #if defined(PSITOOLKIT_USE_YAJL)
-    return [jsonString yajl_JSON];
-  #elif defined(PSITOOLKIT_USE_JSON_FRAMEWORK)
-    return [jsonString JSONValue];
-  #elif defined(PSITOOLKIT_USE_TOUCHJSON)
-    static CJSONDeserializer *deserializer;
-    if (!deserializer) {
-      deserializer = [[CJSONDeserializer deserializer] retain];
-    }
-    NSData *jsonData = [jsonString dataUsingEncoding: NSUTF32BigEndianStringEncoding];
-    return [deserializer deserialize: jsonData error: nil];
-  #elif defined(PSITOOLKIT_USE_JSONKIT)
-    return [jsonString objectFromJSONString];
-  #endif
-}
-
-+ (id) objectFromJSONString: (NSString *) jsonString {
-  NSDictionary *record = [self valueFromJSONString: jsonString];
-  return [self objectFromJSON: record];
-}
-
-+ (NSArray *) objectsFromJSONString: (NSString *) jsonString {
-  NSArray *records = [self valueFromJSONString: jsonString];
-  return [self objectsFromJSON: records];
-}
-
-#endif // ifdef PSITOOLKIT_ENABLE_MODELS_JSON
-
 + (id) objectFromJSON: (NSDictionary *) json {
   if ([json isKindOfClass: [PSModel class]]) {
     return [json copy];

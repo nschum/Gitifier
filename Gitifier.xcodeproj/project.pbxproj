@@ -12,20 +12,9 @@
 		581C9E9E127E050A003ECF6A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
 		582E744F126B1D3E0077D935 /* GrowlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 582E744E126B1D3E0077D935 /* GrowlController.m */; };
 		5831CCA312EE0EFC008169A7 /* PSFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC6512EE0EFB008169A7 /* PSFoundationExtensions.m */; };
-		5831CCA412EE0EFC008169A7 /* PSIntArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC6712EE0EFB008169A7 /* PSIntArray.m */; };
 		5831CCB812EE0EFC008169A7 /* PSCocoaExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC7F12EE0EFB008169A7 /* PSCocoaExtensions.m */; };
-		5831CCBB12EE0EFC008169A7 /* PSAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC8412EE0EFB008169A7 /* PSAccount.m */; };
 		5831CCBC12EE0EFC008169A7 /* PSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC8612EE0EFB008169A7 /* PSModel.m */; };
 		5831CCBD12EE0EFC008169A7 /* PSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC8812EE0EFC008169A7 /* PSModelManager.m */; };
-		5831CCBE12EE0EFC008169A7 /* PSConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC8B12EE0EFC008169A7 /* PSConnector.m */; };
-		5831CCBF12EE0EFC008169A7 /* PSPathBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC8F12EE0EFC008169A7 /* PSPathBuilder.m */; };
-		5831CCC012EE0EFC008169A7 /* PSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9112EE0EFC008169A7 /* PSRequest.m */; };
-		5831CCC112EE0EFC008169A7 /* PSResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9312EE0EFC008169A7 /* PSResponse.m */; };
-		5831CCC212EE0EFC008169A7 /* PSRestRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9512EE0EFC008169A7 /* PSRestRouter.m */; };
-		5831CCC412EE0EFC008169A7 /* PSSecurityExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9B12EE0EFC008169A7 /* PSSecurityExtensions.m */; };
-		5831CCC512EE0EFC008169A7 /* SDKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9D12EE0EFC008169A7 /* SDKeychain.m */; };
-		5831CCC612EE0EFC008169A7 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC9F12EE0EFC008169A7 /* SFHFKeychainUtils.m */; };
-		5831CCC712EE0EFC008169A7 /* PSUIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CCA212EE0EFC008169A7 /* PSUIExtensions.m */; };
 		5834F24B1493C962001B9286 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 5834F24A1493C962001B9286 /* Credits.html */; };
 		584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */; };
 		584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */; };
@@ -112,43 +101,16 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		582E744D126B1D3E0077D935 /* GrowlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlController.h; sourceTree = "<group>"; };
 		582E744E126B1D3E0077D935 /* GrowlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlController.m; sourceTree = "<group>"; };
-		5831CC6212EE0EFB008169A7 /* PSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSConstants.h; sourceTree = "<group>"; };
-		5831CC6312EE0EFB008169A7 /* PSDependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDependencies.h; sourceTree = "<group>"; };
 		5831CC6412EE0EFB008169A7 /* PSFoundationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSFoundationExtensions.h; sourceTree = "<group>"; };
 		5831CC6512EE0EFB008169A7 /* PSFoundationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSFoundationExtensions.m; sourceTree = "<group>"; };
-		5831CC6612EE0EFB008169A7 /* PSIntArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSIntArray.h; sourceTree = "<group>"; };
-		5831CC6712EE0EFB008169A7 /* PSIntArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSIntArray.m; sourceTree = "<group>"; };
 		5831CC6812EE0EFB008169A7 /* PSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSMacros.h; sourceTree = "<group>"; };
 		5831CC7E12EE0EFB008169A7 /* PSCocoaExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCocoaExtensions.h; sourceTree = "<group>"; };
 		5831CC7F12EE0EFB008169A7 /* PSCocoaExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCocoaExtensions.m; sourceTree = "<group>"; };
-		5831CC8312EE0EFB008169A7 /* PSAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAccount.h; sourceTree = "<group>"; };
-		5831CC8412EE0EFB008169A7 /* PSAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAccount.m; sourceTree = "<group>"; };
 		5831CC8512EE0EFB008169A7 /* PSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSModel.h; sourceTree = "<group>"; };
 		5831CC8612EE0EFB008169A7 /* PSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSModel.m; sourceTree = "<group>"; };
 		5831CC8712EE0EFB008169A7 /* PSModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSModelManager.h; sourceTree = "<group>"; };
 		5831CC8812EE0EFC008169A7 /* PSModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSModelManager.m; sourceTree = "<group>"; };
-		5831CC8A12EE0EFC008169A7 /* PSConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSConnector.h; sourceTree = "<group>"; };
-		5831CC8B12EE0EFC008169A7 /* PSConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSConnector.m; sourceTree = "<group>"; };
-		5831CC8C12EE0EFC008169A7 /* PSConnectorAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSConnectorAccount.h; sourceTree = "<group>"; };
-		5831CC8D12EE0EFC008169A7 /* PSConnectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSConnectorDelegate.h; sourceTree = "<group>"; };
-		5831CC8E12EE0EFC008169A7 /* PSPathBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPathBuilder.h; sourceTree = "<group>"; };
-		5831CC8F12EE0EFC008169A7 /* PSPathBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPathBuilder.m; sourceTree = "<group>"; };
-		5831CC9012EE0EFC008169A7 /* PSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSRequest.h; sourceTree = "<group>"; };
-		5831CC9112EE0EFC008169A7 /* PSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSRequest.m; sourceTree = "<group>"; };
-		5831CC9212EE0EFC008169A7 /* PSResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSResponse.h; sourceTree = "<group>"; };
-		5831CC9312EE0EFC008169A7 /* PSResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSResponse.m; sourceTree = "<group>"; };
-		5831CC9412EE0EFC008169A7 /* PSRestRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSRestRouter.h; sourceTree = "<group>"; };
-		5831CC9512EE0EFC008169A7 /* PSRestRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSRestRouter.m; sourceTree = "<group>"; };
-		5831CC9612EE0EFC008169A7 /* PSRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSRouter.h; sourceTree = "<group>"; };
 		5831CC9712EE0EFC008169A7 /* PsiToolkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsiToolkit.h; sourceTree = "<group>"; };
-		5831CC9A12EE0EFC008169A7 /* PSSecurityExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSecurityExtensions.h; sourceTree = "<group>"; };
-		5831CC9B12EE0EFC008169A7 /* PSSecurityExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSecurityExtensions.m; sourceTree = "<group>"; };
-		5831CC9C12EE0EFC008169A7 /* SDKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDKeychain.h; sourceTree = "<group>"; };
-		5831CC9D12EE0EFC008169A7 /* SDKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDKeychain.m; sourceTree = "<group>"; };
-		5831CC9E12EE0EFC008169A7 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
-		5831CC9F12EE0EFC008169A7 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
-		5831CCA112EE0EFC008169A7 /* PSUIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSUIExtensions.h; sourceTree = "<group>"; };
-		5831CCA212EE0EFC008169A7 /* PSUIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSUIExtensions.m; sourceTree = "<group>"; };
 		5834F24A1493C962001B9286 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		584ED6F213B36B940085E65C /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
 		584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
@@ -333,10 +295,7 @@
 				5831CC6112EE0EFB008169A7 /* Base */,
 				5831CC7D12EE0EFB008169A7 /* Cocoa */,
 				5831CC8212EE0EFB008169A7 /* Models */,
-				5831CC8912EE0EFC008169A7 /* Network */,
 				5831CC9712EE0EFC008169A7 /* PsiToolkit.h */,
-				5831CC9912EE0EFC008169A7 /* Security */,
-				5831CCA012EE0EFC008169A7 /* UIKit */,
 			);
 			path = PsiToolkit;
 			sourceTree = "<group>";
@@ -344,12 +303,8 @@
 		5831CC6112EE0EFB008169A7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				5831CC6212EE0EFB008169A7 /* PSConstants.h */,
-				5831CC6312EE0EFB008169A7 /* PSDependencies.h */,
 				5831CC6412EE0EFB008169A7 /* PSFoundationExtensions.h */,
 				5831CC6512EE0EFB008169A7 /* PSFoundationExtensions.m */,
-				5831CC6612EE0EFB008169A7 /* PSIntArray.h */,
-				5831CC6712EE0EFB008169A7 /* PSIntArray.m */,
 				5831CC6812EE0EFB008169A7 /* PSMacros.h */,
 			);
 			path = Base;
@@ -367,56 +322,12 @@
 		5831CC8212EE0EFB008169A7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5831CC8312EE0EFB008169A7 /* PSAccount.h */,
-				5831CC8412EE0EFB008169A7 /* PSAccount.m */,
 				5831CC8512EE0EFB008169A7 /* PSModel.h */,
 				5831CC8612EE0EFB008169A7 /* PSModel.m */,
 				5831CC8712EE0EFB008169A7 /* PSModelManager.h */,
 				5831CC8812EE0EFC008169A7 /* PSModelManager.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		5831CC8912EE0EFC008169A7 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				5831CC8A12EE0EFC008169A7 /* PSConnector.h */,
-				5831CC8B12EE0EFC008169A7 /* PSConnector.m */,
-				5831CC8C12EE0EFC008169A7 /* PSConnectorAccount.h */,
-				5831CC8D12EE0EFC008169A7 /* PSConnectorDelegate.h */,
-				5831CC8E12EE0EFC008169A7 /* PSPathBuilder.h */,
-				5831CC8F12EE0EFC008169A7 /* PSPathBuilder.m */,
-				5831CC9012EE0EFC008169A7 /* PSRequest.h */,
-				5831CC9112EE0EFC008169A7 /* PSRequest.m */,
-				5831CC9212EE0EFC008169A7 /* PSResponse.h */,
-				5831CC9312EE0EFC008169A7 /* PSResponse.m */,
-				5831CC9412EE0EFC008169A7 /* PSRestRouter.h */,
-				5831CC9512EE0EFC008169A7 /* PSRestRouter.m */,
-				5831CC9612EE0EFC008169A7 /* PSRouter.h */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		5831CC9912EE0EFC008169A7 /* Security */ = {
-			isa = PBXGroup;
-			children = (
-				5831CC9A12EE0EFC008169A7 /* PSSecurityExtensions.h */,
-				5831CC9B12EE0EFC008169A7 /* PSSecurityExtensions.m */,
-				5831CC9C12EE0EFC008169A7 /* SDKeychain.h */,
-				5831CC9D12EE0EFC008169A7 /* SDKeychain.m */,
-				5831CC9E12EE0EFC008169A7 /* SFHFKeychainUtils.h */,
-				5831CC9F12EE0EFC008169A7 /* SFHFKeychainUtils.m */,
-			);
-			path = Security;
-			sourceTree = "<group>";
-		};
-		5831CCA012EE0EFC008169A7 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				5831CCA112EE0EFC008169A7 /* PSUIExtensions.h */,
-				5831CCA212EE0EFC008169A7 /* PSUIExtensions.m */,
-			);
-			path = UIKit;
 			sourceTree = "<group>";
 		};
 		584ED6F113B36B940085E65C /* MASPreferences */ = {
@@ -673,20 +584,9 @@
 				581C9E91127E046D003ECF6A /* PasswordHelper.m in Sources */,
 				58E81DC4128B2B7000062F15 /* LinkLabel.m in Sources */,
 				5831CCA312EE0EFC008169A7 /* PSFoundationExtensions.m in Sources */,
-				5831CCA412EE0EFC008169A7 /* PSIntArray.m in Sources */,
 				5831CCB812EE0EFC008169A7 /* PSCocoaExtensions.m in Sources */,
-				5831CCBB12EE0EFC008169A7 /* PSAccount.m in Sources */,
 				5831CCBC12EE0EFC008169A7 /* PSModel.m in Sources */,
 				5831CCBD12EE0EFC008169A7 /* PSModelManager.m in Sources */,
-				5831CCBE12EE0EFC008169A7 /* PSConnector.m in Sources */,
-				5831CCBF12EE0EFC008169A7 /* PSPathBuilder.m in Sources */,
-				5831CCC012EE0EFC008169A7 /* PSRequest.m in Sources */,
-				5831CCC112EE0EFC008169A7 /* PSResponse.m in Sources */,
-				5831CCC212EE0EFC008169A7 /* PSRestRouter.m in Sources */,
-				5831CCC412EE0EFC008169A7 /* PSSecurityExtensions.m in Sources */,
-				5831CCC512EE0EFC008169A7 /* SDKeychain.m in Sources */,
-				5831CCC612EE0EFC008169A7 /* SFHFKeychainUtils.m in Sources */,
-				5831CCC712EE0EFC008169A7 /* PSUIExtensions.m in Sources */,
 				584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */,
 				584ED6FA13B37BF40085E65C /* GeneralPanelController.m in Sources */,
 				584ED6FD13B37F650085E65C /* RepositoriesPanelController.m in Sources */,

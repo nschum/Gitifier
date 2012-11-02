@@ -50,20 +50,6 @@
 + (NSString *) recordIdProperty;
 
 
-/* JSON parsing (these methods require a JSON library) */
-
-#ifdef PSITOOLKIT_ENABLE_MODELS_JSON
-// parses NSObject (usually NSArray or NSDictionary) from a JSON string
-+ (id) valueFromJSONString: (NSString *) jsonString;
-
-// parses a PSModel object from a JSON string
-+ (id) objectFromJSONString: (NSString *) jsonString;
-
-// parses a NSArray of PSModel objects from a JSON string
-+ (NSArray *) objectsFromJSONString: (NSString *) jsonString;
-#endif
-
-
 /* record building */
 
 // builds a PSModel object from a JSON dictionary

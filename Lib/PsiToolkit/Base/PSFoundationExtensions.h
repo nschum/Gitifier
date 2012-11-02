@@ -56,14 +56,6 @@
 
 // ------------------------------------------------------------------------------------------------
 
-@interface NSDictionary (PsiToolkit)
-
-// returns a dictionary constructed from key-value pairs, in that order: key1, value1, key2, value2, ...
-+ (NSDictionary *) psDictionaryWithKeysAndObjects: (id) firstObject, ...;
-@end
-
-// ------------------------------------------------------------------------------------------------
-
 @interface NSNull (PsiToolkit)
 
 // for NSNull, always returns NO
