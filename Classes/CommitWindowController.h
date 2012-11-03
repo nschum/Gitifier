@@ -12,15 +12,15 @@
 
 @interface CommitWindowController : NSWindowController
 
-@property IBOutlet NSTextView *textView;
-@property IBOutlet NSTextField *authorLabel;
-@property IBOutlet NSTextField *dateLabel;
-@property IBOutlet NSTextField *subjectLabel;
-@property IBOutlet NSButton *viewInBrowserButton;
-@property IBOutlet NSProgressIndicator *spinner;
-@property IBOutlet NSScrollView *scrollView;
-@property IBOutlet NSBox *scrollViewBox;
-@property IBOutlet NSBox *separator;
+@property /*(weak)*/ IBOutlet NSTextView *textView;
+@property /*(weak)*/ IBOutlet NSTextField *authorLabel;
+@property /*(weak)*/ IBOutlet NSTextField *dateLabel;
+@property /*(weak)*/ IBOutlet NSTextField *subjectLabel;
+@property /*(weak)*/ IBOutlet NSButton *viewInBrowserButton;
+@property /*(weak)*/ IBOutlet NSProgressIndicator *spinner;
+@property /*(weak)*/ IBOutlet NSScrollView *scrollView;
+@property /*(weak)*/ IBOutlet NSBox *scrollViewBox;
+@property /*(weak)*/ IBOutlet NSBox *separator;
 
 - (id) initWithCommit: (Commit *) commit;
 - (void) show;

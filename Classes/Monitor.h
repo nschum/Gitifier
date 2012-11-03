@@ -13,7 +13,7 @@
 
 @interface Monitor : NSObject
 
-@property IBOutlet id dataSource;
+@property /*(weak)*/ IBOutlet id dataSource;
 
 - (void) startMonitoring;
 - (void) restartMonitoring;

@@ -14,10 +14,10 @@
 
 @property (strong, readonly) NSString *userEmail;
 @property (strong, readonly) NSMutableArray *repositoryList;
-@property IBOutlet Monitor *monitor;
-@property IBOutlet StatusBarController *statusBarController;
-@property IBOutlet PreferencesWindowController *preferencesWindowController;
-@property IBOutlet RepositoryListController *repositoryListController;
+@property /*(weak)*/ IBOutlet Monitor *monitor;
+@property /*(weak)*/ IBOutlet StatusBarController *statusBarController;
+@property /*(weak)*/ IBOutlet PreferencesWindowController *preferencesWindowController;
+@property /*(weak)*/ IBOutlet RepositoryListController *repositoryListController;
 
 - (IBAction) showPreferences: (id) sender;
 - (IBAction) quit: (id) sender;

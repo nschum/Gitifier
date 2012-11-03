@@ -10,8 +10,8 @@
 
 @interface AboutPanelController : NSViewController <MASPreferencesViewController>
 
-@property IBOutlet NSButton *websiteLabel;
-@property IBOutlet WebView *creditsList;
+@property /*(weak)*/ IBOutlet NSButton *websiteLabel;
+@property /*(weak)*/ IBOutlet WebView *creditsList;
 @property (readonly) NSString *versionString;
 
 - (IBAction) openProjectWebsite: (id) sender;

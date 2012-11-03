@@ -7,7 +7,7 @@
 
 @interface StatusBarController : NSObject
 
-@property (strong) IBOutlet NSMenu *statusBarMenu;
+@property /*(weak)*/ IBOutlet NSMenu *statusBarMenu;
 
 - (void) createStatusBarItem;
 - (void) updateRecentCommitsList: (NSArray *) newCommits;

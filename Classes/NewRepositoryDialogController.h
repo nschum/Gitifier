@@ -10,12 +10,12 @@
 
 @interface NewRepositoryDialogController : NSWindowController
 
-@property IBOutlet RepositoryListController *repositoryListController;
-@property IBOutlet NSTextField *repositoryUrlField;
-@property IBOutlet NSProgressIndicator *spinner;
-@property IBOutlet NSButton *cancelButton;
-@property IBOutlet NSButton *addButton;
-@property IBOutlet NSTextField *label;
+@property /*(weak)*/ IBOutlet RepositoryListController *repositoryListController;
+@property /*(weak)*/ IBOutlet NSTextField *repositoryUrlField;
+@property /*(weak)*/ IBOutlet NSProgressIndicator *spinner;
+@property /*(weak)*/ IBOutlet NSButton *cancelButton;
+@property /*(weak)*/ IBOutlet NSButton *addButton;
+@property /*(weak)*/ IBOutlet NSTextField *label;
 
 - (IBAction) showNewRepositorySheet: (id) sender;
 - (IBAction) addRepository: (id) sender;

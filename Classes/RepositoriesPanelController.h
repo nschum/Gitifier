@@ -11,7 +11,7 @@
 
 @interface RepositoriesPanelController : NSViewController <MASPreferencesViewController>
 
-@property IBOutlet RepositoryListController *repositoryListController;
+@property (strong) IBOutlet RepositoryListController *repositoryListController;
 @property (readonly) id gitClass;
 
 - (IBAction) removeRepositories: (id) sender;
