@@ -9,9 +9,9 @@
 #import "GeneralPanelController.h"
 #import "Git.h"
 
-@implementation GeneralPanelController
-
-@synthesize monitorIntervalField, chooseGitPathButton;
+@implementation GeneralPanelController {
+  NSNumberFormatter *numberFormatter;
+}
 
 - (id) init {
   return [super initWithNibName: @"GeneralPreferencesPanel" bundle: nil];
@@ -80,7 +80,7 @@
 }
 
 - (BOOL) control: (NSControl *) field didFailToFormatString: (NSString *) string errorDescription: (NSString *) error {
-  if (field == monitorIntervalField) {
+  if (field == self.monitorIntervalField) {
     NSNumber *number = [numberFormatter numberFromString: string];
     if (number) {
       NSNumberFormatter *formatter = (NSNumberFormatter *) [field formatter];
@@ -88,14 +88,14 @@
       NSInteger min = [formatter.minimum integerValue];
       NSInteger max = [formatter.maximum integerValue];
       if (value < min) {
-        monitorIntervalField.integerValue = min;
+        self.monitorIntervalField.integerValue = min;
       } else if (value > max) {
-        monitorIntervalField.integerValue = max;
+        self.monitorIntervalField.integerValue = max;
       } else {
-        monitorIntervalField.integerValue = value;
+        self.monitorIntervalField.integerValue = value;
       }
     } else {
-      monitorIntervalField.integerValue = [GitifierDefaults integerForKey: MonitorIntervalKey];
+      self.monitorIntervalField.integerValue = [GitifierDefaults integerForKey: MonitorIntervalKey];
     }
     return YES;
   }

@@ -5,12 +5,7 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-@interface Git : NSObject {
-  NSTask *currentTask;
-  BOOL cancelled;
-  id delegate;
-  NSString *repositoryUrl;
-}
+@interface Git : NSObject
 
 @property (copy) NSString *repositoryUrl;
 

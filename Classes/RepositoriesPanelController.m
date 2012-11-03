@@ -11,8 +11,6 @@
 
 @implementation RepositoriesPanelController
 
-@synthesize repositoryListController;
-
 - (id) init {
   return [super initWithNibName: @"RepositoriesPreferencesPanel" bundle: nil];
 }
@@ -34,7 +32,7 @@
 }
 
 - (IBAction) removeRepositories: (id) sender {
-  [repositoryListController removeSelectedRepositories];
+  [self.repositoryListController removeSelectedRepositories];
 }
 
 @end

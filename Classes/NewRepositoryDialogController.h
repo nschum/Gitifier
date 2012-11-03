@@ -8,18 +8,7 @@
 @class Repository;
 @class RepositoryListController;
 
-@interface NewRepositoryDialogController : NSWindowController {
-  NSTimer *slowCloneTimer;
-  NSString *labelText;
-  Repository *editedRepository;
-  RepositoryListController *repositoryListController;
-  NSTextField *repositoryUrlField;
-  NSProgressIndicator *spinner;
-  NSButton *cancelButton;
-  NSButton *addButton;
-  NSTextField *label;
-  BOOL waitingForSlowClone;
-}
+@interface NewRepositoryDialogController : NSWindowController
 
 @property IBOutlet RepositoryListController *repositoryListController;
 @property IBOutlet NSTextField *repositoryUrlField;

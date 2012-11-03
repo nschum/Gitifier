@@ -7,11 +7,7 @@
 
 #import "MASPreferencesViewController.h"
 
-@interface GeneralPanelController : NSViewController <MASPreferencesViewController, NSOpenSavePanelDelegate> {
-  NSNumberFormatter *numberFormatter;
-  NSTextField *monitorIntervalField;
-  NSButton *chooseGitPathButton;
-}
+@interface GeneralPanelController : NSViewController <MASPreferencesViewController, NSOpenSavePanelDelegate>
 
 @property IBOutlet NSTextField *monitorIntervalField;
 @property IBOutlet NSButton *chooseGitPathButton;

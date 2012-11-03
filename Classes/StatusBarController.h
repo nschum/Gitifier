@@ -5,11 +5,7 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-@interface StatusBarController : NSObject {
-  NSStatusItem *statusBarItem;
-  NSMenu *statusBarMenu;
-  NSArray *recentCommits;
-}
+@interface StatusBarController : NSObject
 
 @property (strong) IBOutlet NSMenu *statusBarMenu;
 

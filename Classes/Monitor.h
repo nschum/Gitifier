@@ -11,10 +11,7 @@
 
 // ------------------------------
 
-@interface Monitor : NSObject {
-  NSTimer *timer;
-  id dataSource;
-}
+@interface Monitor : NSObject
 
 @property IBOutlet id dataSource;
 

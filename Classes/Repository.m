@@ -15,9 +15,12 @@
 static NSString *nameRegexp = @"[\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\-\\.]+";
 static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
-@implementation Repository
-
-@synthesize url, name, delegate;
+@implementation Repository {
+  RepositoryStatus status;
+  Git *git;
+  NSString *commitUrlPattern;
+  BOOL isBeingUpdated;
+}
 
 + (NSDictionary *) repositoryUrlPatterns {
   static NSDictionary *patterns = nil;
@@ -53,12 +56,15 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 - (id) initWithUrl: (NSString *) aUrl {
   self = [super init];
   if ([self isProperUrl: aUrl]) {
-    url = aUrl;
+    self.url = aUrl;
+    self.name = [self nameFromUrl: aUrl];
+
     git = [[Git alloc] initWithDelegate: self];
     git.repositoryUrl = self.url;
-    name = [self nameFromUrl: url];
+
     commitUrlPattern = [self findCommitUrlPattern];
     status = ActiveRepository;
+
     return self;
   } else {
     return nil;
@@ -66,7 +72,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (NSDictionary *) hashRepresentation {
-  return @{@"url": url, @"name": name};
+  return @{@"url": self.url, @"name": self.name};
 }
 
 - (void) resetStatus {
@@ -81,8 +87,8 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     NSString *repoPattern = [pattern stringByReplacingOccurrencesOfString: @"NAME" withString: nameRegexp];
     repoPattern = PSFormat(@"^%@$", repoPattern); // looks like a curse that was censored, doesn't it? ;)
 
-    if ([url isMatchedByRegex: repoPattern]) {
-      return [url stringByReplacingOccurrencesOfRegex: repoPattern withString: commitPattern];
+    if ([self.url isMatchedByRegex: repoPattern]) {
+      return [self.url stringByReplacingOccurrencesOfRegex: repoPattern withString: commitPattern];
     }
   }
 
@@ -106,7 +112,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
   if (cachesDirectoryExists && workingCopyDoesntExist) {
     isBeingUpdated = YES;
-    [git runCommand: @"clone" withArguments: @[url, workingCopy, @"-n"] inPath: cachesDirectory];
+    [git runCommand: @"clone" withArguments: @[self.url, workingCopy, @"-n"] inPath: cachesDirectory];
   } else {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   }
@@ -167,7 +173,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     }
     isBeingUpdated = NO;
     status = ActiveRepository;
-    [delegate commitsReceived: commits inRepository: self];
+    [self.delegate commitsReceived: commits inRepository: self];
   }
 }
 
@@ -218,7 +224,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (NSString *) workingCopyDirectory {
-  return [[self cachesDirectory] stringByAppendingPathComponent: [url MD5Hash]];
+  return [[self cachesDirectory] stringByAppendingPathComponent: [self.url MD5Hash]];
 }
 
 - (BOOL) ensureDirectoryIsDeleted: (NSString *) directory {
@@ -273,8 +279,8 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (void) notifyDelegateWithSelector: (SEL) selector {
-  if ([delegate respondsToSelector: selector]) {
-    [delegate performSelectorOnMainThread: selector withObject: self waitUntilDone: NO];
+  if ([self.delegate respondsToSelector: selector]) {
+    [self.delegate performSelectorOnMainThread: selector withObject: self waitUntilDone: NO];
   }
 }
 

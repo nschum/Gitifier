@@ -11,8 +11,6 @@
 
 @implementation Commit
 
-@synthesize authorName, authorEmail, subject, gitHash, date, repository;
-
 + (Commit *) commitFromDictionary: (NSDictionary *) dictionary {
   return (Commit *) [Commit objectFromJSON: dictionary];
 }
@@ -37,16 +35,16 @@
 }
 
 - (BOOL) isMergeCommit {
-  return [subject isMatchedByRegex: @"^Merge branch '.*'"];
+  return [self.subject isMatchedByRegex: @"^Merge branch '.*'"];
 }
 
 - (NSDictionary *) toDictionary {
   return @{
-    @"authorName": authorName,
-    @"authorEmail": authorEmail,
-    @"subject": subject,
-    @"gitHash": gitHash,
-    @"date": date
+    @"authorName": self.authorName,
+    @"authorEmail": self.authorEmail,
+    @"subject": self.subject,
+    @"gitHash": self.gitHash,
+    @"date": self.date
   };
 }
 

@@ -19,8 +19,6 @@ NSString *OtherMessageGrowl           = @"Other message";
 
 @implementation GrowlController
 
-@synthesize repositoryListController;
-
 + (GrowlController *) sharedController {
   static GrowlController *instance = nil;
   if (!instance) {
@@ -120,7 +118,7 @@ NSString *OtherMessageGrowl           = @"Other message";
   if (clickContext && shouldShowDiffs) {
     NSString *url = clickContext[@"repository"];
     NSDictionary *commitHash = clickContext[@"commit"];
-    Repository *repository = [repositoryListController findByUrl: url];
+    Repository *repository = [self.repositoryListController findByUrl: url];
 
     if (repository) {
       Commit *commit = [Commit commitFromDictionary: commitHash];

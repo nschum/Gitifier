@@ -10,17 +10,10 @@
 @class RepositoryListController;
 @class StatusBarController;
 
-@interface GitifierAppDelegate : NSObject <NSApplicationDelegate> {
-  NSString *userEmail;
-  NSMutableArray *repositoryList;
-  Monitor *monitor;
-  StatusBarController *statusBarController;
-  PreferencesWindowController *preferencesWindowController;
-  RepositoryListController *repositoryListController;
-}
+@interface GitifierAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (readonly) NSString *userEmail;
-@property (readonly) NSMutableArray *repositoryList;
+@property (strong, readonly) NSString *userEmail;
+@property (strong, readonly) NSMutableArray *repositoryList;
 @property IBOutlet Monitor *monitor;
 @property IBOutlet StatusBarController *statusBarController;
 @property IBOutlet PreferencesWindowController *preferencesWindowController;

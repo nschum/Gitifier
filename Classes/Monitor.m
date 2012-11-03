@@ -9,9 +9,9 @@
 #import "Monitor.h"
 #import "Repository.h"
 
-@implementation Monitor
-
-@synthesize dataSource;
+@implementation Monitor {
+  NSTimer *timer;
+}
 
 - (void) awakeFromNib {
   ObserveDefaults(MonitorIntervalKey);
@@ -39,7 +39,7 @@
 }
 
 - (void) executeFetch {
-  NSArray *repositories = [[dataSource repositoryList] copy];
+  NSArray *repositories = [[self.dataSource repositoryList] copy];
   [repositories makeObjectsPerformSelector: @selector(fetchNewCommits)];
 }
 

@@ -9,14 +9,7 @@
 
 @class Repository;
 
-@interface Commit : PSModel {
-  NSString *authorName;
-  NSString *authorEmail;
-  NSString *subject;
-  NSString *gitHash;
-  NSDate *date;
-  Repository *repository;
-}
+@interface Commit : PSModel
 
 @property (copy) NSString *authorName;
 @property (copy) NSString *authorEmail;

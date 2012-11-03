@@ -12,9 +12,10 @@
 
 static NSInteger RecentCommitsTitleLimit = 50;
 
-@implementation StatusBarController
-
-@synthesize statusBarMenu;
+@implementation StatusBarController {
+  NSStatusItem *statusBarItem;
+  NSArray *recentCommits;
+}
 
 - (id) init {
   self = [super init];
@@ -34,7 +35,7 @@ static NSInteger RecentCommitsTitleLimit = 50;
   statusBarItem.image = [NSImage imageNamed: @"icon_menu.png"];
   statusBarItem.alternateImage = [NSImage imageNamed: @"icon_menu_inverted.png"];
   statusBarItem.highlightMode = YES;
-  statusBarItem.menu = statusBarMenu;
+  statusBarItem.menu = self.statusBarMenu;
 }
 
 - (void) updateRecentCommitsList: (NSArray *) newCommits {

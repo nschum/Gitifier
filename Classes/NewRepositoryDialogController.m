@@ -10,17 +10,20 @@
 #import "Repository.h"
 #import "RepositoryListController.h"
 
-@implementation NewRepositoryDialogController
-
-@synthesize repositoryListController, repositoryUrlField, label, spinner, addButton, cancelButton;
+@implementation NewRepositoryDialogController {
+  NSTimer *slowCloneTimer;
+  NSString *labelText;
+  Repository *editedRepository;
+  BOOL waitingForSlowClone;
+}
 
 - (void) awakeFromNib {
-  labelText = label.stringValue;
+  labelText = self.label.stringValue;
   waitingForSlowClone = NO;
 }
 
 - (IBAction) showNewRepositorySheet: (id) sender {
-  [repositoryUrlField setStringValue: @""];
+  [self.repositoryUrlField setStringValue: @""];
   [NSApp beginSheet: [self window]
      modalForWindow: [sender window]
       modalDelegate: nil
@@ -29,12 +32,12 @@
 }
 
 - (IBAction) addRepository: (id) sender {
-  NSString *url = [[repositoryUrlField stringValue] psTrimmedString];
+  NSString *url = [self.repositoryUrlField.stringValue psTrimmedString];
   if ([url isEqual: @""]) {
     return;
   }
 
-  NSArray *existing = [[repositoryListController repositoryList] valueForKeyPath: @"url"];
+  NSArray *existing = [self.repositoryListController.repositoryList valueForKeyPath: @"url"];
   if ([existing indexOfObject: url] != NSNotFound) {
     [self showAlertWithTitle: @"This URL is already on the list."
                      message: @"Try to find something more interesting to monitor..."];
@@ -77,19 +80,19 @@
 
 - (void) modalWasClosed: (NSAlert *) alert {
   [NSApp stopModal];
-  [repositoryUrlField becomeFirstResponder];
+  [self.repositoryUrlField becomeFirstResponder];
 }
 
 - (void) lockDialog {
-  [spinner startAnimation: self];
-  [addButton psDisable];
-  [repositoryUrlField psDisable];
+  [self.spinner startAnimation: self];
+  [self.addButton psDisable];
+  [self.repositoryUrlField psDisable];
 }
 
 - (void) unlockDialog {
-  [spinner stopAnimation: self];
-  [addButton psEnable];
-  [repositoryUrlField psEnable];
+  [self.spinner stopAnimation: self];
+  [self.addButton psEnable];
+  [self.repositoryUrlField psEnable];
   [self hideSlowCloneWarning];
   [slowCloneTimer invalidate];
   slowCloneTimer = nil;
@@ -111,18 +114,18 @@
 
 - (void) showSlowCloneWarning {
   waitingForSlowClone = YES;
-  label.stringValue = @"Please be patient - I'm cloning the repository...";
-  label.textColor = [NSColor textColor];
+  self.label.stringValue = @"Please be patient - I'm cloning the repository...";
+  self.label.textColor = [NSColor textColor];
 }
 
 - (void) hideSlowCloneWarning {
   waitingForSlowClone = NO;
-  label.stringValue = labelText;
-  label.textColor = [NSColor disabledControlTextColor];
+  self.label.stringValue = labelText;
+  self.label.textColor = [NSColor disabledControlTextColor];
 }
 
 - (void) repositoryWasCloned: (Repository *) repository {
-  [repositoryListController addRepository: repository];
+  [self.repositoryListController addRepository: repository];
   [self hideNewRepositorySheet];
 
   if (waitingForSlowClone) {

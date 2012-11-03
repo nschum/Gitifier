@@ -13,8 +13,6 @@ static NSString *TipsAndTricksPageURL = @"https://github.com/psionides/gitifier/
 
 @implementation AboutPanelController
 
-@synthesize websiteLabel, creditsList;
-
 - (id) init {
   return [super initWithNibName: @"AboutPreferencesPanel" bundle: nil];
 }
@@ -22,7 +20,7 @@ static NSString *TipsAndTricksPageURL = @"https://github.com/psionides/gitifier/
 - (void) awakeFromNib {
   NSURL *file = [[NSBundle mainBundle] URLForResource: @"Credits" withExtension: @"html"];
   NSString *html = [NSString stringWithContentsOfURL: file encoding: NSUTF8StringEncoding error: nil];
-  [[creditsList mainFrame] loadHTMLString: html baseURL: nil];
+  [self.creditsList.mainFrame loadHTMLString: html baseURL: nil];
 }
 
 - (NSString *) toolbarItemIdentifier {

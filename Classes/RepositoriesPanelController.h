@@ -9,9 +9,7 @@
 
 @class RepositoryListController;
 
-@interface RepositoriesPanelController : NSViewController <MASPreferencesViewController> {
-  RepositoryListController *repositoryListController;
-}
+@interface RepositoriesPanelController : NSViewController <MASPreferencesViewController>
 
 @property IBOutlet RepositoryListController *repositoryListController;
 @property (readonly) id gitClass;

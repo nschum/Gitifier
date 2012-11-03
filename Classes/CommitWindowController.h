@@ -10,19 +10,7 @@
 @class Commit;
 @class Repository;
 
-@interface CommitWindowController : NSWindowController {
-  Commit *commit;
-  NSTextView *textView;
-  NSTextField *authorLabel;
-  NSTextField *dateLabel;
-  NSTextField *subjectLabel;
-  ANSIEscapeHelper *colorConverter;
-  NSButton *viewInBrowserButton;
-  NSProgressIndicator *spinner;
-  NSScrollView *scrollView;
-  NSBox *scrollViewBox;
-  NSBox *separator;
-}
+@interface CommitWindowController : NSWindowController
 
 @property IBOutlet NSTextView *textView;
 @property IBOutlet NSTextField *authorLabel;

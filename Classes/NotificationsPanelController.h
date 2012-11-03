@@ -8,10 +8,7 @@
 
 #import "MASPreferencesViewController.h"
 
-@interface NotificationsPanelController : NSViewController <MASPreferencesViewController> {
-  NSButton *ignoreOwnEmailsField;
-  NSView *growlInfoPanel;
-}
+@interface NotificationsPanelController : NSViewController <MASPreferencesViewController>
 
 @property IBOutlet NSButton *ignoreOwnEmailsField;
 @property IBOutlet NSView *growlInfoPanel;

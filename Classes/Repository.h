@@ -18,19 +18,11 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 @class Commit;
 @class Git;
 
-@interface Repository : NSObject {
-  RepositoryStatus status;
-  Git *git;
-  NSString *url;
-  NSString *name;
-  NSString *commitUrlPattern;
-  id delegate;
-  BOOL isBeingUpdated;
-}
+@interface Repository : NSObject
 
 @property (copy) NSString *url;
 @property (copy) NSString *name;
-@property id delegate;
+@property /*(weak)*/ id delegate;
 
 // public
 + (Repository *) repositoryFromHash: (NSDictionary *) hash;

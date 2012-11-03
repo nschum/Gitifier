@@ -13,9 +13,7 @@
 
 extern NSString *OtherMessageGrowl;
 
-@interface GrowlController : NSObject <GrowlApplicationBridgeDelegate> {
-  RepositoryListController *repositoryListController;
-}
+@interface GrowlController : NSObject <GrowlApplicationBridgeDelegate>
 
 @property RepositoryListController *repositoryListController;
 

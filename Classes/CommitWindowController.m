@@ -14,13 +14,13 @@
 static NSString *ErrorText = @"Error loading commit diff.";
 static NSMutableArray *windows;
 
-@implementation CommitWindowController
-
-@synthesize textView, authorLabel, dateLabel, subjectLabel, viewInBrowserButton, spinner,
-  scrollView, scrollViewBox, separator;
+@implementation CommitWindowController {
+  Commit *commit;
+  ANSIEscapeHelper *colorConverter;
+}
 
 + (void) initialize {
-   windows = [NSMutableArray array];
+  windows = [NSMutableArray array];
 }
 
 - (id) initWithCommit: (Commit *) aCommit {
@@ -38,23 +38,23 @@ static NSMutableArray *windows;
 - (void) windowDidLoad {
   self.window.title = PSFormat(@"%@ – commit %@", commit.repository.name, commit.gitHash);
 
-  authorLabel.stringValue = PSFormat(@"%@ <%@>", commit.authorName, commit.authorEmail);
-  subjectLabel.stringValue = commit.subject;
+  self.authorLabel.stringValue = PSFormat(@"%@ <%@>", commit.authorName, commit.authorEmail);
+  self.subjectLabel.stringValue = commit.subject;
   [self resizeSubjectLabelToFit];
 
-  [textView.textContainer setWidthTracksTextView: NO];
-  [textView.textContainer setContainerSize: NSMakeSize(1000000, 1000000)];
+  [self.textView.textContainer setWidthTracksTextView: NO];
+  [self.textView.textContainer setContainerSize: NSMakeSize(1000000, 1000000)];
 
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
   formatter.dateStyle = NSDateFormatterMediumStyle;
   formatter.timeStyle = NSDateFormatterMediumStyle;
-  dateLabel.stringValue = [formatter stringFromDate: commit.date];
+  self.dateLabel.stringValue = [formatter stringFromDate: commit.date];
 
   NSURL *webUrl = [commit.repository webUrlForCommit: commit];
   if (webUrl) {
-    viewInBrowserButton.title = PSFormat(@"View on %@", webUrl.host);
+    [self.viewInBrowserButton setTitle: PSFormat(@"View on %@", webUrl.host)];
   } else {
-    [viewInBrowserButton psHide];
+    [self.viewInBrowserButton psHide];
   }
 
   [self loadCommitDiff];
@@ -65,19 +65,19 @@ static NSMutableArray *windows;
 }
 
 - (void) resizeSubjectLabelToFit {
-  NSAttributedString *text = subjectLabel.attributedStringValue;
-  NSSize currentSize = subjectLabel.frame.size;
+  NSAttributedString *text = self.subjectLabel.attributedStringValue;
+  NSSize currentSize = self.subjectLabel.frame.size;
   NSRect requiredFrame = [text boundingRectWithSize: NSMakeSize(currentSize.width, 200.0)
                                             options: NSStringDrawingUsesLineFragmentOrigin];
   CGFloat difference = requiredFrame.size.height - currentSize.height;
 
-  [subjectLabel psResizeVerticallyBy: difference];
-  [subjectLabel psMoveVerticallyBy: -difference];
+  [self.subjectLabel psResizeVerticallyBy: difference];
+  [self.subjectLabel psMoveVerticallyBy: -difference];
   [self.window psResizeVerticallyBy: difference];
   [self.window psMoveVerticallyBy: -difference];
-  [scrollViewBox psResizeVerticallyBy: -difference];
-  [scrollView psResizeVerticallyBy: -difference];
-  [separator psMoveVerticallyBy: -difference];
+  [self.scrollViewBox psResizeVerticallyBy: -difference];
+  [self.scrollView psResizeVerticallyBy: -difference];
+  [self.separator psMoveVerticallyBy: -difference];
 }
 
 - (void) loadCommitDiff {
@@ -86,7 +86,7 @@ static NSMutableArray *windows;
   NSString *workingCopy = [commit.repository workingCopyDirectory];
 
   if (workingCopy && [commit.repository directoryExists: workingCopy]) {
-    [spinner performSelector: @selector(startAnimation:) withObject: self afterDelay: 0.1];
+    [self.spinner performSelector: @selector(startAnimation:) withObject: self afterDelay: 0.1];
     [git runCommand: @"show" withArguments: @[commit.gitHash, @"--color", @"--pretty=format:%b"] inPath: workingCopy];
   } else {
     [self displayText: ErrorText];
@@ -112,12 +112,12 @@ static NSMutableArray *windows;
 }
 
 - (void) displayText: (id) text {
-  [[spinner class] cancelPreviousPerformRequestsWithTarget: spinner];
-  [spinner stopAnimation: self];
+  [self.spinner.class cancelPreviousPerformRequestsWithTarget: self.spinner];
+  [self.spinner stopAnimation: self];
   if ([text isKindOfClass: [NSAttributedString class]]) {
-    [textView.textStorage setAttributedString: text];
+    [self.textView.textStorage setAttributedString: text];
   } else {
-    textView.string = text;
+    [self.textView setString: text];
   }
 }
 

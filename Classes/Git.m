@@ -12,9 +12,11 @@
 
 static NSString *gitExecutable = nil;
 
-@implementation Git
-
-@synthesize repositoryUrl;
+@implementation Git {
+  NSTask *currentTask;
+  BOOL cancelled;
+  /*__weak*/ id delegate;
+}
 
 + (NSString *) gitExecutable {
   return gitExecutable;
@@ -63,7 +65,7 @@ static NSString *gitExecutable = nil;
   currentTask.standardOutput = output;
   currentTask.standardError = output;
 
-  if (repositoryUrl) {
+  if (self.repositoryUrl) {
     NSString *askPassPath = [[NSBundle mainBundle] pathForResource: @"AskPass" ofType: @""];
     NSInteger pid = [[NSProcessInfo processInfo] processIdentifier];
     NSMutableDictionary *environment = [[[NSProcessInfo processInfo] environment] mutableCopy];
@@ -75,7 +77,7 @@ static NSString *gitExecutable = nil;
 
     environment[@"DISPLAY"] = @"Gitifier";
     environment[@"SSH_ASKPASS"] = askPassPath;
-    environment[@"AUTH_HOSTNAME"] = repositoryUrl;
+    environment[@"AUTH_HOSTNAME"] = self.repositoryUrl;
     environment[@"AUTH_USERNAME"] = @"Gitifier";
     environment[@"GITIFIER_PID"] = @(pid);
 
@@ -129,7 +131,7 @@ static NSString *gitExecutable = nil;
         [self notifyDelegateWithSelector: @selector(commandCompleted:output:) command: command output: output];
       } else {
         if ([output isMatchedByRegex: @"Authentication failed"]) {
-          [PasswordHelper removePasswordForHost: repositoryUrl user: @"Gitifier"];
+          [PasswordHelper removePasswordForHost: self.repositoryUrl user: @"Gitifier"];
         }
         PSLog(@"command git %@ failed with output: %@", command, output);
         [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: output];

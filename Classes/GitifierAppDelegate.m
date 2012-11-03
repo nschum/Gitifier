@@ -21,15 +21,19 @@ static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
 static CGFloat IntervalBetweenGrowls        = 0.05;
 
-@implementation GitifierAppDelegate
+@interface GitifierAppDelegate ()
 
-@synthesize monitor, userEmail, preferencesWindowController, statusBarController, repositoryListController,
-  repositoryList;
+@property (strong) NSString *userEmail;
+@property (strong) NSMutableArray *repositoryList;
+
+@end
+
+@implementation GitifierAppDelegate
 
 // --- initialization and termination ---
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
-  repositoryList = [NSMutableArray array];
+  self.repositoryList = [NSMutableArray array];
   [Defaults registerDefaults];
 
   PSObserve(nil, NSWindowDidBecomeMainNotification, windowBecameMain:);
@@ -37,7 +41,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   ObserveDefaults(KeepWindowsOnTopKey);
   [self loadGitPath];
 
-  [[GrowlController sharedController] setRepositoryListController: repositoryListController];
+  [[GrowlController sharedController] setRepositoryListController: self.repositoryListController];
 
   [self askAboutStats];
 
@@ -51,16 +55,16 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
                  name: NSWorkspaceSessionDidBecomeActiveNotification
                object: nil];
 
-  [repositoryListController loadRepositories];
-  [statusBarController createStatusBarItem];
-  [monitor startMonitoring];
-  [monitor executeFetch];
+  [self.repositoryListController loadRepositories];
+  [self.statusBarController createStatusBarItem];
+  [self.monitor startMonitoring];
+  [self.monitor executeFetch];
 
   // preload preferences window to make it open faster
-  preferencesWindowController = [[PreferencesWindowController alloc] init];
-  [preferencesWindowController window];
+  self.preferencesWindowController = [[PreferencesWindowController alloc] init];
+  [self.preferencesWindowController window];
 
-  if ([[repositoryListController repositoryList] count] == 0) {
+  if ([[self.repositoryListController repositoryList] count] == 0) {
     [self showPreferences: self];
   }
 }
@@ -86,7 +90,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 - (void) wakeupEvent: (NSNotification *) notification {
   // on a new day, notify the user about repositories that are still failing
   // also, give the network some time to reconnect after the wakeup
-  [repositoryListController performSelector: @selector(resetRepositoryStatuses) withObject: nil afterDelay: 10.0];
+  [self.repositoryListController performSelector: @selector(resetRepositoryStatuses) withObject: nil afterDelay: 10.0];
 }
 
 - (void) windowBecameMain: (NSNotification *) notification {
@@ -119,12 +123,12 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 
 - (IBAction) showPreferences: (id) sender {
   [NSApp activateIgnoringOtherApps: YES];
-  [preferencesWindowController showWindow: self];
+  [self.preferencesWindowController showWindow: self];
 }
 
 - (IBAction) checkNow: (id) sender {
-  [monitor restartMonitoring];
-  [monitor executeFetch];
+  [self.monitor restartMonitoring];
+  [self.monitor executeFetch];
 }
 
 - (IBAction) quit: (id) sender {
@@ -136,7 +140,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 // --- user email management ---
 
 - (void) updateUserEmail {
-  if (!userEmail && [Git gitExecutable]) {
+  if (!self.userEmail && [Git gitExecutable]) {
     Git *git = [[Git alloc] initWithDelegate: self];
     [git runCommand: @"config" withArguments: @[@"user.email"] inPath: NSHomeDirectory()];
   }
@@ -209,8 +213,8 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
   if ([command isEqual: @"config"]) {
     if (output && output.length > 0) {
-      userEmail = [output psTrimmedString];
-      PSNotifyWithData(UserEmailChangedNotification, @{@"email": userEmail});
+      self.userEmail = [output psTrimmedString];
+      PSNotifyWithData(UserEmailChangedNotification, @{@"email": self.userEmail});
     }
   } else if ([command isEqual: @"version"]) {
     if (!output || ![output isMatchedByRegex: @"^git version \\d"]) {
@@ -231,7 +235,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   BOOL hasNotificationLimit = [GitifierDefaults boolForKey: NotificationLimitEnabledKey];
   NSInteger notificationLimit = [GitifierDefaults integerForKey: NotificationLimitValueKey];
 
-  NSArray *relevantCommits = [Commit chooseRelevantCommits: commits forUser: userEmail];
+  NSArray *relevantCommits = [Commit chooseRelevantCommits: commits forUser: self.userEmail];
   NSArray *displayedCommits, *remainingCommits;
 
   if (hasNotificationLimit && relevantCommits.count > notificationLimit) {
@@ -264,7 +268,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
     [growl performSelector: action withObject: remainingCommits afterDelay: i * IntervalBetweenGrowls];
   }
 
-  [statusBarController updateRecentCommitsList: relevantCommits];
+  [self.statusBarController updateRecentCommitsList: relevantCommits];
 }
 
 // these should be rare, only when a fetch fails and a repository needs to be recloned

@@ -8,10 +8,7 @@
 #import <Webkit/WebKit.h>
 #import "MASPreferencesViewController.h"
 
-@interface AboutPanelController : NSViewController <MASPreferencesViewController> {
-  NSButton *websiteLabel;
-  WebView *creditsList;
-}
+@interface AboutPanelController : NSViewController <MASPreferencesViewController>
 
 @property IBOutlet NSButton *websiteLabel;
 @property IBOutlet WebView *creditsList;
