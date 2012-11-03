@@ -105,7 +105,7 @@
                                          defaultButton: @"OK"
                                        alternateButton: nil
                                            otherButton: nil
-                             informativeTextWithFormat: message];
+                             informativeTextWithFormat: PSFormat(@"%@", message)];
   [alertWindow beginSheetModalForWindow: self
                           modalDelegate: nil
                          didEndSelector: nil

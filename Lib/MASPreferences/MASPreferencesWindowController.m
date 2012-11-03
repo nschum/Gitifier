@@ -209,9 +209,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     windowFrame.origin.y += heightChange;
     
     // Place the view into window and perform reposition
-    NSArray *subviews = contentView.subviews;
-    for (NSView *subview in contentView.subviews)
-        [subview removeFromSuperviewWithoutNeedingDisplay];
+    [contentView.subviews makeObjectsPerformSelector: @selector(removeFromSuperviewWithoutNeedingDisplay)];
     [self.window setFrame:windowFrame display:YES animate:animate];
     
     if ([_lastSelectedController respondsToSelector:@selector(viewDidDisappear)])

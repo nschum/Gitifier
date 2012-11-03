@@ -282,7 +282,7 @@
 - (NSString *) description {
   NSMutableString *result = [[NSMutableString alloc] initWithString: @"<"];
   [result appendString: NSStringFromClass([self class])];
-  [result appendFormat: @": 0x%x", self];
+  [result appendFormat: @": %p", self];
 
   NSArray *fields = [@[@"recordId"] arrayByAddingObjectsFromArray: [[self class] propertyList]];
   id value, output;
@@ -297,7 +297,7 @@
     } else if ([value isKindOfClass: [NSDictionary class]]) {
       output = PSFormat(@"{%@}", [PSModel collectionElementsCount: value]);
     } else if ([value isKindOfClass: [PSModel class]]) {
-      output = PSFormat(@"<%@: 0x%x, recordId=%@>", NSStringFromClass([value class]), value, [value recordId]);
+      output = PSFormat(@"<%@: %p, recordId=%@>", NSStringFromClass([value class]), value, [value recordId]);
     } else {
       output = value;
     }
@@ -319,7 +319,7 @@
   switch (count) {
     case 0: return @"";
     case 1: return @"1 element";
-    default: return PSFormat(@"%d elements", count);
+    default: return PSFormat(@"%ld elements", count);
   }
 }
 

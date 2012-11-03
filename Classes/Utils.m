@@ -26,7 +26,7 @@ NSString *GitExecutableSetNotification = @"GitExecutableSetNotification";
     const unsigned char *dataBuffer = digest.bytes;
     
     for (NSInteger i = 0; i < digest.length; i++) {
-      [buffer appendFormat: @"%02X", (unsigned long) dataBuffer[i]];
+      [buffer appendFormat: @"%02lX", (unsigned long) dataBuffer[i]];
     }
     return buffer;
   } else {
