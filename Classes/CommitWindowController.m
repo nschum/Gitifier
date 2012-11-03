@@ -12,18 +12,25 @@
 #import "Repository.h"
 
 static NSString *ErrorText = @"Error loading commit diff.";
-
+static NSMutableArray *windows;
 
 @implementation CommitWindowController
 
 @synthesize textView, authorLabel, dateLabel, subjectLabel, viewInBrowserButton, spinner,
   scrollView, scrollViewBox, separator;
 
++ (void) initialize {
+   windows = [NSMutableArray array];
+}
+
 - (id) initWithCommit: (Commit *) aCommit {
   self = [super initWithWindowNibName: @"CommitWindow"];
   if (self) {
     commit = [aCommit copy];
     colorConverter = [[ANSIEscapeHelper alloc] init];
+
+    // prevent window from being deallocated immediately
+    [windows addObject: self];
   }
   return self;
 }
@@ -51,6 +58,10 @@ static NSString *ErrorText = @"Error loading commit diff.";
   }
 
   [self loadCommitDiff];
+}
+
+- (void) windowWillClose: (NSNotification *) notification {
+  [windows removeObject: self];
 }
 
 - (void) resizeSubjectLabelToFit {
