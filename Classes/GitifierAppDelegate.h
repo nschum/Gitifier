@@ -19,16 +19,8 @@
 @property IBOutlet PreferencesWindowController *preferencesWindowController;
 @property IBOutlet RepositoryListController *repositoryListController;
 
-// public
 - (IBAction) showPreferences: (id) sender;
 - (IBAction) quit: (id) sender;
 - (IBAction) checkNow: (id) sender;
-
-// private
-- (void) askAboutStats;
-- (void) updateUserEmail;
-- (void) loadGitPath;
-- (void) findGitPath;
-- (void) validateGitPath;
 
 @end

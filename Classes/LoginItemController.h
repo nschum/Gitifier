@@ -9,10 +9,4 @@
 
 @property BOOL loginItemEnabled;
 
-// private
-- (NSURL *) applicationPath;
-- (LSSharedFileListRef) getLoginItemList;
-- (void) addApplicationToLoginList: (LSSharedFileListRef) list;
-- (BOOL) findApplicationInLoginList: (LSSharedFileListRef) list andRemove: (BOOL) remove;
-
 @end

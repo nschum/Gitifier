@@ -22,15 +22,8 @@
 @property IBOutlet NSBox *scrollViewBox;
 @property IBOutlet NSBox *separator;
 
-// public
 - (id) initWithCommit: (Commit *) commit;
 - (void) show;
 - (IBAction) viewInBrowser: (id) sender;
-
-// private
-- (void) loadCommitDiff;
-- (void) handleResult: (id) result;
-- (void) displayText: (id) text;
-- (void) resizeSubjectLabelToFit;
 
 @end

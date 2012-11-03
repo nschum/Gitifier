@@ -17,18 +17,8 @@
 @property IBOutlet NSButton *addButton;
 @property IBOutlet NSTextField *label;
 
-// public
 - (IBAction) showNewRepositorySheet: (id) sender;
 - (IBAction) addRepository: (id) sender;
 - (IBAction) cancelAddingRepository: (id) sender;
-
-// private
-- (void) lockDialog;
-- (void) unlockDialog;
-- (void) setupSlowCloneTimer;
-- (void) showSlowCloneWarning;
-- (void) hideSlowCloneWarning;
-- (void) hideNewRepositorySheet;
-- (void) showAlertWithTitle: (NSString *) title message: (NSString *) message;
 
 @end

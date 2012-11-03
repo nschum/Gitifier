@@ -17,7 +17,6 @@ extern NSString *OtherMessageGrowl;
 
 @property RepositoryListController *repositoryListController;
 
-// public
 + (GrowlController *) sharedController;
 + (BOOL) growlDetected;
 
@@ -28,8 +27,5 @@ extern NSString *OtherMessageGrowl;
 
 - (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository;
 - (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type;
-
-// private
-- (NSData *) growlIcon;
 
 @end

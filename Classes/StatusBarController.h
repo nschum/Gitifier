@@ -9,11 +9,7 @@
 
 @property (strong) IBOutlet NSMenu *statusBarMenu;
 
-// public
 - (void) createStatusBarItem;
 - (void) updateRecentCommitsList: (NSArray *) newCommits;
-
-// private
-- (void) updateRecentCommitsSection;
 
 @end
