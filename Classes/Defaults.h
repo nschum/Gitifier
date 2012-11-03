@@ -21,7 +21,7 @@ extern NSString *NotificationLimitEnabledKey;
 extern NSString *NotificationLimitValueKey;
 extern NSString *RecentCommitsListLengthKey;
 
-@interface Defaults
+@interface Defaults : NSObject
 
 + (void) registerDefaults;
 
