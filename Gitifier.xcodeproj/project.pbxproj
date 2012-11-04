@@ -44,7 +44,6 @@
 		58CC7466124EBB20003BA5EB /* icon_menu_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */; };
 		58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC74F9124ECAEA003BA5EB /* icon_app_32.png */; };
 		58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 58CC7524124ED08A003BA5EB /* icon_app.icns */; };
-		58DEC0511242B47100DE7C7E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC0501242B47100DE7C7E /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0581242B6EB00DE7C7E /* libicucore.dylib */; };
 		58DEC0C61242C16600DE7C7E /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
 		58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
@@ -151,8 +150,6 @@
 		58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_menu_inverted.png; sourceTree = "<group>"; };
 		58CC74F9124ECAEA003BA5EB /* icon_app_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_app_32.png; sourceTree = "<group>"; };
 		58CC7524124ED08A003BA5EB /* icon_app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon_app.icns; sourceTree = "<group>"; };
-		58DEC04F1242B47100DE7C7E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		58DEC0501242B47100DE7C7E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		58DEC0581242B6EB00DE7C7E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		58DEC0C51242C16600DE7C7E /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -392,20 +389,10 @@
 				588ACAF7124AAE11004F3785 /* AskPass */,
 				584ED6F113B36B940085E65C /* MASPreferences */,
 				5831CC6012EE0EFB008169A7 /* PsiToolkit */,
-				58DEC04E1242B47100DE7C7E /* RegexKitLite */,
 				58DEC0C51242C16600DE7C7E /* Growl.framework */,
 				588ACDCE124C153A004F3785 /* Sparkle.framework */,
 			);
 			path = Lib;
-			sourceTree = "<group>";
-		};
-		58DEC04E1242B47100DE7C7E /* RegexKitLite */ = {
-			isa = PBXGroup;
-			children = (
-				58DEC04F1242B47100DE7C7E /* RegexKitLite.h */,
-				58DEC0501242B47100DE7C7E /* RegexKitLite.m */,
-			);
-			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
 		58DEC81D1246C63400DE7C7E /* Classes */ = {
@@ -565,7 +552,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				58DEC0511242B47100DE7C7E /* RegexKitLite.m in Sources */,
 				58DEC8361246C6B300DE7C7E /* Commit.m in Sources */,
 				58DEC8371246C6B300DE7C7E /* Defaults.m in Sources */,
 				58DEC8381246C6B300DE7C7E /* Git.m in Sources */,
