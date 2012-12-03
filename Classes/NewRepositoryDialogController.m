@@ -131,9 +131,8 @@
 
   if (waitingForSlowClone) {
     id<NotificationController>growl = [NotificationControllerFactory sharedController];
-    [growl showGrowlWithTitle: @"Repository cloned"
-                      message: PSFormat(@"Repository at %@ has been successfully added to Gitifier.", repository.url)
-                         type: OtherMessageGrowl];
+    [growl showNotificationWithTitle: @"Repository cloned"
+                             message: PSFormat(@"Repository at %@ has been successfully added to Gitifier.", repository.url) type: OtherMessageGrowl];
   }
 
   [self unlockDialog];

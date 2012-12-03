@@ -31,7 +31,7 @@ NSString *OtherMessageGrowl           = @"Other message";
   return self;
 }
 
-- (void) showGrowlWithCommit: (Commit *) commit {
+- (void) showNotificationWithCommit: (Commit *) commit {
   BOOL sticky = [GitifierDefaults boolForKey: StickyNotificationsKey];
   NSDictionary *commitData = @{@"commit": [commit toDictionary], @"repository": commit.repository.url};
 
@@ -44,7 +44,7 @@ NSString *OtherMessageGrowl           = @"Other message";
                              clickContext: commitData];
 }
 
-- (void) showGrowlWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll {
+- (void) showNotificationWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll {
   BOOL sticky = [GitifierDefaults boolForKey: StickyNotificationsKey];
   NSArray *authorNames = [commits valueForKeyPath: @"@distinctUnionOfObjects.authorName"];
   NSString *authorList = [authorNames componentsJoinedByString: @", "];
@@ -59,15 +59,15 @@ NSString *OtherMessageGrowl           = @"Other message";
                              clickContext: nil];
 }
 
-- (void) showGrowlWithCommitGroupIncludingAllCommits: (NSArray *) commits {
-  [self showGrowlWithCommitGroup: commits includesAllCommits: YES];
+- (void) showNotificationWithCommitGroupIncludingAllCommits: (NSArray *) commits {
+  [self showNotificationWithCommitGroup: commits includesAllCommits: YES];
 }
 
-- (void) showGrowlWithCommitGroupIncludingSomeCommits: (NSArray *) commits {
-  [self showGrowlWithCommitGroup: commits includesAllCommits: NO];
+- (void) showNotificationWithCommitGroupIncludingSomeCommits: (NSArray *) commits {
+  [self showNotificationWithCommitGroup: commits includesAllCommits: NO];
 }
 
-- (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository {
+- (void) showNotificationWithError: (NSString *) message repository: (Repository *) repository {
   NSString *title;
   if (repository) {
     NSLog(@"Error in %@: %@", repository.name, message);
@@ -77,10 +77,10 @@ NSString *OtherMessageGrowl           = @"Other message";
     title = @"Error";
   }
 
-  [self showGrowlWithTitle: title message: message type: RepositoryUpdateFailedGrowl];
+  [self showNotificationWithTitle: title message: message type: RepositoryUpdateFailedGrowl];
 }
 
-- (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type {
+- (void) showNotificationWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type {
   [GrowlApplicationBridge notifyWithTitle: title
                               description: message
                          notificationName: type

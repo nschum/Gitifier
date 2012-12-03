@@ -6,12 +6,12 @@
 
 - (void)setRepositoryListController: (RepositoryListController *)repositoryListController;
 
-- (void) showGrowlWithCommit: (Commit *) commit;
-- (void) showGrowlWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll;
-- (void) showGrowlWithCommitGroupIncludingAllCommits: (NSArray *) commits;
-- (void) showGrowlWithCommitGroupIncludingSomeCommits: (NSArray *) commits;
+- (void) showNotificationWithCommit: (Commit *) commit;
+- (void) showNotificationWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll;
+- (void) showNotificationWithCommitGroupIncludingAllCommits: (NSArray *) commits;
+- (void) showNotificationWithCommitGroupIncludingSomeCommits: (NSArray *) commits;
 
-- (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository;
-- (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type;
+- (void) showNotificationWithError: (NSString *) message repository: (Repository *) repository;
+- (void) showNotificationWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type;
 
 @end

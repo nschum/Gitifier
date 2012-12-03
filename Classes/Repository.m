@@ -131,7 +131,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
         [self clone];
       }
     } else {
-      [[NotificationControllerFactory sharedController] showGrowlWithError: @"Can't fetch repository." repository: self];
+      [[NotificationControllerFactory sharedController] showNotificationWithError: @"Can't fetch repository." repository: self];
     }
   }
 }
@@ -185,8 +185,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   } else if (status != UnavailableRepository) {
     status = UnavailableRepository;
     NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
-    [[NotificationControllerFactory sharedController] showGrowlWithError: PSFormat(@"Command %@ failed: %@", command, truncated)
-                                                              repository: self];
+    [[NotificationControllerFactory sharedController] showNotificationWithError: PSFormat(@"Command %@ failed: %@", command, truncated) repository: self];
   }
 }
 
