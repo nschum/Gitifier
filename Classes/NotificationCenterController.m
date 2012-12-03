@@ -3,6 +3,11 @@
 #import "Commit.h"
 #import "Repository.h"
 #import "PSMacros.h"
+#import "RepositoryListController.h"
+#import "NotificationControllerClickHandler.h"
+
+@interface NotificationCenterController () <NSUserNotificationCenterDelegate>
+@end
 
 @implementation NotificationCenterController
 
@@ -10,10 +15,20 @@
   return NSClassFromString(@"NSUserNotification") != nil;
 }
 
+- (id) init {
+  self = [super init];
+  if (self) {
+    [NSUserNotificationCenter defaultUserNotificationCenter].delegate = self;
+  }
+  return self;
+}
+
 - (void) showNotificationWithCommit: (Commit *) commit {
+  NSDictionary *commitData = @{@"commit": [commit toDictionary], @"repository": commit.repository.url};
   [self showNotificationWithTitle:commit.repository.name
                          subtitle:commit.authorName
-                          message:commit.subject];
+                          message:commit.subject
+                             info:commitData];
 }
 
 - (void) showNotificationWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll {
@@ -23,7 +38,8 @@
 
   [self showNotificationWithTitle:PSFormat(message, commits.count)
                          subtitle:nil
-                          message:PSFormat(@"Author%@: %@", (authorNames.count > 1) ? @"s" : @"", authorList)];
+                          message:PSFormat(@"Author%@: %@", (authorNames.count > 1) ? @"s" : @"", authorList)
+                             info:nil];
 }
 
 - (void) showNotificationWithCommitGroupIncludingAllCommits: (NSArray *) commits {
@@ -44,24 +60,31 @@
     title = @"Error";
   }
 
-  [self showNotificationWithTitle: title subtitle: nil message: message];
+  [self showNotificationWithTitle: title subtitle: nil message: message info: nil];
 }
 
 - (void) showNotificationWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type {
-  [self showNotificationWithTitle: title
-                         subtitle: nil
-                          message: message];
+  [self showNotificationWithTitle: title subtitle: nil message: message info: nil];
 }
 
-- (void) showNotificationWithTitle: (NSString *) title
-                          subtitle: (NSString *) subtitle
-                           message: (NSString *) message {
+- (void) showNotificationWithTitle: (NSString *) title subtitle: (NSString *) subtitle message: (NSString *) message info: (NSDictionary *) info {
 
   NSUserNotification *notification = [[NSUserNotification alloc] init];
   notification.title = title;
   notification.subtitle = subtitle;
   notification.informativeText = message;
+  notification.userInfo = info;
   [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
+#pragma mark - NSUserNotificationCenterDelegate
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center
+       didActivateNotification:(NSUserNotification *)notification {
+
+  NotificationControllerClickHandler *handler = [NotificationControllerClickHandler new];
+  handler.repositoryListController = self.repositoryListController;
+  [handler handleClickWithDictionary: notification.userInfo];
 }
 
 @end
