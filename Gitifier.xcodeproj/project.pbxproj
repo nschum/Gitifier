@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AA1001A46D8D6988DF07147 /* NotificationControllerClickHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */; };
 		1AA10311942D30BBB3A4D751 /* NotificationControllerFactory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */; };
+		1AA10617361FC302CADB032C /* NotificationControllerClickHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */; };
 		1AA10A1C9340DF29B915176E /* NotificationControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10E7ECADAF2AB34CA8A07 /* NotificationControllerFactory.m */; };
 		1AA10B4F33421FB6FDCD5230 /* NotificationCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10F4D5032E881AB4084C9 /* NotificationCenterController.m */; };
 		1AA10FB355EFA2C9CC00F79D /* NotificationCenterController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA1001750E0E2483977F77F /* NotificationCenterController.h */; };
@@ -94,6 +96,7 @@
 				1AA10FDEFBA4D0254DF5E85E /* NotificationController.h in CopyFiles */,
 				1AA10311942D30BBB3A4D751 /* NotificationControllerFactory.h in CopyFiles */,
 				1AA10FB355EFA2C9CC00F79D /* NotificationCenterController.h in CopyFiles */,
+				1AA1001A46D8D6988DF07147 /* NotificationControllerClickHandler.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +106,8 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		1AA1001750E0E2483977F77F /* NotificationCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterController.h; sourceTree = "<group>"; };
+		1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationControllerClickHandler.h; sourceTree = "<group>"; };
+		1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationControllerClickHandler.m; sourceTree = "<group>"; };
 		1AA10E7ECADAF2AB34CA8A07 /* NotificationControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationControllerFactory.m; sourceTree = "<group>"; };
 		1AA10E87E1D6C1F9649F47D2 /* NotificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
 		1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationControllerFactory.h; sourceTree = "<group>"; };
@@ -467,6 +472,8 @@
 				1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */,
 				1AA10F4D5032E881AB4084C9 /* NotificationCenterController.m */,
 				1AA1001750E0E2483977F77F /* NotificationCenterController.h */,
+				1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */,
+				1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -612,6 +619,7 @@
 				58A181FA1484311B00835E97 /* NotificationsPanelController.m in Sources */,
 				1AA10A1C9340DF29B915176E /* NotificationControllerFactory.m in Sources */,
 				1AA10B4F33421FB6FDCD5230 /* NotificationCenterController.m in Sources */,
+				1AA10617361FC302CADB032C /* NotificationControllerClickHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

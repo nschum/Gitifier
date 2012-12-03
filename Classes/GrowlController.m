@@ -6,11 +6,10 @@
 // -------------------------------------------------------
 
 #import "Commit.h"
-#import "CommitWindowController.h"
 #import "Defaults.h"
 #import "GrowlController.h"
 #import "Repository.h"
-#import "RepositoryListController.h"
+#import "NotificationControllerClickHandler.h"
 
 NSString *CommitReceivedGrowl         = @"Commit received";
 NSString *RepositoryUpdateFailedGrowl = @"Repository update failed";
@@ -104,26 +103,9 @@ NSString *OtherMessageGrowl           = @"Other message";
   id date = clickContext[@"commit"][@"date"];
   if ([date isKindOfClass: [NSString class]]) return;
 
-  BOOL shouldShowDiffs = [GitifierDefaults boolForKey: ShowDiffWindowKey];
-  BOOL shouldOpenInBrowser = [GitifierDefaults boolForKey: OpenDiffInBrowserKey];
-  
-  if (clickContext && shouldShowDiffs) {
-    NSString *url = clickContext[@"repository"];
-    NSDictionary *commitHash = clickContext[@"commit"];
-    Repository *repository = [self.repositoryListController findByUrl: url];
-
-    if (repository) {
-      Commit *commit = [Commit commitFromDictionary: commitHash];
-      commit.repository = repository;
-      NSURL *webUrl = [repository webUrlForCommit: commit];
-
-      if (webUrl && shouldOpenInBrowser) {
-        [[NSWorkspace sharedWorkspace] openURL: webUrl];
-      } else {
-        [[[CommitWindowController alloc] initWithCommit: commit] show];
-      }
-    }
-  }
+  NotificationControllerClickHandler *handler = [NotificationControllerClickHandler new];
+  handler.repositoryListController = self.repositoryListController;
+  [handler handleClickWithDictionary: clickContext];
 }
 
 @end
