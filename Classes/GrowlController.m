@@ -19,14 +19,6 @@ NSString *OtherMessageGrowl           = @"Other message";
 
 @implementation GrowlController
 
-+ (GrowlController *) sharedController {
-  static GrowlController *instance = nil;
-  if (!instance) {
-    instance = [[GrowlController alloc] init];
-  }
-  return instance;
-}
-
 + (BOOL) growlDetected {
   return [GrowlApplicationBridge isGrowlRunning];
 }

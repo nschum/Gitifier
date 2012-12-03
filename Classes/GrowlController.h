@@ -18,7 +18,6 @@ extern NSString *OtherMessageGrowl;
 
 @property RepositoryListController *repositoryListController;
 
-+ (GrowlController *) sharedController;
 + (BOOL) growlDetected;
 
 @end
