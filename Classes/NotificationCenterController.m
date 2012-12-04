@@ -82,6 +82,8 @@
   NotificationControllerClickHandler *handler = [NotificationControllerClickHandler new];
   handler.repositoryListController = self.repositoryListController;
   [handler handleClickWithDictionary: notification.userInfo];
+
+  [center removeDeliveredNotification: notification];
 }
 
 @end
