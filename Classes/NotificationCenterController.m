@@ -36,9 +36,9 @@
   NSString *authorList = [authorNames componentsJoinedByString: @", "];
   NSString *message = includesAll ? @"%d commits received" : @"… and %d other commits";
 
-  [self showNotificationWithTitle:PSFormat(message, commits.count)
-                         subtitle:nil
-                          message:PSFormat(@"Author%@: %@", (authorNames.count > 1) ? @"s" : @"", authorList)
+  [self showNotificationWithTitle:((Commit *)commits[0]).repository.name
+                         subtitle:PSFormat(authorList)
+                          message:PSFormat(message, commits.count)
                              info:nil];
 }
 
@@ -51,16 +51,13 @@
 }
 
 - (void) showNotificationWithError: (NSString *) message repository: (Repository *) repository {
-  NSString *title;
   if (repository) {
     NSLog(@"Error in %@: %@", repository.name, message);
-    title = PSFormat(@"Error in %@", repository.name);
   } else {
     NSLog(@"Error: %@", message);
-    title = @"Error";
   }
 
-  [self showNotificationWithTitle: title subtitle: nil message: message info: nil];
+  [self showNotificationWithTitle: @"Error" subtitle: repository.name message: message info: nil];
 }
 
 - (void) showNotificationWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type {
