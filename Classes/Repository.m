@@ -112,7 +112,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
   if (cachesDirectoryExists && workingCopyDoesntExist) {
     isBeingUpdated = YES;
-    [git runCommand: @"clone" withArguments: @[self.url, workingCopy, @"-n"] inPath: cachesDirectory];
+    [git runCommand: @"clone" withArguments: @[self.url, workingCopy, @"-n", @"--depth", @"1"] inPath: cachesDirectory];
   } else {
     [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
   }
