@@ -171,6 +171,7 @@ static NSDictionary *repositoryUrlPatterns;
       status = ActiveRepository;
     }
   } else if ([command isEqual: @"log"]) {
+    // TODO: this line crashes on some commits (?)
     NSArray *matches = [output arrayOfCaptureComponentsMatchedByRegex: commitDataRegex];
     NSMutableArray *commits = [NSMutableArray arrayWithCapacity: matches.count];
 
