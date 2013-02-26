@@ -25,11 +25,11 @@ commit, etc.), check if the same problem occurs when you clone the same URL to a
 
 ## Tips and tricks
 
-See [this wiki page](https://github.com/psionides/Gitifier/wiki/Tips-%26-tricks).
+See [this wiki page](https://github.com/jsuder/Gitifier/wiki/Tips-%26-tricks).
 
 ## Changelog
 
-See [this page](https://github.com/psionides/Gitifier/blob/master/CHANGELOG.markdown).
+See [this page](https://github.com/jsuder/Gitifier/blob/master/CHANGELOG.markdown).
 
 ## License
 
