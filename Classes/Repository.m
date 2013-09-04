@@ -5,15 +5,17 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import "RegexKitLite.h"
-
 #import "Commit.h"
 #import "Git.h"
 #import "GrowlController.h"
 #import "Repository.h"
 
-static NSString *nameRegexp = @"[\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\-\\.]+";
-static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
+static NSString *namePattern = @"[\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\-\\.]+";
+static NSString *commitRangePattern = @"[0-9a-f]+\\.\\.[0-9a-f]+";
+static NSString *commitDataPattern = @"([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)(\\n\\n)";
+static NSRegularExpression *commitDataRegex;
+static NSRegularExpression *commitRangeRegex;
+static NSDictionary *repositoryUrlPatterns;
 
 @implementation Repository {
   RepositoryStatus status;
@@ -22,20 +24,38 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   BOOL isBeingUpdated;
 }
 
-+ (NSDictionary *) repositoryUrlPatterns {
-  static NSDictionary *patterns = nil;
-  if (!patterns) {
-    patterns = @{
-      @"git@github\\.com:(NAME)\\/(NAME)\\.git":                   @"https://github.com/$1/$2/commit/%@",
-      @"https?:\\/\\/(NAME)@github\\.com\\/(NAME)\\/(NAME)\\.git": @"https://github.com/$2/$3/commit/%@",
-      @"git:\\/\\/github\\.com\\/(NAME)\\/(NAME)\\.git":           @"https://github.com/$1/$2/commit/%@",
-      @"git:\\/\\/gitorious\\.org\\/(NAME)\\/(NAME)\\.git":        @"http://gitorious.org/$1/$2/commit/%@",
-      @"http:\\/\\/git\\.gitorious\\.org\\/(NAME)\\/(NAME)\\.git": @"http://gitorious.org/$1/$2/commit/%@",
-      @"git@bitbucket\\.org:(NAME)/(NAME)\\.git":                  @"https://bitbucket.org/$1/$2/commits/%@",
-      @"https://(NAME)@bitbucket.org/(NAME)/(NAME).git":           @"https://bitbucket.org/$2/$3/commits/%@"
-    };
-  }
-  return patterns;
++ (void) initialize {
+  commitDataRegex = [NSRegularExpression regularExpressionWithPattern: commitDataPattern options: 0 error: nil];
+  commitRangeRegex = [NSRegularExpression regularExpressionWithPattern: commitRangePattern options: 0 error: nil];
+
+  repositoryUrlPatterns = @{
+    [self urlRegexWithPattern: @"git@github\\.com:(NAME)\\/(NAME)\\.git"]:
+      @"https://github.com/$1/$2/commit/%@",
+
+    [self urlRegexWithPattern: @"https?:\\/\\/(NAME)@github\\.com\\/(NAME)\\/(NAME)\\.git"]:
+      @"https://github.com/$2/$3/commit/%@",
+
+    [self urlRegexWithPattern: @"git:\\/\\/github\\.com\\/(NAME)\\/(NAME)\\.git"]:
+      @"https://github.com/$1/$2/commit/%@",
+
+    [self urlRegexWithPattern: @"git:\\/\\/gitorious\\.org\\/(NAME)\\/(NAME)\\.git"]:
+      @"http://gitorious.org/$1/$2/commit/%@",
+
+    [self urlRegexWithPattern: @"http:\\/\\/git\\.gitorious\\.org\\/(NAME)\\/(NAME)\\.git"]:
+      @"http://gitorious.org/$1/$2/commit/%@",
+
+    [self urlRegexWithPattern: @"git@bitbucket\\.org:(NAME)/(NAME)\\.git"]:
+        @"https://bitbucket.org/$1/$2/commits/%@",
+
+    [self urlRegexWithPattern: @"https://(NAME)@bitbucket.org/(NAME)/(NAME).git"]:
+        @"https://bitbucket.org/$2/$3/commits/%@"
+  };
+}
+
++ (NSRegularExpression *) urlRegexWithPattern: (NSString *) pattern {
+  NSString *expandedPattern = [pattern stringByReplacingOccurrencesOfString: @"NAME" withString: namePattern];
+
+  return [NSRegularExpression regularExpressionWithPattern: PSFormat(@"^%@$", expandedPattern) options: 0 error: nil];
 }
 
 + (Repository *) repositoryFromHash: (NSDictionary *) hash {
@@ -82,15 +102,12 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (NSString *) findCommitUrlPattern {
-  NSDictionary *patterns = [Repository repositoryUrlPatterns];
-
-  for (NSString *pattern in patterns) {
-    NSString *commitPattern = patterns[pattern];
-    NSString *repoPattern = [pattern stringByReplacingOccurrencesOfString: @"NAME" withString: nameRegexp];
-    repoPattern = PSFormat(@"^%@$", repoPattern); // looks like a curse that was censored, doesn't it? ;)
-
-    if ([self.url isMatchedByRegex: repoPattern]) {
-      return [self.url stringByReplacingOccurrencesOfRegex: repoPattern withString: commitPattern];
+  for (NSRegularExpression *regex in repositoryUrlPatterns) {
+    if ([self.url isMatchedByRegex: regex]) {
+      return [regex stringByReplacingMatchesInString: self.url
+                                             options: 0
+                                               range: NSMakeRange(0, self.url.length)
+                                        withTemplate: repositoryUrlPatterns[regex]];
     }
   }
 
@@ -150,7 +167,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     isBeingUpdated = NO;
     [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
   } else if ([command isEqual: @"fetch"]) {
-    NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
+    NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegex];
     NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%ai%n%H%n%aN%n%aE%n%s%n"];
     NSString *workingCopy = [self workingCopyDirectory];
     if (commitRanges.count > 0 && workingCopy && [self directoryExists: workingCopy]) {
@@ -160,10 +177,11 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       status = ActiveRepository;
     }
   } else if ([command isEqual: @"log"]) {
-    NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex:
-                                  @"([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)\\n([^\\n]+)(\\n\\n)"];
-    NSMutableArray *commits = [NSMutableArray arrayWithCapacity: commitData.count];
-    for (NSArray *fields in commitData) {
+    // TODO: this line crashes on some commits (?)
+    NSArray *matches = [output arrayOfCaptureComponentsMatchedByRegex: commitDataRegex];
+    NSMutableArray *commits = [NSMutableArray arrayWithCapacity: matches.count];
+
+    for (NSArray *fields in matches) {
       Commit *commit = [[Commit alloc] init];
       commit.date = [NSDate dateWithString: fields[1]];
       commit.gitHash = fields[2];
@@ -173,6 +191,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       commit.repository = self;
       [commits addObject: commit];
     }
+
     isBeingUpdated = NO;
     status = ActiveRepository;
     [self.delegate commitsReceived: commits inRepository: self];
@@ -191,12 +210,14 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   }
 }
 
-- (BOOL) isProperUrl: (NSString *) anUrl {
-  return [anUrl psIsPresent];
+- (BOOL) isProperUrl: (NSString *) aUrl {
+  return [aUrl psIsPresent];
 }
 
-- (NSString *) nameFromUrl: (NSString *) anUrl {
-  NSArray *names = [anUrl componentsSeparatedByRegex: @"[/:]"];
+- (NSString *) nameFromUrl: (NSString *) aUrl {
+  NSCharacterSet *separators = [NSCharacterSet characterSetWithCharactersInString: @"/:"];
+  NSArray *names = [aUrl componentsSeparatedByCharactersInSet: separators];
+
   NSString *projectName = [names lastObject];
   if ([projectName isEqual: @""]) {
     projectName = names[names.count - 2];
