@@ -26,9 +26,9 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   static NSDictionary *patterns = nil;
   if (!patterns) {
     patterns = @{
-      @"git@github\\.com:(NAME)\\/(NAME)\\.git":                   @"http://github.com/$1/$2/commit/%@",
-      @"https?:\\/\\/(NAME)@github\\.com\\/(NAME)\\/(NAME)\\.git": @"http://github.com/$2/$3/commit/%@",
-      @"git:\\/\\/github\\.com\\/(NAME)\\/(NAME)\\.git":           @"http://github.com/$1/$2/commit/%@",
+      @"git@github\\.com:(NAME)\\/(NAME)\\.git":                   @"https://github.com/$1/$2/commit/%@",
+      @"https?:\\/\\/(NAME)@github\\.com\\/(NAME)\\/(NAME)\\.git": @"https://github.com/$2/$3/commit/%@",
+      @"git:\\/\\/github\\.com\\/(NAME)\\/(NAME)\\.git":           @"https://github.com/$1/$2/commit/%@",
       @"git:\\/\\/gitorious\\.org\\/(NAME)\\/(NAME)\\.git":        @"http://gitorious.org/$1/$2/commit/%@",
       @"http:\\/\\/git\\.gitorious\\.org\\/(NAME)\\/(NAME)\\.git": @"http://gitorious.org/$1/$2/commit/%@",
       @"git@bitbucket\\.org:(NAME)/(NAME)\\.git":                  @"https://bitbucket.org/$1/$2/commits/%@",
