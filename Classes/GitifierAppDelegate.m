@@ -205,9 +205,9 @@ static NSRegularExpression *gitVersionRegex;
 }
 
 - (void) rejectGitPath {
-  NSRunAlertPanel(@"Incorrect Git path",
-                  PSFormat(@"The file at %@ is not a Git executable.", [Git gitExecutable]),
-                  @"OK", nil, nil);
+  NSRunAlertPanel(@"Incorrect Git path", @"The file at %@ is not a Git executable.",
+                  @"OK", nil, nil,
+                  [Git gitExecutable]);
   [Git setGitExecutable: nil];
 }
 
