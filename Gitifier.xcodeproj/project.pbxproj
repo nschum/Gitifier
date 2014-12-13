@@ -41,7 +41,6 @@
 		58A181FA1484311B00835E97 /* NotificationsPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A181F91484311B00835E97 /* NotificationsPanelController.m */; };
 		58A181FE14843B2900835E97 /* notifications_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A181FD14843B2900835E97 /* notifications_icon.png */; };
 		58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC745F124EBACA003BA5EB /* icon_menu.png */; };
-		58CC7466124EBB20003BA5EB /* icon_menu_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */; };
 		58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC74F9124ECAEA003BA5EB /* icon_app_32.png */; };
 		58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 58CC7524124ED08A003BA5EB /* icon_app.icns */; };
 		58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0581242B6EB00DE7C7E /* libicucore.dylib */; };
@@ -147,7 +146,6 @@
 		58A181F91484311B00835E97 /* NotificationsPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsPanelController.m; sourceTree = "<group>"; };
 		58A181FD14843B2900835E97 /* notifications_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifications_icon.png; sourceTree = "<group>"; };
 		58CC745F124EBACA003BA5EB /* icon_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_menu.png; sourceTree = "<group>"; };
-		58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_menu_inverted.png; sourceTree = "<group>"; };
 		58CC74F9124ECAEA003BA5EB /* icon_app_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_app_32.png; sourceTree = "<group>"; };
 		58CC7524124ED08A003BA5EB /* icon_app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon_app.icns; sourceTree = "<group>"; };
 		58DEC0581242B6EB00DE7C7E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -375,7 +373,6 @@
 				58CC7524124ED08A003BA5EB /* icon_app.icns */,
 				58CC74F9124ECAEA003BA5EB /* icon_app_32.png */,
 				58CC745F124EBACA003BA5EB /* icon_menu.png */,
-				58CC7465124EBB20003BA5EB /* icon_menu_inverted.png */,
 				58A181FD14843B2900835E97 /* notifications_icon.png */,
 				58950DA51486E08A00DE49FA /* repositories_icon.png */,
 			);
@@ -518,7 +515,6 @@
 				588ACBD9124AB094004F3785 /* AskPass in Resources */,
 				588ACDF3124C184E004F3785 /* sparkle_pub_key.pem in Resources */,
 				58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */,
-				58CC7466124EBB20003BA5EB /* icon_menu_inverted.png in Resources */,
 				58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */,
 				58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */,
 				585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */,

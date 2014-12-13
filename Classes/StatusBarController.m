@@ -27,15 +27,17 @@ static NSInteger RecentCommitsTitleLimit = 50;
 
 - (void) createStatusBarItem {
   statusBarItem = [[NSStatusBar systemStatusBar] statusItemWithLength: NSSquareStatusItemLength];
+
   if (!statusBarItem) {
     NSRunAlertPanel(@"Error", @"Gitifier menu could not be created :(", @"That's a shame", nil, nil);
     [NSApp terminate: self];
   }
 
-  statusBarItem.image = [NSImage imageNamed: @"icon_menu.png"];
-  statusBarItem.alternateImage = [NSImage imageNamed: @"icon_menu_inverted.png"];
-  statusBarItem.highlightMode = YES;
-  statusBarItem.menu = self.statusBarMenu;
+  NSImage *icon = [NSImage imageNamed: @"icon_menu.png"];
+  [icon setTemplate: YES];
+  [statusBarItem setImage: icon];
+  [statusBarItem setHighlightMode: YES];
+  [statusBarItem setMenu: self.statusBarMenu];
 }
 
 - (void) updateRecentCommitsList: (NSArray *) newCommits {
