@@ -20,7 +20,7 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
 }
 
 - (void) awakeFromNib {
-  [self updateUserEmailText: [[NSApp delegate] userEmail]];
+  [self updateUserEmailText: [(GitifierAppDelegate *) [NSApp delegate] userEmail]];
   PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
 }
 
