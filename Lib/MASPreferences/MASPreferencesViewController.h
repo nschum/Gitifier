@@ -1,6 +1,5 @@
 //
-//  Created by Vadim Shpakovski on 4/22/11.
-//  Copyright 2011 Shpakovski. All rights reserved.
+// Any controller providing preference pane view must support this protocol
 //
 
 @protocol MASPreferencesViewController <NSObject>
@@ -9,10 +8,14 @@
 
 - (void)viewWillAppear;
 - (void)viewDidDisappear;
+- (NSView *)initialKeyView;
+
+@property (nonatomic, readonly) BOOL hasResizableWidth;
+@property (nonatomic, readonly) BOOL hasResizableHeight;
 
 @required
 
-@property (nonatomic, readonly) NSString *toolbarItemIdentifier;
+@property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) NSImage *toolbarItemImage;
 @property (nonatomic, readonly) NSString *toolbarItemLabel;
 

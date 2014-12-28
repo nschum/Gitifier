@@ -1,16 +1,21 @@
-//
-//  Created by Vadim Shpakovski on 4/22/11.
-//  Copyright 2011 Shpakovski. All rights reserved.
-//
-
-#import "MASPreferencesViewController.h"
 #import "MASPreferencesWindowController.h"
 
 NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MASPreferencesWindowControllerDidChangeViewNotification";
 
+static NSString *const kMASPreferencesFrameTopLeftKey = @"MASPreferences Frame Top Left";
+static NSString *const kMASPreferencesSelectedViewKey = @"MASPreferences Selected Identifier View";
+
+static NSString *const PreferencesKeyForViewBounds (NSString *identifier)
+{
+    return [NSString stringWithFormat:@"MASPreferences %@ Frame", identifier];
+}
+
 @interface MASPreferencesWindowController () // Private
 
-- (void)updateViewControllerWithAnimation:(BOOL)animate;
+- (NSViewController <MASPreferencesViewController> *)viewControllerForIdentifier:(NSString *)identifier;
+
+@property (readonly) NSArray *toolbarItemIdentifiers;
+@property (nonatomic, retain) NSViewController <MASPreferencesViewController> *selectedViewController;
 
 @end
 
@@ -19,8 +24,9 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 @implementation MASPreferencesWindowController
 
 @synthesize viewControllers = _viewControllers;
+@synthesize selectedViewController = _selectedViewController;
 @synthesize title = _title;
-
+@synthesize toolbar = _toolbar;
 #pragma mark -
 
 - (id)initWithViewControllers:(NSArray *)viewControllers
@@ -32,7 +38,11 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 {
     if ((self = [super initWithWindowNibName:@"MASPreferencesWindow"]))
     {
-        _viewControllers = [viewControllers retain];
+		_viewControllers = [NSMutableArray arrayWithArray: viewControllers];
+#if !__has_feature(objc_arc)
+        _viewControllers = [_viewControllers retain];
+#endif
+        _minimumViewRects = [[NSMutableDictionary alloc] init];
         _title = [title copy];
     }
     return self;
@@ -40,47 +50,73 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[self window] setDelegate:nil];
-    
+    for (NSToolbarItem *item in [self.toolbar items]) {
+        item.target = nil;
+        item.action = nil;
+    }
+    self.toolbar.delegate = nil;
+#if !__has_feature(objc_arc)
     [_viewControllers release];
+    [_selectedViewController release];
+    [_minimumViewRects release];
     [_title release];
-    
     [super dealloc];
+#endif
+}
+
+- (void)addViewController: (NSViewController <MASPreferencesViewController> *) viewController
+{
+	[_viewControllers addObject: viewController];
+	[_toolbar insertItemWithItemIdentifier: [viewController identifier] atIndex: ([_viewControllers count] - 1)];
+	[_toolbar validateVisibleItems];
 }
 
 #pragma mark -
 
-- (void)awakeFromNib
+- (void)windowDidLoad
 {
-    // Watch for resigning and closing to commit editing
-    [[self window] setDelegate:self];
-    
     if ([self.title length] > 0)
         [[self window] setTitle:self.title];
-    [self selectControllerAtIndex:0 withAnimation:NO];
+
+    if ([self.viewControllers count])
+        self.selectedViewController = [self viewControllerForIdentifier:[[NSUserDefaults standardUserDefaults] stringForKey:kMASPreferencesSelectedViewKey]] ?: [self firstViewController];
+
+    NSString *origin = [[NSUserDefaults standardUserDefaults] stringForKey:kMASPreferencesFrameTopLeftKey];
+    if (origin)
+        [self.window setFrameTopLeftPoint:NSPointFromString(origin)];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:)   name:NSWindowDidMoveNotification object:self.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self.window];
+}
+
+- (NSViewController <MASPreferencesViewController> *)firstViewController {
+    for (id viewController in self.viewControllers)
+        if ([viewController isKindOfClass:[NSViewController class]])
+            return viewController;
+
+    return nil;
 }
 
 #pragma mark -
 #pragma mark NSWindowDelegate
 
-- (void)commitPreferences
+- (BOOL)windowShouldClose:(id)sender
 {
-    [[self window] makeFirstResponder:[self window]];
+    return !self.selectedViewController || [self.selectedViewController commitEditing];
 }
 
-- (void)windowWillClose:(NSNotification *)notification
+- (void)windowDidMove:(NSNotification*)aNotification
 {
-    [self commitPreferences];
+    [[NSUserDefaults standardUserDefaults] setObject:NSStringFromPoint(NSMakePoint(NSMinX([self.window frame]), NSMaxY([self.window frame]))) forKey:kMASPreferencesFrameTopLeftKey];
 }
 
-- (void)windowDidResignKey:(NSNotification *)notification
+- (void)windowDidResize:(NSNotification*)aNotification
 {
-    [self commitPreferences];
-}
-
-- (void)windowDidBecomeKey:(NSNotification *)notification
-{
-//    [self resetFirstResponderInView:[[self window] contentView]];
+    NSViewController <MASPreferencesViewController> *viewController = self.selectedViewController;
+    if (viewController)
+        [[NSUserDefaults standardUserDefaults] setObject:NSStringFromRect([viewController.view bounds]) forKey:PreferencesKeyForViewBounds(viewController.identifier)];
 }
 
 #pragma mark -
@@ -88,7 +124,12 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 
 - (NSArray *)toolbarItemIdentifiers
 {
-    NSArray *identifiers = [_viewControllers valueForKey:@"toolbarItemIdentifier"];
+    NSMutableArray *identifiers = [NSMutableArray arrayWithCapacity:_viewControllers.count];
+    for (id viewController in _viewControllers)
+        if (viewController == [NSNull null])
+            [identifiers addObject:NSToolbarFlexibleSpaceItemIdentifier];
+        else
+            [identifiers addObject:[viewController identifier]];
     return identifiers;
 }
 
@@ -96,21 +137,8 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 
 - (NSUInteger)indexOfSelectedController
 {
-    NSString *selectedIdentifier = self.window.toolbar.selectedItemIdentifier;
-    NSArray *identifiers = self.toolbarItemIdentifiers;
-    NSUInteger selectedIndex = [identifiers indexOfObject:selectedIdentifier];
-    return selectedIndex;
-}
-
-- (NSViewController *)selectedViewController
-{
-    NSString *selectedIdentifier = self.window.toolbar.selectedItemIdentifier;
-    NSArray *identifiers = self.toolbarItemIdentifiers;
-    NSUInteger selectedIndex = [identifiers indexOfObject:selectedIdentifier];
-    NSViewController *selectedController = nil;
-    if (NSLocationInRange(selectedIndex, NSMakeRange(0, self.viewControllers.count)))
-        selectedController = [self.viewControllers objectAtIndex:selectedIndex];
-    return selectedController;
+    NSUInteger index = [self.toolbarItemIdentifiers indexOfObject:self.selectedViewController.identifier];
+    return index;
 }
 
 #pragma mark -
@@ -147,7 +175,10 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
         toolbarItem.target = self;
         toolbarItem.action = @selector(toolbarItemDidClick:);
     }
-    return [toolbarItem autorelease];
+#if !__has_feature(objc_arc)
+    [toolbarItem autorelease];
+#endif
+    return toolbarItem;
 }
 
 #pragma mark -
@@ -177,103 +208,141 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     selectedController.nextResponder = nextResponder;
 }
 
+- (NSViewController <MASPreferencesViewController> *)viewControllerForIdentifier:(NSString *)identifier
+{
+    for (id viewController in self.viewControllers) {
+        if (viewController == [NSNull null]) continue;
+        if ([[viewController identifier] isEqualToString:identifier])
+            return viewController;
+    }
+    return nil;
+}
+
 #pragma mark -
 
-- (void)updateViewControllerWithAnimation:(BOOL)animate
+- (void)setSelectedViewController:(NSViewController <MASPreferencesViewController> *)controller
 {
-    // Retrieve currently selected view controller
-    NSArray *identifiers = self.toolbarItemIdentifiers;
-    NSString *itemIdentifier = self.window.toolbar.selectedItemIdentifier;
-    NSUInteger controllerIndex = [identifiers indexOfObject:itemIdentifier];
-    if (controllerIndex == NSNotFound) return;
-    NSViewController <MASPreferencesViewController> *controller = [_viewControllers objectAtIndex:controllerIndex];
-    
+    if (_selectedViewController == controller)
+        return;
+
+    if (_selectedViewController)
+    {
+        // Check if we can commit changes for old controller
+        if (![_selectedViewController commitEditing])
+        {
+            [[self.window toolbar] setSelectedItemIdentifier:_selectedViewController.identifier];
+            return;
+        }
+
+#if __has_feature(objc_arc)
+        [self.window setContentView:[[NSView alloc] init]];
+#else
+        [self.window setContentView:[[[NSView alloc] init] autorelease]];
+#endif
+        if ([_selectedViewController respondsToSelector:@selector(viewDidDisappear)])
+            [_selectedViewController viewDidDisappear];
+
+#if !__has_feature(objc_arc)
+        [_selectedViewController release];
+#endif
+        _selectedViewController = nil;
+    }
+
+    if (!controller)
+        return;
+
     // Retrieve the new window tile from the controller view
     if ([self.title length] == 0)
     {
         NSString *label = controller.toolbarItemLabel;
         self.window.title = label;
     }
+
+    [[self.window toolbar] setSelectedItemIdentifier:controller.identifier];
+
+    // Record new selected controller in user defaults
+    [[NSUserDefaults standardUserDefaults] setObject:controller.identifier forKey:kMASPreferencesSelectedViewKey];
     
-    // Retrieve the view to place into window
     NSView *controllerView = controller.view;
+
+    // Retrieve current and minimum frame size for the view
+    NSString *oldViewRectString = [[NSUserDefaults standardUserDefaults] stringForKey:PreferencesKeyForViewBounds(controller.identifier)];
+    NSString *minViewRectString = [_minimumViewRects objectForKey:controller.identifier];
+    if (!minViewRectString)
+        [_minimumViewRects setObject:NSStringFromRect(controllerView.bounds) forKey:controller.identifier];
     
-    // Calculate changes for window size and position
-    NSSize controllerViewSize = controllerView.bounds.size;
-    NSView *contentView = self.window.contentView;
-    NSSize contentSize = contentView.bounds.size;
-    CGFloat widthChange = contentSize.width - controllerViewSize.width;
-    CGFloat heightChange = contentSize.height - controllerViewSize.height;
+    BOOL sizableWidth = ([controller respondsToSelector:@selector(hasResizableWidth)]
+                         ? controller.hasResizableWidth
+                         : controllerView.autoresizingMask & NSViewWidthSizable);
+    BOOL sizableHeight = ([controller respondsToSelector:@selector(hasResizableHeight)]
+                          ? controller.hasResizableHeight
+                          : controllerView.autoresizingMask & NSViewHeightSizable);
     
+    NSRect oldViewRect = oldViewRectString ? NSRectFromString(oldViewRectString) : controllerView.bounds;
+    NSRect minViewRect = minViewRectString ? NSRectFromString(minViewRectString) : controllerView.bounds;
+    oldViewRect.size.width  = NSWidth(oldViewRect)  < NSWidth(minViewRect)  || !sizableWidth  ? NSWidth(minViewRect)  : NSWidth(oldViewRect);
+    oldViewRect.size.height = NSHeight(oldViewRect) < NSHeight(minViewRect) || !sizableHeight ? NSHeight(minViewRect) : NSHeight(oldViewRect);
+
+    [controllerView setFrame:oldViewRect];
+
     // Calculate new window size and position
-    NSRect windowFrame = self.window.frame;
-    windowFrame.size.width -= widthChange;
-    windowFrame.size.height -= heightChange;
-    windowFrame.origin.y += heightChange;
+    NSRect oldFrame = [self.window frame];
+    NSRect newFrame = [self.window frameRectForContentRect:oldViewRect];
+    newFrame = NSOffsetRect(newFrame, NSMinX(oldFrame), NSMaxY(oldFrame) - NSMaxY(newFrame));
+
+    // Setup min/max sizes and show/hide resize indicator
+    [self.window setContentMinSize:minViewRect.size];
+    [self.window setContentMaxSize:NSMakeSize(sizableWidth ? CGFLOAT_MAX : NSWidth(oldViewRect), sizableHeight ? CGFLOAT_MAX : NSHeight(oldViewRect))];
+    [self.window setShowsResizeIndicator:sizableWidth || sizableHeight];
+    [[self.window standardWindowButton:NSWindowZoomButton] setEnabled:sizableWidth || sizableHeight];
+
+    [self.window setFrame:newFrame display:YES animate:[self.window isVisible]];
     
-    // Place the view into window and perform reposition
-    NSArray *subviews = [contentView.subviews retain];
-    for (NSView *subview in contentView.subviews)
-        [subview removeFromSuperviewWithoutNeedingDisplay];
-    [subviews release];
-    [self.window setFrame:windowFrame display:YES animate:animate];
+#if __has_feature(objc_arc)
+    _selectedViewController = controller;
+#else
+    _selectedViewController = [controller retain];
+#endif
+    // In OSX 10.10, setContentView below calls viewWillAppear.  We still want to call viewWillAppear on < 10.10,
+    // so the check below avoids calling viewWillAppear twice on 10.10.
+    // See https://github.com/shpakovski/MASPreferences/issues/32 for more info.
+    if (![NSViewController instancesRespondToSelector:@selector(viewWillAppear)])
+        if ([controller respondsToSelector:@selector(viewWillAppear)])
+            [controller viewWillAppear];
     
-    if ([_lastSelectedController respondsToSelector:@selector(viewDidDisappear)])
-        [_lastSelectedController viewDidDisappear];
-    if ([controller respondsToSelector:@selector(viewWillAppear)])
-        [controller viewWillAppear];
-    _lastSelectedController = controller;
-    
-    // Add controller view only after animation is ended to avoid blinking
-    if (animate)
-        [self performSelector:@selector(setContentView:) withObject:controllerView afterDelay:0.0];
-    else
-        [self performSelector:@selector(setContentView:) withObject:controllerView];
+    [self.window setContentView:controllerView];
+    [self.window recalculateKeyViewLoop];
+    if ([self.window firstResponder] == self.window) {
+        if ([controller respondsToSelector:@selector(initialKeyView)])
+            [self.window makeFirstResponder:[controller initialKeyView]];
+        else
+            [self.window selectKeyViewFollowingView:controllerView];
+    }
     
     // Insert view controller into responder chain
     [self patchResponderChain];
-}
 
-- (void)resetFirstResponderInView:(NSView *)view
-{
-    BOOL isNotButton = ![view isKindOfClass:[NSButton class]];
-    BOOL canBecomeKey = view.canBecomeKeyView;
-    if (isNotButton && canBecomeKey)
-    {
-        [self.window makeFirstResponder:view];
-    }
-    else
-    {
-        for (NSView *subview in view.subviews)
-            [self resetFirstResponderInView:subview];
-    }
-}
-
-- (void)setContentView:(NSView *)view
-{
-    [self.window.contentView addSubview:view];
-//    [self resetFirstResponderInView:self.window.contentView];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMASPreferencesWindowControllerDidChangeViewNotification object:self];
 }
 
 - (void)toolbarItemDidClick:(id)sender
 {
-    [self updateViewControllerWithAnimation:YES];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:kMASPreferencesWindowControllerDidChangeViewNotification object:self];
+    if ([sender respondsToSelector:@selector(itemIdentifier)])
+        self.selectedViewController = [self viewControllerForIdentifier:[sender itemIdentifier]];
 }
 
 #pragma mark -
 #pragma mark Public methods
 
-- (void)selectControllerAtIndex:(NSUInteger)controllerIndex withAnimation:(BOOL)animate
+- (void)selectControllerAtIndex:(NSUInteger)controllerIndex
 {
-    if (!NSLocationInRange(controllerIndex, NSMakeRange(0, _viewControllers.count)))
-        return;
+    if (NSLocationInRange(controllerIndex, NSMakeRange(0, _viewControllers.count)))
+        self.selectedViewController = [self.viewControllers objectAtIndex:controllerIndex];
+}
 
-    NSViewController <MASPreferencesViewController> *controller = [_viewControllers objectAtIndex:controllerIndex];
-    NSString *newItemIdentifier = controller.toolbarItemIdentifier;
-    self.window.toolbar.selectedItemIdentifier = newItemIdentifier;
-    [self updateViewControllerWithAnimation:animate];
+- (void)selectControllerWithIdentifier:(NSString *)identifier 
+{
+    self.selectedViewController = [self viewControllerForIdentifier:identifier];
 }
 
 #pragma mark -
@@ -283,16 +352,22 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 {
     NSUInteger selectedIndex = self.indexOfSelectedController;
     NSUInteger numberOfControllers = [_viewControllers count];
-    selectedIndex = (selectedIndex + 1) % numberOfControllers;
-    [self selectControllerAtIndex:selectedIndex withAnimation:YES];
+
+    do { selectedIndex = (selectedIndex + 1) % numberOfControllers; }
+    while ([_viewControllers objectAtIndex:selectedIndex] == [NSNull null]);
+
+    [self selectControllerAtIndex:selectedIndex];
 }
 
 - (IBAction)goPreviousTab:(id)sender
 {
     NSUInteger selectedIndex = self.indexOfSelectedController;
     NSUInteger numberOfControllers = [_viewControllers count];
-    selectedIndex = (selectedIndex + numberOfControllers - 1) % numberOfControllers;
-    [self selectControllerAtIndex:selectedIndex withAnimation:YES];
+
+    do { selectedIndex = (selectedIndex + numberOfControllers - 1) % numberOfControllers; }
+    while ([_viewControllers objectAtIndex:selectedIndex] == [NSNull null]);
+
+    [self selectControllerAtIndex:selectedIndex];
 }
 
 @end

@@ -1,32 +1,45 @@
 //
-//  Created by Vadim Shpakovski on 4/22/11.
-//  Copyright 2011 Shpakovski. All rights reserved.
+// You create an application Preferences window using code like this:
+//     _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers
+//                                                                                              title:title]
 //
+// To open the Preferences window:
+//     [_preferencesWindowController showWindow:sender]
+//
+
+#import "MASPreferencesViewController.h"
 
 extern NSString *const kMASPreferencesWindowControllerDidChangeViewNotification;
 
+__attribute__((__visibility__("default")))
+#if MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_5
 @interface MASPreferencesWindowController : NSWindowController <NSToolbarDelegate, NSWindowDelegate>
+#else
+@interface MASPreferencesWindowController : NSWindowController
+#endif
 {
 @private
-    NSArray *_viewControllers;
+    NSMutableArray *_viewControllers;
+    NSMutableDictionary *_minimumViewRects;
     NSString *_title;
-    id _lastSelectedController;
+    NSViewController <MASPreferencesViewController> *_selectedViewController;
+	IBOutlet NSToolbar *toolbar;
 }
 
-@property (nonatomic, readonly) NSArray *viewControllers;
+@property (nonatomic, readonly) NSMutableArray *viewControllers;
 @property (nonatomic, readonly) NSUInteger indexOfSelectedController;
-@property (nonatomic, readonly) NSViewController *selectedViewController;
+@property (nonatomic, readonly, retain) NSViewController <MASPreferencesViewController> *selectedViewController;
 @property (nonatomic, readonly) NSString *title;
+@property (nonatomic, assign) IBOutlet NSToolbar *toolbar;
 
 - (id)initWithViewControllers:(NSArray *)viewControllers;
 - (id)initWithViewControllers:(NSArray *)viewControllers title:(NSString *)title;
+- (void)addViewController:(NSViewController <MASPreferencesViewController> *) viewController;
 
-- (void)selectControllerAtIndex:(NSUInteger)controllerIndex withAnimation:(BOOL)animate;
+- (void)selectControllerAtIndex:(NSUInteger)controllerIndex;
+- (void)selectControllerWithIdentifier:(NSString *)identifier;
 
 - (IBAction)goNextTab:(id)sender;
 - (IBAction)goPreviousTab:(id)sender;
-
-- (void)resetFirstResponderInView:(NSView *)view;
-- (void)setContentView:(NSView *)view;
 
 @end
