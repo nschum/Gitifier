@@ -9,6 +9,8 @@
 #import "GitifierAppDelegate.h"
 #import "GrowlController.h"
 #import "NotificationsPanelController.h"
+#import "PSCocoaExtensions.h"
+#import "PSMacros.h"
 
 static NSString *IgnoreMyCommitsText = @"Ignore my own commits";
 static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/growl/id467939042";

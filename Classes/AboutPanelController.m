@@ -6,6 +6,7 @@
 // -------------------------------------------------------
 
 #import "AboutPanelController.h"
+#import "PSMacros.h"
 
 static NSString *ProjectPageURL = @"http://github.com/psionides/gitifier";
 static NSString *IssueTrackerURL = @"http://github.com/psionides/gitifier/issues";

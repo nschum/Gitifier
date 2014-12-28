@@ -215,7 +215,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (NSString *) cachesDirectory {
   NSArray *directories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-  NSString *userCachesDirectory = [directories psFirstObject];
+  NSString *userCachesDirectory = [directories firstObject];
   if (!userCachesDirectory) {
     NSLog(@"Error: Caches directory could not be found.");
     return nil;

@@ -9,6 +9,9 @@
 #import "CommitWindowController.h"
 #import "Defaults.h"
 #import "Git.h"
+#import "PSCocoaExtensions.h"
+#import "PSFoundationExtensions.h"
+#import "PSMacros.h"
 #import "Repository.h"
 
 static NSString *ErrorText = @"Error loading commit diff.";

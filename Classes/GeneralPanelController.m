@@ -54,7 +54,7 @@
   NSInteger result = [panel runModal];
   
   if (result == NSFileHandlingPanelOKButton) {
-    NSURL *url = [[panel URLs] psFirstObject];
+    NSURL *url = [[panel URLs] firstObject];
     [Git setGitExecutable: url.path];
   }
 }

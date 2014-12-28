@@ -9,6 +9,7 @@
 #import "Git.h"
 #import "GitifierAppDelegate.h"
 #import "PasswordHelper.h"
+#import "PSMacros.h"
 
 static NSString *gitExecutable = nil;
 
@@ -122,7 +123,7 @@ static NSString *gitExecutable = nil;
       [readHandle closeFile];
 
       NSInteger status = [currentTask terminationStatus];
-      NSString *command = [[currentTask arguments] psFirstObject];
+      NSString *command = [[currentTask arguments] firstObject];
       NSString *output = [[NSString alloc] initWithData: collectedData encoding: NSUTF8StringEncoding];
       currentTask = nil;
 
@@ -138,7 +139,7 @@ static NSString *gitExecutable = nil;
       }
     }
   } @catch (NSException *e) {
-    NSString *command = [[currentTask arguments] psFirstObject];
+    NSString *command = [[currentTask arguments] firstObject];
     currentTask = nil;
     PSLog(@"command git %@ failed with exception: %@", command, e);
     [self notifyDelegateWithSelector: @selector(commandFailed:output:) command: command output: [e description]];

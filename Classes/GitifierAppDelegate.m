@@ -13,6 +13,8 @@
 #import "GitifierAppDelegate.h"
 #import "GrowlController.h"
 #import "PreferencesWindowController.h"
+#import "PSFoundationExtensions.h"
+#import "PSMacros.h"
 #import "Repository.h"
 #import "RepositoryListController.h"
 #import "StatusBarController.h"
