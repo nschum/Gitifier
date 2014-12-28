@@ -32,7 +32,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 {
     if ((self = [super initWithWindowNibName:@"MASPreferencesWindow"]))
     {
-        _viewControllers = viewControllers;
+        _viewControllers = [viewControllers retain];
         _title = [title copy];
     }
     return self;
@@ -42,7 +42,10 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
 {
     [[self window] setDelegate:nil];
     
+    [_viewControllers release];
+    [_title release];
     
+    [super dealloc];
 }
 
 #pragma mark -
@@ -106,7 +109,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     NSUInteger selectedIndex = [identifiers indexOfObject:selectedIdentifier];
     NSViewController *selectedController = nil;
     if (NSLocationInRange(selectedIndex, NSMakeRange(0, self.viewControllers.count)))
-        selectedController = self.viewControllers[selectedIndex];
+        selectedController = [self.viewControllers objectAtIndex:selectedIndex];
     return selectedController;
 }
 
@@ -138,13 +141,13 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     NSUInteger controllerIndex = [identifiers indexOfObject:itemIdentifier];
     if (controllerIndex != NSNotFound)
     {
-        id <MASPreferencesViewController> controller = _viewControllers[controllerIndex];
+        id <MASPreferencesViewController> controller = [_viewControllers objectAtIndex:controllerIndex];
         toolbarItem.image = controller.toolbarItemImage;
         toolbarItem.label = controller.toolbarItemLabel;
         toolbarItem.target = self;
         toolbarItem.action = @selector(toolbarItemDidClick:);
     }
-    return toolbarItem;
+    return [toolbarItem autorelease];
 }
 
 #pragma mark -
@@ -183,7 +186,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     NSString *itemIdentifier = self.window.toolbar.selectedItemIdentifier;
     NSUInteger controllerIndex = [identifiers indexOfObject:itemIdentifier];
     if (controllerIndex == NSNotFound) return;
-    NSViewController <MASPreferencesViewController> *controller = _viewControllers[controllerIndex];
+    NSViewController <MASPreferencesViewController> *controller = [_viewControllers objectAtIndex:controllerIndex];
     
     // Retrieve the new window tile from the controller view
     if ([self.title length] == 0)
@@ -209,7 +212,10 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     windowFrame.origin.y += heightChange;
     
     // Place the view into window and perform reposition
-    [contentView.subviews makeObjectsPerformSelector: @selector(removeFromSuperviewWithoutNeedingDisplay)];
+    NSArray *subviews = [contentView.subviews retain];
+    for (NSView *subview in contentView.subviews)
+        [subview removeFromSuperviewWithoutNeedingDisplay];
+    [subviews release];
     [self.window setFrame:windowFrame display:YES animate:animate];
     
     if ([_lastSelectedController respondsToSelector:@selector(viewDidDisappear)])
@@ -264,7 +270,7 @@ NSString *const kMASPreferencesWindowControllerDidChangeViewNotification = @"MAS
     if (!NSLocationInRange(controllerIndex, NSMakeRange(0, _viewControllers.count)))
         return;
 
-    NSViewController <MASPreferencesViewController> *controller = _viewControllers[controllerIndex];
+    NSViewController <MASPreferencesViewController> *controller = [_viewControllers objectAtIndex:controllerIndex];
     NSString *newItemIdentifier = controller.toolbarItemIdentifier;
     self.window.toolbar.selectedItemIdentifier = newItemIdentifier;
     [self updateViewControllerWithAnimation:animate];

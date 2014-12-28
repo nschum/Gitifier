@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		581C9E91127E046D003ECF6A /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; };
+		581C9E91127E046D003ECF6A /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		581C9E9E127E050A003ECF6A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
 		582E744F126B1D3E0077D935 /* GrowlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 582E744E126B1D3E0077D935 /* GrowlController.m */; };
 		5831CCA312EE0EFC008169A7 /* PSFoundationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC6512EE0EFB008169A7 /* PSFoundationExtensions.m */; };
@@ -17,7 +17,7 @@
 		5831CCBD12EE0EFC008169A7 /* PSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC8812EE0EFC008169A7 /* PSModelManager.m */; };
 		5834F24B1493C962001B9286 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 5834F24A1493C962001B9286 /* Credits.html */; };
 		584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */; };
-		584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */; };
+		584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		584ED6FA13B37BF40085E65C /* GeneralPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F913B37BF40085E65C /* GeneralPanelController.m */; };
 		584ED6FD13B37F650085E65C /* RepositoriesPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6FC13B37F650085E65C /* RepositoriesPanelController.m */; };
 		584ED70013B37F780085E65C /* AboutPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6FF13B37F780085E65C /* AboutPanelController.m */; };
@@ -26,7 +26,7 @@
 		584ED70B13B3D32A0085E65C /* RepositoriesPreferencesPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED70913B3D32A0085E65C /* RepositoriesPreferencesPanel.xib */; };
 		585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585886621264DB7A00AD2F1A /* CommitWindow.xib */; };
 		5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858866A1264E25000AD2F1A /* CommitWindowController.m */; };
-		5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */; };
+		5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		588ACB0F124AAF12004F3785 /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; };
 		588ACB10124AAF13004F3785 /* Askpass.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB01124AAE5E004F3785 /* Askpass.m */; };
 		588ACB15124AAF91004F3785 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
@@ -657,7 +657,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -679,7 +679,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -26,14 +26,16 @@
 	int button;
 	CFStringRef passwordRef;
 	
-	NSMutableArray *returnArray = [NSMutableArray arrayWithObjects:@"PasswordString",@0,nil];
+	NSMutableArray *returnArray = [NSMutableArray arrayWithObjects:@"PasswordString",[NSNumber numberWithInt:0],nil];
 	
 	NSString *passwordMessageString = [NSString stringWithFormat: @"Repository %@ requires a password to log in "
                                      @"(you'll only need to enter it once).", hostname];
 	
-	NSDictionary *panelDict = @{(id)kCFUserNotificationAlertHeaderKey: @"Please enter your SSH password",(id)kCFUserNotificationAlertMessageKey: passwordMessageString,
-							   (id)kCFUserNotificationTextFieldTitlesKey: @"",
-							   (id)kCFUserNotificationAlternateButtonTitleKey: @"Cancel"};
+	NSDictionary *panelDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Please enter your SSH password",
+							   kCFUserNotificationAlertHeaderKey,passwordMessageString,kCFUserNotificationAlertMessageKey,
+							   @"",kCFUserNotificationTextFieldTitlesKey,
+							   @"Cancel",kCFUserNotificationAlternateButtonTitleKey,
+							   nil];
 	
 	passwordDialog = CFUserNotificationCreate(kCFAllocatorDefault,
 											  0,
@@ -41,13 +43,13 @@
 											  |
 											  CFUserNotificationSecureTextField(0),
 											  &error,
-											  (__bridge CFDictionaryRef) panelDict);
+											  (CFDictionaryRef)panelDict);
 	
 	
 	if (error){
 		// There was an error creating the password dialog
 		CFRelease(passwordDialog);
-		returnArray[1] = @(error);
+		[returnArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:error]];
 		return returnArray;
 	}
 	
@@ -57,7 +59,7 @@
 
 	if (error){
 		CFRelease(passwordDialog);
-		returnArray[1] = @(error);
+		[returnArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:error]];
 		return returnArray;
 	}
 	
@@ -65,7 +67,7 @@
 	button = responseFlags & 0x3;
 	if (button == kCFUserNotificationAlternateResponse) {
 		CFRelease(passwordDialog);
-		returnArray[1] = @1;
+		[returnArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:1]];
 		return returnArray;		
 	}
 	
@@ -74,7 +76,7 @@
 													 0);
 	
 
-	returnArray[0] = (__bridge NSString *) passwordRef;
+	[returnArray replaceObjectAtIndex:0 withObject:(NSString*)passwordRef];
 	CFRelease(passwordDialog); // Note that this will release the passwordRef as well
 	return returnArray;	
 }
@@ -113,8 +115,8 @@
 	OSStatus findKeychainItemStatus = [PasswordHelper getPasswordKeychain:&passwordData length:&passwordLen itemRef:&itemRef host:hostnameStr user:usernameStr];
 	
 	if ( findKeychainItemStatus == noErr ){
-		NSString *returnString = [[NSString alloc] initWithBytes:passwordData
-														  length:passwordLen encoding:NSUTF8StringEncoding];
+		NSString *returnString = [[[NSString alloc] initWithBytes:passwordData
+														  length:passwordLen encoding:NSUTF8StringEncoding] autorelease];
 		SecKeychainItemFreeContent(NULL,passwordData);
 		return returnString;
 	} else {
