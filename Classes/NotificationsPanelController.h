@@ -14,6 +14,5 @@
 @property /*(weak)*/ IBOutlet NSView *growlInfoPanel;
 
 - (IBAction) getGrowlButtonPressed: (id) sender;
-- (void) updateGrowlInfoPanel;
 
 @end

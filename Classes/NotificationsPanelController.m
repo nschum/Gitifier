@@ -38,10 +38,6 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
   return @"Notifications";
 }
 
-- (void)viewWillAppear {
-    [self updateGrowlInfoPanel];
-}
-
 - (void) userEmailChanged: (NSNotification *) notification {
   [self updateUserEmailText: notification.userInfo[@"email"]];
 }
@@ -64,19 +60,6 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
     self.ignoreOwnEmailsField.attributedTitle = text;
   } else {
     self.ignoreOwnEmailsField.title = IgnoreMyCommitsText;
-  }
-}
-
-- (void) updateGrowlInfoPanel {
-  BOOL growlDetected = [GrowlController growlDetected];
-  BOOL panelVisible = !self.growlInfoPanel.isHidden;
-
-  if (!growlDetected && !panelVisible) {
-    [self.growlInfoPanel psShow];
-    [self.view psResizeVerticallyBy: self.growlInfoPanel.frame.size.height];
-  } else if (growlDetected && panelVisible) {
-    [self.growlInfoPanel psHide];
-    [self.view psResizeVerticallyBy: -self.growlInfoPanel.frame.size.height];
   }
 }
 
