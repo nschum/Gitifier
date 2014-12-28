@@ -1,3 +1,12 @@
+### Version 1.3.1
+
+* Lion is now required
+* fixed menu icon in dark mode on Yosemite
+* commit diffs are loaded asynchronously
+* updated Growl SDK
+* switched from GC to ARC
+* detects BitBucket URLs
+
 ### Version 1.3
 
 * Snow Leopard is now required
