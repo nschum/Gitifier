@@ -29,7 +29,7 @@ static NSString *TipsAndTricksPageURL = @"https://github.com/psionides/gitifier/
 }
 
 - (NSImage *) toolbarItemImage {
-  return [NSImage imageNamed: @"about_icon.png"];
+  return [NSImage imageNamed: @"about_icon"];
 }
 
 - (NSString *) toolbarItemLabel {

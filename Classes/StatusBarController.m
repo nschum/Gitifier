@@ -33,7 +33,7 @@ static NSInteger RecentCommitsTitleLimit = 50;
     [NSApp terminate: self];
   }
 
-  NSImage *icon = [NSImage imageNamed: @"icon_menu.png"];
+  NSImage *icon = [NSImage imageNamed: @"icon_menu"];
   [icon setTemplate: YES];
   [statusBarItem setImage: icon];
   [statusBarItem setHighlightMode: YES];

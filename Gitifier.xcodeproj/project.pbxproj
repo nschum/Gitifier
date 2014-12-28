@@ -37,7 +37,6 @@
 		58950DA61486E08A00DE49FA /* about_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58950DA41486E08A00DE49FA /* about_icon.png */; };
 		58950DA71486E08A00DE49FA /* repositories_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58950DA51486E08A00DE49FA /* repositories_icon.png */; };
 		58A181F514841D1700835E97 /* NotificationsPreferencesPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58A181F414841D1700835E97 /* NotificationsPreferencesPanel.xib */; };
-		58A181F714841DFF00835E97 /* growl_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A181F614841DFF00835E97 /* growl_icon.png */; };
 		58A181FA1484311B00835E97 /* NotificationsPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A181F91484311B00835E97 /* NotificationsPanelController.m */; };
 		58A181FE14843B2900835E97 /* notifications_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A181FD14843B2900835E97 /* notifications_icon.png */; };
 		58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC745F124EBACA003BA5EB /* icon_menu.png */; };
@@ -61,6 +60,8 @@
 		58DEC8401246C6B300DE7C7E /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8331246C6B300DE7C7E /* StatusBarController.m */; };
 		58DEC8411246C6B300DE7C7E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8351246C6B300DE7C7E /* Utils.m */; };
 		58E81DC4128B2B7000062F15 /* LinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E81DC3128B2B7000062F15 /* LinkLabel.m */; };
+		58F125661A50CBD70016A9CF /* icon_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F125651A50CBD70016A9CF /* icon_menu@2x.png */; };
+		58F125681A50CF930016A9CF /* about_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F125671A50CF930016A9CF /* about_icon@2x.png */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -142,7 +143,6 @@
 		58950DA41486E08A00DE49FA /* about_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_icon.png; sourceTree = "<group>"; };
 		58950DA51486E08A00DE49FA /* repositories_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repositories_icon.png; sourceTree = "<group>"; };
 		58A181F414841D1700835E97 /* NotificationsPreferencesPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsPreferencesPanel.xib; sourceTree = "<group>"; };
-		58A181F614841DFF00835E97 /* growl_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = growl_icon.png; sourceTree = "<group>"; };
 		58A181F81484311B00835E97 /* NotificationsPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsPanelController.h; sourceTree = "<group>"; };
 		58A181F91484311B00835E97 /* NotificationsPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsPanelController.m; sourceTree = "<group>"; };
 		58A181FD14843B2900835E97 /* notifications_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifications_icon.png; sourceTree = "<group>"; };
@@ -180,6 +180,8 @@
 		58DEC8351246C6B300DE7C7E /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		58E81DC2128B2B7000062F15 /* LinkLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkLabel.h; sourceTree = "<group>"; };
 		58E81DC3128B2B7000062F15 /* LinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkLabel.m; sourceTree = "<group>"; };
+		58F125651A50CBD70016A9CF /* icon_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_menu@2x.png"; sourceTree = "<group>"; };
+		58F125671A50CF930016A9CF /* about_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_icon@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gitifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -372,10 +374,11 @@
 			isa = PBXGroup;
 			children = (
 				58950DA41486E08A00DE49FA /* about_icon.png */,
-				58A181F614841DFF00835E97 /* growl_icon.png */,
+				58F125671A50CF930016A9CF /* about_icon@2x.png */,
 				58CC7524124ED08A003BA5EB /* icon_app.icns */,
 				58CC74F9124ECAEA003BA5EB /* icon_app_32.png */,
 				58CC745F124EBACA003BA5EB /* icon_menu.png */,
+				58F125651A50CBD70016A9CF /* icon_menu@2x.png */,
 				58A181FD14843B2900835E97 /* notifications_icon.png */,
 				58950DA51486E08A00DE49FA /* repositories_icon.png */,
 			);
@@ -527,6 +530,7 @@
 				58DEC10E1242C3C200DE7C7E /* Growl Registration Ticket.growlRegDict in Resources */,
 				588ACBD9124AB094004F3785 /* AskPass in Resources */,
 				588ACDF3124C184E004F3785 /* sparkle_pub_key.pem in Resources */,
+				58F125681A50CF930016A9CF /* about_icon@2x.png in Resources */,
 				58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */,
 				58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */,
 				58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */,
@@ -536,10 +540,10 @@
 				584ED70813B3C80A0085E65C /* AboutPreferencesPanel.xib in Resources */,
 				584ED70B13B3D32A0085E65C /* RepositoriesPreferencesPanel.xib in Resources */,
 				58A181F514841D1700835E97 /* NotificationsPreferencesPanel.xib in Resources */,
-				58A181F714841DFF00835E97 /* growl_icon.png in Resources */,
 				58A181FE14843B2900835E97 /* notifications_icon.png in Resources */,
 				58950DA61486E08A00DE49FA /* about_icon.png in Resources */,
 				58950DA71486E08A00DE49FA /* repositories_icon.png in Resources */,
+				58F125661A50CBD70016A9CF /* icon_menu@2x.png in Resources */,
 				5834F24B1493C962001B9286 /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,6 +2,7 @@
 
 * Lion is now required
 * fixed menu icon in dark mode on Yosemite
+* added retina version of the menu icon
 * commit diffs are loaded asynchronously
 * updated Growl SDK
 * switched from GC to ARC
