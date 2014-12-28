@@ -26,7 +26,7 @@
   return [Git class];
 }
 
-- (NSString *) toolbarItemIdentifier {
+- (NSString *) identifier {
   return @"General";
 }
 

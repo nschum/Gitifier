@@ -11,12 +11,6 @@
 #import "PreferencesWindowController.h"
 #import "RepositoriesPanelController.h"
 
-@interface MASPreferencesWindowController (Private)
-- (NSArray *) toolbarItemIdentifiers;
-- (void) toolbarItemDidClick: (id) sender;
-- (void) updateViewControllerWithAnimation: (BOOL) animate;
-@end
-
 @implementation PreferencesWindowController
 
 - (id) init {
@@ -30,34 +24,8 @@
 }
 
 - (void) windowDidLoad {
-  [[self.window standardWindowButton: NSWindowZoomButton] setEnabled: NO];
-}
-
-- (void) setContentView: (NSView *) view {
-  [super setContentView: view];
-  self.window.showsResizeIndicator = [self.window.toolbar.selectedItemIdentifier isEqual: @"Repositories"];
-}
-
-- (void) showWindow: (id) sender {
-  [self toolbarItemDidClick: sender];
-  [super showWindow: sender];
-}
-
-- (void) updateViewControllerWithAnimation: (BOOL) animate {
-  NSArray *identifiers = [self toolbarItemIdentifiers];
-  NSString *itemIdentifier = self.window.toolbar.selectedItemIdentifier;
-  NSUInteger controllerIndex = [identifiers indexOfObject: itemIdentifier];
-
-  if (controllerIndex != NSNotFound) {
-    NSViewController *controller = self.viewControllers[controllerIndex];
-    if ([controller isKindOfClass: [NotificationsPanelController class]]) {
-      NotificationsPanelController *npc = (NotificationsPanelController *) controller;
-      [npc view];
-      [npc updateGrowlInfoPanel];
-    }
-
-    [super updateViewControllerWithAnimation: animate];
-  }
+  [super windowDidLoad];
+  [[self.window standardWindowButton: NSWindowMiniaturizeButton] setEnabled: YES];
 }
 
 @end

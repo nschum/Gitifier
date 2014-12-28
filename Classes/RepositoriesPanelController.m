@@ -15,7 +15,7 @@
   return [super initWithNibName: @"RepositoriesPreferencesPanel" bundle: nil];
 }
 
-- (NSString *) toolbarItemIdentifier {
+- (NSString *) identifier {
   return @"Repositories";
 }
 

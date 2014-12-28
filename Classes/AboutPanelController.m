@@ -23,7 +23,7 @@ static NSString *TipsAndTricksPageURL = @"https://github.com/psionides/gitifier/
   [self.creditsList.mainFrame loadHTMLString: html baseURL: nil];
 }
 
-- (NSString *) toolbarItemIdentifier {
+- (NSString *) identifier {
   return @"About";
 }
 

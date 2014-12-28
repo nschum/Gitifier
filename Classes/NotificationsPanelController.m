@@ -24,7 +24,7 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
   PSObserve(nil, UserEmailChangedNotification, userEmailChanged:);
 }
 
-- (NSString *) toolbarItemIdentifier {
+- (NSString *) identifier {
   return @"Notifications";
 }
 
@@ -34,6 +34,10 @@ static NSString *GrowlAppStoreURL = @"macappstore://itunes.apple.com/us/app/grow
 
 - (NSString *) toolbarItemLabel {
   return @"Notifications";
+}
+
+- (void)viewWillAppear {
+    [self updateGrowlInfoPanel];
 }
 
 - (void) userEmailChanged: (NSNotification *) notification {
