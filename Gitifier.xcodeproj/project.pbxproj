@@ -713,7 +713,6 @@
 				GCC_PREFIX_HEADER = Gitifier_Prefix.pch;
 				INFOPLIST_FILE = "Gitifier-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = Gitifier;
 			};
 			name = Debug;
@@ -734,7 +733,6 @@
 				GCC_PREFIX_HEADER = Gitifier_Prefix.pch;
 				INFOPLIST_FILE = "Gitifier-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				PRODUCT_NAME = Gitifier;
 			};
 			name = Release;
