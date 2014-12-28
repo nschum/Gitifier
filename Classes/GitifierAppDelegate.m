@@ -5,6 +5,8 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
+#import "RegexKitLite.h"
+
 #import "Commit.h"
 #import "Defaults.h"
 #import "Git.h"
@@ -18,7 +20,6 @@
 static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
 static CGFloat IntervalBetweenGrowls        = 0.05;
-static NSRegularExpression *gitVersionRegex;
 
 @interface GitifierAppDelegate ()
 
@@ -30,10 +31,6 @@ static NSRegularExpression *gitVersionRegex;
 @implementation GitifierAppDelegate
 
 // --- initialization and termination ---
-
-+ (void) initialize {
-  gitVersionRegex = [NSRegularExpression regularExpressionWithPattern: @"^git version \\d" options: 0 error: nil];
-}
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
   self.repositoryList = [NSMutableArray array];
@@ -220,7 +217,7 @@ static NSRegularExpression *gitVersionRegex;
       PSNotifyWithData(UserEmailChangedNotification, @{@"email": self.userEmail});
     }
   } else if ([command isEqual: @"version"]) {
-    if (!output || ![output isMatchedByRegex: gitVersionRegex]) {
+    if (!output || ![output isMatchedByRegex: @"^git version \\d"]) {
       [self rejectGitPath];
     }
   }

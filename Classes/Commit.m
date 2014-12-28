@@ -7,14 +7,9 @@
 
 #import "Commit.h"
 #import "Defaults.h"
-
-static NSRegularExpression *mergeCommitRegex;
+#import "RegexKitLite.h"
 
 @implementation Commit
-
-+ (void) initialize {
-  mergeCommitRegex = [NSRegularExpression regularExpressionWithPattern: @"^Merge branch '.*'" options: 0 error: nil];
-}
 
 + (Commit *) commitFromDictionary: (NSDictionary *) dictionary {
   return (Commit *) [Commit objectFromJSON: dictionary];
@@ -40,7 +35,7 @@ static NSRegularExpression *mergeCommitRegex;
 }
 
 - (BOOL) isMergeCommit {
-  return [self.subject isMatchedByRegex: mergeCommitRegex];
+  return [self.subject isMatchedByRegex: @"^Merge branch '.*'"];
 }
 
 - (NSDictionary *) toDictionary {

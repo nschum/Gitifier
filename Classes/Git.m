@@ -5,6 +5,7 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
+#import "RegexKitLite.h"
 #import "Git.h"
 #import "GitifierAppDelegate.h"
 #import "PasswordHelper.h"
@@ -129,7 +130,7 @@ static NSString *gitExecutable = nil;
         PSLog(@"command git %@ completed with output: %@", command, output);
         [self notifyDelegateWithSelector: @selector(commandCompleted:output:) command: command output: output];
       } else {
-        if ([output psContainsString: @"Authentication failed"]) {
+        if ([output isMatchedByRegex: @"Authentication failed"]) {
           [PasswordHelper removePasswordForHost: self.repositoryUrl user: @"Gitifier"];
         }
         PSLog(@"command git %@ failed with output: %@", command, output);

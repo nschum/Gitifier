@@ -12,11 +12,8 @@ extern NSString *UserEmailChangedNotification;
 extern NSString *GitExecutableSetNotification;
 
 @interface NSString (Gitifier)
-- (BOOL) isMatchedByRegex: (NSRegularExpression *) regex;
-- (NSArray *) arrayOfCaptureComponentsMatchedByRegex: (NSRegularExpression *) regex;
-- (NSArray *) componentsMatchedByRegex: (NSRegularExpression *) regex;
-- (NSString *) lastKeyPathElement;
 - (NSString *) MD5Hash;
+- (NSString *) lastKeyPathElement;
 @end
 
 @interface NSWindow (Gitifier)
