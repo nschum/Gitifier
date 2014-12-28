@@ -99,11 +99,15 @@ static NSMutableArray *windows;
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
   NSFont *font = [NSFont fontWithName: @"Monaco" size: 11.0];
 
-  NSMutableAttributedString *text = [[NSMutableAttributedString alloc] init];
-  [text appendAttributedString: [colorConverter attributedStringWithANSIEscapedString: [output psTrimmedString]]];
-  [text addAttribute: NSFontAttributeName value: font range: NSMakeRange(0, text.length)];
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] init];
 
-  [self handleResult: text];
+    [text appendAttributedString:
+     [colorConverter attributedStringWithANSIEscapedString: [output psTrimmedString]]];
+    [text addAttribute: NSFontAttributeName value: font range: NSMakeRange(0, text.length)];
+
+    [self handleResult: text];
+  });
 }
 
 - (void) commandFailed: (NSString *) command output: (NSString *) output {
