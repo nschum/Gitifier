@@ -9,6 +9,46 @@
     <language>en</language>
 
     <item>
+      <title>Gitifier 1.3.1</title>
+      <description>
+        <![CDATA[
+          <html>
+            <head>
+              <meta http-equiv="content-type" content="text/html;charset=utf-8">
+              <title>Gitifier 1.3.1</title>
+              <link href="http://github.com/jsuder/gitifier/raw/master/Sparkle/appcast.css"
+                type="text/css" rel="stylesheet" media="all">
+            </head>
+
+            <body>
+              <h3>Project status:</h3>
+              <p>I'm not using this app myself anymore, so I'm not planning to develop it further. I might do small
+                bugfix releases like this, but that's all I can do. If you'd like to take over the project, let me know.</p>
+              <hr><br>
+              <h3>What's new in version 1.3.1:</h3>
+              <ul>
+                <li>OSX 10.7 (Lion) is now required</li>
+                <li>commit content is now loaded asynchronously</li>
+                <li>added BitBucket URL detection</li>
+                <li>fixed displaying menu bar icon on OSX Yosemite in dark mode</li>
+                <li>added retina version of the menu bar icon</li>
+                <li>updated Growl SDK</li>
+                <li>other compatibility fixes</li>
+              </ul>
+            </body>
+          </html>
+        ]]>
+      </description>
+      <pubDate>Thu, 01 Jan 2015 15:54:44 +0000</pubDate>
+      <enclosure
+        url="https://github.com/jsuder/Gitifier/releases/download/1.3.1/Gitifier-1.3.1.zip"
+        sparkle:version="1.3.1"
+        length="1039340"
+        type="application/octet-stream"
+        sparkle:dsaSignature="MCwCFHeyfHIYdNwvYouth7tQNAx039sAAhQp3GWkmiWqUJgQ+IJVSYynf1Bzyw==" />
+    </item>
+
+    <item>
       <title>Gitifier 1.3</title>
       <description>
         <![CDATA[
