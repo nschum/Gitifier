@@ -4,10 +4,7 @@ Gitifier is a MacOSX menu bar application that monitors Git repositories for new
 Growl notifications. Check out the project home page:
 [http://psionides.github.com/Gitifier](http://psionides.github.com/Gitifier).
 
-## Project status
-
-I'm not planning to work on this app anymore - I might fix any serious bugs if they appear, but that's it. If someone
-wants to take over the development, let me know.
+Gitifier was originally developed by Jakub Suder and is now maintained by Nikolaj Schumacher.
 
 ## Requirements
 
