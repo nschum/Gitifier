@@ -252,7 +252,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="992944126">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">© 2010-2014 Jakub Suder</string>
+							<string key="NSContents">© 2010-2015 Jakub Suder</string>
 							<reference key="NSSupport" ref="26"/>
 							<reference key="NSControlView" ref="965075486"/>
 							<object class="NSColor" key="NSBackgroundColor" id="977119410">
