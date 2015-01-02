@@ -6,11 +6,10 @@
 // -------------------------------------------------------
 
 #import "Commit.h"
-#import "CommitWindowController.h"
 #import "Defaults.h"
 #import "GrowlController.h"
 #import "Repository.h"
-#import "RepositoryListController.h"
+#import "NotificationControllerClickHandler.h"
 
 NSString *CommitReceivedGrowl         = @"Commit received";
 NSString *RepositoryUpdateFailedGrowl = @"Repository update failed";
@@ -18,14 +17,6 @@ NSString *OtherMessageGrowl           = @"Other message";
 
 
 @implementation GrowlController
-
-+ (GrowlController *) sharedController {
-  static GrowlController *instance = nil;
-  if (!instance) {
-    instance = [[GrowlController alloc] init];
-  }
-  return instance;
-}
 
 + (BOOL) growlDetected {
   return [GrowlApplicationBridge isGrowlRunning];
@@ -39,7 +30,7 @@ NSString *OtherMessageGrowl           = @"Other message";
   return self;
 }
 
-- (void) showGrowlWithCommit: (Commit *) commit {
+- (void) showNotificationWithCommit: (Commit *) commit {
   BOOL sticky = [GitifierDefaults boolForKey: StickyNotificationsKey];
   NSDictionary *commitData = @{@"commit": [commit toDictionary], @"repository": commit.repository.url};
 
@@ -52,7 +43,7 @@ NSString *OtherMessageGrowl           = @"Other message";
                              clickContext: commitData];
 }
 
-- (void) showGrowlWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll {
+- (void) showNotificationWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll {
   BOOL sticky = [GitifierDefaults boolForKey: StickyNotificationsKey];
   NSArray *authorNames = [commits valueForKeyPath: @"@distinctUnionOfObjects.authorName"];
   NSString *authorList = [authorNames componentsJoinedByString: @", "];
@@ -67,15 +58,15 @@ NSString *OtherMessageGrowl           = @"Other message";
                              clickContext: nil];
 }
 
-- (void) showGrowlWithCommitGroupIncludingAllCommits: (NSArray *) commits {
-  [self showGrowlWithCommitGroup: commits includesAllCommits: YES];
+- (void) showNotificationWithCommitGroupIncludingAllCommits: (NSArray *) commits {
+  [self showNotificationWithCommitGroup: commits includesAllCommits: YES];
 }
 
-- (void) showGrowlWithCommitGroupIncludingSomeCommits: (NSArray *) commits {
-  [self showGrowlWithCommitGroup: commits includesAllCommits: NO];
+- (void) showNotificationWithCommitGroupIncludingSomeCommits: (NSArray *) commits {
+  [self showNotificationWithCommitGroup: commits includesAllCommits: NO];
 }
 
-- (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository {
+- (void) showNotificationWithError: (NSString *) message repository: (Repository *) repository {
   NSString *title;
   if (repository) {
     NSLog(@"Error in %@: %@", repository.name, message);
@@ -85,10 +76,10 @@ NSString *OtherMessageGrowl           = @"Other message";
     title = @"Error";
   }
 
-  [self showGrowlWithTitle: title message: message type: RepositoryUpdateFailedGrowl];
+  [self showNotificationWithTitle: title message: message type: RepositoryUpdateFailedGrowl];
 }
 
-- (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type {
+- (void) showNotificationWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type {
   [GrowlApplicationBridge notifyWithTitle: title
                               description: message
                          notificationName: type
@@ -112,26 +103,9 @@ NSString *OtherMessageGrowl           = @"Other message";
   id date = clickContext[@"commit"][@"date"];
   if ([date isKindOfClass: [NSString class]]) return;
 
-  BOOL shouldShowDiffs = [GitifierDefaults boolForKey: ShowDiffWindowKey];
-  BOOL shouldOpenInBrowser = [GitifierDefaults boolForKey: OpenDiffInBrowserKey];
-  
-  if (clickContext && shouldShowDiffs) {
-    NSString *url = clickContext[@"repository"];
-    NSDictionary *commitHash = clickContext[@"commit"];
-    Repository *repository = [self.repositoryListController findByUrl: url];
-
-    if (repository) {
-      Commit *commit = [Commit commitFromDictionary: commitHash];
-      commit.repository = repository;
-      NSURL *webUrl = [repository webUrlForCommit: commit];
-
-      if (webUrl && shouldOpenInBrowser) {
-        [[NSWorkspace sharedWorkspace] openURL: webUrl];
-      } else {
-        [[[CommitWindowController alloc] initWithCommit: commit] show];
-      }
-    }
-  }
+  NotificationControllerClickHandler *handler = [NotificationControllerClickHandler new];
+  handler.repositoryListController = self.repositoryListController;
+  [handler handleClickWithDictionary: clickContext];
 }
 
 @end

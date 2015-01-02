@@ -18,6 +18,7 @@
 #import "Repository.h"
 #import "RepositoryListController.h"
 #import "StatusBarController.h"
+#import "NotificationControllerFactory.h"
 
 static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
@@ -43,7 +44,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   ObserveDefaults(KeepWindowsOnTopKey);
   [self loadGitPath];
 
-  [[GrowlController sharedController] setRepositoryListController: self.repositoryListController];
+  [[NotificationControllerFactory sharedController] setRepositoryListController: self.repositoryListController];
 
   [self askAboutStats];
 
@@ -249,12 +250,12 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
     remainingCommits = @[];
   }
 
-  GrowlController *growl = [GrowlController sharedController];
+  NSObject<NotificationController> *growl = [NotificationControllerFactory sharedController];
   NSInteger i = 0;
 
   for (Commit *commit in displayedCommits) {
     // intervals added because Growl 1.3 can't figure out the proper order by itself...
-    [growl performSelector: @selector(showGrowlWithCommit:) withObject: commit afterDelay: i * IntervalBetweenGrowls];
+    [growl performSelector: @selector(showNotificationWithCommit:) withObject: commit afterDelay: i * IntervalBetweenGrowls];
     i += 1;
   }
 
@@ -262,9 +263,9 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
     SEL action;
 
     if (notificationLimit == 1) {
-      action = @selector(showGrowlWithCommitGroupIncludingAllCommits:);
+      action = @selector(showNotificationWithCommitGroupIncludingAllCommits:);
     } else {
-      action = @selector(showGrowlWithCommitGroupIncludingSomeCommits:);
+      action = @selector(showNotificationWithCommitGroupIncludingSomeCommits:);
     }
 
     [growl performSelector: action withObject: remainingCommits afterDelay: i * IntervalBetweenGrowls];
@@ -280,8 +281,8 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 }
 
 - (void) repositoryCouldNotBeCloned: (Repository *) repository {
-  [[GrowlController sharedController] showGrowlWithError: @"Cached copy was deleted and can't be restored."
-                                              repository: repository];
+  [[NotificationControllerFactory sharedController] showNotificationWithError: @"Cached copy was deleted and can't be restored."
+                                                                   repository: repository];
 }
 
 @end

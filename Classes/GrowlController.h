@@ -6,6 +6,7 @@
 // -------------------------------------------------------
 
 #import <Growl/GrowlApplicationBridge.h>
+#import "NotificationController.h"
 
 @class Commit;
 @class Repository;
@@ -13,19 +14,10 @@
 
 extern NSString *OtherMessageGrowl;
 
-@interface GrowlController : NSObject <GrowlApplicationBridgeDelegate>
+@interface GrowlController : NSObject <GrowlApplicationBridgeDelegate, NotificationController>
 
 @property RepositoryListController *repositoryListController;
 
-+ (GrowlController *) sharedController;
 + (BOOL) growlDetected;
-
-- (void) showGrowlWithCommit: (Commit *) commit;
-- (void) showGrowlWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll;
-- (void) showGrowlWithCommitGroupIncludingAllCommits: (NSArray *) commits;
-- (void) showGrowlWithCommitGroupIncludingSomeCommits: (NSArray *) commits;
-
-- (void) showGrowlWithError: (NSString *) message repository: (Repository *) repository;
-- (void) showGrowlWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type;
 
 @end

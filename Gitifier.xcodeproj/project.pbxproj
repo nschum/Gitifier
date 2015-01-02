@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AA1001A46D8D6988DF07147 /* NotificationControllerClickHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */; };
+		1AA10311942D30BBB3A4D751 /* NotificationControllerFactory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */; };
+		1AA10617361FC302CADB032C /* NotificationControllerClickHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */; };
+		1AA10A1C9340DF29B915176E /* NotificationControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10E7ECADAF2AB34CA8A07 /* NotificationControllerFactory.m */; };
+		1AA10B4F33421FB6FDCD5230 /* NotificationCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10F4D5032E881AB4084C9 /* NotificationCenterController.m */; };
+		1AA10FB355EFA2C9CC00F79D /* NotificationCenterController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA1001750E0E2483977F77F /* NotificationCenterController.h */; };
+		1AA10FDEFBA4D0254DF5E85E /* NotificationController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA10E87E1D6C1F9649F47D2 /* NotificationController.h */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		581C9E91127E046D003ECF6A /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		581C9E9E127E050A003ECF6A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
@@ -81,6 +88,10 @@
 			dstSubfolderSpec = 10;
 			files = (
 				58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */,
+				1AA10FDEFBA4D0254DF5E85E /* NotificationController.h in CopyFiles */,
+				1AA10311942D30BBB3A4D751 /* NotificationControllerFactory.h in CopyFiles */,
+				1AA10FB355EFA2C9CC00F79D /* NotificationCenterController.h in CopyFiles */,
+				1AA1001A46D8D6988DF07147 /* NotificationControllerClickHandler.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +100,13 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		1AA1001750E0E2483977F77F /* NotificationCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterController.h; sourceTree = "<group>"; };
+		1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationControllerClickHandler.h; sourceTree = "<group>"; };
+		1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationControllerClickHandler.m; sourceTree = "<group>"; };
+		1AA10E7ECADAF2AB34CA8A07 /* NotificationControllerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationControllerFactory.m; sourceTree = "<group>"; };
+		1AA10E87E1D6C1F9649F47D2 /* NotificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationControllerFactory.h; sourceTree = "<group>"; };
+		1AA10F4D5032E881AB4084C9 /* NotificationCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenterController.m; sourceTree = "<group>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* Gitifier_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gitifier_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -419,6 +437,13 @@
 				58DEC8331246C6B300DE7C7E /* StatusBarController.m */,
 				58DEC8341246C6B300DE7C7E /* Utils.h */,
 				58DEC8351246C6B300DE7C7E /* Utils.m */,
+				1AA10E87E1D6C1F9649F47D2 /* NotificationController.h */,
+				1AA10E7ECADAF2AB34CA8A07 /* NotificationControllerFactory.m */,
+				1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */,
+				1AA10F4D5032E881AB4084C9 /* NotificationCenterController.m */,
+				1AA1001750E0E2483977F77F /* NotificationCenterController.h */,
+				1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */,
+				1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -603,6 +628,9 @@
 				584ED6FD13B37F650085E65C /* RepositoriesPanelController.m in Sources */,
 				584ED70013B37F780085E65C /* AboutPanelController.m in Sources */,
 				58A181FA1484311B00835E97 /* NotificationsPanelController.m in Sources */,
+				1AA10A1C9340DF29B915176E /* NotificationControllerFactory.m in Sources */,
+				1AA10B4F33421FB6FDCD5230 /* NotificationCenterController.m in Sources */,
+				1AA10617361FC302CADB032C /* NotificationControllerClickHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

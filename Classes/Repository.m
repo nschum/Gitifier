@@ -11,6 +11,7 @@
 #import "Git.h"
 #import "GrowlController.h"
 #import "Repository.h"
+#import "NotificationControllerFactory.h"
 
 static NSString *nameRegexp = @"[\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\-\\.]+";
 static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
@@ -132,7 +133,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
         [self clone];
       }
     } else {
-      [[GrowlController sharedController] showGrowlWithError: @"Can't fetch repository." repository: self];
+      [[NotificationControllerFactory sharedController] showNotificationWithError: @"Can't fetch repository." repository: self];
     }
   }
 }
@@ -186,8 +187,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   } else if (status != UnavailableRepository) {
     status = UnavailableRepository;
     NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
-    [[GrowlController sharedController] showGrowlWithError: PSFormat(@"Command %@ failed: %@", command, truncated)
-                                                repository: self];
+    [[NotificationControllerFactory sharedController] showNotificationWithError: PSFormat(@"Command %@ failed: %@", command, truncated) repository: self];
   }
 }
 

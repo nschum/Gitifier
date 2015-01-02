@@ -9,6 +9,7 @@
 #import "NewRepositoryDialogController.h"
 #import "Repository.h"
 #import "RepositoryListController.h"
+#import "NotificationControllerFactory.h"
 
 @implementation NewRepositoryDialogController {
   NSTimer *slowCloneTimer;
@@ -129,10 +130,9 @@
   [self hideNewRepositorySheet];
 
   if (waitingForSlowClone) {
-    GrowlController *growl = [GrowlController sharedController];
-    [growl showGrowlWithTitle: @"Repository cloned"
-                      message: PSFormat(@"Repository at %@ has been successfully added to Gitifier.", repository.url)
-                         type: OtherMessageGrowl];
+    id<NotificationController>growl = [NotificationControllerFactory sharedController];
+    [growl showNotificationWithTitle: @"Repository cloned"
+                             message: PSFormat(@"Repository at %@ has been successfully added to Gitifier.", repository.url) type: OtherMessageGrowl];
   }
 
   [self unlockDialog];
