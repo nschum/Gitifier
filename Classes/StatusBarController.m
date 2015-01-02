@@ -10,7 +10,7 @@
 #import "Defaults.h"
 #import "StatusBarController.h"
 
-static NSInteger RecentCommitsTitleLimit = 50;
+static NSUInteger RecentCommitsTitleLimit = 50;
 
 @implementation StatusBarController {
   NSStatusItem *statusBarItem;
@@ -41,7 +41,7 @@ static NSInteger RecentCommitsTitleLimit = 50;
 }
 
 - (void) updateRecentCommitsList: (NSArray *) newCommits {
-  NSInteger limit = [GitifierDefaults integerForKey: RecentCommitsListLengthKey];
+  NSUInteger limit = [GitifierDefaults integerForKey: RecentCommitsListLengthKey];
 
   recentCommits = [newCommits arrayByAddingObjectsFromArray: recentCommits];
   recentCommits = [recentCommits subarrayWithRange: NSMakeRange(0, MIN(recentCommits.count, limit))];
@@ -60,7 +60,7 @@ static NSInteger RecentCommitsTitleLimit = 50;
     [menu insertItem: [NSMenuItem separatorItem] atIndex: 0];
   }
 
-  for (NSInteger i = 0; i < recentCommits.count; i++) {
+  for (NSUInteger i = 0; i < recentCommits.count; i++) {
     Commit *commit = recentCommits[i];
 
     NSString *title = commit.subject;

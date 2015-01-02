@@ -5,7 +5,10 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
 #import "ANSIEscapeHelper.h"
+#pragma clang diagnostic pop
 
 @class Commit;
 @class Repository;

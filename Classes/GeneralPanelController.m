@@ -59,7 +59,7 @@
   }
 }
 
-- (BOOL) panel: (NSOpenPanel *) panel shouldEnableURL: (NSURL *) url {
+- (BOOL) panel: (id) panel shouldEnableURL: (NSURL *) url {
   BOOL isFileURL = [url isFileURL];
   
   NSNumber *directoryAttribute;

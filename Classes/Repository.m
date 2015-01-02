@@ -100,7 +100,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (NSURL *) webUrlForCommit: (Commit *) commit {
   if (commitUrlPattern) {
-    NSString *webUrl = PSFormat(commitUrlPattern, commit.gitHash);
+    NSString *webUrl = [commitUrlPattern stringByReplacingOccurrencesOfString:@"%@" withString:commit.gitHash];
     return [NSURL URLWithString: webUrl];
   } else {
     return nil;

@@ -11,7 +11,7 @@
 
 @property /*(weak)*/ IBOutlet NSTextField *monitorIntervalField;
 @property /*(weak)*/ IBOutlet NSButton *chooseGitPathButton;
-@property (readonly) id gitClass;
+@property (nonatomic, strong, readonly) id gitClass;
 
 - (IBAction) openGitExecutableDialog: (id) sender;
 

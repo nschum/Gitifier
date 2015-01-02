@@ -12,7 +12,7 @@
 @interface RepositoriesPanelController : NSViewController <MASPreferencesViewController>
 
 @property (strong) IBOutlet RepositoryListController *repositoryListController;
-@property (readonly) id gitClass;
+@property (nonatomic, strong, readonly) id gitClass;
 
 - (IBAction) removeRepositories: (id) sender;
 

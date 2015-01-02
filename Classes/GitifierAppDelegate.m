@@ -236,7 +236,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   BOOL hasNotificationLimit = [GitifierDefaults boolForKey: NotificationLimitEnabledKey];
-  NSInteger notificationLimit = [GitifierDefaults integerForKey: NotificationLimitValueKey];
+  NSUInteger notificationLimit = [GitifierDefaults integerForKey: NotificationLimitValueKey];
 
   NSArray *relevantCommits = [Commit chooseRelevantCommits: commits forUser: self.userEmail];
   NSArray *displayedCommits, *remainingCommits;

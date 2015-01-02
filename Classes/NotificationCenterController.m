@@ -34,11 +34,12 @@
 - (void) showNotificationWithCommitGroup: (NSArray *) commits includesAllCommits: (BOOL) includesAll {
   NSArray *authorNames = [commits valueForKeyPath: @"@distinctUnionOfObjects.authorName"];
   NSString *authorList = [authorNames componentsJoinedByString: @", "];
-  NSString *message = includesAll ? @"%d commits received" : @"… and %d other commits";
+  unsigned long count = commits.count;
+  NSString *message = includesAll ? PSFormat(@"%lud commits received", count) : PSFormat(@"… and %lud other commits", count);
 
   [self showNotificationWithTitle:((Commit *)commits[0]).repository.name
-                         subtitle:PSFormat(authorList)
-                          message:PSFormat(message, commits.count)
+                         subtitle:authorList
+                          message:message
                              info:nil];
 }
 

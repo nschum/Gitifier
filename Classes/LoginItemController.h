@@ -7,6 +7,6 @@
 
 @interface LoginItemController : NSObject
 
-@property BOOL loginItemEnabled;
+@property (nonatomic, assign) BOOL loginItemEnabled;
 
 @end

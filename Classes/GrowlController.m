@@ -11,9 +11,9 @@
 #import "Repository.h"
 #import "NotificationControllerClickHandler.h"
 
-NSString *CommitReceivedGrowl         = @"Commit received";
-NSString *RepositoryUpdateFailedGrowl = @"Repository update failed";
-NSString *OtherMessageGrowl           = @"Other message";
+static NSString *CommitReceivedGrowl = @"Commit received";
+static NSString *RepositoryUpdateFailedGrowl = @"Repository update failed";
+NSString *OtherMessageGrowl = @"Other message";
 
 
 @implementation GrowlController
@@ -47,9 +47,10 @@ NSString *OtherMessageGrowl           = @"Other message";
   BOOL sticky = [GitifierDefaults boolForKey: StickyNotificationsKey];
   NSArray *authorNames = [commits valueForKeyPath: @"@distinctUnionOfObjects.authorName"];
   NSString *authorList = [authorNames componentsJoinedByString: @", "];
-  NSString *message = includesAll ? @"%d commits received" : @"… and %d other commits";
+  unsigned long count = commits.count;
+  NSString *message = includesAll ? PSFormat(@"%lud commits received", count) : PSFormat(@"… and %lud other commits", count);
 
-  [GrowlApplicationBridge notifyWithTitle: PSFormat(message, commits.count)
+  [GrowlApplicationBridge notifyWithTitle: message
                               description: PSFormat(@"Author%@: %@", (authorNames.count > 1) ? @"s" : @"", authorList)
                          notificationName: CommitReceivedGrowl
                                  iconData: [self growlIcon]

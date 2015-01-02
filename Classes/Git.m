@@ -150,7 +150,10 @@ static NSString *gitExecutable = nil;
 - (void) notifyDelegateWithSelector: (SEL) selector command: (NSString *) command output: (NSString *) output {
   if ([delegate respondsToSelector: selector]) {
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
       [delegate performSelector: selector withObject: command withObject: output];
+#pragma clang diagnostic pop
     }];
   }
 }

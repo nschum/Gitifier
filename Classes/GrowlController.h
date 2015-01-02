@@ -5,8 +5,13 @@
 // Licensed under Eclipse Public License v1.0
 // -------------------------------------------------------
 
-#import <Growl/GrowlApplicationBridge.h>
 #import "NotificationController.h"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation-deprecated-sync"
+#pragma clang diagnostic ignored "-Wdocumentation"
+#import <Growl/GrowlApplicationBridge.h>
+#pragma clang diagnostic pop
 
 @class Commit;
 @class Repository;

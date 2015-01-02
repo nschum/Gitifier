@@ -24,7 +24,10 @@
   NSMutableArray *collected = [[NSMutableArray alloc] initWithCapacity: self.count];
 
   for (id element in self) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [collected addObject: [element performSelector: selector]];
+#pragma clang diagnostic pop
   }
 
   return [NSArray arrayWithArray: collected];
@@ -126,7 +129,10 @@
 + (NSArray *) psArrayByCalling: (SEL) selector withObjectsFrom: (NSArray *) array {
   NSMutableArray *collected = [[NSMutableArray alloc] initWithCapacity: array.count];
   for (id element in array) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [collected addObject: [self performSelector: selector withObject: element]];
+#pragma clang diagnostic pop
   }
 
   return [NSArray arrayWithArray: collected];
@@ -135,7 +141,10 @@
 - (NSArray *) psArrayByCalling: (SEL) selector withObjectsFrom: (NSArray *) array {
   NSMutableArray *collected = [[NSMutableArray alloc] initWithCapacity: array.count];
   for (id element in array) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [collected addObject: [self performSelector: selector withObject: element]];
+#pragma clang diagnostic pop
   }
 
   return [NSArray arrayWithArray: collected];
@@ -182,7 +191,7 @@
     return [self copy];
   } else {
     NSMutableString *camelized = [[NSMutableString alloc] initWithString: [words psFirstObject]];
-    for (NSInteger i = 1; i < words.count; i++) {
+    for (NSUInteger i = 1; i < words.count; i++) {
       [camelized appendString: [words[i] capitalizedString]];
     }
     return camelized;

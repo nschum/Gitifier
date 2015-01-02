@@ -12,7 +12,7 @@
 
 @property /*(weak)*/ IBOutlet NSButton *websiteLabel;
 @property /*(weak)*/ IBOutlet WebView *creditsList;
-@property (readonly) NSString *versionString;
+@property (nonatomic, copy, readonly) NSString *versionString;
 
 - (IBAction) openProjectWebsite: (id) sender;
 - (IBAction) openGitHubPage: (id) sender;

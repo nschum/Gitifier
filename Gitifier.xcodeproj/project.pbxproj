@@ -27,7 +27,7 @@
 		584ED70B13B3D32A0085E65C /* RepositoriesPreferencesPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED70913B3D32A0085E65C /* RepositoriesPreferencesPanel.xib */; };
 		585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585886621264DB7A00AD2F1A /* CommitWindow.xib */; };
 		5858866B1264E25000AD2F1A /* CommitWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858866A1264E25000AD2F1A /* CommitWindowController.m */; };
-		5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5858898F1266417700AD2F1A /* ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5858898E1266417700AD2F1A /* ANSIEscapeHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		588ACB0F124AAF12004F3785 /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; };
 		588ACB10124AAF13004F3785 /* Askpass.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB01124AAE5E004F3785 /* Askpass.m */; };
 		588ACB15124AAF91004F3785 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
@@ -801,7 +801,27 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DDEBUG";
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
+				WARNING_CFLAGS = (
+					"-Wno-pedantic",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
+					"-Wno-implicit-retain-self",
+					"-Wno-float-equal",
+					"-Wno-unused-exception-parameter",
+					"-Wno-unused-parameter",
+					"-Wno-unused-function",
+					"-Wno-unused-macros",
+					"-Wno-missing-prototypes",
+					"-Wno-sign-conversion",
+					"-Wno-vla",
+					"-Wno-assign-enum",
+					"-Wno-auto-import",
+					"-Wno-incomplete-module",
+					"-Wno-objc-interface-ivars",
+					"-Wno-documentation-unknown-command",
+					"-Wno-padded",
+					"-Weverything",
+				);
 			};
 			name = Debug;
 		};
@@ -813,7 +833,27 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
+				WARNING_CFLAGS = (
+					"-Wno-pedantic",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
+					"-Wno-implicit-retain-self",
+					"-Wno-float-equal",
+					"-Wno-unused-exception-parameter",
+					"-Wno-unused-parameter",
+					"-Wno-unused-function",
+					"-Wno-unused-macros",
+					"-Wno-missing-prototypes",
+					"-Wno-sign-conversion",
+					"-Wno-vla",
+					"-Wno-assign-enum",
+					"-Wno-auto-import",
+					"-Wno-incomplete-module",
+					"-Wno-objc-interface-ivars",
+					"-Wno-documentation-unknown-command",
+					"-Wno-padded",
+					"-Weverything",
+				);
 			};
 			name = Release;
 		};
