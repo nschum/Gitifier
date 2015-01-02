@@ -9,8 +9,8 @@
 
 @interface GeneralPanelController : NSViewController <MASPreferencesViewController, NSOpenSavePanelDelegate>
 
-@property /*(weak)*/ IBOutlet NSTextField *monitorIntervalField;
-@property /*(weak)*/ IBOutlet NSButton *chooseGitPathButton;
+@property (weak) IBOutlet NSTextField *monitorIntervalField;
+@property (weak) IBOutlet NSButton *chooseGitPathButton;
 @property (nonatomic, strong, readonly) id gitClass;
 
 - (IBAction) openGitExecutableDialog: (id) sender;

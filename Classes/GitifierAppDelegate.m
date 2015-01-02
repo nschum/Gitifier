@@ -26,6 +26,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 
 @interface GitifierAppDelegate ()
 
+@property (strong) PreferencesWindowController *preferencesWindowController;
 @property (strong) NSString *userEmail;
 @property (strong) NSMutableArray *repositoryList;
 

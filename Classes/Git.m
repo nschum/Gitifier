@@ -16,7 +16,7 @@ static NSString *gitExecutable = nil;
 @implementation Git {
   NSTask *currentTask;
   BOOL cancelled;
-  /*__weak*/ id delegate;
+  __weak id delegate;
 }
 
 + (NSString *) gitExecutable {
