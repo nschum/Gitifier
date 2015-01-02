@@ -7,13 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1AA1001A46D8D6988DF07147 /* NotificationControllerClickHandler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */; };
-		1AA10311942D30BBB3A4D751 /* NotificationControllerFactory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */; };
 		1AA10617361FC302CADB032C /* NotificationControllerClickHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */; };
 		1AA10A1C9340DF29B915176E /* NotificationControllerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10E7ECADAF2AB34CA8A07 /* NotificationControllerFactory.m */; };
 		1AA10B4F33421FB6FDCD5230 /* NotificationCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA10F4D5032E881AB4084C9 /* NotificationCenterController.m */; };
-		1AA10FB355EFA2C9CC00F79D /* NotificationCenterController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA1001750E0E2483977F77F /* NotificationCenterController.h */; };
-		1AA10FDEFBA4D0254DF5E85E /* NotificationController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AA10E87E1D6C1F9649F47D2 /* NotificationController.h */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		581C9E91127E046D003ECF6A /* PasswordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB03124AAE5E004F3785 /* PasswordHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		581C9E9E127E050A003ECF6A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
@@ -47,7 +43,7 @@
 		58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 58CC7524124ED08A003BA5EB /* icon_app.icns */; };
 		58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0581242B6EB00DE7C7E /* libicucore.dylib */; };
 		58DEC0C61242C16600DE7C7E /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
-		58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
+		58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		58DEC10E1242C3C200DE7C7E /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */; };
 		58DEC8361246C6B300DE7C7E /* Commit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC81F1246C6B300DE7C7E /* Commit.m */; };
 		58DEC8371246C6B300DE7C7E /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC8211246C6B300DE7C7E /* Defaults.m */; };
@@ -88,10 +84,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */,
-				1AA10FDEFBA4D0254DF5E85E /* NotificationController.h in CopyFiles */,
-				1AA10311942D30BBB3A4D751 /* NotificationControllerFactory.h in CopyFiles */,
-				1AA10FB355EFA2C9CC00F79D /* NotificationCenterController.h in CopyFiles */,
-				1AA1001A46D8D6988DF07147 /* NotificationControllerClickHandler.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +478,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				58DEC0FD1242C39600DE7C7E /* CopyFiles */,
 				7DAB3AC8F5AE060FBD6F0BEF /* Copy Pods Resources */,
+				240567441A5742CA00620B01 /* Codesign Pods */,
 			);
 			buildRules = (
 			);
@@ -556,6 +549,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		240567441A5742CA00620B01 /* Codesign Pods */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Codesign Pods";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -n \"$CODE_SIGN_IDENTITY\" ]; then\n    codesign -f --preserve-metadata=identifier,entitlements,requirements -s \"$CODE_SIGN_IDENTITY\" \"$CONFIGURATION_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH/Sparkle.framework\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		7DAB3AC8F5AE060FBD6F0BEF /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
