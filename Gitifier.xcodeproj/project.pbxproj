@@ -16,8 +16,6 @@
 		5831CCBC12EE0EFC008169A7 /* PSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC8612EE0EFB008169A7 /* PSModel.m */; };
 		5831CCBD12EE0EFC008169A7 /* PSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5831CC8812EE0EFC008169A7 /* PSModelManager.m */; };
 		5834F24B1493C962001B9286 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 5834F24A1493C962001B9286 /* Credits.html */; };
-		584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */; };
-		584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		584ED6FA13B37BF40085E65C /* GeneralPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6F913B37BF40085E65C /* GeneralPanelController.m */; };
 		584ED6FD13B37F650085E65C /* RepositoriesPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6FC13B37F650085E65C /* RepositoriesPanelController.m */; };
 		584ED70013B37F780085E65C /* AboutPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 584ED6FF13B37F780085E65C /* AboutPanelController.m */; };
@@ -31,8 +29,6 @@
 		588ACB10124AAF13004F3785 /* Askpass.m in Sources */ = {isa = PBXBuildFile; fileRef = 588ACB01124AAE5E004F3785 /* Askpass.m */; };
 		588ACB15124AAF91004F3785 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACB14124AAF91004F3785 /* Security.framework */; };
 		588ACBD9124AB094004F3785 /* AskPass in Resources */ = {isa = PBXBuildFile; fileRef = 588ACB09124AAE96004F3785 /* AskPass */; };
-		588ACDCF124C153A004F3785 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588ACDCE124C153A004F3785 /* Sparkle.framework */; };
-		588ACDE3124C15A0004F3785 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 588ACDCE124C153A004F3785 /* Sparkle.framework */; };
 		588ACDF3124C184E004F3785 /* sparkle_pub_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 588ACDF2124C184E004F3785 /* sparkle_pub_key.pem */; };
 		58950DA61486E08A00DE49FA /* about_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58950DA41486E08A00DE49FA /* about_icon.png */; };
 		58950DA71486E08A00DE49FA /* repositories_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 58950DA51486E08A00DE49FA /* repositories_icon.png */; };
@@ -42,7 +38,6 @@
 		58CC7460124EBACA003BA5EB /* icon_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC745F124EBACA003BA5EB /* icon_menu.png */; };
 		58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 58CC74F9124ECAEA003BA5EB /* icon_app_32.png */; };
 		58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 58CC7524124ED08A003BA5EB /* icon_app.icns */; };
-		58DEC0511242B47100DE7C7E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DEC0501242B47100DE7C7E /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0581242B6EB00DE7C7E /* libicucore.dylib */; };
 		58DEC0C61242C16600DE7C7E /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
 		58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 58DEC0C51242C16600DE7C7E /* Growl.framework */; };
@@ -65,6 +60,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C20779716CDD5552FA5BBA5F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A65665E9757ACC213D2637 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +81,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				58DEC1051242C3AD00DE7C7E /* Growl.framework in CopyFiles */,
-				588ACDE3124C15A0004F3785 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,10 +107,6 @@
 		5831CC8812EE0EFC008169A7 /* PSModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSModelManager.m; sourceTree = "<group>"; };
 		5831CC9712EE0EFC008169A7 /* PsiToolkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsiToolkit.h; sourceTree = "<group>"; };
 		5834F24A1493C962001B9286 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
-		584ED6F213B36B940085E65C /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
-		584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
-		584ED6F413B36B940085E65C /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
-		584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
 		584ED6F813B37BF40085E65C /* GeneralPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralPanelController.h; sourceTree = "<group>"; };
 		584ED6F913B37BF40085E65C /* GeneralPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralPanelController.m; sourceTree = "<group>"; };
 		584ED6FB13B37F650085E65C /* RepositoriesPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoriesPanelController.h; sourceTree = "<group>"; };
@@ -136,7 +127,6 @@
 		588ACB03124AAE5E004F3785 /* PasswordHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordHelper.m; sourceTree = "<group>"; };
 		588ACB09124AAE96004F3785 /* AskPass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AskPass; sourceTree = BUILT_PRODUCTS_DIR; };
 		588ACB14124AAF91004F3785 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		588ACDCE124C153A004F3785 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		588ACDF2124C184E004F3785 /* sparkle_pub_key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_pub_key.pem; sourceTree = "<group>"; };
 		588ACDFF124C1C80004F3785 /* gitifier_appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gitifier_appcast.xml; sourceTree = "<group>"; };
 		588ACE01124C1CB1004F3785 /* appcast.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = appcast.css; sourceTree = "<group>"; };
@@ -149,8 +139,6 @@
 		58CC745F124EBACA003BA5EB /* icon_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_menu.png; sourceTree = "<group>"; };
 		58CC74F9124ECAEA003BA5EB /* icon_app_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_app_32.png; sourceTree = "<group>"; };
 		58CC7524124ED08A003BA5EB /* icon_app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon_app.icns; sourceTree = "<group>"; };
-		58DEC04F1242B47100DE7C7E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		58DEC0501242B47100DE7C7E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		58DEC0581242B6EB00DE7C7E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		58DEC0C51242C16600DE7C7E /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 		58DEC0C91242C1A500DE7C7E /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -182,8 +170,11 @@
 		58E81DC3128B2B7000062F15 /* LinkLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkLabel.m; sourceTree = "<group>"; };
 		58F125651A50CBD70016A9CF /* icon_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_menu@2x.png"; sourceTree = "<group>"; };
 		58F125671A50CF930016A9CF /* about_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_icon@2x.png"; sourceTree = "<group>"; };
+		5AE6CEDAC9D85F863B000D48 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		707BCDF362A0B3243D144730 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Gitifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Gitifier-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Gitifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A65665E9757ACC213D2637 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,8 +193,8 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				58DEC0591242B6EB00DE7C7E /* libicucore.dylib in Frameworks */,
 				58DEC0C61242C16600DE7C7E /* Growl.framework in Frameworks */,
-				588ACDCF124C153A004F3785 /* Sparkle.framework in Frameworks */,
 				581C9E9E127E050A003ECF6A /* Security.framework in Frameworks */,
+				C20779716CDD5552FA5BBA5F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +238,7 @@
 				588ACDF0124C1834004F3785 /* Sparkle */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				60FD589CDE403A6C68914E41 /* Pods */,
 			);
 			name = Gitifier;
 			sourceTree = "<group>";
@@ -285,6 +277,7 @@
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 				58DEC0581242B6EB00DE7C7E /* libicucore.dylib */,
+				C1A65665E9757ACC213D2637 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -328,17 +321,6 @@
 				5831CC8812EE0EFC008169A7 /* PSModelManager.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		584ED6F113B36B940085E65C /* MASPreferences */ = {
-			isa = PBXGroup;
-			children = (
-				584ED6F213B36B940085E65C /* MASPreferencesViewController.h */,
-				584ED6F313B36B940085E65C /* MASPreferencesWindow.xib */,
-				584ED6F413B36B940085E65C /* MASPreferencesWindowController.h */,
-				584ED6F513B36B940085E65C /* MASPreferencesWindowController.m */,
-			);
-			path = MASPreferences;
 			sourceTree = "<group>";
 		};
 		5858898C1266417700AD2F1A /* ANSIEscapeHelper */ = {
@@ -390,22 +372,10 @@
 			children = (
 				5858898C1266417700AD2F1A /* ANSIEscapeHelper */,
 				588ACAF7124AAE11004F3785 /* AskPass */,
-				584ED6F113B36B940085E65C /* MASPreferences */,
 				5831CC6012EE0EFB008169A7 /* PsiToolkit */,
-				58DEC04E1242B47100DE7C7E /* RegexKitLite */,
 				58DEC0C51242C16600DE7C7E /* Growl.framework */,
-				588ACDCE124C153A004F3785 /* Sparkle.framework */,
 			);
 			path = Lib;
-			sourceTree = "<group>";
-		};
-		58DEC04E1242B47100DE7C7E /* RegexKitLite */ = {
-			isa = PBXGroup;
-			children = (
-				58DEC04F1242B47100DE7C7E /* RegexKitLite.h */,
-				58DEC0501242B47100DE7C7E /* RegexKitLite.m */,
-			);
-			path = RegexKitLite;
 			sourceTree = "<group>";
 		};
 		58DEC81D1246C63400DE7C7E /* Classes */ = {
@@ -453,6 +423,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		60FD589CDE403A6C68914E41 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5AE6CEDAC9D85F863B000D48 /* Pods.debug.xcconfig */,
+				707BCDF362A0B3243D144730 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -476,10 +455,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Gitifier" */;
 			buildPhases = (
+				E98E017C5882618678F9B38B /* Check Pods Manifest.lock */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				58DEC0FD1242C39600DE7C7E /* CopyFiles */,
+				7DAB3AC8F5AE060FBD6F0BEF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -535,7 +516,6 @@
 				58CC74FA124ECAEA003BA5EB /* icon_app_32.png in Resources */,
 				58CC7525124ED08A003BA5EB /* icon_app.icns in Resources */,
 				585886631264DB7A00AD2F1A /* CommitWindow.xib in Resources */,
-				584ED6F613B36B940085E65C /* MASPreferencesWindow.xib in Resources */,
 				584ED70513B3C49A0085E65C /* GeneralPreferencesPanel.xib in Resources */,
 				584ED70813B3C80A0085E65C /* AboutPreferencesPanel.xib in Resources */,
 				584ED70B13B3D32A0085E65C /* RepositoriesPreferencesPanel.xib in Resources */,
@@ -549,6 +529,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7DAB3AC8F5AE060FBD6F0BEF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E98E017C5882618678F9B38B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		588ACB06124AAE96004F3785 /* Sources */ = {
@@ -565,7 +578,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				58DEC0511242B47100DE7C7E /* RegexKitLite.m in Sources */,
 				58DEC8361246C6B300DE7C7E /* Commit.m in Sources */,
 				58DEC8371246C6B300DE7C7E /* Defaults.m in Sources */,
 				58DEC8381246C6B300DE7C7E /* Git.m in Sources */,
@@ -587,7 +599,6 @@
 				5831CCB812EE0EFC008169A7 /* PSCocoaExtensions.m in Sources */,
 				5831CCBC12EE0EFC008169A7 /* PSModel.m in Sources */,
 				5831CCBD12EE0EFC008169A7 /* PSModelManager.m in Sources */,
-				584ED6F713B36B940085E65C /* MASPreferencesWindowController.m in Sources */,
 				584ED6FA13B37BF40085E65C /* GeneralPanelController.m in Sources */,
 				584ED6FD13B37F650085E65C /* RepositoriesPanelController.m in Sources */,
 				584ED70013B37F780085E65C /* AboutPanelController.m in Sources */,
@@ -702,6 +713,7 @@
 		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AE6CEDAC9D85F863B000D48 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -723,6 +735,7 @@
 		};
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 707BCDF362A0B3243D144730 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;

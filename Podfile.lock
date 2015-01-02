@@ -1,0 +1,16 @@
+PODS:
+  - MASPreferences (1.1.2)
+  - RegexKitLite (4.0)
+  - Sparkle (1.8.0)
+
+DEPENDENCIES:
+  - MASPreferences
+  - RegexKitLite
+  - Sparkle
+
+SPEC CHECKSUMS:
+  MASPreferences: 48debf3a161039bb979e617b7416bc07bd879f75
+  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
+  Sparkle: 5eb20bb37ca21e471dab8417dee880198d905327
+
+COCOAPODS: 0.35.0
