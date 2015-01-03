@@ -11,10 +11,6 @@
 
 @implementation NotificationCenterController
 
-+ (BOOL) notificationCenterDetected {
-  return NSClassFromString(@"NSUserNotification") != nil;
-}
-
 - (id) init {
   self = [super init];
   if (self) {

@@ -17,8 +17,7 @@
 }
 
 + (BOOL) isUseNotificationCenter {
-  return [NotificationCenterController notificationCenterDetected]
-            && ![GrowlController growlDetected];
+  return ![GrowlController growlDetected];
 }
 
 @end
