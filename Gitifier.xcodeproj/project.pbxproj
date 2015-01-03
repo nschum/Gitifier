@@ -238,6 +238,58 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		249FD15A1A586B5200FB6603 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				582E744D126B1D3E0077D935 /* GrowlController.h */,
+				582E744E126B1D3E0077D935 /* GrowlController.m */,
+				1AA10E87E1D6C1F9649F47D2 /* NotificationController.h */,
+				1AA10F4D5032E881AB4084C9 /* NotificationCenterController.m */,
+				1AA1001750E0E2483977F77F /* NotificationCenterController.h */,
+				1AA10E7ECADAF2AB34CA8A07 /* NotificationControllerFactory.m */,
+				1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */,
+				1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */,
+				1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		249FD15B1A586BD900FB6603 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				58DEC8201246C6B300DE7C7E /* Defaults.h */,
+				58DEC8211246C6B300DE7C7E /* Defaults.m */,
+				58DEC82C1246C6B300DE7C7E /* PreferencesWindowController.h */,
+				58DEC82D1246C6B300DE7C7E /* PreferencesWindowController.m */,
+				584ED6FE13B37F780085E65C /* AboutPanelController.h */,
+				584ED6FF13B37F780085E65C /* AboutPanelController.m */,
+				58E81DC2128B2B7000062F15 /* LinkLabel.h */,
+				58E81DC3128B2B7000062F15 /* LinkLabel.m */,
+				584ED6F813B37BF40085E65C /* GeneralPanelController.h */,
+				584ED6F913B37BF40085E65C /* GeneralPanelController.m */,
+				58A181F81484311B00835E97 /* NotificationsPanelController.h */,
+				58A181F91484311B00835E97 /* NotificationsPanelController.m */,
+				584ED6FB13B37F650085E65C /* RepositoriesPanelController.h */,
+				584ED6FC13B37F650085E65C /* RepositoriesPanelController.m */,
+				58DEC82A1246C6B300DE7C7E /* NewRepositoryDialogController.h */,
+				58DEC82B1246C6B300DE7C7E /* NewRepositoryDialogController.m */,
+				58DEC8301246C6B300DE7C7E /* RepositoryListController.h */,
+				58DEC8311246C6B300DE7C7E /* RepositoryListController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		249FD15C1A586C3900FB6603 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				58DEC81E1246C6B300DE7C7E /* Commit.h */,
+				58DEC81F1246C6B300DE7C7E /* Commit.m */,
+				58DEC82E1246C6B300DE7C7E /* Repository.h */,
+				58DEC82F1246C6B300DE7C7E /* Repository.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* Gitifier */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,51 +443,23 @@
 		58DEC81D1246C63400DE7C7E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				584ED6FE13B37F780085E65C /* AboutPanelController.h */,
-				584ED6FF13B37F780085E65C /* AboutPanelController.m */,
-				58DEC81E1246C6B300DE7C7E /* Commit.h */,
-				58DEC81F1246C6B300DE7C7E /* Commit.m */,
+				249FD15C1A586C3900FB6603 /* Model */,
+				249FD15B1A586BD900FB6603 /* Preferences */,
+				249FD15A1A586B5200FB6603 /* Notifications */,
 				585886691264E25000AD2F1A /* CommitWindowController.h */,
 				5858866A1264E25000AD2F1A /* CommitWindowController.m */,
-				58DEC8201246C6B300DE7C7E /* Defaults.h */,
-				58DEC8211246C6B300DE7C7E /* Defaults.m */,
 				58DEC8221246C6B300DE7C7E /* Git.h */,
 				58DEC8231246C6B300DE7C7E /* Git.m */,
-				584ED6F813B37BF40085E65C /* GeneralPanelController.h */,
-				584ED6F913B37BF40085E65C /* GeneralPanelController.m */,
 				58DEC8241246C6B300DE7C7E /* GitifierAppDelegate.h */,
 				58DEC8251246C6B300DE7C7E /* GitifierAppDelegate.m */,
-				582E744D126B1D3E0077D935 /* GrowlController.h */,
-				582E744E126B1D3E0077D935 /* GrowlController.m */,
-				58E81DC2128B2B7000062F15 /* LinkLabel.h */,
-				58E81DC3128B2B7000062F15 /* LinkLabel.m */,
 				58DEC8261246C6B300DE7C7E /* LoginItemController.h */,
 				58DEC8271246C6B300DE7C7E /* LoginItemController.m */,
 				58DEC8281246C6B300DE7C7E /* Monitor.h */,
 				58DEC8291246C6B300DE7C7E /* Monitor.m */,
-				58DEC82A1246C6B300DE7C7E /* NewRepositoryDialogController.h */,
-				58DEC82B1246C6B300DE7C7E /* NewRepositoryDialogController.m */,
-				58A181F81484311B00835E97 /* NotificationsPanelController.h */,
-				58A181F91484311B00835E97 /* NotificationsPanelController.m */,
-				58DEC82C1246C6B300DE7C7E /* PreferencesWindowController.h */,
-				58DEC82D1246C6B300DE7C7E /* PreferencesWindowController.m */,
-				584ED6FB13B37F650085E65C /* RepositoriesPanelController.h */,
-				584ED6FC13B37F650085E65C /* RepositoriesPanelController.m */,
-				58DEC82E1246C6B300DE7C7E /* Repository.h */,
-				58DEC82F1246C6B300DE7C7E /* Repository.m */,
-				58DEC8301246C6B300DE7C7E /* RepositoryListController.h */,
-				58DEC8311246C6B300DE7C7E /* RepositoryListController.m */,
 				58DEC8321246C6B300DE7C7E /* StatusBarController.h */,
 				58DEC8331246C6B300DE7C7E /* StatusBarController.m */,
 				58DEC8341246C6B300DE7C7E /* Utils.h */,
 				58DEC8351246C6B300DE7C7E /* Utils.m */,
-				1AA10E87E1D6C1F9649F47D2 /* NotificationController.h */,
-				1AA10E7ECADAF2AB34CA8A07 /* NotificationControllerFactory.m */,
-				1AA10F4496A269E62D879428 /* NotificationControllerFactory.h */,
-				1AA10F4D5032E881AB4084C9 /* NotificationCenterController.m */,
-				1AA1001750E0E2483977F77F /* NotificationCenterController.h */,
-				1AA10A2B7740270E206877FA /* NotificationControllerClickHandler.m */,
-				1AA1023C7632610686E5A0BC /* NotificationControllerClickHandler.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
