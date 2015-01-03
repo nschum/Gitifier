@@ -21,7 +21,7 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 
 @property (copy) NSString *url;
 @property (copy) NSString *name;
-@property /*(weak)*/ id delegate;
+@property (weak) id delegate;
 
 + (Repository *) repositoryFromHash: (NSDictionary *) hash;
 + (Repository *) repositoryWithUrl: (NSString *) anUrl;

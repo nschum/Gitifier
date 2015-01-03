@@ -1,6 +1,6 @@
 inhibit_all_warnings!
 
-platform :osx, "10.7"
+platform :osx, "10.9"
 workspace 'Gitifier'
 
 pod 'MASPreferences'

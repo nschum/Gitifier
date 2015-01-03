@@ -25,6 +25,7 @@
                                            selector: @selector(timerFired)
                                            userInfo: nil
                                             repeats: YES];
+    timer.tolerance = 20.0;
   }
 }
 
