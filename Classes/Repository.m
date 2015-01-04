@@ -117,7 +117,9 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     isBeingUpdated = YES;
     [git runCommand: @"clone" withArguments: @[self.url, workingCopy, @"-n", @"--depth", @"1"] inPath: cachesDirectory];
   } else {
-    [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
+    if ([_delegate respondsToSelector:@selector(repositoryCouldNotBeCloned:)]) {
+      [_delegate repositoryCouldNotBeCloned:self];
+    }
   }
 }
 
@@ -149,7 +151,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
   if ([command isEqual: @"clone"]) {
     isBeingUpdated = NO;
-    [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
+    if ([_delegate respondsToSelector:@selector(repositoryWasCloned:)]) {
+      assert([NSThread isMainThread]);
+      [_delegate repositoryWasCloned:self];
+    }
   } else if ([command isEqual: @"fetch"]) {
     NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
     NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%ai%n%H%n%aN%n%aE%n%s%n"];
@@ -176,14 +181,20 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     }
     isBeingUpdated = NO;
     status = ActiveRepository;
-    [self.delegate commitsReceived: commits inRepository: self];
+    id <RepositoryDelegate> o = self.delegate;
+    if ([o respondsToSelector:@selector(commitsReceived:inRepository:)]) {
+      assert([NSThread isMainThread]);
+      [o commitsReceived:commits inRepository:self];
+    }
   }
 }
 
 - (void) commandFailed: (NSString *) command output: (NSString *) output {
   isBeingUpdated = NO;
   if ([command isEqual: @"clone"]) {
-    [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
+    if ([_delegate respondsToSelector:@selector(repositoryCouldNotBeCloned:)]) {
+      [_delegate repositoryCouldNotBeCloned:self];
+    }
   } else if (status != UnavailableRepository) {
     status = UnavailableRepository;
     NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
@@ -278,12 +289,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   }
 
   return YES;
-}
-
-- (void) notifyDelegateWithSelector: (SEL) selector {
-  if ([self.delegate respondsToSelector: selector]) {
-    [self.delegate performSelectorOnMainThread: selector withObject: self waitUntilDone: NO];
-  }
 }
 
 @end

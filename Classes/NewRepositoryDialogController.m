@@ -11,6 +11,9 @@
 #import "RepositoryListController.h"
 #import "NotificationControllerFactory.h"
 
+@interface NewRepositoryDialogController () <RepositoryDelegate>
+@end
+
 @implementation NewRepositoryDialogController {
   NSTimer *slowCloneTimer;
   NSString *labelText;

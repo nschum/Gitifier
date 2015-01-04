@@ -16,7 +16,7 @@
 }
 
 - (void) addRepository: (Repository *) repository {
-  [repository setDelegate: [NSApp delegate]];
+  [repository setDelegate: (id<RepositoryDelegate>)[NSApp delegate]];
   [self addObject: repository];
   [self saveRepositories];
 }  
@@ -64,7 +64,7 @@
       }
 
       if (repo) {
-        [repo setDelegate: [NSApp delegate]];
+        [repo setDelegate: (id<RepositoryDelegate>)[NSApp delegate]];
         [self addObject: repo];
       }
     }

@@ -24,7 +24,7 @@ static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
 static CGFloat IntervalBetweenGrowls        = 0.05;
 
-@interface GitifierAppDelegate ()
+@interface GitifierAppDelegate ()<RepositoryDelegate>
 
 @property (strong) PreferencesWindowController *preferencesWindowController;
 @property (strong) NSString *userEmail;
@@ -233,7 +233,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   }
 }
 
-// --- repository callbacks ---
+#pragma mark - RepositoryDelegate
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   BOOL hasNotificationLimit = [GitifierDefaults boolForKey: NotificationLimitEnabledKey];
