@@ -9,20 +9,28 @@
 #import "CommitWindowController.h"
 #import "Defaults.h"
 #import "StatusBarController.h"
+#import "NSImage+GitifierTint.h"
 
 static NSUInteger RecentCommitsTitleLimit = 50;
 
 @implementation StatusBarController {
   NSStatusItem *statusBarItem;
   NSArray *recentCommits;
+  NSImage *icon;
 }
 
 - (id) init {
   self = [super init];
   if (self) {
     recentCommits = @[];
+    [self createIcon];
   }
   return self;
+}
+
+- (void) createIcon {
+  icon = [NSImage imageNamed: @"icon_menu"];
+  icon.template = YES;
 }
 
 - (void) createStatusBarItem {
@@ -33,11 +41,14 @@ static NSUInteger RecentCommitsTitleLimit = 50;
     [NSApp terminate: self];
   }
 
-  NSImage *icon = [NSImage imageNamed: @"icon_menu"];
-  [icon setTemplate: YES];
   [statusBarItem setImage: icon];
   [statusBarItem setHighlightMode: YES];
   [statusBarItem setMenu: self.statusBarMenu];
+}
+
+- (void)setShowError:(BOOL)showError {
+  _showError = showError;
+  statusBarItem.image = _showError ? [icon gitifier_imageWithOverlayColor:[NSColor redColor]] : icon;
 }
 
 - (void) updateRecentCommitsList: (NSArray *) newCommits {

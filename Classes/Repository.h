@@ -15,9 +15,10 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 @optional
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository;
+- (void) repositoryWasFetched:(Repository *)repository;
 - (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSString *)error;
 - (void) repositoryWasCloned: (Repository *) repository;
-- (void) repositoryCouldNotBeCloned: (Repository *) repository;
+- (void) repositoryCouldNotBeCloned: (Repository *) repository error:(NSString *)error;
 
 @end
 
@@ -27,6 +28,7 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 
 @property (copy) NSString *url;
 @property (copy) NSString *name;
+@property (nonatomic, copy, readonly) NSString *lastError;
 @property (weak) id<RepositoryDelegate> delegate;
 
 + (Repository *) repositoryFromHash: (NSDictionary *) hash;

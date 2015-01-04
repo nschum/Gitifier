@@ -275,19 +275,35 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   [self.statusBarController updateRecentCommitsList: relevantCommits];
 }
 
+- (void) repositoryWasFetched:(Repository *)repository {
+  self.statusBarController.showError = [self hasErrors];
+}
+
 - (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSString *)error {
   [[NotificationControllerFactory sharedController] showNotificationWithError: error repository: repository];
+  self.statusBarController.showError = YES;
+}
+
+- (BOOL) hasErrors {
+  for (Repository *repository in _repositoryListController.arrangedObjects) {
+    if (repository.lastError) {
+      return YES;
+    }
+  }
+  return NO;
 }
 
 // these should be rare, only when a fetch fails and a repository needs to be recloned
 
 - (void) repositoryWasCloned: (Repository *) repository {
   [repository fetchNewCommits];
+  self.statusBarController.showError = [self hasErrors];
 }
 
-- (void) repositoryCouldNotBeCloned: (Repository *) repository {
-  [[NotificationControllerFactory sharedController] showNotificationWithError: @"Cached copy was deleted and can't be restored."
-                                                                   repository: repository];
+- (void) repositoryCouldNotBeCloned:(Repository *) repository error:(NSString *)error {
+  [[NotificationControllerFactory sharedController] showNotificationWithError:error
+                                                                   repository:repository];
+  self.statusBarController.showError = YES;
 }
 
 @end

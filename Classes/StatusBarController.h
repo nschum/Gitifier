@@ -7,6 +7,7 @@
 
 @interface StatusBarController : NSObject
 
+@property (nonatomic, assign) BOOL showError;
 @property (weak) IBOutlet NSMenu *statusBarMenu;
 
 - (void) createStatusBarItem;
