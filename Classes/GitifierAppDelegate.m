@@ -275,6 +275,10 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   [self.statusBarController updateRecentCommitsList: relevantCommits];
 }
 
+- (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSString *)error {
+  [[NotificationControllerFactory sharedController] showNotificationWithError: error repository: repository];
+}
+
 // these should be rare, only when a fetch fails and a repository needs to be recloned
 
 - (void) repositoryWasCloned: (Repository *) repository {

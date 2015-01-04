@@ -15,6 +15,7 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 @optional
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository;
+- (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSString *)error;
 - (void) repositoryWasCloned: (Repository *) repository;
 - (void) repositoryCouldNotBeCloned: (Repository *) repository;
 

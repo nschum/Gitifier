@@ -9,9 +9,7 @@
 
 #import "Commit.h"
 #import "Git.h"
-#import "GrowlController.h"
 #import "Repository.h"
-#import "NotificationControllerFactory.h"
 
 static NSString *nameRegexp = @"[\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\-\\.]+";
 static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
@@ -135,7 +133,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
         [self clone];
       }
     } else {
-      [[NotificationControllerFactory sharedController] showNotificationWithError: @"Can't fetch repository." repository: self];
+      if ([_delegate respondsToSelector:@selector(repositoryCouldNotBeFetched:error:)]) {
+        assert([NSThread isMainThread]);
+        [_delegate repositoryCouldNotBeFetched:self error:@"Can't fetch repository."];
+      }
     }
   }
 }
@@ -197,8 +198,11 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     }
   } else if (status != UnavailableRepository) {
     status = UnavailableRepository;
-    NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
-    [[NotificationControllerFactory sharedController] showNotificationWithError: PSFormat(@"Command %@ failed: %@", command, truncated) repository: self];
+    NSLog(@"Command git %@ failed: %@", command, output);
+    if ([_delegate respondsToSelector:@selector(repositoryCouldNotBeFetched:error:)]) {
+      assert([NSThread isMainThread]);
+      [_delegate repositoryCouldNotBeFetched:self error:output];
+    }
   }
 }
 
