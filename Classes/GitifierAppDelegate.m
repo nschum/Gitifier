@@ -276,31 +276,32 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 }
 
 - (void) repositoryWasFetched:(Repository *)repository {
-  self.statusBarController.showError = [self hasErrors];
+  self.statusBarController.errors = [self errors];
 }
 
 - (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSError *)error {
-  self.statusBarController.showError = YES;
+  self.statusBarController.errors = [self errors];
 }
 
-- (BOOL) hasErrors {
+- (NSDictionary *) errors {
+  NSMutableDictionary *errors = [NSMutableDictionary new];
   for (Repository *repository in _repositoryListController.arrangedObjects) {
     if (repository.lastError) {
-      return YES;
+      errors[repository.name] = repository.lastError;
     }
   }
-  return NO;
+  return errors;
 }
 
 // these should be rare, only when a fetch fails and a repository needs to be recloned
 
 - (void) repositoryWasCloned: (Repository *) repository {
   [repository fetchNewCommits];
-  self.statusBarController.showError = [self hasErrors];
+  self.statusBarController.errors = [self errors];
 }
 
 - (void) repositoryCouldNotBeCloned:(Repository *) repository error:(NSError *)error {
-  self.statusBarController.showError = YES;
+  self.statusBarController.errors = [self errors];
 }
 
 @end

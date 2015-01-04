@@ -17,6 +17,7 @@ static NSUInteger RecentCommitsTitleLimit = 50;
   NSStatusItem *statusBarItem;
   NSArray *recentCommits;
   NSImage *icon;
+  NSMenuItem *errorMenuItem;
 }
 
 - (id) init {
@@ -46,10 +47,67 @@ static NSUInteger RecentCommitsTitleLimit = 50;
   [statusBarItem setMenu: self.statusBarMenu];
 }
 
-- (void)setShowError:(BOOL)showError {
-  _showError = showError;
-  statusBarItem.image = _showError ? [icon gitifier_imageWithOverlayColor:[NSColor redColor]] : icon;
+#pragma mark - errors
+
+- (void) setErrors:(NSDictionary *)errors {
+  _errors = [errors copy];
+  if (_errors.count > 0) {
+    statusBarItem.image = [icon gitifier_imageWithOverlayColor:[NSColor redColor]];
+    [self updateErrorsSection];
+  } else {
+    statusBarItem.image = icon;
+    [self removeErrorsSection];
+  }
 }
+
+- (void) updateErrorsSection {
+  NSMenu *menu = self.statusBarMenu;
+  if (menu.itemArray[0] != errorMenuItem) {
+    errorMenuItem = [NSMenuItem new];
+    errorMenuItem.title = @"Errors";
+    [menu insertItem:errorMenuItem atIndex:0];
+    [menu insertItem: [NSMenuItem separatorItem] atIndex: 1];
+  }
+  NSMenu *errorMenu = [NSMenu new];
+  for (NSString *repository in _errors) {
+    NSError *error = _errors[repository];
+    NSMenuItem *menuItem = [NSMenuItem new];
+    menuItem.title = repository;
+    menuItem.representedObject = error;
+    menuItem.toolTip = [self toolTipForError:error];
+    menuItem.target = self;
+    menuItem.action = @selector(showError:);
+    [errorMenu addItem:menuItem];
+  }
+  errorMenuItem.submenu = errorMenu;
+}
+
+- (NSString *)toolTipForError: (NSError *)error {
+  NSString *url = error.userInfo[NSFilePathErrorKey];
+  NSObject *description = error.userInfo[NSLocalizedDescriptionKey];
+  NSString *reason = error.userInfo[NSLocalizedFailureReasonErrorKey];
+  return [NSString stringWithFormat:@"%@\n\n%@\n\n%@", url, description, reason];
+}
+
+- (void) removeErrorsSection {
+  NSMenu *menu = self.statusBarMenu;
+  if (menu.itemArray[0] == errorMenuItem) {
+    [menu removeItemAtIndex:1];
+    [menu removeItemAtIndex:0];
+  }
+}
+
+- (void) showError: (NSMenuItem *)sender {
+  NSError *error = sender.representedObject;
+  NSAlert *alert = [NSAlert new];
+  NSString *url = error.userInfo[NSFilePathErrorKey];
+  NSObject *description = error.userInfo[NSLocalizedDescriptionKey];
+  alert.messageText = [NSString stringWithFormat:@"%@: %@", url, description];
+  alert.informativeText = error.userInfo[NSLocalizedFailureReasonErrorKey];
+  [alert runModal];
+};
+
+#pragma mark - recent commits
 
 - (void) updateRecentCommitsList: (NSArray *) newCommits {
   NSUInteger limit = [GitifierDefaults integerForKey: RecentCommitsListLengthKey];
@@ -63,12 +121,14 @@ static NSUInteger RecentCommitsTitleLimit = 50;
 - (void) updateRecentCommitsSection {
   NSMenu *menu = statusBarItem.menu;
 
-  while ([[menu itemAtIndex: 0] representedObject]) {
-    [menu removeItemAtIndex: 0];
+  NSInteger commitIndex = menu.itemArray[0] == errorMenuItem ? 2 : 0;
+
+  while ([[[menu itemAtIndex:commitIndex] representedObject] isKindOfClass:[Commit class]]) {
+    [menu removeItemAtIndex: commitIndex];
   }
 
-  if (![[menu itemAtIndex: 0] isSeparatorItem]) {
-    [menu insertItem: [NSMenuItem separatorItem] atIndex: 0];
+  if (![[menu itemAtIndex: commitIndex] isSeparatorItem]) {
+    [menu insertItem: [NSMenuItem separatorItem] atIndex: commitIndex];
   }
 
   for (NSUInteger i = 0; i < recentCommits.count; i++) {
@@ -83,7 +143,7 @@ static NSUInteger RecentCommitsTitleLimit = 50;
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle: title action: action keyEquivalent: @""];
     [item setRepresentedObject: commit];
     [item setTarget: self];
-    [menu insertItem: item atIndex: i];
+    [menu insertItem: item atIndex: i + commitIndex];
   }
 }
 
