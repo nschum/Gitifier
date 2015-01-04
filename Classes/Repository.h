@@ -8,15 +8,16 @@
 @class Commit;
 @class Git;
 @class Repository;
+@class RepositoryStatus;
 
 @protocol RepositoryDelegate<NSObject>
 @optional
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository;
 - (void) repositoryWasFetched:(Repository *)repository;
-- (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSError *)error;
+- (void) repositoryCouldNotBeFetched:(Repository *)repository;
 - (void) repositoryWasCloned: (Repository *) repository;
-- (void) repositoryCouldNotBeCloned: (Repository *) repository error:(NSError *)error;
+- (void) repositoryCouldNotBeCloned:(Repository *)repository;
 
 @end
 
@@ -26,7 +27,7 @@
 
 @property (copy) NSString *url;
 @property (copy) NSString *name;
-@property (nonatomic, copy, readonly) NSError *lastError;
+@property (nonatomic, copy, readonly) RepositoryStatus *status;
 @property (weak) id<RepositoryDelegate> delegate;
 
 + (Repository *) repositoryFromHash: (NSDictionary *) hash;

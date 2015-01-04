@@ -9,6 +9,7 @@
 #import "RepositoriesPanelController.h"
 #import "RepositoryListController.h"
 #import "Repository.h"
+#import "RepositoryStatus.h"
 
 @implementation RepositoriesPanelController
 
@@ -40,7 +41,7 @@
   NSInteger row = [sender clickedRow];
   if ([sender clickedColumn] == [sender columnWithIdentifier:@"Status"]) {
     Repository *repository = [self.repositoryListController repositoryList][row];
-    NSError *error = repository.lastError;
+    NSError *error = repository.status.error;
     if (error) {
       NSAlert *alert = [NSAlert new];
       NSString *url = error.userInfo[NSFilePathErrorKey];

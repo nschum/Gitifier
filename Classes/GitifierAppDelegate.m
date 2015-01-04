@@ -19,6 +19,7 @@
 #import "RepositoryListController.h"
 #import "StatusBarController.h"
 #import "NotificationControllerFactory.h"
+#import "RepositoryStatus.h"
 
 static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
@@ -276,15 +277,15 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   self.statusBarController.errors = [self errors];
 }
 
-- (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSError *)error {
+- (void) repositoryCouldNotBeFetched:(Repository *)repository {
   self.statusBarController.errors = [self errors];
 }
 
 - (NSDictionary *) errors {
   NSMutableDictionary *errors = [NSMutableDictionary new];
   for (Repository *repository in _repositoryListController.arrangedObjects) {
-    if (repository.lastError) {
-      errors[repository.name] = repository.lastError;
+    if (repository.status.error) {
+      errors[repository.name] = repository.status.error;
     }
   }
   return errors;
@@ -297,7 +298,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   self.statusBarController.errors = [self errors];
 }
 
-- (void) repositoryCouldNotBeCloned:(Repository *) repository error:(NSError *)error {
+- (void) repositoryCouldNotBeCloned:(Repository *)repository {
   self.statusBarController.errors = [self errors];
 }
 

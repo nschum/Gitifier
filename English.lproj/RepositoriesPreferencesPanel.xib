@@ -246,11 +246,11 @@ Gw
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="73" name="value" keyPath="arrangedObjects.lastError" id="0S3-tw-2mA">
+                                            <binding destination="73" name="value" keyPath="arrangedObjects.status" id="0S3-tw-2mA">
                                                 <dictionary key="options">
                                                     <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                     <bool key="NSConditionallySetsEditable" value="YES"/>
-                                                    <string key="NSValueTransformerName">LastErrorStringTransformer</string>
+                                                    <string key="NSValueTransformerName">RepositoryStatusStringTransformer</string>
                                                 </dictionary>
                                             </binding>
                                         </connections>

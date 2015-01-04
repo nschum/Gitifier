@@ -1,6 +1,7 @@
-#import "LastErrorStringTransformer.h"
+#import "RepositoryStatusStringTransformer.h"
+#import "RepositoryStatus.h"
 
-@implementation LastErrorStringTransformer
+@implementation RepositoryStatusStringTransformer
 
 + (Class)transformedValueClass {
     return [NSString class];
@@ -13,7 +14,7 @@
 - (id)transformedValue:(id)value {
     NSString *string;
     NSColor *color;
-    if (value) {
+    if ([value error]) {
         string = @"✘";
         color = [NSColor redColor];
     } else {

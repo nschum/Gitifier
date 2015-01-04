@@ -1,0 +1,2 @@
+@interface RepositoryStatusStringTransformer : NSValueTransformer
+@end
