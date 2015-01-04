@@ -9,10 +9,15 @@
 @class Git;
 @class Repository;
 
-typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
+@protocol RepositoryDelegate<NSObject>
+@optional
 
-@protocol RepositoryDelegate
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository;
+- (void) repositoryWasFetched:(Repository *)repository;
+- (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSError *)error;
+- (void) repositoryWasCloned: (Repository *) repository;
+- (void) repositoryCouldNotBeCloned: (Repository *) repository error:(NSError *)error;
+
 @end
 
 // ------------------------------
@@ -21,7 +26,8 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 
 @property (copy) NSString *url;
 @property (copy) NSString *name;
-@property (weak) id delegate;
+@property (nonatomic, copy, readonly) NSError *lastError;
+@property (weak) id<RepositoryDelegate> delegate;
 
 + (Repository *) repositoryFromHash: (NSDictionary *) hash;
 + (Repository *) repositoryWithUrl: (NSString *) anUrl;
@@ -30,7 +36,6 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 - (void) fetchNewCommits;
 - (void) cancelCommands;
 - (void) deleteWorkingCopy;
-- (void) resetStatus;
 - (NSDictionary *) hashRepresentation;
 - (NSString *) workingCopyDirectory;
 - (BOOL) directoryExists: (NSString *) directory;

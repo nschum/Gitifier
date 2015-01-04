@@ -9,15 +9,18 @@
 
 #import "Commit.h"
 #import "Git.h"
-#import "GrowlController.h"
 #import "Repository.h"
-#import "NotificationControllerFactory.h"
 
 static NSString *nameRegexp = @"[\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}\\-\\.]+";
 static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
+@interface Repository ()
+
+@property (nonatomic, copy) NSError *lastError;
+
+@end
+
 @implementation Repository {
-  RepositoryStatus status;
   Git *git;
   NSString *commitUrlPattern;
   BOOL isBeingUpdated;
@@ -66,7 +69,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     git.repositoryUrl = self.url;
 
     commitUrlPattern = [self findCommitUrlPattern];
-    status = ActiveRepository;
 
     return self;
   } else {
@@ -76,10 +78,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (NSDictionary *) hashRepresentation {
   return @{@"url": self.url, @"name": self.name};
-}
-
-- (void) resetStatus {
-  status = ActiveRepository;
 }
 
 - (NSString *) findCommitUrlPattern {
@@ -117,9 +115,23 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     isBeingUpdated = YES;
     [git runCommand: @"clone" withArguments: @[self.url, workingCopy, @"-n", @"--depth", @"1"] inPath: cachesDirectory];
   } else {
-    [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
+    [self failWithMessage:@"Cached copy was deleted and can't be restored." reason:nil];
+    if ([_delegate respondsToSelector:@selector(repositoryCouldNotBeCloned:error:)]) {
+      assert([NSThread isMainThread]);
+      [_delegate repositoryCouldNotBeCloned:self error:self.lastError];
+    }
   }
 }
+
+- (void)failWithMessage:(NSString *)message reason:(NSString *)reason {
+  NSString *bundleIdentifier = [NSRunningApplication currentApplication].bundleIdentifier;
+  NSDictionary *userInfo = @{
+      NSLocalizedDescriptionKey: message,
+      NSLocalizedFailureReasonErrorKey: reason ?: @"",
+      NSFilePathErrorKey: self.url,
+  };
+  self.lastError = [NSError errorWithDomain:bundleIdentifier code:0 userInfo:userInfo];
+};
 
 - (void) fetchNewCommits {
   if (!isBeingUpdated) {
@@ -133,7 +145,11 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
         [self clone];
       }
     } else {
-      [[NotificationControllerFactory sharedController] showNotificationWithError: @"Can't fetch repository." repository: self];
+      [self failWithMessage:@"Can't fetch repository." reason:nil];
+      if ([_delegate respondsToSelector:@selector(repositoryCouldNotBeFetched:error:)]) {
+        assert([NSThread isMainThread]);
+        [_delegate repositoryCouldNotBeFetched:self error:self.lastError];
+      }
     }
   }
 }
@@ -147,9 +163,14 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 }
 
 - (void) commandCompleted: (NSString *) command output: (NSString *) output {
+  self.lastError = nil;
+
   if ([command isEqual: @"clone"]) {
     isBeingUpdated = NO;
-    [self notifyDelegateWithSelector: @selector(repositoryWasCloned:)];
+    if ([_delegate respondsToSelector:@selector(repositoryWasCloned:)]) {
+      assert([NSThread isMainThread]);
+      [_delegate repositoryWasCloned:self];
+    }
   } else if ([command isEqual: @"fetch"]) {
     NSArray *commitRanges = [output componentsMatchedByRegex: commitRangeRegexp];
     NSArray *arguments = [commitRanges arrayByAddingObject: @"--pretty=tformat:%ai%n%H%n%aN%n%aE%n%s%n"];
@@ -158,7 +179,10 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       [git runCommand: @"log" withArguments: arguments inPath: workingCopy];
     } else {
       isBeingUpdated = NO;
-      status = ActiveRepository;
+    }
+    if ([_delegate respondsToSelector:@selector(repositoryWasFetched:)]) {
+      assert([NSThread isMainThread]);
+      [_delegate repositoryWasFetched:self];
     }
   } else if ([command isEqual: @"log"]) {
     NSArray *commitData = [output arrayOfCaptureComponentsMatchedByRegex:
@@ -175,19 +199,30 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       [commits addObject: commit];
     }
     isBeingUpdated = NO;
-    status = ActiveRepository;
-    [self.delegate commitsReceived: commits inRepository: self];
+    id <RepositoryDelegate> o = self.delegate;
+    if ([o respondsToSelector:@selector(commitsReceived:inRepository:)]) {
+      assert([NSThread isMainThread]);
+      [o commitsReceived:commits inRepository:self];
+    }
   }
 }
 
 - (void) commandFailed: (NSString *) command output: (NSString *) output {
   isBeingUpdated = NO;
   if ([command isEqual: @"clone"]) {
-    [self notifyDelegateWithSelector: @selector(repositoryCouldNotBeCloned:)];
-  } else if (status != UnavailableRepository) {
-    status = UnavailableRepository;
-    NSString *truncated = (output.length > 100) ? PSFormat(@"%@...", [output substringToIndex: 100]) : output;
-    [[NotificationControllerFactory sharedController] showNotificationWithError: PSFormat(@"Command %@ failed: %@", command, truncated) repository: self];
+    [self failWithMessage:@"Cached copy was deleted and can't be restored." reason:nil];
+    if ([_delegate respondsToSelector:@selector(repositoryCouldNotBeCloned:error:)]) {
+      assert([NSThread isMainThread]);
+      [_delegate repositoryCouldNotBeCloned:self error:self.lastError];
+    }
+  } else {
+    NSString *message = [NSString stringWithFormat:@"Command git %@ failed", command];
+    NSLog(@"%@: %@", message, output);
+    [self failWithMessage:message reason:output];
+    if ([_delegate respondsToSelector:@selector(repositoryCouldNotBeFetched:error:)]) {
+      assert([NSThread isMainThread]);
+      [_delegate repositoryCouldNotBeFetched:self error:self.lastError];
+    }
   }
 }
 
@@ -278,12 +313,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
   }
 
   return YES;
-}
-
-- (void) notifyDelegateWithSelector: (SEL) selector {
-  if ([self.delegate respondsToSelector: selector]) {
-    [self.delegate performSelectorOnMainThread: selector withObject: self waitUntilDone: NO];
-  }
 }
 
 @end

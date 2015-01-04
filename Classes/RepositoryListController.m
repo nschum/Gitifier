@@ -16,7 +16,7 @@
 }
 
 - (void) addRepository: (Repository *) repository {
-  [repository setDelegate: [NSApp delegate]];
+  [repository setDelegate: (id<RepositoryDelegate>)[NSApp delegate]];
   [self addObject: repository];
   [self saveRepositories];
 }  
@@ -47,10 +47,6 @@
   [selectedRepositories makeObjectsPerformSelector: @selector(deleteWorkingCopy)];
 }
 
-- (void) resetRepositoryStatuses {
-  [[self arrangedObjects] makeObjectsPerformSelector: @selector(resetStatus)];
-}
-
 - (void) loadRepositories {
   NSArray *hashes = [GitifierDefaults arrayForKey: RepositoryListKey];
   if (hashes) {
@@ -64,7 +60,7 @@
       }
 
       if (repo) {
-        [repo setDelegate: [NSApp delegate]];
+        [repo setDelegate: (id<RepositoryDelegate>)[NSApp delegate]];
         [self addObject: repo];
       }
     }

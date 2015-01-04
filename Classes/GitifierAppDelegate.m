@@ -24,7 +24,7 @@ static NSString *SUEnableAutomaticChecksKey = @"SUEnableAutomaticChecks";
 static NSString *SUSendProfileInfoKey       = @"SUSendProfileInfo";
 static CGFloat IntervalBetweenGrowls        = 0.05;
 
-@interface GitifierAppDelegate ()
+@interface GitifierAppDelegate ()<RepositoryDelegate>
 
 @property (strong) PreferencesWindowController *preferencesWindowController;
 @property (strong) NSString *userEmail;
@@ -92,9 +92,6 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 }
 
 - (void) wakeupEvent: (NSNotification *) notification {
-  // on a new day, notify the user about repositories that are still failing
-  // also, give the network some time to reconnect after the wakeup
-  [self.repositoryListController performSelector: @selector(resetRepositoryStatuses) withObject: nil afterDelay: 10.0];
 }
 
 - (void) windowBecameMain: (NSNotification *) notification {
@@ -233,7 +230,7 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   }
 }
 
-// --- repository callbacks ---
+#pragma mark - RepositoryDelegate
 
 - (void) commitsReceived: (NSArray *) commits inRepository: (Repository *) repository {
   BOOL hasNotificationLimit = [GitifierDefaults boolForKey: NotificationLimitEnabledKey];
@@ -275,15 +272,33 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
   [self.statusBarController updateRecentCommitsList: relevantCommits];
 }
 
+- (void) repositoryWasFetched:(Repository *)repository {
+  self.statusBarController.errors = [self errors];
+}
+
+- (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSError *)error {
+  self.statusBarController.errors = [self errors];
+}
+
+- (NSDictionary *) errors {
+  NSMutableDictionary *errors = [NSMutableDictionary new];
+  for (Repository *repository in _repositoryListController.arrangedObjects) {
+    if (repository.lastError) {
+      errors[repository.name] = repository.lastError;
+    }
+  }
+  return errors;
+}
+
 // these should be rare, only when a fetch fails and a repository needs to be recloned
 
 - (void) repositoryWasCloned: (Repository *) repository {
   [repository fetchNewCommits];
+  self.statusBarController.errors = [self errors];
 }
 
-- (void) repositoryCouldNotBeCloned: (Repository *) repository {
-  [[NotificationControllerFactory sharedController] showNotificationWithError: @"Cached copy was deleted and can't be restored."
-                                                                   repository: repository];
+- (void) repositoryCouldNotBeCloned:(Repository *) repository error:(NSError *)error {
+  self.statusBarController.errors = [self errors];
 }
 
 @end

@@ -7,6 +7,7 @@
 
 @interface StatusBarController : NSObject
 
+@property (nonatomic, copy) NSDictionary *errors;
 @property (weak) IBOutlet NSMenu *statusBarMenu;
 
 - (void) createStatusBarItem;
