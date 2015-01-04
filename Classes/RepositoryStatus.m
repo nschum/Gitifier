@@ -17,6 +17,18 @@
     return self;
 }
 
++ (instancetype)statusCloning {
+    RepositoryStatus *status = [RepositoryStatus new];
+    status->_cloning = YES;
+    return status;
+}
+
++ (instancetype)statusUpdating {
+    RepositoryStatus *status = [RepositoryStatus new];
+    status->_updating = YES;
+    return status;
+}
+
 - (id)copyWithZone:(NSZone *)zone {
     return self;
 }
