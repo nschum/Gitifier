@@ -280,7 +280,6 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 }
 
 - (void) repositoryCouldNotBeFetched:(Repository *)repository error:(NSString *)error {
-  [[NotificationControllerFactory sharedController] showNotificationWithError: error repository: repository];
   self.statusBarController.showError = YES;
 }
 
@@ -301,8 +300,6 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 }
 
 - (void) repositoryCouldNotBeCloned:(Repository *) repository error:(NSString *)error {
-  [[NotificationControllerFactory sharedController] showNotificationWithError:error
-                                                                   repository:repository];
   self.statusBarController.showError = YES;
 }
 

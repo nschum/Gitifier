@@ -11,7 +11,6 @@
 - (void) showNotificationWithCommitGroupIncludingAllCommits: (NSArray *) commits;
 - (void) showNotificationWithCommitGroupIncludingSomeCommits: (NSArray *) commits;
 
-- (void) showNotificationWithError: (NSString *) message repository: (Repository *) repository;
 - (void) showNotificationWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type;
 
 @end

@@ -67,19 +67,6 @@ NSString *OtherMessageGrowl = @"Other message";
   [self showNotificationWithCommitGroup: commits includesAllCommits: NO];
 }
 
-- (void) showNotificationWithError: (NSString *) message repository: (Repository *) repository {
-  NSString *title;
-  if (repository) {
-    NSLog(@"Error in %@: %@", repository.name, message);
-    title = PSFormat(@"Error in %@", repository.name);
-  } else {
-    NSLog(@"Error: %@", message);
-    title = @"Error";
-  }
-
-  [self showNotificationWithTitle: title message: message type: RepositoryUpdateFailedGrowl];
-}
-
 - (void) showNotificationWithTitle: (NSString *) title message: (NSString *) message type: (NSString *) type {
   [GrowlApplicationBridge notifyWithTitle: title
                               description: message
