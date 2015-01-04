@@ -164,7 +164,7 @@ Gw
                                             </binding>
                                         </connections>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="16" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ceh-dk-0SW">
+                                    <tableColumn identifier="Status" editable="NO" width="16" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ceh-dk-0SW">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -187,6 +187,7 @@ Gw
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action selector="showRepositoryError:" target="-2" id="dMo-iW-jHy"/>
                                     <binding destination="-2" name="enabled" keyPath="gitClass.gitExecutable" id="152">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNotNil</string>
