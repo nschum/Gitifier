@@ -47,10 +47,6 @@
   [selectedRepositories makeObjectsPerformSelector: @selector(deleteWorkingCopy)];
 }
 
-- (void) resetRepositoryStatuses {
-  [[self arrangedObjects] makeObjectsPerformSelector: @selector(resetStatus)];
-}
-
 - (void) loadRepositories {
   NSArray *hashes = [GitifierDefaults arrayForKey: RepositoryListKey];
   if (hashes) {

@@ -21,7 +21,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 @end
 
 @implementation Repository {
-  RepositoryStatus status;
   Git *git;
   NSString *commitUrlPattern;
   BOOL isBeingUpdated;
@@ -70,7 +69,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
     git.repositoryUrl = self.url;
 
     commitUrlPattern = [self findCommitUrlPattern];
-    status = ActiveRepository;
 
     return self;
   } else {
@@ -80,10 +78,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
 
 - (NSDictionary *) hashRepresentation {
   return @{@"url": self.url, @"name": self.name};
-}
-
-- (void) resetStatus {
-  status = ActiveRepository;
 }
 
 - (NSString *) findCommitUrlPattern {
@@ -185,7 +179,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       [git runCommand: @"log" withArguments: arguments inPath: workingCopy];
     } else {
       isBeingUpdated = NO;
-      status = ActiveRepository;
     }
     if ([_delegate respondsToSelector:@selector(repositoryWasFetched:)]) {
       assert([NSThread isMainThread]);
@@ -206,7 +199,6 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       [commits addObject: commit];
     }
     isBeingUpdated = NO;
-    status = ActiveRepository;
     id <RepositoryDelegate> o = self.delegate;
     if ([o respondsToSelector:@selector(commitsReceived:inRepository:)]) {
       assert([NSThread isMainThread]);
@@ -223,8 +215,7 @@ static NSString *commitRangeRegexp = @"[0-9a-f]+\\.\\.[0-9a-f]+";
       assert([NSThread isMainThread]);
       [_delegate repositoryCouldNotBeCloned:self error:self.lastError];
     }
-  } else if (status != UnavailableRepository) {
-    status = UnavailableRepository;
+  } else {
     NSString *message = [NSString stringWithFormat:@"Command git %@ failed", command];
     NSLog(@"%@: %@", message, output);
     [self failWithMessage:message reason:output];

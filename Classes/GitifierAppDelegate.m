@@ -92,9 +92,6 @@ static CGFloat IntervalBetweenGrowls        = 0.05;
 }
 
 - (void) wakeupEvent: (NSNotification *) notification {
-  // on a new day, notify the user about repositories that are still failing
-  // also, give the network some time to reconnect after the wakeup
-  [self.repositoryListController performSelector: @selector(resetRepositoryStatuses) withObject: nil afterDelay: 10.0];
 }
 
 - (void) windowBecameMain: (NSNotification *) notification {

@@ -15,7 +15,6 @@
 - (void) removeSelectedRepositories;
 - (void) loadRepositories;
 - (void) saveRepositories;
-- (void) resetRepositoryStatuses;
 - (Repository *) findByUrl: (NSString *) url;
 
 @end

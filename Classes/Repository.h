@@ -9,8 +9,6 @@
 @class Git;
 @class Repository;
 
-typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
-
 @protocol RepositoryDelegate<NSObject>
 @optional
 
@@ -38,7 +36,6 @@ typedef enum { ActiveRepository, UnavailableRepository } RepositoryStatus;
 - (void) fetchNewCommits;
 - (void) cancelCommands;
 - (void) deleteWorkingCopy;
-- (void) resetStatus;
 - (NSDictionary *) hashRepresentation;
 - (NSString *) workingCopyDirectory;
 - (BOOL) directoryExists: (NSString *) directory;
