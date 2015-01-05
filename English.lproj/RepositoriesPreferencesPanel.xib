@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
@@ -17,32 +17,32 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="371" width="360" height="139"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="21">
                 <rect key="frame" x="0.0" y="0.0" width="360" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" id="27">
-                        <rect key="frame" x="17" y="102" width="158" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="27">
+                        <rect key="frame" x="17" y="102" width="156" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter git repository URL:" id="28">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="26">
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="26">
                         <rect key="frame" x="20" y="72" width="296" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="29">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" id="23">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="23">
                         <rect key="frame" x="264" y="12" width="82" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="f8K-CJ-DG5"/>
+                        </constraints>
                         <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="31">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -54,9 +54,11 @@ DQ
                             <action selector="addRepository:" target="61" id="72"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="22">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="22">
                         <rect key="frame" x="182" y="12" width="82" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="lgI-lI-5iL"/>
+                        </constraints>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -68,20 +70,36 @@ Gw
                             <action selector="cancelAddingRepository:" target="61" id="71"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" id="25">
-                        <rect key="frame" x="21" y="54" width="275" height="15"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="25">
+                        <rect key="frame" x="21" y="54" width="186" height="15"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="e.g. git://github.com/psionides/Gitifier.git" id="30">
                             <font key="font" size="10" name="HelveticaNeue-Italic"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="24">
+                    <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="24">
                         <rect key="frame" x="324" y="75" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="22" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="14" id="4cK-0e-Vy7"/>
+                    <constraint firstItem="25" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="23" id="7DM-y8-TqR"/>
+                    <constraint firstItem="23" firstAttribute="leading" secondItem="22" secondAttribute="trailing" constant="12" id="E83-0H-ejM"/>
+                    <constraint firstItem="26" firstAttribute="top" secondItem="27" secondAttribute="bottom" constant="8" id="Il3-eS-91Z"/>
+                    <constraint firstItem="24" firstAttribute="leading" secondItem="26" secondAttribute="trailing" constant="8" id="PFE-nL-J41"/>
+                    <constraint firstItem="27" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="19" id="QRs-Cu-Gyg"/>
+                    <constraint firstItem="26" firstAttribute="leading" secondItem="21" secondAttribute="leading" constant="20" id="VDL-el-YaE"/>
+                    <constraint firstAttribute="bottom" secondItem="23" secondAttribute="bottom" constant="19" id="VKG-a5-jH6"/>
+                    <constraint firstItem="27" firstAttribute="top" secondItem="21" secondAttribute="top" constant="20" id="bdk-Jc-52B"/>
+                    <constraint firstItem="25" firstAttribute="top" secondItem="26" secondAttribute="bottom" constant="3" id="dEt-kt-z2O"/>
+                    <constraint firstItem="26" firstAttribute="top" secondItem="27" secondAttribute="bottom" constant="8" id="dx9-k6-fcA"/>
+                    <constraint firstItem="24" firstAttribute="centerY" secondItem="26" secondAttribute="centerY" id="eUL-Po-fnM"/>
+                    <constraint firstItem="23" firstAttribute="top" secondItem="22" secondAttribute="top" id="f42-Lo-RYc"/>
+                    <constraint firstItem="25" firstAttribute="top" secondItem="26" secondAttribute="bottom" constant="3" id="pIa-IP-qKG"/>
+                    <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" constant="20" id="qIs-qg-3kj"/>
+                    <constraint firstAttribute="trailing" secondItem="24" secondAttribute="trailing" constant="20" id="zTF-Tp-xVe"/>
+                </constraints>
             </view>
         </window>
         <customObject id="61" customClass="NewRepositoryDialogController">
@@ -109,10 +127,62 @@ Gw
             <rect key="frame" x="0.0" y="0.0" width="525" height="352"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView focusRingType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="5">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                    <rect key="frame" x="18" y="315" width="102" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Git repositories:" id="11">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="157">
+                    <rect key="frame" x="292" y="315" width="213" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Please set path to Git executable." id="158">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" red="0.93951612900000003" green="0.14112903230000001" blue="0.14112903230000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="gitClass.gitExecutable" id="163">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                    <rect key="frame" x="20" y="19" width="23" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="3Iu-q3-Ghd"/>
+                        <constraint firstAttribute="width" constant="23" id="p28-0H-r1S"/>
+                    </constraints>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showNewRepositorySheet:" target="61" id="63"/>
+                        <binding destination="-2" name="enabled" keyPath="gitClass.gitExecutable" id="156">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNotNil</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                    <rect key="frame" x="42" y="19" width="23" height="22"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="10">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="removeRepositories:" target="-2" id="34"/>
+                        <binding destination="73" name="enabled" keyPath="canRemove" id="85"/>
+                    </connections>
+                </button>
+                <scrollView focusRingType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
                     <rect key="frame" x="20" y="48" width="483" height="259"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <clipView key="contentView" id="HsK-zg-pCf">
+                    <clipView key="contentView" misplaced="YES" id="HsK-zg-pCf">
                         <rect key="frame" x="1" y="17" width="481" height="241"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -211,60 +281,23 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <textField verticalHuggingPriority="750" id="6">
-                    <rect key="frame" x="17" y="315" width="106" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Git repositories:" id="11">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="157">
-                    <rect key="frame" x="291" y="315" width="215" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Please set path to Git executable." id="158">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" red="0.93951612900000003" green="0.14112903230000001" blue="0.14112903230000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="hidden" keyPath="gitClass.gitExecutable" id="163">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSIsNotNil</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
-                <button verticalHuggingPriority="750" id="8">
-                    <rect key="frame" x="20" y="19" width="23" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="showNewRepositorySheet:" target="61" id="63"/>
-                        <binding destination="-2" name="enabled" keyPath="gitClass.gitExecutable" id="156">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSIsNotNil</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" id="7">
-                    <rect key="frame" x="42" y="19" width="23" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="10">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="removeRepositories:" target="-2" id="34"/>
-                        <binding destination="73" name="enabled" keyPath="canRemove" id="85"/>
-                    </connections>
-                </button>
             </subviews>
+            <constraints>
+                <constraint firstItem="157" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" id="4si-hQ-qj7"/>
+                <constraint firstAttribute="bottom" secondItem="8" secondAttribute="bottom" constant="20" id="Aji-YO-r1i"/>
+                <constraint firstItem="6" firstAttribute="top" secondItem="168" secondAttribute="top" constant="20" id="FCn-7h-RKQ"/>
+                <constraint firstItem="5" firstAttribute="leading" secondItem="168" secondAttribute="leading" constant="20" id="NZo-vM-baM"/>
+                <constraint firstItem="5" firstAttribute="top" secondItem="6" secondAttribute="bottom" constant="8" id="R69-zb-0k5"/>
+                <constraint firstItem="8" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="8" id="Ump-mX-hu3"/>
+                <constraint firstItem="7" firstAttribute="top" secondItem="8" secondAttribute="top" id="bTu-9Q-The"/>
+                <constraint firstItem="7" firstAttribute="width" secondItem="8" secondAttribute="width" id="cVD-gO-u1z"/>
+                <constraint firstItem="7" firstAttribute="height" secondItem="8" secondAttribute="height" id="dKK-3x-SpY"/>
+                <constraint firstItem="7" firstAttribute="leading" secondItem="8" secondAttribute="trailing" constant="-1" id="e0x-CV-u6L"/>
+                <constraint firstItem="5" firstAttribute="leading" secondItem="8" secondAttribute="leading" id="i76-Bu-LdU"/>
+                <constraint firstItem="6" firstAttribute="leading" secondItem="5" secondAttribute="leading" id="jhN-y5-kfY"/>
+                <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="22" id="kXr-2B-9Y9"/>
+                <constraint firstItem="6" firstAttribute="baseline" secondItem="157" secondAttribute="baseline" id="rbw-BF-1Hj"/>
+            </constraints>
         </customView>
     </objects>
     <resources>
