@@ -1,2 +1,0 @@
-@interface LastErrorStringTransformer: NSValueTransformer
-@end
