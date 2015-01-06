@@ -17,12 +17,22 @@
     if ([value error]) {
         string = @"✘";
         color = [NSColor redColor];
+    } else if ([value cloning]) {
+        string = @"🕑";
+        color = [NSColor yellowColor];
     } else {
         string = @"✓";
         color = [NSColor greenColor];
     }
+
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.alignment = NSCenterTextAlignment;
+
     return [[NSAttributedString alloc] initWithString:string
-                                           attributes:@{NSForegroundColorAttributeName: color}];
+                                           attributes:@{
+        NSForegroundColorAttributeName: color,
+        NSParagraphStyleAttributeName: paragraphStyle,
+    }];
 }
 
 @end
