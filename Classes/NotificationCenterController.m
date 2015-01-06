@@ -31,7 +31,7 @@
   NSArray *authorNames = [commits valueForKeyPath: @"@distinctUnionOfObjects.authorName"];
   NSString *authorList = [authorNames componentsJoinedByString: @", "];
   unsigned long count = commits.count;
-  NSString *message = includesAll ? PSFormat(@"%lud commits received", count) : PSFormat(@"… and %lud other commits", count);
+  NSString *message = includesAll ? PSFormat(@"%lu commits received", count) : PSFormat(@"… and %lu other commits", count);
 
   [self showNotificationWithTitle:((Commit *)commits[0]).repository.name
                          subtitle:authorList

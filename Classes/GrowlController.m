@@ -48,7 +48,7 @@ NSString *OtherMessageGrowl = @"Other message";
   NSArray *authorNames = [commits valueForKeyPath: @"@distinctUnionOfObjects.authorName"];
   NSString *authorList = [authorNames componentsJoinedByString: @", "];
   unsigned long count = commits.count;
-  NSString *message = includesAll ? PSFormat(@"%lud commits received", count) : PSFormat(@"… and %lud other commits", count);
+  NSString *message = includesAll ? PSFormat(@"%lu commits received", count) : PSFormat(@"… and %lu other commits", count);
 
   [GrowlApplicationBridge notifyWithTitle: message
                               description: PSFormat(@"Author%@: %@", (authorNames.count > 1) ? @"s" : @"", authorList)
